@@ -1,0 +1,17 @@
+- /
+- /pkg/
+- /pkg/archive/
+- /pkg/archive/tar/
+- /pkg/archive/zip/
+- /pkg/bufio/
+- /pkg/builtin/
+- /pkg/bytes/
+- /pkg/errors/
+- /pkg/hash/
+- /pkg/io/
+- /pkg/io/ioutil/
+- /pkg/net/url/
+- /pkg/time/
+- /pkg/unicode/
+- /pkg/unicode/utf8/
+- /pkg/unicode/utf16/
