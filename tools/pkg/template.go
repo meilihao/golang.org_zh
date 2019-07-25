@@ -51,6 +51,7 @@ func appendSrcUrl(s string) string {
 	return strings.TrimSuffix(pkgUrl, "/pkg/") + s
 }
 
+// version : c75e7e6983e78066d98496e6a979a9d3f14f3023
 var pkgTemplate = `{{with .PDoc}}
 {{if $.IsMain}}
 {{comment_md .Doc}}
