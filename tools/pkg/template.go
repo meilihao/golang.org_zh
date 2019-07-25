@@ -3,19 +3,18 @@ package main
 
 import (
 	"bytes"
-	"path"
 	"strings"
 )
 
 var (
 	funcs = map[string]interface{}{
-		"comment_md":  commentMdFunc,
-		"md":          mdFunc,
-		"pre":         preFunc,
-		"kebab":       kebabFunc,
-		"bitscape":    bitscapeFunc, //Escape [] for bitbucket confusion
-		"trim_prefix": strings.TrimPrefix,
-		"srcLink":       srcLinkFunc,
+		"comment_md":   commentMdFunc,
+		"md":           mdFunc,
+		"pre":          preFunc,
+		"kebab":        kebabFunc,
+		"bitscape":     bitscapeFunc, //Escape [] for bitbucket confusion
+		"trim_prefix":  strings.TrimPrefix,
+		"appendSrcUrl": appendSrcUrl,
 	}
 )
 
@@ -48,12 +47,8 @@ func bitscapeFunc(text string) string {
 	return s
 }
 
-func srcLinkFunc(s string) string {
-	s = path.Clean("/" + s)
-	if !strings.HasPrefix(s, "/src/") {
-		s = "/src" + s
-	}
-	return strings.TrimSuffix(pkgUrl,"/pkg/")+s
+func appendSrcUrl(s string) string {
+	return strings.TrimSuffix(pkgUrl, "/pkg/") + s
 }
 
 var pkgTemplate = `{{with .PDoc}}
@@ -80,46 +75,55 @@ var pkgTemplate = `{{with .PDoc}}
   * [{{node_html $ .Decl false | sanitize}}](#{{$name_html}}){{- end}}{{- range .Methods}}{{$name_html := html .Name}}
   * [{{node_html $ .Decl false | sanitize}}](#{{$tname_html}}.{{$name_html}}){{- end}}{{- end}}{{- if $.Notes}}{{- range $marker, $item := $.Notes}}
 * [{{noteTitle $marker | html}}s](#pkg-note-{{$marker}}){{end}}{{end}}
+
 {{if $.Examples}}
 #### <a id="pkg-examples">Examples</a>{{- range $.Examples}}
 * [{{example_name .Name}}](#example_{{.Name}}){{- end}}{{- end}}
+
 {{with .Filenames}}
 #### <a id="pkg-files">Package files</a>
-{{range .}}[{{.|filename|html}}]({{.|srcLink|html}}) {{end}}
+{{range .}}[{{.|filename|html}}]({{.|srcLink|html|appendSrcUrl}}) {{end}}
 {{end}}
 
 {{with .Consts}}## <a id="pkg-constants">Constants</a>
-{{range .}}{{node $ .Decl | pre}}
-{{comment_md .Doc}}{{end}}{{end}}
-{{with .Vars}}## <a id="pkg-variables">Variables</a>
-{{range .}}{{node $ .Decl | pre}}
-{{comment_md .Doc}}{{end}}{{end}}
+{{range .}}{{comment_md .Doc}}
+<pre>{{node_html $ .Decl true}}</pre>{{end}}{{end}}
 
-{{range .Funcs}}{{$name_html := html .Name}}## <a id="{{$name_html}}">func</a> [{{$name_html}}]({{posLink_url $ .Decl}})
-{{node $ .Decl | pre}}
+{{with .Vars}}## <a id="pkg-variables">Variables</a>
+{{range .}}{{comment_md .Doc}}
+<pre>{{node_html $ .Decl true}}</pre>{{end}}{{end}}
+
+{{range .Funcs}}{{$name_html := html .Name}}## <a id="{{$name_html}}">func</a> [{{$name_html}}]({{posLink_url $ .Decl|appendSrcUrl}})
+<pre>{{node_html $ .Decl true}}</pre>
 {{comment_md .Doc}}
 {{example_html $ .Name}}
 {{callgraph_html $ "" .Name}}{{end}}
-{{range .Types}}{{$tname := .Name}}{{$tname_html := html .Name}}## <a id="{{$tname_html}}">type</a> [{{$tname_html}}]({{posLink_url $ .Decl}})
-{{node $ .Decl | pre}}
-{{comment_md .Doc}}{{range .Consts}}
-{{node $ .Decl | pre }}
-{{comment_md .Doc}}{{end}}{{range .Vars}}
-{{node $ .Decl | pre }}
-{{comment_md .Doc}}{{end}}
+
+{{range .Types}}{{$tname := .Name}}{{$tname_html := html .Name}}## <a id="{{$tname_html}}">type</a> [{{$tname_html}}]({{posLink_url $ .Decl|appendSrcUrl}})
+{{comment_md .Doc}}
+<pre>{{node_html $ .Decl true}}</pre>
+
+{{range .Consts}}
+{{comment_md .Doc}}
+<pre>{{node_html $ .Decl true}}</pre>{{end}}
+
+{{range .Vars}}
+{{comment_md .Doc}}
+<pre>{{node_html $ .Decl true}}</pre>{{end}}
 
 {{example_html $ $tname}}
 {{implements_html $ $tname}}
 {{methodset_html $ $tname}}
 
-{{range .Funcs}}{{$name_html := html .Name}}### <a id="{{$name_html}}">func</a> [{{$name_html}}]({{posLink_url $ .Decl}})
-{{node $ .Decl | pre}}
+{{range .Funcs}}{{$name_html := html .Name}}### <a id="{{$name_html}}">func</a> [{{$name_html}}]({{posLink_url $ .Decl|appendSrcUrl}})
+<pre>{{node_html $ .Decl true}}</pre>
 {{comment_md .Doc}}
-{{example_html $ .Name}}{{end}}
+{{example_html $ .Name}}
 {{callgraph_html $ "" .Name}}
+{{end}}
 
-{{range .Methods}}{{$name_html := html .Name}}### <a id="{{$tname_html}}.{{$name_html}}">func</a> ({{md .Recv}}) [{{$name_html}}]({{posLink_url $ .Decl}})
-{{node $ .Decl | pre}}
+{{range .Methods}}{{$name_html := html .Name}}### <a id="{{$tname_html}}.{{$name_html}}">func</a> ({{md .Recv}}) [{{$name_html}}]({{posLink_url $ .Decl|appendSrcUrl}})
+<pre>{{node_html $ .Decl true}}</pre>
 {{comment_md .Doc}}
 {{$name := printf "%s_%s" $tname .Name}}{{example_html $ $name}}
 {{callgraph_html $ .Recv .Name}}
@@ -128,12 +132,13 @@ var pkgTemplate = `{{with .PDoc}}
 {{with $.Notes}}
 {{range $marker, $content := .}}
 ## <a id="pkg-note-{{$marker}}">{{noteTitle $marker | html}}s
-<ul style="list-style: none; padding: 0;">
 {{range .}}
-<li><a href="{{posLink_url $ .}}">&#x261e;</a> {{html .Body}}</li>
+- {{comment_md .Body}}({{posLink_url $ .}})
 {{end}}
-</ul>
 {{end}}
 {{end}}
 {{end}}
 `
+
+var exampleTemplate = `<a id="example_{{.Name}}">Example{{example_suffix .Name}}</a>
+{{with .Doc}}<p>{{html .}}</p>{{end}}`

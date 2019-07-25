@@ -162,7 +162,7 @@ func FindPkgs(doc *goquery.Document) {
 			return true
 		}
 
-		if isDebug && i == 3 { // debug dirSubPkg
+		if isDebug && i == 7 { // debug dirSubPkg
 			return false
 		}
 
@@ -269,7 +269,8 @@ func InitPresentation() {
 	pres = godoc.NewPresentation(corpus)
 
 	// from https://github.com/golang/tools/blob/master///cmd/godoc/handlers.go#L125
-	pres.PackageHTML = readTemplate("package.html")
+	pres.PackageHTML = readTemplate("package.html", pkgTemplate)
+	pres.ExampleHTML = readTemplate("example.html", exampleTemplate)
 }
 
 func InjectInfo(subPath string) string {
@@ -286,9 +287,9 @@ func applyTemplate(t *template.Template, name string, data interface{}) []byte {
 	return buf.Bytes()
 }
 
-func readTemplate(name string) *template.Template {
+func readTemplate(name, content string) *template.Template {
 	// be explicit with errors (for app engine use)
-	t, err := template.New(name).Funcs(pres.FuncMap()).Funcs(funcs).Parse(pkgTemplate)
+	t, err := template.New(name).Funcs(pres.FuncMap()).Funcs(funcs).Parse(content)
 	if err != nil {
 		log.Fatal("readTemplate: ", err)
 	}
