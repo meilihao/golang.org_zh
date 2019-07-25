@@ -3,6 +3,7 @@ package main
 
 import (
 	"bytes"
+	"path"
 	"strings"
 )
 
@@ -14,6 +15,7 @@ var (
 		"kebab":       kebabFunc,
 		"bitscape":    bitscapeFunc, //Escape [] for bitbucket confusion
 		"trim_prefix": strings.TrimPrefix,
+		"srcLink":       srcLinkFunc,
 	}
 )
 
@@ -44,6 +46,14 @@ func bitscapeFunc(text string) string {
 	s := strings.Replace(text, "[", "\\[", -1)
 	s = strings.Replace(s, "]", "\\]", -1)
 	return s
+}
+
+func srcLinkFunc(s string) string {
+	s = path.Clean("/" + s)
+	if !strings.HasPrefix(s, "/src/") {
+		s = "/src" + s
+	}
+	return strings.TrimSuffix(pkgUrl,"/pkg/")+s
 }
 
 var pkgTemplate = `{{with .PDoc}}
