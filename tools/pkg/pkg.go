@@ -68,7 +68,7 @@ const (
 
 func init() {
 	flag.StringVar(&pkgUrl, "pkg", "https://golang.org/pkg/", "go pkg url")
-	flag.BoolVar(&isDebug, "dubug", false, "generate debug subdir")
+	flag.BoolVar(&isDebug, "debug", false, "generate debug subdir")
 
 	flag.Parse()
 }
