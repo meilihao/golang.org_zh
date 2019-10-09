@@ -5,7 +5,7 @@
 go 1.13.1
 
 ## 进度
-[已完成列表](list.txt).
+[已完成列表](go1.13.1/pkg.md).
 
 ## markdown生成工具
 见`tools/pkg`
