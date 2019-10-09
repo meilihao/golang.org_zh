@@ -60,7 +60,7 @@
 |[json](pkgs/encoding_json.md)|Package json implements encoding and decoding of JSON as defined in RFC 7159.|0%|
 |[pem](pkgs/encoding_pem.md)|Package pem implements the PEM data encoding, which originated in Privacy Enhanced Mail.|0%|
 |[xml](pkgs/encoding_xml.md)|Package xml implements a simple XML 1.0 parser that understands XML name spaces.|0%|
-|[errors](pkgs/errors.md)|Package errors implements functions to manipulate errors.|0%|
+|[errors](pkgs/errors.md)|errors包实现了用于处理错误的函数|0%|
 |[expvar](pkgs/expvar.md)|Package expvar provides a standardized interface to public variables, such as operation counters in servers.|0%|
 |[flag](pkgs/flag.md)|Package flag implements command-line flag parsing.|0%|
 |[fmt](pkgs/fmt.md)|Package fmt implements formatted I/O with functions analogous to C's printf and scanf.|0%|
