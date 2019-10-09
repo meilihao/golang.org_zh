@@ -158,7 +158,8 @@ func FindPkgs(doc *goquery.Document) {
 	var hrefStr string        // pkg的具体页面
 	var pkgs []*PkgInfo
 
-	dirSubPkg := filepath.Join(version, "pkgs") // 存放具体pkg的目录
+	dirPkgs := "pkgs"
+	dirSubPkg := filepath.Join(version, dirPkgs) // 存放具体pkg的目录
 	os.RemoveAll(dirSubPkg)
 	os.MkdirAll(dirSubPkg, 0755)
 
@@ -207,7 +208,7 @@ func FindPkgs(doc *goquery.Document) {
 		if v.Process == -1 {
 			output += fmt.Sprintf("|%s|%s||\n", v.Name, v.Synopsis)
 		} else {
-			output += fmt.Sprintf("|[%s](%s)|%s|%d%%|\n", v.Name, v.HrefFull, v.Synopsis, v.Process)
+			output += fmt.Sprintf("|[%s](%s)|%s|%d%%|\n", v.Name, dirPkgs+"/"+v.StoreName+".md", v.Synopsis, v.Process)
 		}
 	}
 
