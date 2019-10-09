@@ -136,6 +136,11 @@ func FindGoVersion(doc *goquery.Document) {
 			version = tmp[1]
 		}
 	}
+
+	if version != "" { //按照version存储pkgs
+		os.RemoveAll(version)
+		os.MkdirAll(version, 0755)
+	}
 }
 
 type PkgInfo struct {
@@ -153,7 +158,7 @@ func FindPkgs(doc *goquery.Document) {
 	var hrefStr string        // pkg的具体页面
 	var pkgs []*PkgInfo
 
-	dirSubPkg := "pkgs_" + version // 存放具体pkg的目录
+	dirSubPkg := filepath.Join(version, "pkgs") // 存放具体pkg的目录
 	os.RemoveAll(dirSubPkg)
 	os.MkdirAll(dirSubPkg, 0755)
 
@@ -206,7 +211,7 @@ func FindPkgs(doc *goquery.Document) {
 		}
 	}
 
-	f, err := os.Create(fmt.Sprintf("pkg_%s.md", version))
+	f, err := os.Create(filepath.Join(version, "pkg.md"))
 	if err != nil {
 		log.Panic(err)
 	}
