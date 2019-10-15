@@ -1,4 +1,6 @@
 // https://github.com/davecheney/godoc2md
+// base: https://github.com/golang/tools/blob/master/godoc/static
+
 package main
 
 import (
