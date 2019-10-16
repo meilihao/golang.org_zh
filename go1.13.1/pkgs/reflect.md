@@ -267,6 +267,8 @@ ChanDir 返回channel类型的方向.
 A Kind represents the specific kind of type that a Type represents.
 The zero Kind is not a valid kind.
 
+Kind 表示Type类型所表示的特定类型. Kind的零值不是一种有效的类型.
+
 
 <pre>type Kind <a href="/pkg/builtin/#uint">uint</a></pre>
 
@@ -305,7 +307,28 @@ The zero Kind is not a valid kind.
 
 
 <a id="example_Kind">Example</a>
+```go
+package main
 
+import (
+	"fmt"
+	"reflect"
+)
+
+func main() {
+	for _, v := range []interface{}{"hi", 42, func() {}} {
+		switch v := reflect.ValueOf(v); v.Kind() {
+		case reflect.String:
+			fmt.Println(v.String())
+		case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
+			fmt.Println(v.Int())
+		default:
+			fmt.Printf("unhandled kind %s", v.Kind())
+		}
+	}
+
+}
+```
 
 
 
