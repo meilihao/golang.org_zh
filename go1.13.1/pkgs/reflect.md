@@ -350,6 +350,12 @@ func main() {
 }
 ```
 
+output:
+```txt
+hi
+42
+unhandled kind func
+```
 
 
 
@@ -538,6 +544,8 @@ Moreover, the Data field is not sufficient to guarantee the data
 it references will not be garbage collected, so programs must keep
 a separate, correctly typed pointer to the underlying data.
 
+StringHeader 是string的runtime表示形式. 它不能被安全地和方便地使用, 且该形式可能会在以后的版本中发生变更.
+而且, Data 字段不能保证它指向的数据不被gc回收, 因此程序中必须保留一个单独的, 类型正确的并指向底层数据的指针.
 
 <pre>type StringHeader struct {
 <span id="StringHeader.Data"></span>    Data <a href="/pkg/builtin/#uintptr">uintptr</a>
@@ -558,20 +566,21 @@ a separate, correctly typed pointer to the underlying data.
 ## <a id="StructField">type</a> [StructField](https://golang.org/src/reflect/type.go?s=29891:30415#L1085)
 A StructField describes a single field in a struct.
 
+StructField 描述了struct的单个字段.
 
 <pre>type StructField struct {
-<span id="StructField.Name"></span>    <span class="comment">// Name is the field name.</span>
+<span id="StructField.Name"></span>    <span class="comment">// Name is the field name. // 字段名称</span>
     Name <a href="/pkg/builtin/#string">string</a>
 <span id="StructField.PkgPath"></span>    <span class="comment">// PkgPath is the package path that qualifies a lower case (unexported)</span>
-    <span class="comment">// field name. It is empty for upper case (exported) field names.</span>
+    <span class="comment">// field name. It is empty for upper case (exported) field names. // PkgPath是不可导出字段的package路径. 导出字段的该值为空.</span>
     <span class="comment">// See https://golang.org/ref/spec#Uniqueness_of_identifiers</span>
     PkgPath <a href="/pkg/builtin/#string">string</a>
 
-<span id="StructField.Type"></span>    Type      <a href="#Type">Type</a>      <span class="comment">// field type</span>
-<span id="StructField.Tag"></span>    Tag       <a href="#StructTag">StructTag</a> <span class="comment">// field tag string</span>
-<span id="StructField.Offset"></span>    Offset    <a href="/pkg/builtin/#uintptr">uintptr</a>   <span class="comment">// offset within struct, in bytes</span>
-<span id="StructField.Index"></span>    Index     []<a href="/pkg/builtin/#int">int</a>     <span class="comment">// index sequence for Type.FieldByIndex</span>
-<span id="StructField.Anonymous"></span>    Anonymous <a href="/pkg/builtin/#bool">bool</a>      <span class="comment">// is an embedded field</span>
+<span id="StructField.Type"></span>    Type      <a href="#Type">Type</a>      <span class="comment">// field type // 字段类型</span>
+<span id="StructField.Tag"></span>    Tag       <a href="#StructTag">StructTag</a> <span class="comment">// field tag string // 字段的tag</span>
+<span id="StructField.Offset"></span>    Offset    <a href="/pkg/builtin/#uintptr">uintptr</a>   <span class="comment">// offset within struct, in bytes // 字段在struct的偏移量, 以byte为单位</span>
+<span id="StructField.Index"></span>    Index     []<a href="/pkg/builtin/#int">int</a>     <span class="comment">// index sequence for Type.FieldByIndex // ???</span>
+<span id="StructField.Anonymous"></span>    Anonymous <a href="/pkg/builtin/#bool">bool</a>      <span class="comment">// is an embedded field // 是否是内嵌字段</span>
 }
 </pre>
 
@@ -595,6 +604,9 @@ characters other than space (U+0020 ' '), quote (U+0022 '"'),
 and colon (U+003A ':').  Each value is quoted using U+0022 '"'
 characters and Go string literal syntax.
 
+StructTag 是 struct字段的tag.
+
+按照惯例, 字符串tag是用空格分隔的`key:"value"`对. key是非空字符串, 由空格(U+0020 ' '), 双引号(U+0022 '"')和冒号(U+003A ':')除外的非控制字符组成. value使用"(U+0022)包裹并使用Go字符串字面量的语法.
 
 <pre>type StructTag <a href="/pkg/builtin/#string">string</a></pre>
 
@@ -603,8 +615,31 @@ characters and Go string literal syntax.
 
 
 <a id="example_StructTag">Example</a>
+```go
+package main
 
+import (
+	"fmt"
+	"reflect"
+)
 
+func main() {
+	type S struct {
+		F string `species:"gopher" color:"blue"`
+	}
+
+	s := S{}
+	st := reflect.TypeOf(s)
+	field := st.Field(0)
+	fmt.Println(field.Tag.Get("color"), field.Tag.Get("species"))
+
+}
+```
+
+output:
+```txt
+blue gopher
+```
 
 
 
@@ -617,7 +652,7 @@ If the tag does not have the conventional format, the value
 returned by Get is unspecified. To determine whether a tag is
 explicitly set to the empty string, use Lookup.
 
-
+Get 返回 tag 中与key关联的value. 如果在tag中没有该key, Get 会返回空字符串. 如果tag没采用惯例格式, 则 Get 返回的value是未知的. 如果要确定一个tag是否被设置成了空字符串, 请使用 Lookup.
 
 
 ### <a id="StructTag.Lookup">func</a> (StructTag) [Lookup](https://golang.org/src/reflect/type.go?s=31621:31684#L1126)
@@ -629,9 +664,49 @@ The ok return value reports whether the value was explicitly set in
 the tag string. If the tag does not have the conventional format,
 the value returned by Lookup is unspecified.
 
+Lookup 返回 tag 中与key关联的value. 如果key在tag中会返回value(可能是空字符串), 否则将返回空字符串. 返回值ok可明确表明该tag是否已设置. 如果tag没采用惯例格式, 则 Lookup 返回的value是未知的.
+
 
 <a id="example_StructTag_Lookup">Example</a>
+```go
+package main
 
+import (
+	"fmt"
+	"reflect"
+)
+
+func main() {
+	type S struct {
+		F0 string `alias:"field_0"`
+		F1 string `alias:""`
+		F2 string
+	}
+
+	s := S{}
+	st := reflect.TypeOf(s)
+	for i := 0; i < st.NumField(); i++ {
+		field := st.Field(i)
+		if alias, ok := field.Tag.Lookup("alias"); ok {
+			if alias == "" {
+				fmt.Println("(blank)")
+			} else {
+				fmt.Println(alias)
+			}
+		} else {
+			fmt.Println("(not specified)")
+		}
+	}
+
+}
+```
+
+output:
+```txt
+field_0
+(blank)
+(not specified)
+```
 
 ## <a id="Type">type</a> [Type](https://golang.org/src/reflect/type.go?s=1321:7563#L28)
 Type is the representation of a Go type.
@@ -646,6 +721,9 @@ Type values are comparable, such as with the == operator,
 so they can be used as map keys.
 Two Type values are equal if they represent identical types.
 
+Type 表示 Go的类型.
+
+并非所有的方法都使用于所有的类型. 在每种方法的文档中都注明了限制(如果存在). 在调用特定类型的方法前, 请使用 Kind 方法找出其类型. 调用不适合该类型的返回会导致运行时panic.
 
 <pre>type Type interface {
 
@@ -824,7 +902,9 @@ For example, if t represents int, ArrayOf(5, t) represents [5]int.
 If the resulting type would be larger than the available address space,
 ArrayOf panics.
 
+ArrayOf 返回指定个数和元素类型的数组类型. 例如, 如果t是int, 那么`ArrayOf(5, t)`表示`[5]int`.
 
+如果生成的类型大于可用空间, 那么ArrayOf 会panic.
 
 
 ### <a id="ChanOf">func</a> [ChanOf](https://golang.org/src/reflect/type.go?s=49752:49789#L1766)
@@ -835,8 +915,9 @@ For example, if t represents int, ChanOf(RecvDir, t) represents <-chan int.
 The gc runtime imposes a limit of 64 kB on channel element types.
 If t's size is equal to or exceeds this limit, ChanOf panics.
 
+ChanOf 返回指定通信方向和元素类型的channel类型. 例如, 如果t是int, `ChanOf(RecvDir, t)`表示`<-chan int`.
 
-
+gc将通道元素类型限定在64k内. 如果它等于或大于限定, ChanOf 会panic.
 
 ### <a id="FuncOf">func</a> [FuncOf](https://golang.org/src/reflect/type.go?s=53751:53798#L1921)
 <pre>func FuncOf(in, out []<a href="#Type">Type</a>, variadic <a href="/pkg/builtin/#bool">bool</a>) <a href="#Type">Type</a></pre>
@@ -848,7 +929,10 @@ The variadic argument controls whether the function is variadic. FuncOf
 panics if the in[len(in)-1] does not represent a slice and variadic is
 true.
 
+FuncOf 返回指定输入输出类型的function类型. 例如, 如果k是int, e是string,
+`FuncOf([]Type{k}, []Type{e}, false)`表示`func(int) string`.
 
+参数variadic表示该函数是否是可变的. 如果`in[len(in)-1]`不是slice且variadic是true, FuncOf 会panic.
 
 
 ### <a id="MapOf">func</a> [MapOf](https://golang.org/src/reflect/type.go?s=51294:51325#L1823)
@@ -860,7 +944,9 @@ MapOf(k, e) represents map[int]string.
 If the key type is not a valid map key type (that is, if it does
 not implement Go's == operator), MapOf panics.
 
+MapOf 返回指定key和value类型的map类型. 例如, 如果k是int, e是string, `MapOf(k, e)`表示`map[int]string`.
 
+如果key不是有效的map key(即它没有实现Go的`==`运算符). MapOf 会panic.
 
 
 ### <a id="PtrTo">func</a> [PtrTo](https://golang.org/src/reflect/type.go?s=39095:39118#L1373)
@@ -868,7 +954,7 @@ not implement Go's == operator), MapOf panics.
 PtrTo returns the pointer type with element t.
 For example, if t represents type Foo, PtrTo(t) represents *Foo.
 
-
+PtrTo 返回元素类型的指针. 例如, 如果t是Foo类型, `PtrTo(t)`表示`*Foo`.
 
 
 ### <a id="SliceOf">func</a> [SliceOf](https://golang.org/src/reflect/type.go?s=62434:62459#L2243)
@@ -876,7 +962,8 @@ For example, if t represents type Foo, PtrTo(t) represents *Foo.
 SliceOf returns the slice type with element type t.
 For example, if t represents int, SliceOf(t) represents []int.
 
-
+SliceOf 返回元素类型是t的slice类型.
+例如, 如果t是int, `SliceOf(t)`表示`[]int`.
 
 
 ### <a id="StructOf">func</a> [StructOf](https://golang.org/src/reflect/type.go?s=64711:64751#L2324)
@@ -889,8 +976,64 @@ StructOf currently does not generate wrapper methods for embedded
 fields and panics if passed unexported StructFields.
 These limitations may be lifted in a future version.
 
+StructOf 返回包含指定字段的struct类型. 字段中的Offset和Index会被忽略, 由编译器重新计算.
+
+如果传入不可导出字段, StructOf 当前不会为嵌入字段生成封装方法并会panic. 这些限制可能会在将来的版本中取消.
+
 
 <a id="example_StructOf">Example</a>
+```go
+package main
+
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"reflect"
+)
+
+func main() {
+	typ := reflect.StructOf([]reflect.StructField{
+		{
+			Name: "Height",
+			Type: reflect.TypeOf(float64(0)),
+			Tag:  `json:"height"`,
+		},
+		{
+			Name: "Age",
+			Type: reflect.TypeOf(int(0)),
+			Tag:  `json:"age"`,
+		},
+	})
+
+	v := reflect.New(typ).Elem()
+	v.Field(0).SetFloat(0.4)
+	v.Field(1).SetInt(2)
+	s := v.Addr().Interface()
+
+	w := new(bytes.Buffer)
+	if err := json.NewEncoder(w).Encode(s); err != nil {
+		panic(err)
+	}
+
+	fmt.Printf("value: %+v\n", s)
+	fmt.Printf("json:  %s", w.Bytes())
+
+	r := bytes.NewReader([]byte(`{"height":1.5,"age":10}`))
+	if err := json.NewDecoder(r).Decode(s); err != nil {
+		panic(err)
+	}
+	fmt.Printf("value: %+v\n", s)
+
+}
+```
+
+output:
+```txt
+value: &{Height:0.4 Age:2}
+json:  {"height":0.4,"age":2}
+value: &{Height:1.5 Age:10}
+```
 
 
 ### <a id="TypeOf">func</a> [TypeOf](https://golang.org/src/reflect/type.go?s=38787:38818#L1363)
@@ -898,10 +1041,9 @@ These limitations may be lifted in a future version.
 TypeOf returns the reflection Type that represents the dynamic type of i.
 If i is a nil interface value, TypeOf returns nil.
 
+TypeOf 返回 动态类型i的反射类型. 如果i是interface{}(nil), TypeOf会返回nil.
 
 <a id="example_TypeOf">Example</a>
-
-
 
 
 ## <a id="Value">type</a> [Value](https://golang.org/src/reflect/value.go?s=1303:2522#L26)
