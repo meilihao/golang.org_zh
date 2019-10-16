@@ -358,13 +358,14 @@ func main() {
 <pre>func (k <a href="#Kind">Kind</a>) String() <a href="/pkg/builtin/#string">string</a></pre>
 String returns the name of k.
 
-
+String 返回 k 的名称
 
 
 ## <a id="MapIter">type</a> [MapIter](https://golang.org/src/reflect/value.go?s=37394:37446#L1211)
 A MapIter is an iterator for ranging over a map.
 See Value.MapRange.
 
+MapIter 是一个用于遍历map的迭代器. 可参考 Value.MapRange.
 
 <pre>type MapIter struct {
     <span class="comment">// contains filtered or unexported fields</span>
@@ -385,7 +386,7 @@ See Value.MapRange.
 <pre>func (it *<a href="#MapIter">MapIter</a>) Key() <a href="#Value">Value</a></pre>
 Key returns the key of the iterator's current map entry.
 
-
+Key 返回迭代器中当前map项的key对应的Value类型.
 
 
 ### <a id="MapIter.Next">func</a> (\*MapIter) [Next](https://golang.org/src/reflect/value.go?s=38411:38441#L1247)
@@ -394,19 +395,20 @@ Next advances the map iterator and reports whether there is another
 entry. It returns false when the iterator is exhausted; subsequent
 calls to Key, Value, or Next will panic.
 
-
+Next 使得该迭代器迭代一次并报告是否存在下一项. 迭代完成时它会返回false; 此时调用Key, Value 或 Next 方法会panic.
 
 
 ### <a id="MapIter.Value">func</a> (\*MapIter) [Value](https://golang.org/src/reflect/value.go?s=37895:37927#L1231)
 <pre>func (it *<a href="#MapIter">MapIter</a>) Value() <a href="#Value">Value</a></pre>
 Value returns the value of the iterator's current map entry.
 
-
+Value 返回迭代器中当前map项的value对应的Value类型.
 
 
 ## <a id="Method">type</a> [Method](https://golang.org/src/reflect/type.go?s=17129:17626#L564)
 Method represents a single method.
 
+Method 代表一个方法.
 
 <pre>type Method struct {
 <span id="Method.Name"></span>    <span class="comment">// Name is the method name.</span>
@@ -418,9 +420,9 @@ Method represents a single method.
     Name    <a href="/pkg/builtin/#string">string</a>
     PkgPath <a href="/pkg/builtin/#string">string</a>
 
-<span id="Method.Type"></span>    Type  <a href="#Type">Type</a>  <span class="comment">// method type</span>
-<span id="Method.Func"></span>    Func  <a href="#Value">Value</a> <span class="comment">// func with receiver as first argument</span>
-<span id="Method.Index"></span>    Index <a href="/pkg/builtin/#int">int</a>   <span class="comment">// index for Type.Method</span>
+<span id="Method.Type"></span>    Type  <a href="#Type">Type</a>  <span class="comment">// method type // 方法的类型</span>
+<span id="Method.Func"></span>    Func  <a href="#Value">Value</a> <span class="comment">// func with receiver as first argument // func将接收者作为第一个参数</span>
+<span id="Method.Index"></span>    Index <a href="/pkg/builtin/#int">int</a>   <span class="comment">// index for Type.Method // Type.Method的索引</span>
 }
 </pre>
 
@@ -452,6 +454,13 @@ Normally Chan's underlying value must be a channel and Send must be a zero Value
 If Chan is a zero Value, then the case is ignored, but Send must still be a zero Value.
 When a receive operation is selected, the received Value is returned by Select.
 
+SelectCase 描述了一次select操作中的一种方式. 方式的类型取决于Dir即通信的方向.
+
+如果Dir是SelectDefault,该方式是默认的. 此时Chan和Send必须是零值.
+
+如果Dir是SelectSend, 该方式表示一次send操作. 通常, Chan的底层值必须是一个channel, 且Send的底层值必须匹配该channel元素类型的值. 特例是, 如果Chan是一个零值, 该方式会被忽略, 且Send(无论是否零值)也会被忽略.
+
+如果Dir是SelectRecv, 该方式表示一次receive操作. 通常, Chan的底层值必须是一个channel, 且Send必须是一个零值. 如果Chan是一个零值, 该方式会被忽略, 但Send必须还是零值. 当选择receive操作时, 收到的 Value 是由 Select 返回.
 
 <pre>type SelectCase struct {
 <span id="SelectCase.Dir"></span>    Dir  <a href="#SelectDir">SelectDir</a> <span class="comment">// direction of case</span>
@@ -473,6 +482,7 @@ When a receive operation is selected, the received Value is returned by Select.
 ## <a id="SelectDir">type</a> [SelectDir](https://golang.org/src/reflect/value.go?s=62886:62904#L2108)
 A SelectDir describes the communication direction of a select case.
 
+SelectDir 表示一次select操作的通信方向.
 
 <pre>type SelectDir <a href="/pkg/builtin/#int">int</a></pre>
 
@@ -500,6 +510,8 @@ Moreover, the Data field is not sufficient to guarantee the data
 it references will not be garbage collected, so programs must keep
 a separate, correctly typed pointer to the underlying data.
 
+SliceHeader是slice的runtime表示形式. 它不能被安全地和方便地使用, 且该形式可能会在以后的版本中发生变更.
+而且, Data 字段不能保证它指向的数据不被gc回收, 因此程序中必须保留一个单独的, 类型正确的并指向底层数据的指针.
 
 <pre>type SliceHeader struct {
 <span id="SliceHeader.Data"></span>    Data <a href="/pkg/builtin/#uintptr">uintptr</a>
