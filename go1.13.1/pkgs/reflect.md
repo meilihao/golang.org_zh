@@ -220,7 +220,27 @@ values that have been compared before, it treats the values as
 equal rather than examining the values to which they point.
 This ensures that DeepEqual terminates.
 
+DeepEqual 返回x和y是否"深度相等". 定义如下, 如果满足以下条件之一, 则两个相同类型的值是深度相等; 不同类型的值是永远不会深度相等.
 
+如果数组对应的元素是深度相等, 那么它们就是深度相等.
+
+如果struc对应的字段(无论是可导出的或不可导出的)是深度相等, 那么它们是深度相等.
+
+如果func都是nil, 那么它们是深度相等; 否则不相等.
+
+如果Interface中实际存储的值是深度相等, 那么它们是深度相等.
+
+map深度相等需满足以下所有条件: 它们都是nil或都不是nil, 它们有相同的长度, 且它们是相同的map对象或对应key(使用Go相等匹配)映射的值是深度相等.
+
+如果Pointer用Go的`==`比较返回相等或它们指向的值是深度相等, 那么它们是深度相等.
+
+slice深度相等需满足以下所有条件: 它们都是nil或都不是nil, 它们有相同的长度, 且它们指向的底层数组相同(即&x[0] == &y[0])或它们对应的所有元素是深度相等. 注意: 一个非nil的slice和一个nil的slice(比如[]byte{}和[]byte(nil))是不相等的.
+
+其他值: 数值, bool, string和channel, 如果使用Go的`==`比较返回相等, 那么它们是深度相等的.
+
+通常, DeepEqual 是 Go 的`==`递归形式. 然而, 如果没有一些不一致, 这个想法是不可能实现的. 具体来说, 值可能与它本身不相等, 比如它们是func类型(通常无法比较), 或是浮点类型的NaN(在浮点数比较中它们不等于自身), 或者array, struct, interface包含了这样的值. 另一方面, 指针总是等于自身, 即使它们???指向或包含这样有问题的值???, 因为它们可用Go的`==`比较, 因此无论内容如何, 都满足深度相等的条件. DeepEqual已经定义了对slice和map的快捷比较方式: 如果x和y是相同的slice或map, 那么它们是深度相等的.
+
+但DeepEqual遍历数据时可能会碰到循环. 在第二次及以后比较两个pointer时会沿用之前的相等(能比较到现在那么之前的比较结果必定是相等), 而不是重新检查它们指向的值, 这样可确保DeepEqual能终止.
 
 ## <a id="Swapper">func</a> [Swapper](https://golang.org/src/reflect/swapper.go?s=337:383#L3)
 <pre>func Swapper(slice interface{}) func(i, j <a href="/pkg/builtin/#int">int</a>)</pre>

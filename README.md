@@ -13,6 +13,7 @@ go 1.13.1
 ## **注意**
 1. pkg对应md里的examples需要手动添加, 因为原始pkg里的example是html格式.
 1. `goXXX_orgin`是用于与新版本对比时用到的原件.
+1. `???`表示不理解的内容
 
 ## todo
 - [ ] tool : 更新pkg文件中的具体type/func的源码指向地址
