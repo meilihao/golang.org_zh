@@ -8,6 +8,18 @@
 * [Examples](#pkg-examples)
 
 ## <a id="pkg-overview">Overview</a>
+Package reflect implements run-time reflection, allowing a program to
+manipulate objects with arbitrary types. The typical use is to take a value
+with static type interface{} and extract its dynamic type information by
+calling TypeOf, which returns a Type.
+
+A call to ValueOf returns a Value representing the run-time data.
+Zero takes a Type and returns a Value representing a zero value
+for that type.
+
+See "The Laws of Reflection" for an introduction to reflection in Go:
+<a href="https://golang.org/doc/articles/laws_of_reflection.html">https://golang.org/doc/articles/laws_of_reflection.html</a>
+
 reflect 包了实现运行时反射, 允许程序操纵任意类型的对象. 典型的用法是用静态类型interface{}保存值并通过调用TypeOf返回Type类型来获取其动态类型信息.
 
 ValueOf调用会返回一个代表运行时数据的Value. Zero 传入 Type 会返回表示该类型零值的 Value.
@@ -142,6 +154,14 @@ ValueOf调用会返回一个代表运行时数据的Value. Zero 传入 Type 会�
 
 ## <a id="Copy">func</a> [Copy](https://golang.org/src/reflect/value.go?s=61204:61233#L2041)
 <pre>func Copy(dst, src <a href="#Value">Value</a>) <a href="/pkg/builtin/#int">int</a></pre>
+Copy copies the contents of src into dst until either
+dst has been filled or src has been exhausted.
+It returns the number of elements copied.
+Dst and src each must have kind Slice or Array, and
+dst and src must have the same element type.
+
+As a special case, src can have kind String if the element type of dst is kind Uint8.
+
 Copy 会将src的内容复制到dst中直至dst被填满或src耗尽. 它会返回被复制元素的数量. dst和src必须是slice或map,且必须有相同的元素类型.
 
 特殊情况: 如果dst的元素类型是unit8, 那么src可以是string.
@@ -209,12 +229,15 @@ slice.
 
 Swapper panics if the provided interface is not a slice.
 
+Swapper 返回一个函数, 可交换slice参数中的元素.
 
-
+如果提供的参数不是slice, Swapper 会 panic.
 
 
 ## <a id="ChanDir">type</a> [ChanDir](https://golang.org/src/reflect/type.go?s=11596:11612#L334)
 ChanDir represents a channel type's direction.
+
+ChanDir 返回channel类型的方向.
 
 
 <pre>type ChanDir <a href="/pkg/builtin/#int">int</a></pre>

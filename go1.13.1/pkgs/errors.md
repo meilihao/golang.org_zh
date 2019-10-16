@@ -8,18 +8,17 @@
 * [Examples](#pkg-examples)
 
 ## <a id="pkg-overview">Overview</a>
-errors包实现了用于处理错误的函数.
+Package errors implements functions to manipulate errors.
 
-`New`函数会创建仅包含文本信息的`error`.
+The New function creates errors whose only content is a text message.
 
-`Unwrap`,`Is`以及`As`函数用于处理`error`可能封装了其他`error`的情况. 如果它的类型有下面的方法, 那么该`error`就封装了另一个`error`:
-```go
-Unwrap() error
-```
+The Unwrap, Is and As functions work on errors that may wrap other errors.
+An error wraps another error if its type has the method
 
-Unwrap unpacks wrapped errors. If its argument's type has an Unwrap method, it calls the method once. Otherwise, it returns nil. 
 
-如果`e.Unwrap()`返回了一个不为nil的`error w`, 那么我们就说`e`封装了`w`.
+	Unwrap() error
+
+If e.Unwrap() returns a non-nil error w, then we say that e wraps w.
 
 A simple way to create wrapped errors is to call fmt.Errorf and apply the %w verb
 to the error argument:
@@ -65,6 +64,16 @@ is preferable to
 
 because the former will succeed if err wraps an *os.PathError.
 
+errors包实现了用于处理错误的函数.
+
+`New`函数会创建仅包含文本信息的`error`.
+
+`Unwrap`,`Is`以及`As`函数用于处理`error`可能封装了其他`error`的情况. 如果它的类型有下面的方法, 那么该`error`就封装了另一个`error`:
+```go
+Unwrap() error
+```
+
+如果`e.Unwrap()`返回了一个不为nil的`error w`, 那么我们就说`e`封装了`w`.
 
 <a id="example_">Example</a>
 
