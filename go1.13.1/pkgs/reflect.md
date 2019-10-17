@@ -723,16 +723,20 @@ Two Type values are equal if they represent identical types.
 
 Type 表示 Go的类型.
 
-并非所有的方法都使用于所有的类型. 在每种方法的文档中都注明了限制(如果存在). 在调用特定类型的方法前, 请使用 Kind 方法找出其类型. 调用不适合该类型的返回会导致运行时panic.
+并非所有的方法都适用于所有的类型. 在每种方法的文档中都注明了限制(如果存在). 在调用特定类型的方法前, 请使用 Kind 方法找出其类型. 调用不适合该类型的方法会导致运行时panic.
+
+Type 可以用`==`比较,所以可作为map的key. 如果它们相等, 那么代表同一种类型.
 
 <pre>type Type interface {
 
     <span class="comment">// Align returns the alignment in bytes of a value of</span>
     <span class="comment">// this type when allocated in memory.</span>
+    <span class="comment">// Align 返回 当从内存中分配该类型时会对齐的字节数.</span>
     Align() <a href="/pkg/builtin/#int">int</a>
 
     <span class="comment">// FieldAlign returns the alignment in bytes of a value of</span>
     <span class="comment">// this type when used as a field in a struct.</span>
+    <span class="comment">// FieldAlign 返回 该类型作为struct字段时会对齐的字节数.</span>
     FieldAlign() <a href="/pkg/builtin/#int">int</a>
 
     <span class="comment">// Method returns the i&#39;th method in the type&#39;s method set.</span>
@@ -759,6 +763,7 @@ Type 表示 Go的类型.
     MethodByName(<a href="/pkg/builtin/#string">string</a>) (<a href="#Method">Method</a>, <a href="/pkg/builtin/#bool">bool</a>)
 
     <span class="comment">// NumMethod returns the number of exported methods in the type&#39;s method set.</span>
+    <span class="comment">// NumMethod 返回该类型方法集中可导出的方法的数量.</span>
     NumMethod() <a href="/pkg/builtin/#int">int</a>
 
     <span class="comment">// Name returns the type&#39;s name within its package for a defined type.</span>
@@ -1044,6 +1049,32 @@ If i is a nil interface value, TypeOf returns nil.
 TypeOf 返回 动态类型i的反射类型. 如果i是interface{}(nil), TypeOf会返回nil.
 
 <a id="example_TypeOf">Example</a>
+```go
+package main
+
+import (
+	"fmt"
+	"io"
+	"os"
+	"reflect"
+)
+
+func main() {
+	// As interface types are only used for static typing, a
+	// common idiom to find the reflection Type for an interface
+	// type Foo is to use a *Foo value.
+	writerType := reflect.TypeOf((*io.Writer)(nil)).Elem()
+
+	fileType := reflect.TypeOf((*os.File)(nil))
+	fmt.Println(fileType.Implements(writerType))
+
+}
+```
+
+output:
+```txt
+true
+```
 
 
 ## <a id="Value">type</a> [Value](https://golang.org/src/reflect/value.go?s=1303:2522#L26)
@@ -1069,6 +1100,15 @@ To compare two Values, compare the results of the Interface method.
 Using == on two Values does not compare the underlying values
 they represent.
 
+Value 是Go值的反射表示.
+
+并非所有方法都适用于所有类型的值. 在每种方法的文档中都注明了限制(如果存在). 在调用特定类型的方法前, 请使用 Kind 方法找出其类型. 调用不适合该类型的方法会导致运行时panic.
+
+Value 的零值表示没有值. 它的 IsValid 方法会返回false, Kind 的方法会返回 Invalid, String 方法会返回"<invalid Value>", 除此以外的方法都会panic. 大多数函数和方法从不返回无效的值. 如果真有, 其文档会明确地说明条件.
+
+Value 可用由多个goroutine并发使用, 前提是其底层的Go值同样可以被并发使用.
+
+要比较两个 Value, 请用它们 Interface 方法的返回值来比较, 直接使用`==`比较并不会比较它们所表示的底层值.
 
 <pre>type Value struct {
     <span class="comment">// contains filtered or unexported fields</span>
@@ -1088,7 +1128,7 @@ they represent.
 Append appends the values x to a slice s and returns the resulting slice.
 As in Go, each x's value must be assignable to the slice's element type.
 
-
+Append 会将x append到s(slice)中并返回slice. 与Go中(正常操作)一样, x的value必须要匹配slice的元素类型.
 
 
 ### <a id="AppendSlice">func</a> [AppendSlice](https://golang.org/src/reflect/value.go?s=60643:60677#L2025)
@@ -1096,7 +1136,7 @@ As in Go, each x's value must be assignable to the slice's element type.
 AppendSlice appends a slice t to a slice s and returns the resulting slice.
 The slices s and t must have the same element type.
 
-
+AppendSlice 会将t append到s并返回slice. s和t的元素类型必须一致.
 
 
 ### <a id="Indirect">func</a> [Indirect](https://golang.org/src/reflect/value.go?s=68611:68639#L2297)
@@ -1105,14 +1145,14 @@ Indirect returns the value that v points to.
 If v is a nil pointer, Indirect returns a zero Value.
 If v is not a pointer, Indirect returns v.
 
-
+Indirect 返回 v 所指向的值. 如果v是nil指针, Indirect 会返回一个 Value 的零值. 如果v不是指针, Indirect 会panic.
 
 
 ### <a id="MakeChan">func</a> [MakeChan](https://golang.org/src/reflect/value.go?s=67671:67712#L2263)
 <pre>func MakeChan(typ <a href="#Type">Type</a>, buffer <a href="/pkg/builtin/#int">int</a>) <a href="#Value">Value</a></pre>
 MakeChan creates a new channel with the specified type and buffer size.
 
-
+MakeChan 使用指定类型和缓冲大小创建一个channel.
 
 
 ### <a id="MakeFunc">func</a> [MakeFunc](https://golang.org/src/reflect/makefunc.go?s=1662:1732#L38)
