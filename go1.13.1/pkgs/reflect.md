@@ -460,13 +460,13 @@ Normally Chan's underlying value must be a channel and Send must be a zero Value
 If Chan is a zero Value, then the case is ignored, but Send must still be a zero Value.
 When a receive operation is selected, the received Value is returned by Select.
 
-SelectCase 描述了一次select操作中的一种方式. 方式的类型取决于Dir即通信的方向.
+SelectCase 描述了一次select操作中的一种方案. 方案的类型取决于Dir即通信的方向.
 
 如果Dir是SelectDefault,该方式是默认的. 此时Chan和Send必须是零值.
 
-如果Dir是SelectSend, 该方式表示一次send操作. 通常, Chan的底层值必须是一个channel, 且Send的底层值必须匹配该channel元素类型的值. 特例是, 如果Chan是一个零值, 该方式会被忽略, 且Send(无论是否零值)也会被忽略.
+如果Dir是SelectSend, 该方案表示一次send操作. 通常, Chan的底层值必须是一个channel, 且Send的底层值必须匹配该channel元素类型的值. 特例是, 如果Chan是一个零值, 该方案会被忽略, 且Send(无论是否零值)也会被忽略.
 
-如果Dir是SelectRecv, 该方式表示一次receive操作. 通常, Chan的底层值必须是一个channel, 且Send必须是一个零值. 如果Chan是一个零值, 该方式会被忽略, 但Send必须还是零值. 当选择receive操作时, 收到的 Value 是由 Select 返回.
+如果Dir是SelectRecv, 该方案表示一次receive操作. 通常, Chan的底层值必须是一个channel, 且Send必须是一个零值. 如果Chan是一个零值, 该方式会被忽略, 但Send必须还是零值. 当选择receive操作时, 收到的 Value 是由 Select 返回.
 
 <pre>type SelectCase struct {
 <span id="SelectCase.Dir"></span>    Dir  <a href="#SelectDir">SelectDir</a> <span class="comment">// direction of case</span>
@@ -1180,15 +1180,77 @@ a typed function in terms of Values.
 The Examples section of the documentation includes an illustration
 of how to use MakeFunc to build a swap function for different types.
 
+MakeFunc 根据给定类型封装函数fn并返回一个新函数, 新函数被调用时会执行如下操作:
+
+
+        - 将它的参数转换成`[]Value`形式.
+        - 执行 results := fn(args).
+        - 以`[]Value`形式返回执行结果, 再转成给定类型的返回值对应的具体类型.
+
+Value.Call 方法允许调用者根据Values调用一个类型确定的函数. 相反, MakeFunc允许调用者根据Values实现一个类型确定的函数.
+
+下面的例子演示了如何使用MakeFunc为不同类型构建swap函数.
 
 <a id="example_MakeFunc">Example</a>
+```go
+package main
 
+import (
+	"fmt"
+	"reflect"
+)
+
+func main() {
+	// swap is the implementation passed to MakeFunc.
+	// It must work in terms of reflect.Values so that it is possible
+	// to write code without knowing beforehand what the types
+	// will be.
+	swap := func(in []reflect.Value) []reflect.Value {
+		return []reflect.Value{in[1], in[0]}
+	}
+
+	// makeSwap expects fptr to be a pointer to a nil function.
+	// It sets that pointer to a new function created with MakeFunc.
+	// When the function is invoked, reflect turns the arguments
+	// into Values, calls swap, and then turns swap's result slice
+	// into the values returned by the new function.
+	makeSwap := func(fptr interface{}) {
+		// fptr is a pointer to a function.
+		// Obtain the function value itself (likely nil) as a reflect.Value
+		// so that we can query its type and then set the value.
+		fn := reflect.ValueOf(fptr).Elem()
+
+		// Make a function of the right type.
+		v := reflect.MakeFunc(fn.Type(), swap)
+
+		// Assign it to the value fn represents.
+		fn.Set(v)
+	}
+
+	// Make and call a swap function for ints.
+	var intSwap func(int, int) (int, int)
+	makeSwap(&intSwap)
+	fmt.Println(intSwap(0, 1))
+
+	// Make and call a swap function for float64s.
+	var floatSwap func(float64, float64) (float64, float64)
+	makeSwap(&floatSwap)
+	fmt.Println(floatSwap(2.72, 3.14))
+
+}
+```
+
+output:
+```txt
+1 0
+3.14 2.72
+```
 
 ### <a id="MakeMap">func</a> [MakeMap](https://golang.org/src/reflect/value.go?s=68085:68113#L2279)
 <pre>func MakeMap(typ <a href="#Type">Type</a>) <a href="#Value">Value</a></pre>
 MakeMap creates a new map with the specified type.
 
-
+MakeMap 根据指定类型创建一个map.
 
 
 ### <a id="MakeMapWithSize">func</a> [MakeMapWithSize](https://golang.org/src/reflect/value.go?s=68263:68306#L2285)
@@ -1196,7 +1258,7 @@ MakeMap creates a new map with the specified type.
 MakeMapWithSize creates a new map with the specified type
 and initial space for approximately n elements.
 
-
+MakeMapWithSize 根据指定类型和初始空间大小创建一个map.
 
 
 ### <a id="MakeSlice">func</a> [MakeSlice](https://golang.org/src/reflect/value.go?s=67146:67190#L2244)
@@ -1204,7 +1266,7 @@ and initial space for approximately n elements.
 MakeSlice creates a new zero-initialized slice value
 for the specified slice type, length, and capacity.
 
-
+MakeSlice 根据指定slice类型, length和capacity创建已初始化好的slice.
 
 
 ### <a id="New">func</a> [New](https://golang.org/src/reflect/value.go?s=69829:69853#L2339)
@@ -1212,7 +1274,7 @@ for the specified slice type, length, and capacity.
 New returns a Value representing a pointer to a new zero value
 for the specified type. That is, the returned Value's Type is PtrTo(typ).
 
-
+New 返回一个Value, 其表示指向给定类型零值的指针, 即返回Value的类型是`PtrTo(typ)`.
 
 
 ### <a id="NewAt">func</a> [NewAt](https://golang.org/src/reflect/value.go?s=70110:70154#L2351)
@@ -1220,7 +1282,7 @@ for the specified type. That is, the returned Value's Type is PtrTo(typ).
 NewAt returns a Value representing a pointer to a value of the
 specified type, using p as that pointer.
 
-
+NewAt 返回一个Value, 其表示指向给定类型零值的指针, 并使用p作为那个指针.
 
 
 ### <a id="Select">func</a> [Select](https://golang.org/src/reflect/value.go?s=64713:64782#L2149)
@@ -1233,7 +1295,7 @@ and, if that case was a receive operation, the value received and a
 boolean indicating whether the value corresponds to a send on the channel
 (as opposed to a zero value received because the channel is closed).
 
-
+Select 执行给定cases参数中的一个Select操作. 像Go select语法, 它会阻塞直到至少一种情况可用, 再做一个伪随机的选择, 然后执行它. 它返回所选方案的索引, 如果是接收操作, 返回收到的Value和一个bool, 该bool表示Value是否是send到channel上的值(而不是因为channel已关闭而返回的零值)
 
 
 ### <a id="ValueOf">func</a> [ValueOf](https://golang.org/src/reflect/value.go?s=68830:68863#L2306)
@@ -1241,7 +1303,7 @@ boolean indicating whether the value corresponds to a send on the channel
 ValueOf returns a new Value initialized to the concrete value
 stored in the interface i. ValueOf(nil) returns the zero Value.
 
-
+ValueOf 返回一个已初始化为i中保存的具体值的Value.  ValueOf(nil)返回一个Value的零值.
 
 
 ### <a id="Zero">func</a> [Zero](https://golang.org/src/reflect/value.go?s=69466:69491#L2325)
@@ -1252,7 +1314,7 @@ which represents no value at all.
 For example, Zero(TypeOf(42)) returns a Value with Kind Int and value 0.
 The returned value is neither addressable nor settable.
 
-
+Zero 返回一个表示指定类型零值的Value. 该值与Value的零值不同, 因为Value的零值不表示任何值. 例如, `Zero(TypeOf(42))`返回一个Value, 其类型是 Int, 具体内容是0. 返回的值即不可用寻址, 也不可以设置.
 
 
 
@@ -1265,7 +1327,7 @@ Addr is typically used to obtain a pointer to a struct field
 or slice element in order to call a method that requires a
 pointer receiver.
 
-
+Addr 返回表示v地址的指针的Value. 如果 CanAddr()返回false, 它会panic. Addr 通常用于获取指向struct字段或slice元素的指针, 以便于调用需要指针接收器的方法.
 
 
 ### <a id="Value.Bool">func</a> (Value) [Bool](https://golang.org/src/reflect/value.go?s=8012:8038#L255)
@@ -1273,7 +1335,7 @@ pointer receiver.
 Bool returns v's underlying value.
 It panics if v's kind is not Bool.
 
-
+Bool 返回v的底层值. 如果v的类型不是 Bool 则会panic.
 
 
 ### <a id="Value.Bytes">func</a> (Value) [Bytes](https://golang.org/src/reflect/value.go?s=8185:8214#L262)
@@ -1281,7 +1343,7 @@ It panics if v's kind is not Bool.
 Bytes returns v's underlying value.
 It panics if v's underlying value is not a slice of bytes.
 
-
+Bytes 返回v的底层值. 如果v的类型不是slice或bytes 则会panic.
 
 
 ### <a id="Value.Call">func</a> (Value) [Call](https://golang.org/src/reflect/value.go?s=9975:10014#L308)
@@ -1295,7 +1357,7 @@ type of the function's corresponding input parameter.
 If v is a variadic function, Call creates the variadic slice parameter
 itself, copying in the corresponding values.
 
-
+Call 使用入参in调用函数v. 例如如果len(in)==3, 那么v.Call(in)等价于Go的调用`v(in[0], in[1], in[2])`. v的类型不是 Func, 那么它会panic. 与在Go中一样, 每个入参必须匹配函数对应的入参类型. 如果v是一个可变参数的函数, Call 会自己创建保存可变参数的slice,并复制相应的值.
 
 
 ### <a id="Value.CallSlice">func</a> (Value) [CallSlice](https://golang.org/src/reflect/value.go?s=10552:10596#L321)
@@ -1309,6 +1371,8 @@ As in Go, each input argument must be assignable to the
 type of the function's corresponding input parameter.
 
 
+CallSlice 使用入参in调用带可变参数的函数v, 并将`in[len(in)-1]`分配给v的可变参数.
+例如, 如果len(in) == 3, 那么`v.CallSlice(in)等价于`Go的调用`v(in[0], in[1], in[2]...)`. 如果v的类型不是 Func 或 v 不是可变参数的函数, 那么它会panic. 它返回的类型是`[]Value`. 与在Go中一样, 每个入参必须匹配函数对应的入参类型.
 
 
 ### <a id="Value.CanAddr">func</a> (Value) [CanAddr](https://golang.org/src/reflect/value.go?s=9081:9110#L287)
@@ -1319,14 +1383,14 @@ an element of a slice, an element of an addressable array,
 a field of an addressable struct, or the result of dereferencing a pointer.
 If CanAddr returns false, calling Addr will panic.
 
-
+CanAddr 判断能否通过 Addr 获取v的地址. 这样的值称为可寻址的. slice的元素, 可寻址数组的元素, 可寻址struct的字段或解指针的结果都是可寻址的. 如果 CanAddr 返回false, 那么调用Addr会panic.
 
 
 ### <a id="Value.CanInterface">func</a> (Value) [CanInterface](https://golang.org/src/reflect/value.go?s=30628:30662#L980)
 <pre>func (v <a href="#Value">Value</a>) CanInterface() <a href="/pkg/builtin/#bool">bool</a></pre>
 CanInterface reports whether Interface can be used without panicking.
 
-
+CanInterface 判断 Interface 是否可用(不会引起panic).
 
 
 ### <a id="Value.CanSet">func</a> (Value) [CanSet](https://golang.org/src/reflect/value.go?s=9425:9453#L296)
@@ -1337,6 +1401,8 @@ obtained by the use of unexported struct fields.
 If CanSet returns false, calling Set or any type-specific
 setter (e.g., SetBool, SetInt) will panic.
 
+CanSet 判断v的值是否可以改变. 仅有该Value是可寻址的且不是通过struct的未导出字段获取的才可以改变. 如果 CanSet 返回false, 调用 Set 或其他任意Setter类型(比如SetBool, SetInt等)的函数都会panic.
+
 
 
 
@@ -1345,7 +1411,7 @@ setter (e.g., SetBool, SetInt) will panic.
 Cap returns v's capacity.
 It panics if v's Kind is not Array, Chan, or Slice.
 
-
+Cap 返回v的容量. 如果v的类型不是 Array, Chan, Slice, 那么它会panic
 
 
 ### <a id="Value.Close">func</a> (Value) [Close](https://golang.org/src/reflect/value.go?s=24646:24668#L765)
@@ -1353,7 +1419,7 @@ It panics if v's Kind is not Array, Chan, or Slice.
 Close closes the channel v.
 It panics if v's Kind is not Chan.
 
-
+Close 关闭channel v. 如果v的类型不是 Chan, 它会panic.
 
 
 ### <a id="Value.Complex">func</a> (Value) [Complex](https://golang.org/src/reflect/value.go?s=24848:24883#L773)
@@ -1361,7 +1427,7 @@ It panics if v's Kind is not Chan.
 Complex returns v's underlying value, as a complex128.
 It panics if v's Kind is not Complex64 or Complex128
 
-
+Complex 返回 x的底层值, 比如complex128. 如果v的类型不是 Complex64 或 Complex128, 那么它会panic.
 
 
 ### <a id="Value.Convert">func</a> (Value) [Convert](https://golang.org/src/reflect/value.go?s=71619:71655#L2399)
@@ -1370,7 +1436,7 @@ Convert returns the value v converted to type t.
 If the usual Go conversion rules do not allow conversion
 of the value v to type t, Convert panics.
 
-
+Convert 将v转成t类型. 如果通常的 Go 转换规则不允许将 v 转换为 t 类型, 那么它会panic.
 
 
 ### <a id="Value.Elem">func</a> (Value) [Elem](https://golang.org/src/reflect/value.go?s=25266:25293#L788)
@@ -1380,7 +1446,7 @@ or that the pointer v points to.
 It panics if v's Kind is not Interface or Ptr.
 It returns the zero Value if v is nil.
 
-
+Elem 返回接口v中存储的值或指针v指向的值. 如果v的类型不是 Interface 或 Ptr, 那么它会panic. 如果v为nil, 它会返回Value的零值.
 
 
 ### <a id="Value.Field">func</a> (Value) [Field](https://golang.org/src/reflect/value.go?s=26096:26129#L825)
@@ -1388,7 +1454,7 @@ It returns the zero Value if v is nil.
 Field returns the i'th field of the struct v.
 It panics if v's Kind is not Struct or i is out of range.
 
-
+Field 表示struct v中第i个字段. 如果v的类型不是 Struct 或 i 超出范围, 那么它会panic.
 
 
 ### <a id="Value.FieldByIndex">func</a> (Value) [FieldByIndex](https://golang.org/src/reflect/value.go?s=27159:27205#L857)
@@ -1396,7 +1462,7 @@ It panics if v's Kind is not Struct or i is out of range.
 FieldByIndex returns the nested field corresponding to index.
 It panics if v's Kind is not struct.
 
-
+FieldByIndex 通过索引返回相应的字段. 如果v的类型不是 Struct, 那么它会panic.
 
 
 ### <a id="Value.FieldByName">func</a> (Value) [FieldByName](https://golang.org/src/reflect/value.go?s=27686:27731#L879)
@@ -1405,7 +1471,7 @@ FieldByName returns the struct field with the given name.
 It returns the zero Value if no field was found.
 It panics if v's Kind is not struct.
 
-
+FieldByName 通过给定的name查找struct的字段. 如果该字段未找到则返回零值Value. 如果v的类型不是 Struct, 那么它会panic.
 
 
 ### <a id="Value.FieldByNameFunc">func</a> (Value) [FieldByNameFunc](https://golang.org/src/reflect/value.go?s=28036:28097#L891)
@@ -1415,7 +1481,7 @@ that satisfies the match function.
 It panics if v's Kind is not struct.
 It returns the zero Value if no field was found.
 
-
+FieldByNameFunc 返回满足函数match的struct字段. 如果v的类型不是 Struct, 那么它会panic. 如果未找到则返回零值Value.
 
 
 ### <a id="Value.Float">func</a> (Value) [Float](https://golang.org/src/reflect/value.go?s=28307:28337#L900)
@@ -1423,7 +1489,7 @@ It returns the zero Value if no field was found.
 Float returns v's underlying value, as a float64.
 It panics if v's Kind is not Float32 or Float64
 
-
+Float 返回v的底层值, 比如float64. 如果v的类型不是Float32 或 Float64, 那么它会panic.
 
 
 ### <a id="Value.Index">func</a> (Value) [Index](https://golang.org/src/reflect/value.go?s=28677:28710#L915)
@@ -1431,7 +1497,7 @@ It panics if v's Kind is not Float32 or Float64
 Index returns v's i'th element.
 It panics if v's Kind is not Array, Slice, or String or i is out of range.
 
-
+Index 返回v中对应的第i个元素. 如果v的类型不是Array, Slice, 或 String 或 i 超出返回, 那么它会panic.
 
 
 ### <a id="Value.Int">func</a> (Value) [Int](https://golang.org/src/reflect/value.go?s=30233:30259#L961)
@@ -1439,6 +1505,7 @@ It panics if v's Kind is not Array, Slice, or String or i is out of range.
 Int returns v's underlying value, as an int64.
 It panics if v's Kind is not Int, Int8, Int16, Int32, or Int64.
 
+Init 返回v的底层值, 比如int64. 如果k的类型不是 Int, Int8, Int16, Int32, 或 Int64, 那么它会panic.
 
 
 
@@ -1453,7 +1520,12 @@ It is equivalent to:
 It panics if the Value was obtained by accessing
 unexported struct fields.
 
+Interface 以interface{}的形式返回v的当前值, 等价于:
+```go
+var i interface{} = (v's underlying value)
+```
 
+如果Value是通过struct的未导出字段获取的, 那么它会panic.
 
 
 ### <a id="Value.InterfaceData">func</a> (Value) [InterfaceData](https://golang.org/src/reflect/value.go?s=32081:32122#L1028)
@@ -1461,7 +1533,7 @@ unexported struct fields.
 InterfaceData returns the interface v's value as a uintptr pair.
 It panics if v's Kind is not Interface.
 
-
+InterfaceData 返回接口v中的值(以uintptr对). 如果v的类型不是 Interface, 那么它会panic.
 
 
 ### <a id="Value.IsNil">func</a> (Value) [IsNil](https://golang.org/src/reflect/value.go?s=32868:32895#L1046)
@@ -1474,6 +1546,8 @@ by calling ValueOf with an uninitialized interface variable i,
 i==nil will be true but v.IsNil will panic as v will be the zero
 Value.
 
+IsNil 判断v是否为nil. v必须是chan, func, interface, map, pointer或slice, 除此之外, 它会panic. 注意: IsNil不总是等同于Go中的与nil的常规比较. 例如, v是通过未初始化的interface变量i调用 ValueOf 创建的, 那么i==nil为true. 但 v.IsNil会panic, 因为v是Value的零值.
+
 
 
 
@@ -1485,7 +1559,7 @@ If IsValid returns false, all other methods except String panic.
 Most functions and methods never return an invalid value.
 If one does, its documentation states the conditions explicitly.
 
-
+IsValid 判断v是否表示一个值. 如果v是零值Value, 那么它会返回false. 如果 IsValid 返回false, 那么除 String 外所有的其他方法都会panic. 大部分函数和方法绝不返回无效值. 如果返回了的话, 其文档会明确说明条件.
 
 
 ### <a id="Value.IsZero">func</a> (Value) [IsZero](https://golang.org/src/reflect/value.go?s=33807:33835#L1077)
@@ -1493,7 +1567,7 @@ If one does, its documentation states the conditions explicitly.
 IsZero reports whether v is the zero value for its type.
 It panics if the argument is invalid.
 
-
+IsZero 判断v是否是其类型的零值. 如果参数无效, 那么它会panic.
 
 
 ### <a id="Value.Kind">func</a> (Value) [Kind](https://golang.org/src/reflect/value.go?s=34854:34880#L1117)
@@ -1501,7 +1575,7 @@ It panics if the argument is invalid.
 Kind returns v's Kind.
 If v is the zero Value (IsValid returns false), Kind returns Invalid.
 
-
+Kind 返回v的Kind类型. 如果v是零值Value(即IsValid返回false), 那么 Kind 返回 Invalid.
 
 
 ### <a id="Value.Len">func</a> (Value) [Len](https://golang.org/src/reflect/value.go?s=34998:35022#L1123)
@@ -1509,7 +1583,7 @@ If v is the zero Value (IsValid returns false), Kind returns Invalid.
 Len returns v's length.
 It panics if v's Kind is not Array, Chan, Map, Slice, or String.
 
-
+Len 返回v的长度. 如果v的类型不是Array, Chan, Map, Slice, 或 String, 那么它会panic.
 
 
 ### <a id="Value.MapIndex">func</a> (Value) [MapIndex](https://golang.org/src/reflect/value.go?s=35734:35774#L1147)
@@ -1520,7 +1594,7 @@ It returns the zero Value if key is not found in the map or if v represents a ni
 As in Go, the key's value must be assignable to the map's key type.
 
 
-
+MapIndex 返回map v中key对应的value. 如果v的Kind不是Map, 那么它会panic. 如果key在map中不存在或v是nil的map, 它会返回零值Value. 和在Go中一样, 参数key必须与map key的类型一致.
 
 ### <a id="Value.MapKeys">func</a> (Value) [MapKeys](https://golang.org/src/reflect/value.go?s=36734:36766#L1180)
 <pre>func (v <a href="#Value">Value</a>) MapKeys() []<a href="#Value">Value</a></pre>
@@ -1529,7 +1603,7 @@ in unspecified order.
 It panics if v's Kind is not Map.
 It returns an empty slice if v represents a nil map.
 
-
+MapKeys 返回未排序的包含map中所有key的slice. 如果v的 Kind 不是 Map, 那么它会panic. 如果v是nil的map, 它会返回空的slice.
 
 
 ### <a id="Value.MapRange">func</a> (Value) [MapRange](https://golang.org/src/reflect/value.go?s=39097:39131#L1275)
@@ -1540,6 +1614,10 @@ It panics if v's Kind is not Map.
 Call Next to advance the iterator, and Key/Value to access each entry.
 Next returns false when the iterator is exhausted.
 MapRange follows the same iteration semantics as a range statement.
+
+MapRange 返回一个map的迭代器.如果v的 Kind 不是 Map, 那么它会panic.
+
+调用 Next 会迭代一次, 通过 Key/Value 可访问每一项. 如果 Next 返回false, 表示迭代已用尽. MapRange 遵循与range相同的迭代语法.
 
 Example:
 
@@ -1561,7 +1639,7 @@ The arguments to a Call on the returned function should not include
 a receiver; the returned function will always use v as the receiver.
 Method panics if i is out of range or if v is a nil interface value.
 
-
+Method 返回v的第i个方法. 调用返回的函数不用receiver, 其始终使用v作为receiver. 如果i超出范围或v的接口值是nil, 那么它会panic.
 
 
 ### <a id="Value.MethodByName">func</a> (Value) [MethodByName](https://golang.org/src/reflect/value.go?s=40926:40972#L1329)
