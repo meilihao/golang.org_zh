@@ -1594,7 +1594,7 @@ It returns the zero Value if key is not found in the map or if v represents a ni
 As in Go, the key's value must be assignable to the map's key type.
 
 
-MapIndex 返回map v中key对应的value. 如果v的Kind不是Map, 那么它会panic. 如果key在map中不存在或v是nil的map, 它会返回零值Value. 和在Go中一样, 参数key必须与map key的类型一致.
+MapIndex 返回map v中key对应的value. 如果v的Kind不是Map, 那么它会panic. 如果key在map中不存在或v是nil的map, 它会返回零值Value. 和在Go中一样, 参数key的值必须与map key的类型一致.
 
 ### <a id="Value.MapKeys">func</a> (Value) [MapKeys](https://golang.org/src/reflect/value.go?s=36734:36766#L1180)
 <pre>func (v <a href="#Value">Value</a>) MapKeys() []<a href="#Value">Value</a></pre>
@@ -1650,7 +1650,7 @@ The arguments to a Call on the returned function should not include
 a receiver; the returned function will always use v as the receiver.
 It returns the zero Value if no method was found.
 
-
+MethodByName 根据给定的name返回对应的函数. 调用返回的函数不用receiver, 其始终使用v作为receiver. 如果没有找到返回零值Value.
 
 
 ### <a id="Value.NumField">func</a> (Value) [NumField](https://golang.org/src/reflect/value.go?s=41298:41327#L1345)
@@ -1658,22 +1658,21 @@ It returns the zero Value if no method was found.
 NumField returns the number of fields in the struct v.
 It panics if v's Kind is not Struct.
 
-
+NumField 返回struct v的字段数量. 如果v的 Kind 不是 Struct, 那么它会panic.
 
 
 ### <a id="Value.NumMethod">func</a> (Value) [NumMethod](https://golang.org/src/reflect/value.go?s=40448:40478#L1314)
 <pre>func (v <a href="#Value">Value</a>) NumMethod() <a href="/pkg/builtin/#int">int</a></pre>
 NumMethod returns the number of exported methods in the value's method set.
 
-
-
+NumMethod 返回 v 方法集中可导出方法的数量.
 
 ### <a id="Value.OverflowComplex">func</a> (Value) [OverflowComplex](https://golang.org/src/reflect/value.go?s=41562:41611#L1353)
 <pre>func (v <a href="#Value">Value</a>) OverflowComplex(x <a href="/pkg/builtin/#complex128">complex128</a>) <a href="/pkg/builtin/#bool">bool</a></pre>
 OverflowComplex reports whether the complex128 x cannot be represented by v's type.
 It panics if v's Kind is not Complex64 or Complex128.
 
-
+OverflowComplex 判断 x 是否不能表示v. 如果v的 Kind 不是 Complex64 或 Complex128, 那么它会panic.
 
 
 ### <a id="Value.OverflowFloat">func</a> (Value) [OverflowFloat](https://golang.org/src/reflect/value.go?s=41956:42000#L1366)
@@ -1681,7 +1680,7 @@ It panics if v's Kind is not Complex64 or Complex128.
 OverflowFloat reports whether the float64 x cannot be represented by v's type.
 It panics if v's Kind is not Float32 or Float64.
 
-
+OverflowFloat 判断 x 是否不能表示v, 如果v的类型不是Float32 或 Float64, 那么它会panic.
 
 
 ### <a id="Value.OverflowInt">func</a> (Value) [OverflowInt](https://golang.org/src/reflect/value.go?s=42433:42473#L1386)
@@ -1689,7 +1688,7 @@ It panics if v's Kind is not Float32 or Float64.
 OverflowInt reports whether the int64 x cannot be represented by v's type.
 It panics if v's Kind is not Int, Int8, Int16, Int32, or Int64.
 
-
+OverflowInt 判断 x 是否不能表示v. 如果v的 Kind 不是Int, Int8, Int16, Int32 或 Int64, 那么它会panic.
 
 
 ### <a id="Value.OverflowUint">func</a> (Value) [OverflowUint](https://golang.org/src/reflect/value.go?s=42866:42908#L1399)
@@ -1698,7 +1697,7 @@ OverflowUint reports whether the uint64 x cannot be represented by v's type.
 It panics if v's Kind is not Uint, Uintptr, Uint8, Uint16, Uint32, or Uint64.
 
 
-
+OverflowUint 判断 x 是否不能表示v. 如果v的 Kind 不是Uint, Uintptr, Uint8, Uint16, Uint32 或 Uint64, 那么它会panic.
 
 ### <a id="Value.Pointer">func</a> (Value) [Pointer](https://golang.org/src/reflect/value.go?s=43879:43911#L1424)
 <pre>func (v <a href="#Value">Value</a>) Pointer() <a href="/pkg/builtin/#uintptr">uintptr</a></pre>
@@ -1717,8 +1716,11 @@ If v's Kind is Slice, the returned pointer is to the first
 element of the slice. If the slice is nil the returned value
 is 0.  If the slice is empty but non-nil the return value is non-zero.
 
+Pointer 以uintptr的形式返回v的值. 它用uintptr代替unsafe.Pointer作为返回类型, 因此如果不导入`unsafe`包, 那么反射的代码无法获取到unsafe.Pointer. 如果v的 Kind 不是Chan, Func, Map, Ptr, Slice 或 UnsafePointer, 那么它会panic.
 
+如果v的 Kind 是 Func, 则返回的指针是底层代码的指针, 但不一定足以唯一地标识一个函数. 唯一能保证的是, 如果v是nil的func Value, 那么它会返回0.
 
+如果v的 Kind 是 Slice, 返回的指针指向该slice的第一个元素. 如果slice是nil, 那么返回0. 如果slice是空的但不为nil, 则返回值不为零.
 
 ### <a id="Value.Recv">func</a> (Value) [Recv](https://golang.org/src/reflect/value.go?s=45087:45127#L1460)
 <pre>func (v <a href="#Value">Value</a>) Recv() (x <a href="#Value">Value</a>, ok <a href="/pkg/builtin/#bool">bool</a>)</pre>
@@ -1728,7 +1730,7 @@ The receive blocks until a value is ready.
 The boolean value ok is true if the value x corresponds to a send
 on the channel, false if it is a zero value received because the channel is closed.
 
-
+Recv 接收并返回一个channel v中的值. 如果v的 Kind 不是 Chan, 那么它是panic. 该操纵会阻塞直至有一个值是ready. bool类型的ok如果为true, 表示x是被发送到channel上的值; 如果为false, 表示由于channel已关闭, x是零值.
 
 
 ### <a id="Value.Send">func</a> (Value) [Send](https://golang.org/src/reflect/value.go?s=45934:45962#L1493)
@@ -1737,7 +1739,7 @@ Send sends x on the channel v.
 It panics if v's kind is not Chan or if x's type is not the same type as v's element type.
 As in Go, x's value must be assignable to the channel's element type.
 
-
+Send 将 x 发送到 channel 上. 如果v 的 Kind 不是 Chan 或者 x的类型与v的元素类型一致, 那么它会panic. 与在Go中一样, x的值必须是能赋值给channel的类型.
 
 
 ### <a id="Value.Set">func</a> (Value) [Set](https://golang.org/src/reflect/value.go?s=46618:46645#L1520)
@@ -1747,14 +1749,14 @@ It panics if CanSet returns false.
 As in Go, x's value must be assignable to v's type.
 
 
-
+Set 将 x 赋值给v, 如果 CanSet 返回 false, 那么它会panic. 和在Go中一样, x的值必须是能赋值给v的类型.
 
 ### <a id="Value.SetBool">func</a> (Value) [SetBool](https://golang.org/src/reflect/value.go?s=47059:47089#L1537)
 <pre>func (v <a href="#Value">Value</a>) SetBool(x <a href="/pkg/builtin/#bool">bool</a>)</pre>
 SetBool sets v's underlying value.
 It panics if v's Kind is not Bool or if CanSet() is false.
 
-
+SetBool 设置v的底层值. 如果v的 Kind 不是 Bool 或 CanSet() 返回 false, 那么它会panic.
 
 
 ### <a id="Value.SetBytes">func</a> (Value) [SetBytes](https://golang.org/src/reflect/value.go?s=47255:47288#L1545)
@@ -1762,7 +1764,7 @@ It panics if v's Kind is not Bool or if CanSet() is false.
 SetBytes sets v's underlying value.
 It panics if v's underlying value is not a slice of bytes.
 
-
+SetBytes 设置v的底层值. 如果v的 底层值不是`[]byte`, 那么它会panic.
 
 
 ### <a id="Value.SetCap">func</a> (Value) [SetCap](https://golang.org/src/reflect/value.go?s=49485:49513#L1629)
@@ -1771,7 +1773,7 @@ SetCap sets v's capacity to n.
 It panics if v's Kind is not Slice or if n is smaller than the length or
 greater than the capacity of the slice.
 
-
+SetCap 将v的容量设置为n. 如果v的 Kind 不是 Slice 或 n 小于 length 或 大于 slice的现有容量, 那么它会panic.
 
 
 ### <a id="Value.SetComplex">func</a> (Value) [SetComplex](https://golang.org/src/reflect/value.go?s=47875:47914#L1567)
@@ -1779,7 +1781,7 @@ greater than the capacity of the slice.
 SetComplex sets v's underlying value to x.
 It panics if v's Kind is not Complex64 or Complex128, or if CanSet() is false.
 
-
+SetComplex 将v的底层值设为x. 如果v 的 Kind 不是 Complex64 或 Complex128 或 CanSet() 返回false, 那么它会panic.
 
 
 ### <a id="Value.SetFloat">func</a> (Value) [SetFloat](https://golang.org/src/reflect/value.go?s=48263:48297#L1581)
@@ -1787,7 +1789,7 @@ It panics if v's Kind is not Complex64 or Complex128, or if CanSet() is false.
 SetFloat sets v's underlying value to x.
 It panics if v's Kind is not Float32 or Float64, or if CanSet() is false.
 
-
+SetFloat 将v的底层值设为x. 如果v 的 Kind 不是 Float32, Float64 或 CanSet() 返回false, 那么它会panic.
 
 
 ### <a id="Value.SetInt">func</a> (Value) [SetInt](https://golang.org/src/reflect/value.go?s=48645:48675#L1595)
@@ -1795,7 +1797,7 @@ It panics if v's Kind is not Float32 or Float64, or if CanSet() is false.
 SetInt sets v's underlying value to x.
 It panics if v's Kind is not Int, Int8, Int16, Int32, or Int64, or if CanSet() is false.
 
-
+SetInt 将v的底层值设为x. 如果v 的 Kind 不是 Int, Int8, Int16, Int32, Int64 或 CanSet() 返回false, 那么它会panic.
 
 
 ### <a id="Value.SetLen">func</a> (Value) [SetLen](https://golang.org/src/reflect/value.go?s=49133:49161#L1616)
@@ -1804,7 +1806,7 @@ SetLen sets v's length to n.
 It panics if v's Kind is not Slice or if n is negative or
 greater than the capacity of the slice.
 
-
+SetLen 将v的length设置为n. 如果v的 Kind 不是 Slice 或 n 是 负数 或 大于 slice的现有容量, 那么它会panic.
 
 
 ### <a id="Value.SetMapIndex">func</a> (Value) [SetMapIndex](https://golang.org/src/reflect/value.go?s=50058:50101#L1645)
@@ -1824,7 +1826,7 @@ and elem's value must be assignable to the map's elem type.
 SetPointer sets the unsafe.Pointer value v to x.
 It panics if v's Kind is not UnsafePointer.
 
-
+SetPointer 将unsafe.Pointer类型的值赋值给x. 如果v的 Kind 不是 UnsafePointer, 那么它会panic.
 
 
 ### <a id="Value.SetString">func</a> (Value) [SetString](https://golang.org/src/reflect/value.go?s=51586:51620#L1704)
@@ -1832,7 +1834,7 @@ It panics if v's Kind is not UnsafePointer.
 SetString sets v's underlying value to x.
 It panics if v's Kind is not String or if CanSet() is false.
 
-
+SetString 将v的底层值设为x. 如果v的 Kind 不是 String 或 CanSet() 返回 false, 那么它会panic.
 
 
 ### <a id="Value.SetUint">func</a> (Value) [SetUint](https://golang.org/src/reflect/value.go?s=50833:50865#L1674)
@@ -1840,7 +1842,7 @@ It panics if v's Kind is not String or if CanSet() is false.
 SetUint sets v's underlying value to x.
 It panics if v's Kind is not Uint, Uintptr, Uint8, Uint16, Uint32, or Uint64, or if CanSet() is false.
 
-
+SetUint 将v的底层值设为x. 如果v的 Kind 不是 Uint, Uintptr, Uint8, Uint16, Uint32, Uint64 或 CanSet() 返回false, 那么它会panic.
 
 
 ### <a id="Value.Slice">func</a> (Value) [Slice](https://golang.org/src/reflect/value.go?s=51845:51881#L1713)
@@ -1849,7 +1851,7 @@ Slice returns v[i:j].
 It panics if v's Kind is not Array, Slice or String, or if v is an unaddressable array,
 or if the indexes are out of bounds.
 
-
+Slice 返回 v[i:j]. 如果v的 Kind 不是 Array, Slice, String 或 v是不可寻址的数组, 或 索引超出范围, 那么它会panic.
 
 
 ### <a id="Value.Slice3">func</a> (Value) [Slice3](https://golang.org/src/reflect/value.go?s=53463:53503#L1775)
@@ -1858,7 +1860,7 @@ Slice3 is the 3-index form of the slice operation: it returns v[i:j:k].
 It panics if v's Kind is not Array or Slice, or if v is an unaddressable array,
 or if the indexes are out of bounds.
 
-
+Slice3 是 slice的3索引操作形式, 会返回 v[i:j:k]. 如果v的 Kind 不是 Array, Slice 或 v是不可寻址的数组, 或 索引超出范围, 那么它会panic.
 
 
 ### <a id="Value.String">func</a> (Value) [String](https://golang.org/src/reflect/value.go?s=55048:55078#L1830)
@@ -1870,7 +1872,7 @@ Instead, it returns a string of the form "<T value>" where T is v's type.
 The fmt package treats Values specially. It does not call their String
 method implicitly but instead prints the concrete values they hold.
 
-
+String 以字符串形式返回字符串v的底层值. 由于Go的 String 方法约定, 因此String 是一种特殊情况. 不像其他的getter, 即使v的 Kind 不是 String, 它也不会panic, 而是以"<T value>"是格式返回字符串, 其中T是v的类型. fmt包会特别对待Value, 它不会隐式地调用它们的 String 方法, 而是直接打印它们持有的实际值.
 
 
 ### <a id="Value.TryRecv">func</a> (Value) [TryRecv](https://golang.org/src/reflect/value.go?s=55748:55791#L1847)
@@ -1881,7 +1883,7 @@ If the receive delivers a value, x is the transferred value and ok is true.
 If the receive cannot finish without blocking, x is the zero Value and ok is false.
 If the channel is closed, x is the zero value for the channel's element type and ok is false.
 
-
+TryRecv 尝试不阻塞地从channel v中接收一个值. 如果v的 Kind 不是 Chan, 那么它会panic. 如果实际传递了一个值, x是传输的值, ok为true. 如果不阻塞就不能收到值，那么x是零值Value, ok为false. 如果channel已关闭, 那么ok为false, x是channel元素类型的零值.
 
 
 ### <a id="Value.TrySend">func</a> (Value) [TrySend](https://golang.org/src/reflect/value.go?s=56074:56110#L1857)
@@ -1891,6 +1893,7 @@ It panics if v's Kind is not Chan.
 It reports whether the value was sent.
 As in Go, x's value must be assignable to the channel's element type.
 
+TryRecv 尝试不阻塞地将x发送到channel v上. 如果v的 Kind 不是 Chan, 那么它会panic. 它会返回是否发送成功. 和在Go中一样, x的值必须要匹配channel元素的类型.
 
 
 
@@ -1898,7 +1901,7 @@ As in Go, x's value must be assignable to the channel's element type.
 <pre>func (v <a href="#Value">Value</a>) Type() <a href="#Type">Type</a></pre>
 Type returns v's type.
 
-
+Type 返回v的类型.
 
 
 ### <a id="Value.Uint">func</a> (Value) [Uint](https://golang.org/src/reflect/value.go?s=57071:57099#L1897)
@@ -1906,7 +1909,7 @@ Type returns v's type.
 Uint returns v's underlying value, as a uint64.
 It panics if v's Kind is not Uint, Uintptr, Uint8, Uint16, Uint32, or Uint64.
 
-
+Uint 以uint64的形式返回v的底层值. 如果v的 Kind 不是Uint, Uintptr, Uint8, Uint16, Uint32 或 Uint64, 那么它会panic.
 
 
 ### <a id="Value.UnsafeAddr">func</a> (Value) [UnsafeAddr](https://golang.org/src/reflect/value.go?s=57609:57644#L1920)
@@ -1915,7 +1918,7 @@ UnsafeAddr returns a pointer to v's data.
 It is for advanced clients that also import the "unsafe" package.
 It panics if v is not addressable.
 
-
+UnsafeAddr 返回一个指向v的数据的指针. 它适用于还导入了`unsafe`包的高级用户. 如果v是不可寻址的, 那么它会panic.
 
 
 ## <a id="ValueError">type</a> [ValueError](https://golang.org/src/reflect/value.go?s=4981:5035#L147)
@@ -1923,6 +1926,7 @@ A ValueError occurs when a Value method is invoked on
 a Value that does not support it. Such cases are documented
 in the description of each method.
 
+ValueError 在不支持 Value 方法的 Value 上该方法, 则会发生 ValueError. 此类情况已记录在每个方法的说明中.
 
 <pre>type ValueError struct {
 <span id="ValueError.Method"></span>    Method <a href="/pkg/builtin/#string">string</a>
@@ -1938,14 +1942,11 @@ in the description of each method.
 
 
 
-
-
 ### <a id="ValueError.Error">func</a> (\*ValueError) [Error](https://golang.org/src/reflect/value.go?s=5037:5072#L152)
 <pre>func (e *<a href="#ValueError">ValueError</a>) Error() <a href="/pkg/builtin/#string">string</a></pre>
 
 
+# Bugs
+FieldByName and related functions consider struct field names to be equal if the names are equal, even if they are unexported names originating in different packages. The practical effect of this is that the result of t.FieldByName("x") is not well defined if the struct type t contains multiple fields named x (embedded from different packages). FieldByName may return one of the fields named x or may report that there are none. See https://golang.org/issue/4876 for more details.
 
-
-
-
-
+如果名称相同, 那么FieldByName和相关函数会认为struct字段是相同的, 即使它们是来自不同包的未导出字段. 实际的影响是: 如果struct t包含了多个名为x的字段(嵌在不同的package中), t.FieldByName("x") 的返回结果是不确定的. FieldByName可能会返回它们其中一个名为x的字段或没有找到字段. 详细信息请参考https://golang.org/issue/4876.
