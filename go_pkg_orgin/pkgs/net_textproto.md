@@ -83,7 +83,7 @@ with a single network connection.
 
 
 
-## <a id="CanonicalMIMEHeaderKey">func</a> [CanonicalMIMEHeaderKey](https://golang.org/src/net/textproto/reader.go?s=15315:15359#L565)
+## <a id="CanonicalMIMEHeaderKey">func</a> [CanonicalMIMEHeaderKey](https://golang.org/src/net/textproto/reader.go?s=15120:15164#L559)
 <pre>func CanonicalMIMEHeaderKey(s <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
 CanonicalMIMEHeaderKey returns the canonical format of the
 MIME header key s. The canonicalization converts the first

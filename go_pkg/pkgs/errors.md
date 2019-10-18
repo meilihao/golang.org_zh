@@ -20,16 +20,16 @@ An error wraps another error if its type has the method
 
 If e.Unwrap() returns a non-nil error w, then we say that e wraps w.
 
+Unwrap unpacks wrapped errors. If its argument's type has an
+Unwrap method, it calls the method once. Otherwise, it returns nil.
+
 A simple way to create wrapped errors is to call fmt.Errorf and apply the %w verb
 to the error argument:
 
 
-	fmt.Errorf("... %w ...", ..., err, ...).Unwrap()
+	errors.Unwrap(fmt.Errorf("... %w ...", ..., err, ...))
 
 returns err.
-
-Unwrap unpacks wrapped errors. If its argument's type has an
-Unwrap method, it calls the method once. Otherwise, it returns nil.
 
 Is unwraps its first argument sequentially looking for an error that matches the
 second. It reports whether it finds a match. It should be used in preference to
@@ -131,7 +131,7 @@ it implements a method Is(error) bool such that Is(target) returns true.
 
 
 
-## <a id="New">func</a> [New](https://golang.org/src/errors/errors.go?s=1869:1896#L48)
+## <a id="New">func</a> [New](https://golang.org/src/errors/errors.go?s=1875:1902#L48)
 <pre>func New(text <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#error">error</a></pre>
 New returns an error that formats as the given text.
 Each call to New returns a distinct error value even if the text is identical.
@@ -142,7 +142,6 @@ Each call to New returns a distinct error value even if the text is identical.
 <p>The fmt package&#39;s Errorf function lets us use the package&#39;s formatting
 features to create descriptive error messages.
 </p>
-
 ## <a id="Unwrap">func</a> [Unwrap](https://golang.org/src/errors/wrap.go?s=372:400#L4)
 <pre>func Unwrap(err <a href="/pkg/builtin/#error">error</a>) <a href="/pkg/builtin/#error">error</a></pre>
 Unwrap returns the result of calling the Unwrap method on err, if err's

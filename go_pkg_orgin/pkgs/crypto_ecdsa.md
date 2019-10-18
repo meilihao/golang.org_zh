@@ -34,7 +34,7 @@ a result of Coron; the AES-CTR stream is IRO under standard assumptions.
 
 
 #### <a id="pkg-files">Package files</a>
-[ecdsa.go](https://golang.org/src/crypto/ecdsa/ecdsa.go) [ecdsa_noasm.go](https://golang.org/src/crypto/ecdsa/ecdsa_noasm.go) 
+[ecdsa.go](https://golang.org/src/crypto/ecdsa/ecdsa.go) 
 
 
 
@@ -51,7 +51,7 @@ depends on the entropy of rand.
 
 
 
-## <a id="Verify">func</a> [Verify](https://golang.org/src/crypto/ecdsa/ecdsa.go?s=6751:6811#L227)
+## <a id="Verify">func</a> [Verify](https://golang.org/src/crypto/ecdsa/ecdsa.go?s=6579:6639#L223)
 <pre>func Verify(pub *<a href="#PublicKey">PublicKey</a>, hash []<a href="/pkg/builtin/#byte">byte</a>, r, s *<a href="/pkg/math/big/">big</a>.<a href="/pkg/math/big/#Int">Int</a>) <a href="/pkg/builtin/#bool">bool</a></pre>
 Verify verifies the signature in r, s of hash using the public key, pub. Its
 return value records whether the signature is valid.

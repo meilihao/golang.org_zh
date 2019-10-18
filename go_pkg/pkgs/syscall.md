@@ -2306,7 +2306,7 @@ BindToDevice binds the socket associated with fd to device.
 
 
 
-## <a id="BytePtrFromString">func</a> [BytePtrFromString](https://golang.org/src/syscall/syscall.go?s=2741:2788#L58)
+## <a id="BytePtrFromString">func</a> [BytePtrFromString](https://golang.org/src/syscall/syscall.go?s=2758:2805#L58)
 <pre>func BytePtrFromString(s <a href="/pkg/builtin/#string">string</a>) (*<a href="/pkg/builtin/#byte">byte</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
 BytePtrFromString returns a pointer to a NUL-terminated array of
 bytes containing the text of s. If s contains a NUL byte at any
@@ -2314,7 +2314,7 @@ location, it returns (nil, EINVAL).
 
 
 
-## <a id="ByteSliceFromString">func</a> [ByteSliceFromString](https://golang.org/src/syscall/syscall.go?s=2105:2155#L37)
+## <a id="ByteSliceFromString">func</a> [ByteSliceFromString](https://golang.org/src/syscall/syscall.go?s=2122:2172#L37)
 <pre>func ByteSliceFromString(s <a href="/pkg/builtin/#string">string</a>) ([]<a href="/pkg/builtin/#byte">byte</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
 ByteSliceFromString returns a NUL-terminated slice of bytes
 containing the text of s. If s contains a NUL byte at any
@@ -2416,7 +2416,7 @@ Exec invokes the execve(2) system call.
 
 
 
-## <a id="Exit">func</a> [Exit](https://golang.org/src/syscall/syscall.go?s=3773:3792#L95)
+## <a id="Exit">func</a> [Exit](https://golang.org/src/syscall/syscall.go?s=3790:3809#L95)
 <pre>func Exit(code <a href="/pkg/builtin/#int">int</a>)</pre>
 
 
@@ -2520,7 +2520,7 @@ Combination of fork and exec, careful to be thread safe.
 <pre>func Getgroups() (gids []<a href="/pkg/builtin/#int">int</a>, err <a href="/pkg/builtin/#error">error</a>)</pre>
 
 
-## <a id="Getpagesize">func</a> [Getpagesize](https://golang.org/src/syscall/syscall.go?s=3750:3772#L94)
+## <a id="Getpagesize">func</a> [Getpagesize](https://golang.org/src/syscall/syscall.go?s=3767:3789#L94)
 <pre>func Getpagesize() <a href="/pkg/builtin/#int">int</a></pre>
 
 
@@ -3021,7 +3021,7 @@ StartProcess wraps ForkExec for package os.
 <pre>func Statfs(path <a href="/pkg/builtin/#string">string</a>, buf *<a href="#Statfs_t">Statfs_t</a>) (err <a href="/pkg/builtin/#error">error</a>)</pre>
 
 
-## <a id="StringBytePtr">func</a> [StringBytePtr](https://golang.org/src/syscall/syscall.go?s=2497:2531#L53)
+## <a id="StringBytePtr">func</a> [StringBytePtr](https://golang.org/src/syscall/syscall.go?s=2514:2548#L53)
 <pre>func StringBytePtr(s <a href="/pkg/builtin/#string">string</a>) *<a href="/pkg/builtin/#byte">byte</a></pre>
 StringBytePtr returns a pointer to a NUL-terminated array of bytes.
 If s contains a NUL byte this function panics instead of returning
@@ -3031,7 +3031,7 @@ Deprecated: Use BytePtrFromString instead.
 
 
 
-## <a id="StringByteSlice">func</a> [StringByteSlice](https://golang.org/src/syscall/syscall.go?s=1773:1810#L26)
+## <a id="StringByteSlice">func</a> [StringByteSlice](https://golang.org/src/syscall/syscall.go?s=1790:1827#L26)
 <pre>func StringByteSlice(s <a href="/pkg/builtin/#string">string</a>) []<a href="/pkg/builtin/#byte">byte</a></pre>
 StringByteSlice converts a string to a NUL-terminated []byte,
 If s contains a NUL byte this function panics instead of
@@ -4721,14 +4721,14 @@ and returns the corresponding Timespec value.
 
 
 
-### <a id="Timespec.Nano">func</a> (\*Timespec) [Nano](https://golang.org/src/syscall/syscall.go?s=3452:3484#L83)
+### <a id="Timespec.Nano">func</a> (\*Timespec) [Nano](https://golang.org/src/syscall/syscall.go?s=3469:3501#L83)
 <pre>func (ts *<a href="#Timespec">Timespec</a>) Nano() <a href="/pkg/builtin/#int64">int64</a></pre>
 Nano returns ts as the number of nanoseconds elapsed since the Unix epoch.
 
 
 
 
-### <a id="Timespec.Unix">func</a> (\*Timespec) [Unix](https://golang.org/src/syscall/syscall.go?s=3087:3137#L72)
+### <a id="Timespec.Unix">func</a> (\*Timespec) [Unix](https://golang.org/src/syscall/syscall.go?s=3104:3154#L72)
 <pre>func (ts *<a href="#Timespec">Timespec</a>) Unix() (sec <a href="/pkg/builtin/#int64">int64</a>, nsec <a href="/pkg/builtin/#int64">int64</a>)</pre>
 Unix returns ts as the number of seconds and nanoseconds elapsed since the
 Unix epoch.
@@ -4762,14 +4762,14 @@ and returns the corresponding Timeval value.
 
 
 
-### <a id="Timeval.Nano">func</a> (\*Timeval) [Nano](https://golang.org/src/syscall/syscall.go?s=3611:3642#L88)
+### <a id="Timeval.Nano">func</a> (\*Timeval) [Nano](https://golang.org/src/syscall/syscall.go?s=3628:3659#L88)
 <pre>func (tv *<a href="#Timeval">Timeval</a>) Nano() <a href="/pkg/builtin/#int64">int64</a></pre>
 Nano returns tv as the number of nanoseconds elapsed since the Unix epoch.
 
 
 
 
-### <a id="Timeval.Unix">func</a> (\*Timeval) [Unix](https://golang.org/src/syscall/syscall.go?s=3274:3323#L78)
+### <a id="Timeval.Unix">func</a> (\*Timeval) [Unix](https://golang.org/src/syscall/syscall.go?s=3291:3340#L78)
 <pre>func (tv *<a href="#Timeval">Timeval</a>) Unix() (sec <a href="/pkg/builtin/#int64">int64</a>, nsec <a href="/pkg/builtin/#int64">int64</a>)</pre>
 Unix returns tv as the number of seconds and nanoseconds elapsed since the
 Unix epoch.

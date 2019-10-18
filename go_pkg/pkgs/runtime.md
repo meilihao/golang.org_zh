@@ -342,7 +342,7 @@ go:noinline
 
 
 
-## <a id="GC">func</a> [GC](https://golang.org/src/runtime/mgc.go?s=37788:37797#L1024)
+## <a id="GC">func</a> [GC](https://golang.org/src/runtime/mgc.go?s=37860:37869#L1026)
 <pre>func GC()</pre>
 GC runs a garbage collection and blocks the caller until the
 garbage collection is complete. It may also block the entire
@@ -503,7 +503,7 @@ NumGoroutine returns the number of goroutines that currently exist.
 
 
 
-## <a id="ReadMemStats">func</a> [ReadMemStats](https://golang.org/src/runtime/mstats.go?s=15992:16022#L433)
+## <a id="ReadMemStats">func</a> [ReadMemStats](https://golang.org/src/runtime/mstats.go?s=16126:16156#L435)
 <pre>func ReadMemStats(m *<a href="#MemStats">MemStats</a>)</pre>
 ReadMemStats populates m with memory allocator statistics.
 
@@ -1096,7 +1096,7 @@ a prefix of r.Stack0.
 
 
 
-## <a id="MemStats">type</a> [MemStats](https://golang.org/src/runtime/mstats.go?s=5486:14902#L135)
+## <a id="MemStats">type</a> [MemStats](https://golang.org/src/runtime/mstats.go?s=5620:15036#L137)
 A MemStats records statistics about the memory allocator.
 
 

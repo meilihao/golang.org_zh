@@ -868,7 +868,7 @@ If Jar is nil, the initial cookies are forwarded without change.
 
 
 
-### <a id="Client.CloseIdleConnections">func</a> (\*Client) [CloseIdleConnections](https://golang.org/src/net/http/client.go?s=27595:27634#L833)
+### <a id="Client.CloseIdleConnections">func</a> (\*Client) [CloseIdleConnections](https://golang.org/src/net/http/client.go?s=27617:27656#L833)
 <pre>func (c *<a href="#Client">Client</a>) CloseIdleConnections()</pre>
 CloseIdleConnections closes any connections on its Transport which
 were previously connected from previous requests but are now
@@ -881,7 +881,7 @@ then this method does nothing.
 
 
 
-### <a id="Client.Do">func</a> (\*Client) [Do](https://golang.org/src/net/http/client.go?s=17312:17364#L498)
+### <a id="Client.Do">func</a> (\*Client) [Do](https://golang.org/src/net/http/client.go?s=17323:17375#L498)
 <pre>func (c *<a href="#Client">Client</a>) Do(req *<a href="#Request">Request</a>) (*<a href="#Response">Response</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
 Do sends an HTTP request and returns an HTTP response, following
 policy (such as redirects, cookies, auth) as configured on the
@@ -924,7 +924,7 @@ canceled.
 
 
 
-### <a id="Client.Get">func</a> (\*Client) [Get](https://golang.org/src/net/http/client.go?s=13081:13141#L383)
+### <a id="Client.Get">func</a> (\*Client) [Get](https://golang.org/src/net/http/client.go?s=13092:13152#L383)
 <pre>func (c *<a href="#Client">Client</a>) Get(url <a href="/pkg/builtin/#string">string</a>) (resp *<a href="#Response">Response</a>, err <a href="/pkg/builtin/#error">error</a>)</pre>
 Get issues a GET to the specified URL. If the response is one of the
 following redirect codes, Get follows the redirect after calling the
@@ -951,7 +951,7 @@ To make a request with custom headers, use NewRequest and Client.Do.
 
 
 
-### <a id="Client.Head">func</a> (\*Client) [Head](https://golang.org/src/net/http/client.go?s=27086:27147#L818)
+### <a id="Client.Head">func</a> (\*Client) [Head](https://golang.org/src/net/http/client.go?s=27108:27169#L818)
 <pre>func (c *<a href="#Client">Client</a>) Head(url <a href="/pkg/builtin/#string">string</a>) (resp *<a href="#Response">Response</a>, err <a href="/pkg/builtin/#error">error</a>)</pre>
 Head issues a HEAD to the specified URL. If the response is one of the
 following redirect codes, Head follows the redirect after calling the
@@ -967,7 +967,7 @@ Client's CheckRedirect function:
 
 
 
-### <a id="Client.Post">func</a> (\*Client) [Post](https://golang.org/src/net/http/client.go?s=24813:24903#L753)
+### <a id="Client.Post">func</a> (\*Client) [Post](https://golang.org/src/net/http/client.go?s=24835:24925#L753)
 <pre>func (c *<a href="#Client">Client</a>) Post(url, contentType <a href="/pkg/builtin/#string">string</a>, body <a href="/pkg/io/">io</a>.<a href="/pkg/io/#Reader">Reader</a>) (resp *<a href="#Response">Response</a>, err <a href="/pkg/builtin/#error">error</a>)</pre>
 Post issues a POST to the specified URL.
 
@@ -984,7 +984,7 @@ are handled.
 
 
 
-### <a id="Client.PostForm">func</a> (\*Client) [PostForm](https://golang.org/src/net/http/client.go?s=26151:26233#L790)
+### <a id="Client.PostForm">func</a> (\*Client) [PostForm](https://golang.org/src/net/http/client.go?s=26173:26255#L790)
 <pre>func (c *<a href="#Client">Client</a>) PostForm(url <a href="/pkg/builtin/#string">string</a>, data <a href="/pkg/net/url/">url</a>.<a href="/pkg/net/url/#Values">Values</a>) (resp *<a href="#Response">Response</a>, err <a href="/pkg/builtin/#error">error</a>)</pre>
 PostForm issues a POST to the specified URL,
 with data's keys and values URL-encoded as the request body.
@@ -2276,7 +2276,7 @@ is streamed on demand as the Body field is read.
 
 
 
-### <a id="Get">func</a> [Get](https://golang.org/src/net/http/client.go?s=12175:12223#L359)
+### <a id="Get">func</a> [Get](https://golang.org/src/net/http/client.go?s=12186:12234#L359)
 <pre>func Get(url <a href="/pkg/builtin/#string">string</a>) (resp *<a href="#Response">Response</a>, err <a href="/pkg/builtin/#error">error</a>)</pre>
 Get issues a GET to the specified URL. If the response is one of
 the following redirect codes, Get follows the redirect, up to a
@@ -2307,7 +2307,7 @@ DefaultClient.Do.
 <a id="example_Get">Example</a>
 
 
-### <a id="Head">func</a> [Head](https://golang.org/src/net/http/client.go?s=26681:26730#L805)
+### <a id="Head">func</a> [Head](https://golang.org/src/net/http/client.go?s=26703:26752#L805)
 <pre>func Head(url <a href="/pkg/builtin/#string">string</a>) (resp *<a href="#Response">Response</a>, err <a href="/pkg/builtin/#error">error</a>)</pre>
 Head issues a HEAD to the specified URL. If the response is one of
 the following redirect codes, Head follows the redirect, up to a
@@ -2325,7 +2325,7 @@ Head is a wrapper around DefaultClient.Head
 
 
 
-### <a id="Post">func</a> [Post](https://golang.org/src/net/http/client.go?s=24343:24421#L738)
+### <a id="Post">func</a> [Post](https://golang.org/src/net/http/client.go?s=24365:24443#L738)
 <pre>func Post(url, contentType <a href="/pkg/builtin/#string">string</a>, body <a href="/pkg/io/">io</a>.<a href="/pkg/io/#Reader">Reader</a>) (resp *<a href="#Response">Response</a>, err <a href="/pkg/builtin/#error">error</a>)</pre>
 Post issues a POST to the specified URL.
 
@@ -2344,7 +2344,7 @@ are handled.
 
 
 
-### <a id="PostForm">func</a> [PostForm](https://golang.org/src/net/http/client.go?s=25576:25646#L775)
+### <a id="PostForm">func</a> [PostForm](https://golang.org/src/net/http/client.go?s=25598:25668#L775)
 <pre>func PostForm(url <a href="/pkg/builtin/#string">string</a>, data <a href="/pkg/net/url/">url</a>.<a href="/pkg/net/url/#Values">Values</a>) (resp *<a href="#Response">Response</a>, err <a href="/pkg/builtin/#error">error</a>)</pre>
 PostForm issues a POST to the specified URL, with data's keys and
 values URL-encoded as the request body.
@@ -3164,7 +3164,7 @@ wire.
 
 
 
-### <a id="Transport.CancelRequest">func</a> (\*Transport) [CancelRequest](https://golang.org/src/net/http/transport.go?s=23346:23393#L661)
+### <a id="Transport.CancelRequest">func</a> (\*Transport) [CancelRequest](https://golang.org/src/net/http/transport.go?s=23383:23430#L662)
 <pre>func (t *<a href="#Transport">Transport</a>) CancelRequest(req *<a href="#Request">Request</a>)</pre>
 CancelRequest cancels an in-flight request by closing its connection.
 CancelRequest should only be called after RoundTrip has returned.
@@ -3183,7 +3183,7 @@ Clone returns a deep copy of t's exported fields.
 
 
 
-### <a id="Transport.CloseIdleConnections">func</a> (\*Transport) [CloseIdleConnections](https://golang.org/src/net/http/transport.go?s=22646:22688#L637)
+### <a id="Transport.CloseIdleConnections">func</a> (\*Transport) [CloseIdleConnections](https://golang.org/src/net/http/transport.go?s=22683:22725#L638)
 <pre>func (t *<a href="#Transport">Transport</a>) CloseIdleConnections()</pre>
 CloseIdleConnections closes any connections which were previously
 connected from previous requests but are now sitting idle in
@@ -3193,7 +3193,7 @@ in use.
 
 
 
-### <a id="Transport.RegisterProtocol">func</a> (\*Transport) [RegisterProtocol](https://golang.org/src/net/http/transport.go?s=22023:22091#L618)
+### <a id="Transport.RegisterProtocol">func</a> (\*Transport) [RegisterProtocol](https://golang.org/src/net/http/transport.go?s=22060:22128#L619)
 <pre>func (t *<a href="#Transport">Transport</a>) RegisterProtocol(scheme <a href="/pkg/builtin/#string">string</a>, rt <a href="#RoundTripper">RoundTripper</a>)</pre>
 RegisterProtocol registers a new protocol with scheme.
 The Transport will pass requests using the given scheme to rt.
