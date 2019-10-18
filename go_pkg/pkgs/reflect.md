@@ -423,11 +423,16 @@ Method 代表一个方法.
     <span class="comment">// The combination of PkgPath and Name uniquely identifies a method</span>
     <span class="comment">// in a method set.</span>
     <span class="comment">// See https://golang.org/ref/spec#Uniqueness_of_identifiers</span>
+    <span class="comment">//</span>
+    <span class="comment">// Name 是方法的名称. </span>
+    <span class="comment">// 当方法是不可导出时, PkgPath是其package路径; 可导出时该字段为空.</span>
+    <span class="comment">// PkgPath和Name的组合可唯一标识方法集中的方法.</span>
+    <span class="comment">// 可参考 https://golang.org/ref/spec#Uniqueness_of_identifiers</span>
     Name    <a href="/pkg/builtin/#string">string</a>
     PkgPath <a href="/pkg/builtin/#string">string</a>
 
 <span id="Method.Type"></span>    Type  <a href="#Type">Type</a>  <span class="comment">// method type // 方法的类型</span>
-<span id="Method.Func"></span>    Func  <a href="#Value">Value</a> <span class="comment">// func with receiver as first argument // func将接收者作为第一个参数</span>
+<span id="Method.Func"></span>    Func  <a href="#Value">Value</a> <span class="comment">// func with receiver as first argument // func的地址. 该 func会将接收者作为第一个参数</span>
 <span id="Method.Index"></span>    Index <a href="/pkg/builtin/#int">int</a>   <span class="comment">// index for Type.Method // Type.Method的索引</span>
 }
 </pre>
@@ -727,175 +732,182 @@ Type 表示 Go的类型.
 
 Type 可以用`==`比较,所以可作为map的key. 如果它们相等, 那么代表同一种类型.
 
-<pre>type Type interface {
+```go
+type Type interface {
 
-    <span class="comment">// Align returns the alignment in bytes of a value of</span>
-    <span class="comment">// this type when allocated in memory.</span>
-    <span class="comment">// Align 返回 当从内存中分配该类型时会对齐的字节数.</span>
-    Align() <a href="/pkg/builtin/#int">int</a>
+    // Align returns the alignment in bytes of a value of
+    // this type when allocated in memory.
+    //
+    // Align 返回 当从内存中分配该类型时会对齐的字节数.
+    Align() int
 
-    <span class="comment">// FieldAlign returns the alignment in bytes of a value of</span>
-    <span class="comment">// this type when used as a field in a struct.</span>
-    <span class="comment">// FieldAlign 返回 该类型作为struct字段时会对齐的字节数.</span>
-    FieldAlign() <a href="/pkg/builtin/#int">int</a>
+    // FieldAlign returns the alignment in bytes of a value of
+    // this type when used as a field in a struct.
+    //
+    // FieldAlign 返回 该类型作为struct字段时会对齐的字节数.
+    FieldAlign() int
 
-    <span class="comment">// Method returns the i&#39;th method in the type&#39;s method set.</span>
-    <span class="comment">// It panics if i is not in the range [0, NumMethod()).</span>
-    <span class="comment">//</span>
-    <span class="comment">// For a non-interface type T or *T, the returned Method&#39;s Type and Func</span>
-    <span class="comment">// fields describe a function whose first argument is the receiver.</span>
-    <span class="comment">//</span>
-    <span class="comment">// For an interface type, the returned Method&#39;s Type field gives the</span>
-    <span class="comment">// method signature, without a receiver, and the Func field is nil.</span>
-    <span class="comment">//</span>
-    <span class="comment">// Only exported methods are accessible and they are sorted in</span>
-    <span class="comment">// lexicographic order.</span>
-    Method(<a href="/pkg/builtin/#int">int</a>) <a href="#Method">Method</a>
+    // Method returns the i'th method in the type's method set.
+    // It panics if i is not in the range [0, NumMethod()).
+    //
+    // For a non-interface type T or *T, the returned Method's Type and Func
+    // fields describe a function whose first argument is the receiver.
+    //
+    // For an interface type, the returned Method's Type field gives the
+    // method signature, without a receiver, and the Func field is nil.
+    //
+    // Only exported methods are accessible and they are sorted in
+    // lexicographic order.
+    //
+    // Method 返回Type方法集中的第i个方法.
+    // 如果i的范围不是[0, NumMethod()), 那么会panic.
+    //
+    // 对于非接口类型的T或*T, 它会返回Method类型. Method的Func字段是该func的地址, func会将receiver作为第一个参数.
+    //
+    // 对于接口类型, Method的Type字段会给出该方法的方法签名, 不包含receiver, 且Func字段为nil.
+    //
+    // 仅可访问导出的方法, 且它们是按照字典序排列的.
+    Method(int) Method
 
-    <span class="comment">// MethodByName returns the method with that name in the type&#39;s</span>
-    <span class="comment">// method set and a boolean indicating if the method was found.</span>
-    <span class="comment">//</span>
-    <span class="comment">// For a non-interface type T or *T, the returned Method&#39;s Type and Func</span>
-    <span class="comment">// fields describe a function whose first argument is the receiver.</span>
-    <span class="comment">//</span>
-    <span class="comment">// For an interface type, the returned Method&#39;s Type field gives the</span>
-    <span class="comment">// method signature, without a receiver, and the Func field is nil.</span>
-    MethodByName(<a href="/pkg/builtin/#string">string</a>) (<a href="#Method">Method</a>, <a href="/pkg/builtin/#bool">bool</a>)
+    // MethodByName returns the method with that name in the type's
+    // method set and a boolean indicating if the method was found.
+    //
+    // For a non-interface type T or *T, the returned Method's Type and Func
+    // fields describe a function whose first argument is the receiver.
+    //
+    // For an interface type, the returned Method's Type field gives the
+    // method signature, without a receiver, and the Func field is nil.
+    MethodByName(string) (Method, bool)
 
-    <span class="comment">// NumMethod returns the number of exported methods in the type&#39;s method set.</span>
-    <span class="comment">// NumMethod 返回该类型方法集中可导出的方法的数量.</span>
-    NumMethod() <a href="/pkg/builtin/#int">int</a>
+    // NumMethod returns the number of exported methods in the type's method set.
+    // NumMethod 返回该类型方法集中可导出的方法的数量.
+    NumMethod() int
 
-    <span class="comment">// Name returns the type&#39;s name within its package for a defined type.</span>
-    <span class="comment">// For other (non-defined) types it returns the empty string.</span>
-    Name() <a href="/pkg/builtin/#string">string</a>
+    // Name returns the type's name within its package for a defined type.
+    // For other (non-defined) types it returns the empty string.
+    Name() string
 
-    <span class="comment">// PkgPath returns a defined type&#39;s package path, that is, the import path</span>
-    <span class="comment">// that uniquely identifies the package, such as &#34;encoding/base64&#34;.</span>
-    <span class="comment">// If the type was predeclared (string, error) or not defined (*T, struct{},</span>
-    <span class="comment">// []int, or A where A is an alias for a non-defined type), the package path</span>
-    <span class="comment">// will be the empty string.</span>
-    PkgPath() <a href="/pkg/builtin/#string">string</a>
+    // PkgPath returns a defined type's package path, that is, the import path
+    // that uniquely identifies the package, such as "encoding/base64".
+    // If the type was predeclared (string, error) or not defined (*T, struct{},
+    // []int, or A where A is an alias for a non-defined type), the package path
+    // will be the empty string.
+    PkgPath() string
 
-    <span class="comment">// Size returns the number of bytes needed to store</span>
-    <span class="comment">// a value of the given type; it is analogous to unsafe.Sizeof.</span>
-    Size() <a href="/pkg/builtin/#uintptr">uintptr</a>
+    // Size returns the number of bytes needed to store
+    // a value of the given type; it is analogous to unsafe.Sizeof.
+    Size() uintptr
 
-    <span class="comment">// String returns a string representation of the type.</span>
-    <span class="comment">// The string representation may use shortened package names</span>
-    <span class="comment">// (e.g., base64 instead of &#34;encoding/base64&#34;) and is not</span>
-    <span class="comment">// guaranteed to be unique among types. To test for type identity,</span>
-    <span class="comment">// compare the Types directly.</span>
-    String() <a href="/pkg/builtin/#string">string</a>
+    // String returns a string representation of the type.
+    // The string representation may use shortened package names
+    // (e.g., base64 instead of "encoding/base64") and is not
+    // guaranteed to be unique among types. To test for type identity,
+    // compare the Types directly.
+    String() string
 
-    <span class="comment">// Kind returns the specific kind of this type.</span>
-    Kind() <a href="#Kind">Kind</a>
+    // Kind returns the specific kind of this type.
+    Kind() Kind
 
-    <span class="comment">// Implements reports whether the type implements the interface type u.</span>
-    Implements(u <a href="#Type">Type</a>) <a href="/pkg/builtin/#bool">bool</a>
+    // Implements reports whether the type implements the interface type u.
+    Implements(u Type) bool
 
-    <span class="comment">// AssignableTo reports whether a value of the type is assignable to type u.</span>
-    AssignableTo(u <a href="#Type">Type</a>) <a href="/pkg/builtin/#bool">bool</a>
+    // AssignableTo reports whether a value of the type is assignable to type u.
+    AssignableTo(u Type) bool
 
-    <span class="comment">// ConvertibleTo reports whether a value of the type is convertible to type u.</span>
-    ConvertibleTo(u <a href="#Type">Type</a>) <a href="/pkg/builtin/#bool">bool</a>
+    // ConvertibleTo reports whether a value of the type is convertible to type u.
+    ConvertibleTo(u Type) bool
 
-    <span class="comment">// Comparable reports whether values of this type are comparable.</span>
-    Comparable() <a href="/pkg/builtin/#bool">bool</a>
+    // Comparable reports whether values of this type are comparable.
+    Comparable() bool
 
-    <span class="comment">// Bits returns the size of the type in bits.</span>
-    <span class="comment">// It panics if the type&#39;s Kind is not one of the</span>
-    <span class="comment">// sized or unsized Int, Uint, Float, or Complex kinds.</span>
-    Bits() <a href="/pkg/builtin/#int">int</a>
+    // Bits returns the size of the type in bits.
+    // It panics if the type's Kind is not one of the
+    // sized or unsized Int, Uint, Float, or Complex kinds.
+    Bits() int
 
-    <span class="comment">// ChanDir returns a channel type&#39;s direction.</span>
-    <span class="comment">// It panics if the type&#39;s Kind is not Chan.</span>
-    ChanDir() <a href="#ChanDir">ChanDir</a>
+    // ChanDir returns a channel type's direction.
+    // It panics if the type's Kind is not Chan.
+    ChanDir() ChanDir
 
-    <span class="comment">// IsVariadic reports whether a function type&#39;s final input parameter</span>
-    <span class="comment">// is a &#34;...&#34; parameter. If so, t.In(t.NumIn() - 1) returns the parameter&#39;s</span>
-    <span class="comment">// implicit actual type []T.</span>
-    <span class="comment">//</span>
-    <span class="comment">// For concreteness, if t represents func(x int, y ... float64), then</span>
-    <span class="comment">//</span>
-    <span class="comment">//	t.NumIn() == 2</span>
-    <span class="comment">//	t.In(0) is the reflect.Type for &#34;int&#34;</span>
-    <span class="comment">//	t.In(1) is the reflect.Type for &#34;[]float64&#34;</span>
-    <span class="comment">//	t.IsVariadic() == true</span>
-    <span class="comment">//</span>
-    <span class="comment">// IsVariadic panics if the type&#39;s Kind is not Func.</span>
-    IsVariadic() <a href="/pkg/builtin/#bool">bool</a>
+    // IsVariadic reports whether a function type's final input parameter
+    // is a "..." parameter. If so, t.In(t.NumIn() - 1) returns the parameter's
+    // implicit actual type []T.
+    //
+    // For concreteness, if t represents func(x int, y ... float64), then
+    //
+    //	t.NumIn() == 2
+    //	t.In(0) is the reflect.Type for "int"
+    //	t.In(1) is the reflect.Type for "[]float64"
+    //	t.IsVariadic() == true
+    //
+    // IsVariadic panics if the type's Kind is not Func.
+    IsVariadic() bool
 
-    <span class="comment">// Elem returns a type&#39;s element type.</span>
-    <span class="comment">// It panics if the type&#39;s Kind is not Array, Chan, Map, Ptr, or Slice.</span>
-    Elem() <a href="#Type">Type</a>
+    // Elem returns a type's element type.
+    // It panics if the type's Kind is not Array, Chan, Map, Ptr, or Slice.
+    Elem() Type
 
-    <span class="comment">// Field returns a struct type&#39;s i&#39;th field.</span>
-    <span class="comment">// It panics if the type&#39;s Kind is not Struct.</span>
-    <span class="comment">// It panics if i is not in the range [0, NumField()).</span>
-    Field(i <a href="/pkg/builtin/#int">int</a>) <a href="#StructField">StructField</a>
+    // Field returns a struct type's i'th field.
+    // It panics if the type's Kind is not Struct.
+    // It panics if i is not in the range [0, NumField()).
+    Field(i int) StructField
 
-    <span class="comment">// FieldByIndex returns the nested field corresponding</span>
-    <span class="comment">// to the index sequence. It is equivalent to calling Field</span>
-    <span class="comment">// successively for each index i.</span>
-    <span class="comment">// It panics if the type&#39;s Kind is not Struct.</span>
-    FieldByIndex(index []<a href="/pkg/builtin/#int">int</a>) <a href="#StructField">StructField</a>
+    // FieldByIndex returns the nested field corresponding
+    // to the index sequence. It is equivalent to calling Field
+    // successively for each index i.
+    // It panics if the type's Kind is not Struct.
+    FieldByIndex(index []int) StructField
 
-    <span class="comment">// FieldByName returns the struct field with the given name</span>
-    <span class="comment">// and a boolean indicating if the field was found.</span>
-    FieldByName(name <a href="/pkg/builtin/#string">string</a>) (<a href="#StructField">StructField</a>, <a href="/pkg/builtin/#bool">bool</a>)
+    // FieldByName returns the struct field with the given name
+    // and a boolean indicating if the field was found.
+    FieldByName(name string) (StructField, bool)
 
-    <span class="comment">// FieldByNameFunc returns the struct field with a name</span>
-    <span class="comment">// that satisfies the match function and a boolean indicating if</span>
-    <span class="comment">// the field was found.</span>
-    <span class="comment">//</span>
-    <span class="comment">// FieldByNameFunc considers the fields in the struct itself</span>
-    <span class="comment">// and then the fields in any embedded structs, in breadth first order,</span>
-    <span class="comment">// stopping at the shallowest nesting depth containing one or more</span>
-    <span class="comment">// fields satisfying the match function. If multiple fields at that depth</span>
-    <span class="comment">// satisfy the match function, they cancel each other</span>
-    <span class="comment">// and FieldByNameFunc returns no match.</span>
-    <span class="comment">// This behavior mirrors Go&#39;s handling of name lookup in</span>
-    <span class="comment">// structs containing embedded fields.</span>
-    FieldByNameFunc(match func(<a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#bool">bool</a>) (<a href="#StructField">StructField</a>, <a href="/pkg/builtin/#bool">bool</a>)
+    // FieldByNameFunc returns the struct field with a name
+    // that satisfies the match function and a boolean indicating if
+    // the field was found.
+    //
+    // FieldByNameFunc considers the fields in the struct itself
+    // and then the fields in any embedded structs, in breadth first order,
+    // stopping at the shallowest nesting depth containing one or more
+    // fields satisfying the match function. If multiple fields at that depth
+    // satisfy the match function, they cancel each other
+    // and FieldByNameFunc returns no match.
+    // This behavior mirrors Go's handling of name lookup in
+    // structs containing embedded fields.
+    FieldByNameFunc(match func(string) bool) (StructField, bool)
 
-    <span class="comment">// In returns the type of a function type&#39;s i&#39;th input parameter.</span>
-    <span class="comment">// It panics if the type&#39;s Kind is not Func.</span>
-    <span class="comment">// It panics if i is not in the range [0, NumIn()).</span>
-    In(i <a href="/pkg/builtin/#int">int</a>) <a href="#Type">Type</a>
+    // In returns the type of a function type's i'th input parameter.
+    // It panics if the type's Kind is not Func.
+    // It panics if i is not in the range [0, NumIn()).
+    In(i int) Type
 
-    <span class="comment">// Key returns a map type&#39;s key type.</span>
-    <span class="comment">// It panics if the type&#39;s Kind is not Map.</span>
-    Key() <a href="#Type">Type</a>
+    // Key returns a map type's key type.
+    // It panics if the type's Kind is not Map.
+    Key() Type
 
-    <span class="comment">// Len returns an array type&#39;s length.</span>
-    <span class="comment">// It panics if the type&#39;s Kind is not Array.</span>
-    Len() <a href="/pkg/builtin/#int">int</a>
+    // Len returns an array type's length.
+    // It panics if the type's Kind is not Array.
+    Len() int
 
-    <span class="comment">// NumField returns a struct type&#39;s field count.</span>
-    <span class="comment">// It panics if the type&#39;s Kind is not Struct.</span>
-    NumField() <a href="/pkg/builtin/#int">int</a>
+    // NumField returns a struct type's field count.
+    // It panics if the type's Kind is not Struct.
+    NumField() int
 
-    <span class="comment">// NumIn returns a function type&#39;s input parameter count.</span>
-    <span class="comment">// It panics if the type&#39;s Kind is not Func.</span>
-    NumIn() <a href="/pkg/builtin/#int">int</a>
+    // NumIn returns a function type's input parameter count.
+    // It panics if the type's Kind is not Func.
+    NumIn() int
 
-    <span class="comment">// NumOut returns a function type&#39;s output parameter count.</span>
-    <span class="comment">// It panics if the type&#39;s Kind is not Func.</span>
-    NumOut() <a href="/pkg/builtin/#int">int</a>
+    // NumOut returns a function type's output parameter count.
+    // It panics if the type's Kind is not Func.
+    NumOut() int
 
-    <span class="comment">// Out returns the type of a function type&#39;s i&#39;th output parameter.</span>
-    <span class="comment">// It panics if the type&#39;s Kind is not Func.</span>
-    <span class="comment">// It panics if i is not in the range [0, NumOut()).</span>
-    Out(i <a href="/pkg/builtin/#int">int</a>) <a href="#Type">Type</a>
-    <span class="comment">// contains filtered or unexported methods</span>
-}</pre>
-
-
-
-
-
-
+    // Out returns the type of a function type's i'th output parameter.
+    // It panics if the type's Kind is not Func.
+    // It panics if i is not in the range [0, NumOut()).
+    Out(i int) Type
+    // contains filtered or unexported methods
+}
+```
 
 
 
@@ -1063,6 +1075,8 @@ func main() {
 	// As interface types are only used for static typing, a
 	// common idiom to find the reflection Type for an interface
 	// type Foo is to use a *Foo value.
+    //
+    // 由于interface仅可用于静态类型, 因此为接口类型Foo查找其反射类型通常使用`*Foo`.
 	writerType := reflect.TypeOf((*io.Writer)(nil)).Elem()
 
 	fileType := reflect.TypeOf((*os.File)(nil))
@@ -1205,6 +1219,9 @@ func main() {
 	// It must work in terms of reflect.Values so that it is possible
 	// to write code without knowing beforehand what the types
 	// will be.
+    //
+    // swap 是会传递给MakeFunc的实现.
+    // 它必须基于reflect.Value来实现, 以便于在有可能不知道类型的情况下编写代码.
 	swap := func(in []reflect.Value) []reflect.Value {
 		return []reflect.Value{in[1], in[0]}
 	}
@@ -1214,25 +1231,35 @@ func main() {
 	// When the function is invoked, reflect turns the arguments
 	// into Values, calls swap, and then turns swap's result slice
 	// into the values returned by the new function.
+    //
+    // makeSwap 期望fptr是指向nil函数的指针.
+    // 它会将指针指向由MakeFunc创建的新函数.
+    // 调用时, reflect将参数转换为Values, 然后调用swap, 接着将swap的slice返回值转化为新函数的返回值.
 	makeSwap := func(fptr interface{}) {
 		// fptr is a pointer to a function.
 		// Obtain the function value itself (likely nil) as a reflect.Value
 		// so that we can query its type and then set the value.
+        //
+        // fptr是指向函数的指针. 通过reflect.Value获取函数本身(可能为nil), 以便于我们查询其类型, 然后赋值.
 		fn := reflect.ValueOf(fptr).Elem()
 
 		// Make a function of the right type.
+        // 使用正确的类型来生成函数.
 		v := reflect.MakeFunc(fn.Type(), swap)
 
 		// Assign it to the value fn represents.
+        // 将其赋值给fn.
 		fn.Set(v)
 	}
 
 	// Make and call a swap function for ints.
+    // 为ints生成并调用swap
 	var intSwap func(int, int) (int, int)
 	makeSwap(&intSwap)
 	fmt.Println(intSwap(0, 1))
 
 	// Make and call a swap function for float64s.
+    // 为float64s生成并调用swap
 	var floatSwap func(float64, float64) (float64, float64)
 	makeSwap(&floatSwap)
 	fmt.Println(floatSwap(2.72, 3.14))
