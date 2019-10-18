@@ -29,7 +29,7 @@
 |[hmac](pkgs/crypto_hmac.md)|Package hmac implements the Keyed-Hash Message Authentication Code (HMAC) as defined in U.S. Federal Information Processing Standards Publication 198.|0%|
 |[md5](pkgs/crypto_md5.md)|Package md5 implements the MD5 hash algorithm as defined in RFC 1321.|0%|
 |[rand](pkgs/crypto_rand.md)|Package rand implements a cryptographically secure random number generator.|0%|
-|~~[rc4](pkgs/crypto_rc4.md)~~|rc4包实现了RC4加密算法, 可参考Bruce Schneier的 *Applied Cryptography*||
+|~~[rc4](pkgs/crypto_rc4.md)~~|rc4包实现了RC4加密算法, 可参考Bruce Schneier的 *Applied Cryptography*|-|
 |[rsa](pkgs/crypto_rsa.md)|Package rsa implements RSA encryption as specified in PKCS#1.|0%|
 |[sha1](pkgs/crypto_sha1.md)|Package sha1 implements the SHA-1 hash algorithm as defined in RFC 3174.|0%|
 |[sha256](pkgs/crypto_sha256.md)|Package sha256 implements the SHA224 and SHA256 hash algorithms as defined in FIPS 180-4.|0%|
@@ -126,7 +126,7 @@
 |[path](pkgs/path.md)|Package path implements utility routines for manipulating slash-separated paths.|0%|
 |[filepath](pkgs/path_filepath.md)|Package filepath implements utility routines for manipulating filename paths in a way compatible with the target operating system-defined file paths.|0%|
 |[plugin](pkgs/plugin.md)|Package plugin implements loading and symbol resolution of Go plugins.|0%|
-|[reflect](pkgs/reflect.md)|Package reflect implements run-time reflection, allowing a program to manipulate objects with arbitrary types.|0%|
+|[reflect](pkgs/reflect.md)|reflect 包了实现运行时反射, 允许程序操纵任意类型的对象.|done|
 |[regexp](pkgs/regexp.md)|Package regexp implements regular expression search.|0%|
 |[syntax](pkgs/regexp_syntax.md)|Package syntax parses regular expressions into parse trees and compiles parse trees into programs.|0%|
 |[runtime](pkgs/runtime.md)|Package runtime contains operations that interact with Go's runtime system, such as functions to control goroutines.|0%|
