@@ -55,7 +55,7 @@ New returns a new hash.Hash computing the SHA1 checksum. The Hash also
 implements encoding.BinaryMarshaler and encoding.BinaryUnmarshaler to
 marshal and unmarshal the internal state of the hash.
 
-New 返回hash.Hash, 用于计算SHA1校验和. Hash也实现了 encoding.BinaryMarshaler 和 encoding.BinaryUnmarshaler, 用于marshal 和 unmarshal hash的内部状态. 
+New 返回hash.Hash, 用于计算SHA1校验和. Hash也实现了 encoding.BinaryMarshaler 和 encoding.BinaryUnmarshaler, 用于marshal 和 unmarshal hash的内部状态.
 
 <a id="example_New">Example</a>
 ```go
