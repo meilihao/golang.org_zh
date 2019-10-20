@@ -26,7 +26,7 @@
 |[ecdsa](pkgs/crypto_ecdsa.md)|Package ecdsa implements the Elliptic Curve Digital Signature Algorithm, as defined in FIPS 186-3.|0%|
 |[ed25519](pkgs/crypto_ed25519.md)|Package ed25519 implements the Ed25519 signature algorithm.|0%|
 |[elliptic](pkgs/crypto_elliptic.md)|Package elliptic implements several standard elliptic curves over prime fields.|0%|
-|[hmac](pkgs/crypto_hmac.md)|Package hmac implements the Keyed-Hash Message Authentication Code (HMAC) as defined in U.S. Federal Information Processing Standards Publication 198.|0%|
+|[hmac](pkgs/crypto_hmac.md)|hmac 实现了定义在U.S. Federal Information Processing Standards Publication 198中的Keyed-Hash Message Authentication Code (HMAC, 密钥相关的哈希运算消息认证码). |done|
 |[md5](pkgs/crypto_md5.md)|md5 实现了定义在RFC 1321上的MD5哈希算法.|done|
 |[rand](pkgs/crypto_rand.md)|Package rand implements a cryptographically secure random number generator.|0%|
 |~~[rc4](pkgs/crypto_rc4.md)~~|rc4包实现了RC4加密算法, 可参考Bruce Schneier的 *Applied Cryptography*|-|
