@@ -1,5 +1,4 @@
 
-
 # aes
 `import "crypto/aes"`
 
@@ -17,9 +16,7 @@ extensions and s390x systems using Message-Security-Assist extensions.
 On such systems, when the result of NewCipher is passed to cipher.NewGCM,
 the GHASH operation used by GCM is also constant-time.
 
-AES包 实现了 AES 加密算法(以前叫Rijndael), 由U.S. Federal Information Processing Standards Publication 197(美国联邦信息处理标准出版物197)定义.
 
-本包中的AES操作未使用恒定时间的算法实现. 但在启用了AES硬件支持的系统上运行时, 操作是恒定时间的, 比如使用了AES-NI扩展的amd64和使用Message-Security-Assist扩展的s390x. 在这类系统上, 当将NewCipher的结果传递给cipher.NewGCM时, GCM使用的GHASH操作也是恒定时间的.
 
 
 ## <a id="pkg-index">Index</a>
@@ -38,8 +35,6 @@ AES包 实现了 AES 加密算法(以前叫Rijndael), 由U.S. Federal Informatio
 ## <a id="pkg-constants">Constants</a>
 The AES block size in bytes.
 
-AES block 的大小(字节).
-
 
 <pre>const <span id="BlockSize">BlockSize</span> = 16</pre>
 
@@ -52,7 +47,7 @@ The key argument should be the AES key,
 either 16, 24, or 32 bytes to select
 AES-128, AES-192, or AES-256.
 
-NewCipher 创建一个cipher.Block接口. 参数key即AES的key. 其长度16,24,32分别对应AES-128, AES-192, AES-256.
+
 
 
 

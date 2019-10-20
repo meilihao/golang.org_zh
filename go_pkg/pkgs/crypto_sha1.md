@@ -13,7 +13,7 @@ Package sha1 implements the SHA-1 hash algorithm as defined in RFC 3174.
 SHA-1 is cryptographically broken and should not be used for secure
 applications.
 
-
+sha1 实现了定义在RFC 3174上的SHA-1哈希算法.
 
 
 ## <a id="pkg-index">Index</a>

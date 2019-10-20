@@ -5,7 +5,7 @@
 |[tar](pkgs/archive_tar.md)|Package tar implements access to tar archives.|0%|
 |[zip](pkgs/archive_zip.md)|Package zip provides support for reading and writing ZIP archives.|0%|
 |[bufio](pkgs/bufio.md)|Package bufio implements buffered I/O. It wraps an io.Reader or io.Writer object, creating another object (Reader or Writer) that also implements the interface but provides buffering and some help for textual I/O.|0%|
-|[builtin](pkgs/builtin.md)|builtin包提供了Go的预声明标识符的文档.|done|
+|[builtin](pkgs/builtin.md)|Package builtin provides documentation for Go's predeclared identifiers.|0%|
 |[bytes](pkgs/bytes.md)|Package bytes implements functions for the manipulation of byte slices.|0%|
 |compress|||
 |[bzip2](pkgs/compress_bzip2.md)|Package bzip2 implements bzip2 decompression.|0%|
@@ -19,7 +19,7 @@
 |[ring](pkgs/container_ring.md)|Package ring implements operations on circular lists.|0%|
 |[context](pkgs/context.md)|Package context defines the Context type, which carries deadlines, cancellation signals, and other request-scoped values across API boundaries and between processes.|0%|
 |[crypto](pkgs/crypto.md)|Package crypto collects common cryptographic constants.|0%|
-|[aes](pkgs/crypto_aes.md)|AES包 实现了 AES 加密算法(以前叫Rijndael), 由U.S. Federal Information Processing Standards Publication 197(美国联邦信息处理标准出版物197)定义.|done|
+|[aes](pkgs/crypto_aes.md)|Package aes implements AES encryption (formerly Rijndael), as defined in U.S. Federal Information Processing Standards Publication 197.|0%|
 |[cipher](pkgs/crypto_cipher.md)|Package cipher implements standard block cipher modes that can be wrapped around low-level block cipher implementations.|0%|
 |[des](pkgs/crypto_des.md)|Package des implements the Data Encryption Standard (DES) and the Triple Data Encryption Algorithm (TDEA) as defined in U.S. Federal Information Processing Standards Publication 46-3.|0%|
 |[dsa](pkgs/crypto_dsa.md)|Package dsa implements the Digital Signature Algorithm, as defined in FIPS 186-3.|0%|

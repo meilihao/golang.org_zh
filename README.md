@@ -17,6 +17,7 @@ go 1.13.3
 
 ## todo
 - [ ] tool : 更新pkg文件中的具体type/func的源码指向地址
+- [ ] pkg/builtin : 生成的orgin文档不全
 
 ## 内容许可
 除特别说明外，用户内容均采用[知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议](https://creativecommons.org/licenses/by-nc-nd/4.0/)进行许可
