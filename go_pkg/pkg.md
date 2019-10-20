@@ -6,7 +6,7 @@
 |[zip](pkgs/archive_zip.md)|Package zip provides support for reading and writing ZIP archives.|0%|
 |[bufio](pkgs/bufio.md)|Package bufio implements buffered I/O. It wraps an io.Reader or io.Writer object, creating another object (Reader or Writer) that also implements the interface but provides buffering and some help for textual I/O.|0%|
 |[builtin](pkgs/builtin.md)|builtin包提供了Go的预声明标识符的文档.|done|
-|[bytes](pkgs/bytes.md)|Package bytes implements functions for the manipulation of byte slices.|0%|
+|[bytes](pkgs/bytes.md)|bytes实现了操作byte切片的函数.|done|
 |compress|||
 |[bzip2](pkgs/compress_bzip2.md)|Package bzip2 implements bzip2 decompression.|0%|
 |[flate](pkgs/compress_flate.md)|Package flate implements the DEFLATE compressed data format, described in RFC 1951.|0%|
