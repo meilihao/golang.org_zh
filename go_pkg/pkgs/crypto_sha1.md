@@ -36,7 +36,7 @@ SHA-1已被破解, 不应用于安全类的应用.
 ## <a id="pkg-constants">Constants</a>
 The blocksize of SHA-1 in bytes.
 
-SHA-1 blocksize(字节).
+SHA-1 的 blocksize(字节).
 
 
 <pre>const <span id="BlockSize">BlockSize</span> = 64</pre>

@@ -37,7 +37,7 @@ MD5已被破解, 不应用于安全类的应用.
 ## <a id="pkg-constants">Constants</a>
 The blocksize of MD5 in bytes.
 
-MD5 blocksize(字节).
+MD5 的 blocksize(字节).
 
 <pre>const <span id="BlockSize">BlockSize</span> = 64</pre>
 
