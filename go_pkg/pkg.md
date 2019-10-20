@@ -31,7 +31,7 @@
 |[rand](pkgs/crypto_rand.md)|Package rand implements a cryptographically secure random number generator.|0%|
 |~~[rc4](pkgs/crypto_rc4.md)~~|rc4包实现了RC4加密算法, 可参考Bruce Schneier的 *Applied Cryptography*|-|
 |[rsa](pkgs/crypto_rsa.md)|Package rsa implements RSA encryption as specified in PKCS#1.|0%|
-|[sha1](pkgs/crypto_sha1.md)|Package sha1 implements the SHA-1 hash algorithm as defined in RFC 3174.|0%|
+|[sha1](pkgs/crypto_sha1.md)|sha1 实现了定义在RFC 3174上的SHA-1哈希算法.|done|
 |[sha256](pkgs/crypto_sha256.md)|Package sha256 implements the SHA224 and SHA256 hash algorithms as defined in FIPS 180-4.|0%|
 |[sha512](pkgs/crypto_sha512.md)|Package sha512 implements the SHA-384, SHA-512, SHA-512/224, and SHA-512/256 hash algorithms as defined in FIPS 180-4.|0%|
 |[subtle](pkgs/crypto_subtle.md)|Package subtle implements functions that are often useful in cryptographic code but require careful thought to use correctly.|0%|
