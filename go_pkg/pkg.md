@@ -155,4 +155,4 @@
 |[unicode](pkgs/unicode.md)|Package unicode provides data and functions to test some properties of Unicode code points.|0%|
 |[utf16](pkgs/unicode_utf16.md)|Package utf16 implements encoding and decoding of UTF-16 sequences.|0%|
 |[utf8](pkgs/unicode_utf8.md)|Package utf8 implements functions and constants to support text encoded in UTF-8.|0%|
-|[unsafe](pkgs/unsafe.md)|Package unsafe contains operations that step around the type safety of Go programs.|0%|
+|[unsafe](pkgs/unsafe.md)|unsafe 包含了绕过Go类型安全的操作.|done|
