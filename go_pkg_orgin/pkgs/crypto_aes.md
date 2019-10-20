@@ -17,7 +17,7 @@ extensions and s390x systems using Message-Security-Assist extensions.
 On such systems, when the result of NewCipher is passed to cipher.NewGCM,
 the GHASH operation used by GCM is also constant-time.
 
-AES 实现了 AES 加密算法(以前叫Rijndael), 由U.S. Federal Information Processing Standards Publication 197(美国联邦信息处理标准出版物197)定义.
+AES包 实现了 AES 加密算法(以前叫Rijndael), 由U.S. Federal Information Processing Standards Publication 197(美国联邦信息处理标准出版物197)定义.
 
 本包中的AES操作未使用恒定时间的算法实现. 但在启用了AES硬件支持的系统上运行时, 操作是恒定时间的, 比如使用了AES-NI扩展的amd64和使用Message-Security-Assist扩展的s390x. 在这类系统上, 当将NewCipher的结果传递给cipher.NewGCM时, GCM使用的GHASH操作也是恒定时间的.
 
