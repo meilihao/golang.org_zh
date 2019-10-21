@@ -20,15 +20,190 @@ ordering for the Less method, so Push adds items while Pop removes the
 highest-priority item from the queue. The Examples include such an
 implementation; the file example_pq_test.go has the complete source.
 
+heap 为实现了heap.Interface接口的任意类型提供了 heap 操作. heap 是一颗树, 且每个节点是其子树的最小值.
+
+树中最小的元素是root, 索引是0.
+
+堆是实现优先级队列的常用方法. 要创建一个优先级队列, 需要实现 Heap 接口, 并在 Less 方法中以(负的)优先作为排序方式, 因此 Push 会添加元素, 而Pop会删除队列中优先级最高的元素. 例子中包括了这样的一个实现, 即文件example_pq_test.go包含完整的源代码.
 
 <a id="example__intHeap">Example (IntHeap)</a>
 <p>This example inserts several ints into an IntHeap, checks the minimum,
 and removes them in order of priority.
-</p><a id="example__priorityQueue">Example (PriorityQueue)</a>
+</p>
+
+本示例将多个int插入IntHeap中，检查最小值， 并按优先顺序将其删除.
+```go
+// This example demonstrates an integer heap built using the heap interface.
+// 这个例子演示了一个使用 heap 接口构建的整数堆.
+package main
+
+import (
+	"container/heap"
+	"fmt"
+)
+
+// An IntHeap is a min-heap of ints.
+// IntHeap 是元素为整数的最小堆.
+type IntHeap []int
+
+func (h IntHeap) Len() int           { return len(h) }
+func (h IntHeap) Less(i, j int) bool { return h[i] < h[j] }
+func (h IntHeap) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
+
+func (h *IntHeap) Push(x interface{}) {
+	// Push and Pop use pointer receivers because they modify the slice's length,
+    // not just its contents.
+    //
+    // Push 和 Pop 使用 pointer作为receiver是因为它们不仅需要修改slice内容还要修改slice的长度.
+	*h = append(*h, x.(int))
+}
+
+func (h *IntHeap) Pop() interface{} {
+	old := *h
+	n := len(old)
+	x := old[n-1]
+	*h = old[0 : n-1]
+	return x
+}
+
+// This example inserts several ints into an IntHeap, checks the minimum,
+// and removes them in order of priority.
+//
+// 本示例将多个int插入IntHeap中，检查最小值， 并按优先顺序将其删除.
+func main() {
+	h := &IntHeap{2, 1, 5}
+	heap.Init(h)
+	heap.Push(h, 3)
+	fmt.Printf("minimum: %d\n", (*h)[0])
+	for h.Len() > 0 {
+		fmt.Printf("%d ", heap.Pop(h))
+	}
+}
+```
+
+output:
+```txt
+minimum: 1
+1 2 3 5
+```
+<a id="example__priorityQueue">Example (PriorityQueue)</a>
 <p>This example creates a PriorityQueue with some items, adds and manipulates an item,
 and then removes the items in priority order.
 </p>
 
+本示例创建了一个包含若干元素的PriorityQueue， 再添加和操作一个元素, 然后按优先级顺序删除该元素.
+```go
+// This example demonstrates a priority queue built using the heap interface.
+// 这个例子演示了一个使用 heap 接口构建的优先级队列.
+package main
+
+import (
+	"container/heap"
+	"fmt"
+)
+
+// An Item is something we manage in a priority queue.
+// Item 是优先队列需要管理的元素
+type Item struct {
+	value    string // The value of the item; arbitrary. // 元素的值, 任意内容
+	priority int    // The priority of the item in the queue. // 元素在队列中的优先级
+    // The index is needed by update and is maintained by the heap.Interface methods.
+    // 索引由 heap.Interface 方法维护, 也被 update 方法使用.
+	index int // The index of the item in the heap. // 元素在heap中的索引
+}
+
+// A PriorityQueue implements heap.Interface and holds Items.
+// PriorityQueue 类型实现了 heap.Interface 并存储Items.
+type PriorityQueue []*Item
+
+func (pq PriorityQueue) Len() int { return len(pq) }
+
+func (pq PriorityQueue) Less(i, j int) bool {
+    // We want Pop to give us the highest, not lowest, priority so we use greater than here.
+    // 我们想要 Pop 函数获得最高的(优先级)，而不是最低的，所以我们需在这里使用大于号.
+	return pq[i].priority > pq[j].priority
+}
+
+func (pq PriorityQueue) Swap(i, j int) {
+	pq[i], pq[j] = pq[j], pq[i]
+	pq[i].index = i
+	pq[j].index = j
+}
+
+func (pq *PriorityQueue) Push(x interface{}) {
+	n := len(*pq)
+	item := x.(*Item)
+	item.index = n
+	*pq = append(*pq, item)
+}
+
+func (pq *PriorityQueue) Pop() interface{} {
+	old := *pq
+	n := len(old)
+	item := old[n-1]
+	old[n-1] = nil  // avoid memory leak
+	item.index = -1 // for safety
+	*pq = old[0 : n-1]
+	return item
+}
+
+// update modifies the priority and value of an Item in the queue.
+// update 方法修改队列里元素的优先级和值.
+func (pq *PriorityQueue) update(item *Item, value string, priority int) {
+	item.value = value
+	item.priority = priority
+	heap.Fix(pq, item.index)
+}
+
+// This example creates a PriorityQueue with some items, adds and manipulates an item,
+// and then removes the items in priority order.
+//
+// 本示例创建了一个包含若干元素的PriorityQueue， 再添加和操作一个元素, 然后按优先级顺序删除该元素.
+func main() {
+    // Some items and their priorities.
+    // 若干带有优先级的元素.
+	items := map[string]int{
+		"banana": 3, "apple": 2, "pear": 4,
+	}
+
+	// Create a priority queue, put the items in it, and
+    // establish the priority queue (heap) invariants.
+    //
+    // 创建一个优先级队列，把 items 放进去，然后建立优先队列（堆）.
+	pq := make(PriorityQueue, len(items))
+	i := 0
+	for value, priority := range items {
+		pq[i] = &Item{
+			value:    value,
+			priority: priority,
+			index:    i,
+		}
+		i++
+	}
+	heap.Init(&pq)
+
+    // Insert a new item and then modify its priority.
+    // 插入一个新的元素，然后修改它的优先级.
+	item := &Item{
+		value:    "orange",
+		priority: 1,
+	}
+	heap.Push(&pq, item)
+	pq.update(item, item.value, 5)
+
+    // Take the items out; they arrive in decreasing priority order.
+    // 取出所有元素，它们会按照优先级递减的顺序被取出
+	for pq.Len() > 0 {
+		item := heap.Pop(&pq).(*Item)
+		fmt.Printf("%.2d:%s ", item.priority, item.value)
+	}
+}
+```
+
+output:
+```txt
+05:orange 04:pear 03:banana 02:apple
+```
 ## <a id="pkg-index">Index</a>
 * [func Fix(h Interface, i int)](#Fix)
 * [func Init(h Interface)](#Init)
