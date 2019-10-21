@@ -298,6 +298,7 @@ Pipe 创建一个同步的内存管道.它可用于将代码期望的io.Reader�
 
 并行地交替调用Read, Write 和 Close 是安全的???. 并行调用Read和并行调用Write也同样安全: 每个调用将按顺序进行.
 
+> 与os.Pipe不同.
 
 <a id="example_Pipe">Example</a>
 ```go
@@ -547,6 +548,9 @@ Closer is the interface that wraps the basic Close method.
 The behavior of Close after the first call is undefined.
 Specific implementations may document their own behavior.
 
+Closer 是接口，封装了基础的Close方法.
+
+在第一次调用之后再次被调用时，Close方法的的行为是未定义的. 具体的实现可能会说明它们的行为.
 
 <pre>type Closer interface {
     Close() <a href="/pkg/builtin/#error">error</a>
@@ -568,6 +572,7 @@ data returned to just N bytes. Each call to Read
 updates N to reflect the new amount remaining.
 Read returns EOF when N <= 0 or when the underlying R returns EOF.
 
+LimitedReader 从R读取但将可返回的字节总量限制为N字节. 每调用Read后都将更新N来反映新的剩余数量. 当N<=0或底层的R返回EOF时, Read方法会返回EOF.
 
 <pre>type LimitedReader struct {
 <span id="LimitedReader.R"></span>    R <a href="#Reader">Reader</a> <span class="comment">// underlying reader</span>
@@ -593,6 +598,7 @@ Read returns EOF when N <= 0 or when the underlying R returns EOF.
 ## <a id="PipeReader">type</a> [PipeReader](https://golang.org/src/io/pipe.go?s=2378:2413#L107)
 A PipeReader is the read half of a pipe.
 
+PipeReader 是管道的读取端.
 
 <pre>type PipeReader struct {
     <span class="comment">// contains filtered or unexported fields</span>
@@ -614,7 +620,7 @@ A PipeReader is the read half of a pipe.
 Close closes the reader; subsequent writes to the
 write half of the pipe will return the error ErrClosedPipe.
 
-
+Close 关闭管道的读取端; 之后在管道的写入端进行写入会返回错误ErrClosedPipe.
 
 
 ### <a id="PipeReader.CloseWithError">func</a> (\*PipeReader) [CloseWithError](https://golang.org/src/io/pipe.go?s=3046:3098#L128)
@@ -622,7 +628,7 @@ write half of the pipe will return the error ErrClosedPipe.
 CloseWithError closes the reader; subsequent writes
 to the write half of the pipe will return the error err.
 
-
+CloseWithError 关闭PipeReader; 之后对管道的写入端进行写入会返回指定的错误err.
 
 
 ### <a id="PipeReader.Read">func</a> (\*PipeReader) [Read](https://golang.org/src/io/pipe.go?s=2659:2716#L116)
@@ -633,12 +639,13 @@ arrives or the write end is closed.
 If the write end is closed with an error, that error is
 returned as err; otherwise err is EOF.
 
-
+Read 实现了标准的Read接口: 它从pipe中读取数据,且会一直阻塞直到写入端写入数据或关闭. 如果写入端被带错误地关闭,该错误将被当作err返回；否则err为EOF.
 
 
 ## <a id="PipeWriter">type</a> [PipeWriter](https://golang.org/src/io/pipe.go?s=3176:3211#L133)
 A PipeWriter is the write half of a pipe.
 
+PipeWriter 是pipe的写入端.
 
 <pre>type PipeWriter struct {
     <span class="comment">// contains filtered or unexported fields</span>
@@ -660,7 +667,7 @@ A PipeWriter is the write half of a pipe.
 Close closes the writer; subsequent reads from the
 read half of the pipe will return no bytes and EOF.
 
-
+Close 关闭管道的写入端; 之后在管道的读取端进行读取, 就会返回EOF且没有数据.
 
 
 ### <a id="PipeWriter.CloseWithError">func</a> (\*PipeWriter) [CloseWithError](https://golang.org/src/io/pipe.go?s=3955:4007#L157)
@@ -671,8 +678,9 @@ or EOF if err is nil.
 
 CloseWithError always returns nil.
 
+CloseWithError, 关闭管道的写入端, 之后在管道的读取端进行读取就会返回指定的错误err且没有数据; 当err是nil时, 会返回EOF.
 
-
+CloseWithError永远返回nil.
 
 ### <a id="PipeWriter.Write">func</a> (\*PipeWriter) [Write](https://golang.org/src/io/pipe.go?s=3494:3552#L142)
 <pre>func (w *<a href="#PipeWriter">PipeWriter</a>) Write(data []<a href="/pkg/builtin/#byte">byte</a>) (n <a href="/pkg/builtin/#int">int</a>, err <a href="/pkg/builtin/#error">error</a>)</pre>
@@ -683,11 +691,12 @@ If the read end is closed with an error, that err is
 returned as err; otherwise err is ErrClosedPipe.
 
 
-
+Write 实现了标准的Write接口: 它会将数据写入到管道中并阻塞，直到读取端读完所有的数据或读取端被关闭. 若读取端带错误地关闭, 该错误将被当作err返回; 否则err为ErrClosedPipe.
 
 ## <a id="ReadCloser">type</a> [ReadCloser](https://golang.org/src/io/io.go?s=4977:5022#L116)
 ReadCloser is the interface that groups the basic Read and Close methods.
 
+ReadCloser 组合了基础的Read和Close方法.
 
 <pre>type ReadCloser interface {
     <a href="#Reader">Reader</a>
@@ -707,6 +716,7 @@ ReadCloser is the interface that groups the basic Read and Close methods.
 ## <a id="ReadSeeker">type</a> [ReadSeeker](https://golang.org/src/io/io.go?s=5376:5421#L135)
 ReadSeeker is the interface that groups the basic Read and Seek methods.
 
+ReadSeeker 组合了基础的Read和Seek方法.
 
 <pre>type ReadSeeker interface {
     <a href="#Reader">Reader</a>
@@ -726,6 +736,7 @@ ReadSeeker is the interface that groups the basic Read and Seek methods.
 ## <a id="ReadWriteCloser">type</a> [ReadWriteCloser](https://golang.org/src/io/io.go?s=5240:5298#L128)
 ReadWriteCloser is the interface that groups the basic Read, Write and Close methods.
 
+ReadWriteCloser 组合了基础的Read,Write和Close方法.
 
 <pre>type ReadWriteCloser interface {
     <a href="#Reader">Reader</a>
@@ -746,6 +757,7 @@ ReadWriteCloser is the interface that groups the basic Read, Write and Close met
 ## <a id="ReadWriteSeeker">type</a> [ReadWriteSeeker](https://golang.org/src/io/io.go?s=5637:5695#L147)
 ReadWriteSeeker is the interface that groups the basic Read, Write and Seek methods.
 
+ReadWriteSeeker 组合了基础的Read,Write和Seek方法.
 
 <pre>type ReadWriteSeeker interface {
     <a href="#Reader">Reader</a>
@@ -766,6 +778,7 @@ ReadWriteSeeker is the interface that groups the basic Read, Write and Seek meth
 ## <a id="ReadWriter">type</a> [ReadWriter](https://golang.org/src/io/io.go?s=4853:4898#L110)
 ReadWriter is the interface that groups the basic Read and Write methods.
 
+ReadWriter 组合了基础的Read和Write方法.
 
 <pre>type ReadWriter interface {
     <a href="#Reader">Reader</a>
@@ -812,6 +825,17 @@ nothing happened; in particular it does not indicate EOF.
 
 Implementations must not retain p.
 
+Reader 接口封装了基础的Read方法.
+
+Read 最多会将len(p)个字节读取到p中. 它返回已读取的字节数n（0 <= n <= len(p)）和任何遇到的错误. 即使Read返回的n < len(p), 它也会在调用过程中将整个p作为暂存空间. 若读取到了数据但达不到 len(p) 个时，Read会照例返回这些数据, 而不是等待更多.
+
+当Read成功读取到n > 0个字节后遇到一个错误或到达文件结尾时，它会返回已读取的字节数, 此时err可能是非nil,之后再调用本方法会继续返回该错误(且n==0). 这种常见的例子就是Reader在读到输入流结束时会返回一个非零的n，同时返回err == EOF或者err == nil,下一次Read则会返回`0, EOF`.
+
+调用者应当在考虑处理err前先处理n > 0的数据. 这样做就能正确地处理发生在读取部分数据后遇到I/O错误和允许的EOF.
+
+Read的实现不鼓励在除len(p)==0的情况外返回0和nil，此时调用者应将返回的0和nil视作什么也没有发生；特别是它并不表示EOF.
+
+Reader的实现必须不保存p.
 
 <pre>type Reader interface {
     Read(p []<a href="/pkg/builtin/#byte">byte</a>) (n <a href="/pkg/builtin/#int">int</a>, err <a href="/pkg/builtin/#error">error</a>)
@@ -831,13 +855,33 @@ LimitReader returns a Reader that reads from r
 but stops with EOF after n bytes.
 The underlying implementation is a *LimitedReader.
 
+LimitReader 返回一个Reader,它从r中最多读取n个字节后以EOF表示结束.其底层实现是一个*LimitedReader.
 
 <a id="example_LimitReader">Example</a>
 ```go
+package main
+
+import (
+	"io"
+	"log"
+	"os"
+	"strings"
+)
+
+func main() {
+	r := strings.NewReader("some io.Reader stream to be read\n")
+	lr := io.LimitReader(r, 4)
+
+	if _, err := io.Copy(os.Stdout, lr); err != nil {
+		log.Fatal(err)
+	}
+
+}
 ```
 
 output:
 ```txt
+some
 ```
 
 
@@ -848,13 +892,35 @@ the provided input readers. They're read sequentially. Once all
 inputs have returned EOF, Read will return EOF.  If any of the readers
 return a non-nil, non-EOF error, Read will return that error.
 
+MultiReader 返回一个将多个readers在逻辑上串联起来的Reader. 它们按顺序读取. 一旦所有的输入返回EOF，Read就会返回EOF. 若任何readers返回了非nil或非EOF错误, Read就会返回该错误.
 
 <a id="example_MultiReader">Example</a>
 ```go
+package main
+
+import (
+	"io"
+	"log"
+	"os"
+	"strings"
+)
+
+func main() {
+	r1 := strings.NewReader("first reader ")
+	r2 := strings.NewReader("second reader ")
+	r3 := strings.NewReader("third reader\n")
+	r := io.MultiReader(r1, r2, r3)
+
+	if _, err := io.Copy(os.Stdout, r); err != nil {
+		log.Fatal(err)
+	}
+
+}
 ```
 
 output:
 ```txt
+first reader second reader third reader
 ```
 
 
@@ -866,13 +932,45 @@ corresponding writes to w. There is no internal buffering -
 the write must complete before the read completes.
 Any error encountered while writing is reported as a read error.
 
+TeeReader 返回一个Reader, 从r中读取的数据会被写入w. 所有通过r读取的数据都会相应地写入w. 它没有内部缓冲,写操作必须在读操作前完成. 写操作碰到的所有错误都会被当做该读操作的错误来处理. 
 
 <a id="example_TeeReader">Example</a>
 ```go
+package main
+
+import (
+	"bytes"
+	"fmt"
+	"io"
+	"io/ioutil"
+	"log"
+	"strings"
+)
+
+func main() {
+	r := strings.NewReader("some io.Reader stream to be read\n")
+	var buf bytes.Buffer
+	tee := io.TeeReader(r, &buf)
+
+	printall := func(r io.Reader) {
+		b, err := ioutil.ReadAll(r)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		fmt.Printf("%s", b)
+	}
+
+	printall(tee)
+	printall(&buf)
+
+}
 ```
 
 output:
 ```txt
+some io.Reader stream to be read
+some io.Reader stream to be read
 ```
 
 
@@ -906,6 +1004,21 @@ same input source.
 
 Implementations must not retain p.
 
+ReaderAt接口封装了基础的ReadAt方法.
+
+ReadAt从底层的输入源的偏移量off处开始读取len(p)个字节并写入p中,它返回已读取的字节数(0 <= n <= len(p))和遇到的任何错误.
+
+当ReadAt返回n <len(p)时，它返回一个非nil的错误来解释为什么不返回更多字节. 在这方面，ReadAt比Read更严格.
+
+即使ReadAt返回的n < len(p), 在调用过程中它也会将整个p作为暂存空间. 若读取到一些数据但长度不够len(p)时, ReadAt会阻塞, 直到读取到足够的数据或者发生错误, 在这点上它与Read不同.
+
+如果n=len(p),且它已在输入源的结尾处,ReadAt会返回err==EOF或err==nil.
+
+如果ReadAt在自带seek偏移量的输入源上读取,它应当既不影响也不被底层的seek偏移量影响.
+
+ReadAt的调用者可以在相同的输入源上并发地执行它.
+
+实现必须不保存p.
 
 <pre>type ReaderAt interface {
     ReadAt(p []<a href="/pkg/builtin/#byte">byte</a>, off <a href="/pkg/builtin/#int64">int64</a>) (n <a href="/pkg/builtin/#int">int</a>, err <a href="/pkg/builtin/#error">error</a>)
@@ -930,6 +1043,11 @@ Any error except io.EOF encountered during the read is also returned.
 
 The Copy function uses ReaderFrom if available.
 
+ReaderFrom,封装了ReadFrom方法.
+
+ReadFrom从r中读取数据，直到EOF或发生错误. 返回值n为已读取到的字节数. 除io.EOF之外，在读取过程中遇到的任何错误都会被返回.
+
+如果ReaderFrom可用，Copy函数就会使用它.
 
 <pre>type ReaderFrom interface {
     ReadFrom(r <a href="#Reader">Reader</a>) (n <a href="/pkg/builtin/#int64">int64</a>, err <a href="/pkg/builtin/#error">error</a>)
@@ -952,6 +1070,9 @@ ReadRune reads a single UTF-8 encoded Unicode character
 and returns the rune and its size in bytes. If no character is
 available, err will be set.
 
+RuneReader 封装了ReadRune方法.
+
+ReadRune读取单个UTF-8编码的Unicode字符，并返回该字符及其字节长度. 若没有字符可读,就会设置err的值.
 
 <pre>type RuneReader interface {
     ReadRune() (r <a href="/pkg/builtin/#rune">rune</a>, size <a href="/pkg/builtin/#int">int</a>, err <a href="/pkg/builtin/#error">error</a>)
@@ -976,6 +1097,9 @@ as the previous call to ReadRune.
 It may be an error to call UnreadRune twice without an intervening
 call to ReadRune.
 
+RuneScanner 将UnreadRune方法和基础的ReadRune封装在一起.
+
+按照ReadRune->UnreadRune->ReadRune的顺序调用时, 最后一个ReadRune返回的字符和第一个ReadRune的返回值相同. 连续调用两次UnreadRune而中间没有调用ReadRune时, 本方法可能会产生错误.
 
 <pre>type RuneScanner interface {
     <a href="#RuneReader">RuneReader</a>
@@ -996,6 +1120,7 @@ call to ReadRune.
 SectionReader implements Read, Seek, and ReadAt on a section
 of an underlying ReaderAt.
 
+SectionReader 在底层的ReaderAt读到的某个片段上实现了Read,Seek和ReadAt.
 
 <pre>type SectionReader struct {
     <span class="comment">// contains filtered or unexported fields</span>
@@ -1008,10 +1133,29 @@ of an underlying ReaderAt.
 
 <a id="example_SectionReader">Example</a>
 ```go
+package main
+
+import (
+	"io"
+	"log"
+	"os"
+	"strings"
+)
+
+func main() {
+	r := strings.NewReader("some io.Reader stream to be read\n")
+	s := io.NewSectionReader(r, 5, 17)
+
+	if _, err := io.Copy(os.Stdout, s); err != nil {
+		log.Fatal(err)
+	}
+
+}
 ```
 
 output:
 ```txt
+io.Reader stream
 ```
 
 
@@ -1022,7 +1166,7 @@ output:
 NewSectionReader returns a SectionReader that reads from r
 starting at offset off and stops with EOF after n bytes.
 
-
+NewSectionReader 返回一个SectionReader，它从r中的偏移量off处开始读取n个字节后以EOF停止.
 
 
 
@@ -1037,10 +1181,32 @@ starting at offset off and stops with EOF after n bytes.
 
 <a id="example_SectionReader_ReadAt">Example</a>
 ```go
+package main
+
+import (
+	"fmt"
+	"io"
+	"log"
+	"strings"
+)
+
+func main() {
+	r := strings.NewReader("some io.Reader stream to be read\n")
+	s := io.NewSectionReader(r, 5, 16)
+
+	buf := make([]byte, 6)
+	if _, err := s.ReadAt(buf, 10); err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Printf("%s\n", buf)
+
+}
 ```
 
 output:
 ```txt
+stream
 ```
 
 
@@ -1049,10 +1215,36 @@ output:
 
 <a id="example_SectionReader_Seek">Example</a>
 ```go
+package main
+
+import (
+	"fmt"
+	"io"
+	"log"
+	"strings"
+)
+
+func main() {
+	r := strings.NewReader("some io.Reader stream to be read\n")
+	s := io.NewSectionReader(r, 5, 16)
+
+	if _, err := s.Seek(10, io.SeekStart); err != nil {
+		log.Fatal(err)
+	}
+
+	buf := make([]byte, 6)
+	if _, err := s.Read(buf); err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Printf("%s\n", buf)
+
+}
 ```
 
 output:
 ```txt
+stream
 ```
 
 
@@ -1060,7 +1252,7 @@ output:
 <pre>func (s *<a href="#SectionReader">SectionReader</a>) Size() <a href="/pkg/builtin/#int64">int64</a></pre>
 Size returns the size of the section in bytes.
 
-
+Size 返回该片段(section)的字节数.
 
 
 ## <a id="Seeker">type</a> [Seeker](https://golang.org/src/io/io.go?s=4702:4774#L105)
@@ -1078,6 +1270,11 @@ Seeking to an offset before the start of the file is an error.
 Seeking to any positive offset is legal, but the behavior of subsequent
 I/O operations on the underlying object is implementation-dependent.
 
+Seeker 封装了基础的Seek方法.
+
+Seek根据whence的值为下一次Read或Write设置偏移量： SeekStart表示相对于文件的起始处，SeekCurrent表示相对于当前的偏移，SeekEnd表示相对于结尾处. Seek返回新的相对于文件开始处的偏移量和一个错误，如果有的话.
+
+将偏移量设到文件开始之前会返回一个错误. 对于任何正数偏移量进行Seek操作都是合法的,但其后续I/O操作的具体行为则要看底层object的实现.
 
 <pre>type Seeker interface {
     Seek(offset <a href="/pkg/builtin/#int64">int64</a>, whence <a href="/pkg/builtin/#int">int</a>) (<a href="/pkg/builtin/#int64">int64</a>, <a href="/pkg/builtin/#error">error</a>)
@@ -1096,6 +1293,7 @@ I/O operations on the underlying object is implementation-dependent.
 ## <a id="StringWriter">type</a> [StringWriter](https://golang.org/src/io/io.go?s=9876:9949#L272)
 StringWriter is the interface that wraps the WriteString method.
 
+StringWriter 是封装了WriteString方法的接口.
 
 <pre>type StringWriter interface {
     WriteString(s <a href="/pkg/builtin/#string">string</a>) (n <a href="/pkg/builtin/#int">int</a>, err <a href="/pkg/builtin/#error">error</a>)
@@ -1114,6 +1312,7 @@ StringWriter is the interface that wraps the WriteString method.
 ## <a id="WriteCloser">type</a> [WriteCloser](https://golang.org/src/io/io.go?s=5103:5149#L122)
 WriteCloser is the interface that groups the basic Write and Close methods.
 
+WriteCloser 组合了基础的Write和Close方法.
 
 <pre>type WriteCloser interface {
     <a href="#Writer">Writer</a>
@@ -1133,6 +1332,7 @@ WriteCloser is the interface that groups the basic Write and Close methods.
 ## <a id="WriteSeeker">type</a> [WriteSeeker](https://golang.org/src/io/io.go?s=5501:5547#L141)
 WriteSeeker is the interface that groups the basic Write and Seek methods.
 
+WriteSeeker 组合了基础的Write和Seek方法.
 
 <pre>type WriteSeeker interface {
     <a href="#Writer">Writer</a>
@@ -1160,6 +1360,11 @@ Write must not modify the slice data, even temporarily.
 
 Implementations must not retain p.
 
+Writer 封装了基础的Write方法.
+
+Write将p的数据(长度为len(p))写入到底层数据流中. 它返回被写入的字节数 n（0 <= n <= len(p)）以及遇到的任何会引发写入提前停止的错误. 若Write返回的n < len(p)，它就必须返回一个非nil的错误. Write不能修改p的数据，即便它是临时的.
+
+实现必须不保存p.
 
 <pre>type Writer interface {
     Write(p []<a href="/pkg/builtin/#byte">byte</a>) (n <a href="/pkg/builtin/#int">int</a>, err <a href="/pkg/builtin/#error">error</a>)
@@ -1182,13 +1387,42 @@ Each write is written to each listed writer, one at a time.
 If a listed writer returns an error, that overall write operation
 stops and returns the error; it does not continue down the list.
 
+MultiWriter 创建一个Writer，支持将其写入数据复制到所有提供的writers中，类似于Unix的tee(1)命令.
+
+每次写操作会同时将数据写入到列表中的writer中. 列表中的任意一个writer在写入时返回error的话, 整个写操作都会停止并返回该error, 该writer也会从列表中删除.
 
 <a id="example_MultiWriter">Example</a>
 ```go
+package main
+
+import (
+	"bytes"
+	"fmt"
+	"io"
+	"log"
+	"strings"
+)
+
+func main() {
+	r := strings.NewReader("some io.Reader stream to be read\n")
+
+	var buf1, buf2 bytes.Buffer
+	w := io.MultiWriter(&buf1, &buf2)
+
+	if _, err := io.Copy(w, r); err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Print(buf1.String())
+	fmt.Print(buf2.String())
+
+}
 ```
 
 output:
 ```txt
+some io.Reader stream to be read
+some io.Reader stream to be read
 ```
 
 
@@ -1211,6 +1445,15 @@ destination if the ranges do not overlap.
 
 Implementations must not retain p.
 
+WriterAt 封装了基础的WriteAt方法.
+
+WriteAt将p的数据(长度为len(p))写入到底层数据流中且是从偏移量off处开始写. 它返回被写入的字节数n(0 <= n <= le(p))以及遇到的任何会引发写入提前停止的错误. 若WriteAt返回的n < len(p)，它就必须返回一个非nil的错误.
+
+若WriteAt在自带seek偏移量的目标上写入，它应当既不影响也不被底层的seek偏移量影响.
+
+若写入区域没有重叠,WriteAt的调用者可在相同的目标上并发地执行.
+
+实现必须不保存p.
 
 <pre>type WriterAt interface {
     WriteAt(p []<a href="/pkg/builtin/#byte">byte</a>, off <a href="/pkg/builtin/#int64">int64</a>) (n <a href="/pkg/builtin/#int">int</a>, err <a href="/pkg/builtin/#error">error</a>)
@@ -1235,6 +1478,11 @@ written. Any error encountered during the write is also returned.
 
 The Copy function uses WriterTo if available.
 
+WriterTo 封装了WriteTo方法.
+
+WriteTo将数据写入w中，直到没有数据可写或发生错误. n为已写入的字节数. 在写入过程中遇到的任何错误也将被返回.
+
+如果WriterTo可用,Copy方法就会使用它.
 
 <pre>type WriterTo interface {
     WriteTo(w <a href="#Writer">Writer</a>) (n <a href="/pkg/builtin/#int64">int64</a>, err <a href="/pkg/builtin/#error">error</a>)
