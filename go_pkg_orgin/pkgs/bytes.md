@@ -185,7 +185,19 @@ A nil argument is equivalent to an empty slice.
 
 
 <a id="example_Compare">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <a id="example_Compare_search">Example (Search)</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Contains">func</a> [Contains](https://golang.org/src/bytes/bytes.go?s=1857:1895#L65)
 <pre>func Contains(b, subslice []<a href="/pkg/builtin/#byte">byte</a>) <a href="/pkg/builtin/#bool">bool</a></pre>
@@ -193,6 +205,12 @@ Contains reports whether subslice is within b.
 
 
 <a id="example_Contains">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ContainsAny">func</a> [ContainsAny](https://golang.org/src/bytes/bytes.go?s=2025:2070#L70)
 <pre>func ContainsAny(b []<a href="/pkg/builtin/#byte">byte</a>, chars <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#bool">bool</a></pre>
@@ -200,6 +218,12 @@ ContainsAny reports whether any of the UTF-8-encoded code points in chars are wi
 
 
 <a id="example_ContainsAny">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ContainsRune">func</a> [ContainsRune](https://golang.org/src/bytes/bytes.go?s=2197:2237#L75)
 <pre>func ContainsRune(b []<a href="/pkg/builtin/#byte">byte</a>, r <a href="/pkg/builtin/#rune">rune</a>) <a href="/pkg/builtin/#bool">bool</a></pre>
@@ -207,6 +231,12 @@ ContainsRune reports whether the rune is contained in the UTF-8-encoded byte sli
 
 
 <a id="example_ContainsRune">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Count">func</a> [Count](https://golang.org/src/bytes/bytes.go?s=1547:1576#L45)
 <pre>func Count(s, sep []<a href="/pkg/builtin/#byte">byte</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -215,6 +245,12 @@ If sep is an empty slice, Count returns 1 + the number of UTF-8-encoded code poi
 
 
 <a id="example_Count">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Equal">func</a> [Equal](https://golang.org/src/bytes/bytes.go?s=505:533#L8)
 <pre>func Equal(a, b []<a href="/pkg/builtin/#byte">byte</a>) <a href="/pkg/builtin/#bool">bool</a></pre>
@@ -224,6 +260,12 @@ A nil argument is equivalent to an empty slice.
 
 
 <a id="example_Equal">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="EqualFold">func</a> [EqualFold](https://golang.org/src/bytes/bytes.go?s=24857:24889#L929)
 <pre>func EqualFold(s, t []<a href="/pkg/builtin/#byte">byte</a>) <a href="/pkg/builtin/#bool">bool</a></pre>
@@ -232,6 +274,12 @@ are equal under Unicode case-folding.
 
 
 <a id="example_EqualFold">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Fields">func</a> [Fields](https://golang.org/src/bytes/bytes.go?s=8137:8167#L303)
 <pre>func Fields(s []<a href="/pkg/builtin/#byte">byte</a>) [][]<a href="/pkg/builtin/#byte">byte</a></pre>
@@ -242,6 +290,12 @@ empty slice if s contains only white space.
 
 
 <a id="example_Fields">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="FieldsFunc">func</a> [FieldsFunc](https://golang.org/src/bytes/bytes.go?s=9597:9650#L359)
 <pre>func FieldsFunc(s []<a href="/pkg/builtin/#byte">byte</a>, f func(<a href="/pkg/builtin/#rune">rune</a>) <a href="/pkg/builtin/#bool">bool</a>) [][]<a href="/pkg/builtin/#byte">byte</a></pre>
@@ -254,6 +308,12 @@ If f does not return consistent results for a given c, FieldsFunc may crash.
 
 
 <a id="example_FieldsFunc">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="HasPrefix">func</a> [HasPrefix](https://golang.org/src/bytes/bytes.go?s=11117:11154#L430)
 <pre>func HasPrefix(s, prefix []<a href="/pkg/builtin/#byte">byte</a>) <a href="/pkg/builtin/#bool">bool</a></pre>
@@ -261,6 +321,12 @@ HasPrefix tests whether the byte slice s begins with prefix.
 
 
 <a id="example_HasPrefix">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="HasSuffix">func</a> [HasSuffix](https://golang.org/src/bytes/bytes.go?s=11287:11324#L435)
 <pre>func HasSuffix(s, suffix []<a href="/pkg/builtin/#byte">byte</a>) <a href="/pkg/builtin/#bool">bool</a></pre>
@@ -268,6 +334,12 @@ HasSuffix tests whether the byte slice s ends with suffix.
 
 
 <a id="example_HasSuffix">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Index">func</a> [Index](https://golang.org/src/bytes/bytes.go?s=26022:26051#L983)
 <pre>func Index(s, sep []<a href="/pkg/builtin/#byte">byte</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -275,6 +347,12 @@ Index returns the index of the first instance of sep in s, or -1 if sep is not p
 
 
 <a id="example_Index">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="IndexAny">func</a> [IndexAny](https://golang.org/src/bytes/bytes.go?s=4507:4548#L171)
 <pre>func IndexAny(s []<a href="/pkg/builtin/#byte">byte</a>, chars <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -285,6 +363,12 @@ point in common.
 
 
 <a id="example_IndexAny">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="IndexByte">func</a> [IndexByte](https://golang.org/src/bytes/bytes.go?s=2368:2404#L80)
 <pre>func IndexByte(b []<a href="/pkg/builtin/#byte">byte</a>, c <a href="/pkg/builtin/#byte">byte</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -292,6 +376,12 @@ IndexByte returns the index of the first instance of c in b, or -1 if c is not p
 
 
 <a id="example_IndexByte">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="IndexFunc">func</a> [IndexFunc](https://golang.org/src/bytes/bytes.go?s=18897:18946#L710)
 <pre>func IndexFunc(s []<a href="/pkg/builtin/#byte">byte</a>, f func(r <a href="/pkg/builtin/#rune">rune</a>) <a href="/pkg/builtin/#bool">bool</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -301,6 +391,12 @@ code point satisfying f(c), or -1 if none do.
 
 
 <a id="example_IndexFunc">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="IndexRune">func</a> [IndexRune](https://golang.org/src/bytes/bytes.go?s=3835:3871#L145)
 <pre>func IndexRune(s []<a href="/pkg/builtin/#byte">byte</a>, r <a href="/pkg/builtin/#rune">rune</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -312,6 +408,12 @@ invalid UTF-8 byte sequence.
 
 
 <a id="example_IndexRune">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Join">func</a> [Join](https://golang.org/src/bytes/bytes.go?s=10680:10720#L407)
 <pre>func Join(s [][]<a href="/pkg/builtin/#byte">byte</a>, sep []<a href="/pkg/builtin/#byte">byte</a>) []<a href="/pkg/builtin/#byte">byte</a></pre>
@@ -320,6 +422,12 @@ sep is placed between elements in the resulting slice.
 
 
 <a id="example_Join">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="LastIndex">func</a> [LastIndex](https://golang.org/src/bytes/bytes.go?s=2658:2691#L94)
 <pre>func LastIndex(s, sep []<a href="/pkg/builtin/#byte">byte</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -327,6 +435,12 @@ LastIndex returns the index of the last instance of sep in s, or -1 if sep is no
 
 
 <a id="example_LastIndex">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="LastIndexAny">func</a> [LastIndexAny](https://golang.org/src/bytes/bytes.go?s=5281:5326#L207)
 <pre>func LastIndexAny(s []<a href="/pkg/builtin/#byte">byte</a>, chars <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -337,6 +451,12 @@ there is no code point in common.
 
 
 <a id="example_LastIndexAny">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="LastIndexByte">func</a> [LastIndexByte](https://golang.org/src/bytes/bytes.go?s=3417:3457#L131)
 <pre>func LastIndexByte(s []<a href="/pkg/builtin/#byte">byte</a>, c <a href="/pkg/builtin/#byte">byte</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -344,6 +464,12 @@ LastIndexByte returns the index of the last instance of c in s, or -1 if c is no
 
 
 <a id="example_LastIndexByte">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="LastIndexFunc">func</a> [LastIndexFunc](https://golang.org/src/bytes/bytes.go?s=19159:19212#L717)
 <pre>func LastIndexFunc(s []<a href="/pkg/builtin/#byte">byte</a>, f func(r <a href="/pkg/builtin/#rune">rune</a>) <a href="/pkg/builtin/#bool">bool</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -353,6 +479,12 @@ code point satisfying f(c), or -1 if none do.
 
 
 <a id="example_LastIndexFunc">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Map">func</a> [Map](https://golang.org/src/bytes/bytes.go?s=11704:11756#L443)
 <pre>func Map(mapping func(r <a href="/pkg/builtin/#rune">rune</a>) <a href="/pkg/builtin/#rune">rune</a>, s []<a href="/pkg/builtin/#byte">byte</a>) []<a href="/pkg/builtin/#byte">byte</a></pre>
@@ -363,6 +495,12 @@ output are interpreted as UTF-8-encoded code points.
 
 
 <a id="example_Map">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Repeat">func</a> [Repeat](https://golang.org/src/bytes/bytes.go?s=12715:12754#L480)
 <pre>func Repeat(b []<a href="/pkg/builtin/#byte">byte</a>, count <a href="/pkg/builtin/#int">int</a>) []<a href="/pkg/builtin/#byte">byte</a></pre>
@@ -373,6 +511,12 @@ the result of (len(b) * count) overflows.
 
 
 <a id="example_Repeat">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Replace">func</a> [Replace](https://golang.org/src/bytes/bytes.go?s=23763:23809#L882)
 <pre>func Replace(s, old, new []<a href="/pkg/builtin/#byte">byte</a>, n <a href="/pkg/builtin/#int">int</a>) []<a href="/pkg/builtin/#byte">byte</a></pre>
@@ -385,6 +529,12 @@ If n < 0, there is no limit on the number of replacements.
 
 
 <a id="example_Replace">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ReplaceAll">func</a> [ReplaceAll](https://golang.org/src/bytes/bytes.go?s=24667:24709#L923)
 <pre>func ReplaceAll(s, old, new []<a href="/pkg/builtin/#byte">byte</a>) []<a href="/pkg/builtin/#byte">byte</a></pre>
@@ -396,6 +546,12 @@ for a k-rune slice.
 
 
 <a id="example_ReplaceAll">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Runes">func</a> [Runes](https://golang.org/src/bytes/bytes.go?s=23272:23299#L864)
 <pre>func Runes(s []<a href="/pkg/builtin/#byte">byte</a>) []<a href="/pkg/builtin/#rune">rune</a></pre>
@@ -404,6 +560,12 @@ It returns a slice of runes (Unicode code points) equivalent to s.
 
 
 <a id="example_Runes">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Split">func</a> [Split](https://golang.org/src/bytes/bytes.go?s=7381:7415#L287)
 <pre>func Split(s, sep []<a href="/pkg/builtin/#byte">byte</a>) [][]<a href="/pkg/builtin/#byte">byte</a></pre>
@@ -414,6 +576,12 @@ It is equivalent to SplitN with a count of -1.
 
 
 <a id="example_Split">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="SplitAfter">func</a> [SplitAfter](https://golang.org/src/bytes/bytes.go?s=7684:7723#L293)
 <pre>func SplitAfter(s, sep []<a href="/pkg/builtin/#byte">byte</a>) [][]<a href="/pkg/builtin/#byte">byte</a></pre>
@@ -424,6 +592,12 @@ It is equivalent to SplitAfterN with a count of -1.
 
 
 <a id="example_SplitAfter">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="SplitAfterN">func</a> [SplitAfterN](https://golang.org/src/bytes/bytes.go?s=7060:7107#L279)
 <pre>func SplitAfterN(s, sep []<a href="/pkg/builtin/#byte">byte</a>, n <a href="/pkg/builtin/#int">int</a>) [][]<a href="/pkg/builtin/#byte">byte</a></pre>
@@ -439,6 +613,12 @@ The count determines the number of subslices to return:
 
 
 <a id="example_SplitAfterN">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="SplitN">func</a> [SplitN](https://golang.org/src/bytes/bytes.go?s=6592:6634#L270)
 <pre>func SplitN(s, sep []<a href="/pkg/builtin/#byte">byte</a>, n <a href="/pkg/builtin/#int">int</a>) [][]<a href="/pkg/builtin/#byte">byte</a></pre>
@@ -454,6 +634,12 @@ The count determines the number of subslices to return:
 
 
 <a id="example_SplitN">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Title">func</a> [Title](https://golang.org/src/bytes/bytes.go?s=17058:17085#L643)
 <pre>func Title(s []<a href="/pkg/builtin/#byte">byte</a>) []<a href="/pkg/builtin/#byte">byte</a></pre>
@@ -464,6 +650,12 @@ BUG(rsc): The rule Title uses for word boundaries does not handle Unicode punctu
 
 
 <a id="example_Title">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ToLower">func</a> [ToLower](https://golang.org/src/bytes/bytes.go?s=13971:14000#L536)
 <pre>func ToLower(s []<a href="/pkg/builtin/#byte">byte</a>) []<a href="/pkg/builtin/#byte">byte</a></pre>
@@ -472,6 +664,12 @@ their lower case.
 
 
 <a id="example_ToLower">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ToLowerSpecial">func</a> [ToLowerSpecial](https://golang.org/src/bytes/bytes.go?s=15115:15174#L575)
 <pre>func ToLowerSpecial(c <a href="/pkg/unicode/">unicode</a>.<a href="/pkg/unicode/#SpecialCase">SpecialCase</a>, s []<a href="/pkg/builtin/#byte">byte</a>) []<a href="/pkg/builtin/#byte">byte</a></pre>
@@ -480,6 +678,12 @@ lower case, giving priority to the special casing rules.
 
 
 <a id="example_ToLowerSpecial">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ToTitle">func</a> [ToTitle](https://golang.org/src/bytes/bytes.go?s=14610:14639#L565)
 <pre>func ToTitle(s []<a href="/pkg/builtin/#byte">byte</a>) []<a href="/pkg/builtin/#byte">byte</a></pre>
@@ -487,6 +691,12 @@ ToTitle treats s as UTF-8-encoded bytes and returns a copy with all the Unicode 
 
 
 <a id="example_ToTitle">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ToTitleSpecial">func</a> [ToTitleSpecial](https://golang.org/src/bytes/bytes.go?s=15380:15439#L581)
 <pre>func ToTitleSpecial(c <a href="/pkg/unicode/">unicode</a>.<a href="/pkg/unicode/#SpecialCase">SpecialCase</a>, s []<a href="/pkg/builtin/#byte">byte</a>) []<a href="/pkg/builtin/#byte">byte</a></pre>
@@ -495,6 +705,12 @@ title case, giving priority to the special casing rules.
 
 
 <a id="example_ToTitleSpecial">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ToUpper">func</a> [ToUpper](https://golang.org/src/bytes/bytes.go?s=13323:13352#L505)
 <pre>func ToUpper(s []<a href="/pkg/builtin/#byte">byte</a>) []<a href="/pkg/builtin/#byte">byte</a></pre>
@@ -503,6 +719,12 @@ their upper case.
 
 
 <a id="example_ToUpper">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ToUpperSpecial">func</a> [ToUpperSpecial](https://golang.org/src/bytes/bytes.go?s=14850:14909#L569)
 <pre>func ToUpperSpecial(c <a href="/pkg/unicode/">unicode</a>.<a href="/pkg/unicode/#SpecialCase">SpecialCase</a>, s []<a href="/pkg/builtin/#byte">byte</a>) []<a href="/pkg/builtin/#byte">byte</a></pre>
@@ -511,6 +733,12 @@ upper case, giving priority to the special casing rules.
 
 
 <a id="example_ToUpperSpecial">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ToValidUTF8">func</a> [ToValidUTF8](https://golang.org/src/bytes/bytes.go?s=15650:15696#L587)
 <pre>func ToValidUTF8(s, replacement []<a href="/pkg/builtin/#byte">byte</a>) []<a href="/pkg/builtin/#byte">byte</a></pre>
@@ -526,6 +754,12 @@ trailing UTF-8-encoded code points contained in cutset.
 
 
 <a id="example_Trim">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="TrimFunc">func</a> [TrimFunc](https://golang.org/src/bytes/bytes.go?s=18137:18188#L685)
 <pre>func TrimFunc(s []<a href="/pkg/builtin/#byte">byte</a>, f func(r <a href="/pkg/builtin/#rune">rune</a>) <a href="/pkg/builtin/#bool">bool</a>) []<a href="/pkg/builtin/#byte">byte</a></pre>
@@ -534,6 +768,12 @@ UTF-8-encoded code points c that satisfy f(c).
 
 
 <a id="example_TrimFunc">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="TrimLeft">func</a> [TrimLeft](https://golang.org/src/bytes/bytes.go?s=21724:21769#L812)
 <pre>func TrimLeft(s []<a href="/pkg/builtin/#byte">byte</a>, cutset <a href="/pkg/builtin/#string">string</a>) []<a href="/pkg/builtin/#byte">byte</a></pre>
@@ -542,6 +782,12 @@ UTF-8-encoded code points contained in cutset.
 
 
 <a id="example_TrimLeft">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="TrimLeftFunc">func</a> [TrimLeftFunc](https://golang.org/src/bytes/bytes.go?s=17545:17600#L662)
 <pre>func TrimLeftFunc(s []<a href="/pkg/builtin/#byte">byte</a>, f func(r <a href="/pkg/builtin/#rune">rune</a>) <a href="/pkg/builtin/#bool">bool</a>) []<a href="/pkg/builtin/#byte">byte</a></pre>
@@ -550,6 +796,12 @@ all leading UTF-8-encoded code points c that satisfy f(c).
 
 
 <a id="example_TrimLeftFunc">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="TrimPrefix">func</a> [TrimPrefix](https://golang.org/src/bytes/bytes.go?s=18367:18407#L691)
 <pre>func TrimPrefix(s, prefix []<a href="/pkg/builtin/#byte">byte</a>) []<a href="/pkg/builtin/#byte">byte</a></pre>
@@ -558,6 +810,12 @@ If s doesn't start with prefix, s is returned unchanged.
 
 
 <a id="example_TrimPrefix">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="TrimRight">func</a> [TrimRight](https://golang.org/src/bytes/bytes.go?s=21947:21993#L818)
 <pre>func TrimRight(s []<a href="/pkg/builtin/#byte">byte</a>, cutset <a href="/pkg/builtin/#string">string</a>) []<a href="/pkg/builtin/#byte">byte</a></pre>
@@ -566,6 +824,12 @@ UTF-8-encoded code points that are contained in cutset.
 
 
 <a id="example_TrimRight">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="TrimRightFunc">func</a> [TrimRightFunc](https://golang.org/src/bytes/bytes.go?s=17798:17854#L672)
 <pre>func TrimRightFunc(s []<a href="/pkg/builtin/#byte">byte</a>, f func(r <a href="/pkg/builtin/#rune">rune</a>) <a href="/pkg/builtin/#bool">bool</a>) []<a href="/pkg/builtin/#byte">byte</a></pre>
@@ -574,6 +838,12 @@ UTF-8-encoded code points c that satisfy f(c).
 
 
 <a id="example_TrimRightFunc">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="TrimSpace">func</a> [TrimSpace](https://golang.org/src/bytes/bytes.go?s=22164:22195#L824)
 <pre>func TrimSpace(s []<a href="/pkg/builtin/#byte">byte</a>) []<a href="/pkg/builtin/#byte">byte</a></pre>
@@ -582,6 +852,12 @@ trailing white space, as defined by Unicode.
 
 
 <a id="example_TrimSpace">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="TrimSuffix">func</a> [TrimSuffix](https://golang.org/src/bytes/bytes.go?s=18605:18645#L700)
 <pre>func TrimSuffix(s, suffix []<a href="/pkg/builtin/#byte">byte</a>) []<a href="/pkg/builtin/#byte">byte</a></pre>
@@ -590,6 +866,12 @@ If s doesn't end with suffix, s is returned unchanged.
 
 
 <a id="example_TrimSuffix">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -608,7 +890,19 @@ The zero value for Buffer is an empty buffer ready to use.
 
 
 <a id="example_Buffer">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <a id="example_Buffer_reader">Example (Reader)</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -671,6 +965,12 @@ If the buffer can't grow it will panic with ErrTooLarge.
 
 
 <a id="example_Buffer_Grow">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Buffer.Len">func</a> (\*Buffer) [Len](https://golang.org/src/bytes/buffer.go?s=2757:2783#L63)
@@ -680,6 +980,12 @@ b.Len() == len(b.Bytes()).
 
 
 <a id="example_Buffer_Len">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Buffer.Next">func</a> (\*Buffer) [Next](https://golang.org/src/bytes/buffer.go?s=10051:10086#L308)
@@ -889,6 +1195,12 @@ slice.
 
 
 <a id="example_Reader_Len">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Reader.Read">func</a> (\*Reader) [Read](https://golang.org/src/bytes/reader.go?s=1154:1204#L30)
@@ -960,7 +1272,6 @@ UnreadRune complements ReadRune in implementing the io.RuneScanner interface.
 ### <a id="Reader.WriteTo">func</a> (\*Reader) [WriteTo](https://golang.org/src/bytes/reader.go?s=3379:3437#L128)
 <pre>func (r *<a href="#Reader">Reader</a>) WriteTo(w <a href="/pkg/io/">io</a>.<a href="/pkg/io/#Writer">Writer</a>) (n <a href="/pkg/builtin/#int64">int64</a>, err <a href="/pkg/builtin/#error">error</a>)</pre>
 WriteTo implements the io.WriterTo interface.
-
 
 
 

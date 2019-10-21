@@ -17,6 +17,12 @@ a result of Coron; the AES-CTR stream is IRO under standard assumptions.
 
 
 <a id="example_">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ## <a id="pkg-index">Index</a>
@@ -116,7 +122,6 @@ PublicKey represents an ECDSA public key.
 <span id="PublicKey.X"></span>    X, Y *<a href="/pkg/math/big/">big</a>.<a href="/pkg/math/big/#Int">Int</a>
 }
 </pre>
-
 
 
 

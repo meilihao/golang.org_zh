@@ -1,4 +1,5 @@
 
+
 # aes
 `import "crypto/aes"`
 
@@ -67,7 +68,6 @@ AES-128, AES-192, or AES-256.
 
 ### <a id="KeySizeError.Error">func</a> (KeySizeError) [Error](https://golang.org/src/crypto/aes/cipher.go?s=440:476#L14)
 <pre>func (k <a href="#KeySizeError">KeySizeError</a>) Error() <a href="/pkg/builtin/#string">string</a></pre>
-
 
 
 

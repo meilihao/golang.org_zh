@@ -353,6 +353,12 @@ Close closes the Zip file, rendering it unusable for I/O.
 
 
 <a id="example_Reader">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -390,6 +396,12 @@ Writer implements a zip file writer.
 
 
 <a id="example_Writer">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -455,6 +467,12 @@ default to looking up the compressor at the package level.
 
 
 <a id="example_Writer_RegisterCompressor">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Writer.SetComment">func</a> (\*Writer) [SetComment](https://golang.org/src/archive/zip/writer.go?s=1686:1735#L56)
@@ -471,7 +489,6 @@ SetOffset sets the offset of the beginning of the zip data within the
 underlying writer. It should be used when the zip data is appended to an
 existing file, such as a binary executable.
 It must be called before any data is written.
-
 
 
 

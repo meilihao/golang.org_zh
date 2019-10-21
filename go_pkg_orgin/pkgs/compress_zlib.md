@@ -92,6 +92,12 @@ The ReadCloser returned by NewReader also implements Resetter.
 
 
 <a id="example_NewReader">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="NewReaderDict">func</a> [NewReaderDict](https://golang.org/src/compress/zlib/reader.go?s=2412:2479#L69)
 <pre>func NewReaderDict(r <a href="/pkg/io/">io</a>.<a href="/pkg/io/#Reader">Reader</a>, dict []<a href="/pkg/builtin/#byte">byte</a>) (<a href="/pkg/io/">io</a>.<a href="/pkg/io/#ReadCloser">ReadCloser</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
@@ -155,6 +161,12 @@ Writes may be buffered and not flushed until Close.
 
 
 <a id="example_NewWriter">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="NewWriterLevel">func</a> [NewWriterLevel](https://golang.org/src/compress/zlib/writer.go?s=1616:1676#L45)
@@ -211,7 +223,6 @@ to w.
 Write writes a compressed form of p to the underlying io.Writer. The
 compressed bytes are not necessarily flushed until the Writer is closed or
 explicitly flushed.
-
 
 
 

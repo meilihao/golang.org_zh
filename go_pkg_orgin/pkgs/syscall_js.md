@@ -146,6 +146,12 @@ Func.Release must be called to free up resources when the function will not be u
 
 
 <a id="example_FuncOf">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -418,7 +424,6 @@ Wrapper is implemented by types that are backed by a JavaScript value.
     <span class="comment">// JSValue returns a JavaScript value associated with an object.</span>
     JSValue() <a href="#Value">Value</a>
 }</pre>
-
 
 
 

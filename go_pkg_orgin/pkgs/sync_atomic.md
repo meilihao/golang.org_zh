@@ -295,9 +295,21 @@ A Value must not be copied after first use.
 
 
 <a id="example_Value_config">Example (Config)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>The following example shows how to use Value for periodic program config updates
 and propagation of the changes to worker goroutines.
 </p><a id="example_Value_readMostly">Example (ReadMostly)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>The following example shows how to maintain a scalable frequently read,
 but infrequently updated data structure using copy-on-write idiom.
 </p>
@@ -319,7 +331,6 @@ It returns nil if there has been no call to Store for this Value.
 Store sets the value of the Value to x.
 All calls to Store for a given Value must use values of the same concrete type.
 Store of an inconsistent type panics, as does Store(nil).
-
 
 
 

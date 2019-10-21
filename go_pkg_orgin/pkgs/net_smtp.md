@@ -26,6 +26,12 @@ Some external packages provide more functionality. See:
 
 
 <a id="example_">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ## <a id="pkg-index">Index</a>
@@ -91,6 +97,12 @@ library.
 
 
 <a id="example_SendMail">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -148,6 +160,12 @@ error, without sending the credentials.
 
 
 <a id="example_PlainAuth">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -316,7 +334,6 @@ ServerInfo records information about an SMTP server.
 <span id="ServerInfo.Auth"></span>    Auth []<a href="/pkg/builtin/#string">string</a> <span class="comment">// advertised authentication mechanisms</span>
 }
 </pre>
-
 
 
 

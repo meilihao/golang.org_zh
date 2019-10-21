@@ -234,6 +234,12 @@ parse such headers.
 
 
 <a id="example_NewReader">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -350,7 +356,6 @@ at most 70 bytes long.
 ### <a id="Writer.WriteField">func</a> (\*Writer) [WriteField](https://golang.org/src/mime/multipart/writer.go?s=4078:4136#L149)
 <pre>func (w *<a href="#Writer">Writer</a>) WriteField(fieldname, value <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#error">error</a></pre>
 WriteField calls CreateFormField and then writes the given value.
-
 
 
 

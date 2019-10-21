@@ -23,7 +23,19 @@ For usage examples, see the wiki page at
 
 
 <a id="example__openDBCLI">Example (OpenDBCLI)</a>
+```go
+```
+
+output:
+```txt
+```
 <a id="example__openDBService">Example (OpenDBService)</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ## <a id="pkg-index">Index</a>
@@ -301,6 +313,12 @@ an error will be returned.
 
 
 <a id="example_Conn_BeginTx">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Conn.Close">func</a> (\*Conn) [Close](https://golang.org/src/database/sql/sql.go?s=54634:54662#L1936)
@@ -321,6 +339,12 @@ The args are for any placeholder parameters in the query.
 
 
 <a id="example_Conn_ExecContext">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Conn.PingContext">func</a> (\*Conn) [PingContext](https://golang.org/src/database/sql/sql.go?s=50207:50260#L1796)
@@ -521,6 +545,12 @@ The args are for any placeholder parameters in the query.
 
 
 <a id="example_DB_ExecContext">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="DB.Ping">func</a> (\*DB) [Ping](https://golang.org/src/database/sql/sql.go?s=22905:22931#L789)
@@ -538,6 +568,12 @@ establishing a connection if necessary.
 
 
 <a id="example_DB_PingContext">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="DB.Prepare">func</a> (\*DB) [Prepare](https://golang.org/src/database/sql/sql.go?s=38604:38654#L1410)
@@ -550,6 +586,12 @@ when the statement is no longer needed.
 
 
 <a id="example_DB_Prepare">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="DB.PrepareContext">func</a> (\*DB) [PrepareContext](https://golang.org/src/database/sql/sql.go?s=37987:38065#L1390)
@@ -573,6 +615,12 @@ The args are for any placeholder parameters in the query.
 
 
 <a id="example_DB_Query_multipleResultSets">Example (MultipleResultSets)</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="DB.QueryContext">func</a> (\*DB) [QueryContext](https://golang.org/src/database/sql/sql.go?s=42262:42359#L1533)
@@ -582,6 +630,12 @@ The args are for any placeholder parameters in the query.
 
 
 <a id="example_DB_QueryContext">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="DB.QueryRow">func</a> (\*DB) [QueryRow](https://golang.org/src/database/sql/sql.go?s=45722:45784#L1648)
@@ -607,6 +661,12 @@ the rest.
 
 
 <a id="example_DB_QueryRowContext">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="DB.SetConnMaxLifetime">func</a> (\*DB) [SetConnMaxLifetime](https://golang.org/src/database/sql/sql.go?s=25802:25851#L906)
@@ -1135,6 +1195,12 @@ of the result set. Use Next to advance from row to row.
 
 
 <a id="example_Rows">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -1323,6 +1389,12 @@ prepare itself on the new connection automatically.
 
 
 <a id="example_Stmt">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -1397,6 +1469,12 @@ the rest.
 
 
 <a id="example_Stmt_QueryRowContext">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ## <a id="Tx">type</a> [Tx](https://golang.org/src/database/sql/sql.go?s=55052:56025#L1950)
@@ -1449,6 +1527,12 @@ For example: an INSERT and UPDATE.
 
 
 <a id="example_Tx_ExecContext">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Tx.Prepare">func</a> (\*Tx) [Prepare](https://golang.org/src/database/sql/sql.go?s=60491:60541#L2151)
@@ -1462,6 +1546,12 @@ To use an existing prepared statement on this transaction, see Tx.Stmt.
 
 
 <a id="example_Tx_Prepare">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Tx.PrepareContext">func</a> (\*Tx) [PrepareContext](https://golang.org/src/database/sql/sql.go?s=59846:59924#L2129)
@@ -1524,6 +1614,12 @@ Rollback aborts the transaction.
 
 
 <a id="example_Tx_Rollback">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Tx.Stmt">func</a> (\*Tx) [Stmt](https://golang.org/src/database/sql/sql.go?s=63240:63276#L2254)
@@ -1580,7 +1676,6 @@ TxOptions holds the transaction options to be used in DB.BeginTx.
 <span id="TxOptions.ReadOnly"></span>    ReadOnly  <a href="/pkg/builtin/#bool">bool</a>
 }
 </pre>
-
 
 
 

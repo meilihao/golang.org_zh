@@ -202,7 +202,19 @@ not depend on which line-ending convention an input file uses.
 
 
 <a id="example_Reader">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <a id="example_Reader_options">Example (Options)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>This example shows how csv.Reader can be configured to handle other
 types of CSV files.
 </p>
@@ -242,6 +254,12 @@ reported.
 
 
 <a id="example_Reader_ReadAll">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ## <a id="Writer">type</a> [Writer](https://golang.org/src/encoding/csv/writer.go?s=913:1074#L20)
@@ -274,6 +292,12 @@ be checked by calling the Error method.
 
 
 <a id="example_Writer">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -319,7 +343,12 @@ returning any error from the Flush.
 
 
 <a id="example_Writer_WriteAll">Example</a>
+```go
+```
 
+output:
+```txt
+```
 
 
 

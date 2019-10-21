@@ -32,7 +32,19 @@ See "The Go image package" for more details:
 
 
 <a id="example_">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <a id="example__decodeConfig">Example (DecodeConfig)</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ## <a id="pkg-index">Index</a>
@@ -1697,7 +1709,6 @@ YCbCrSubsampleRatio is the chroma subsample ratio used in a YCbCr image.
 
 ### <a id="YCbCrSubsampleRatio.String">func</a> (YCbCrSubsampleRatio) [String](https://golang.org/src/image/ycbcr.go?s=490:534#L13)
 <pre>func (s <a href="#YCbCrSubsampleRatio">YCbCrSubsampleRatio</a>) String() <a href="/pkg/builtin/#string">string</a></pre>
-
 
 
 

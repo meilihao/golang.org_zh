@@ -1375,6 +1375,12 @@ be incomplete.
 
 
 <a id="example_Info">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <p>ExampleInfo prints various facts recorded by the type checker in a
 types.Info struct: definitions of and references to each named object,
 and the type, value, and mode of every expression in the package.
@@ -1709,6 +1715,12 @@ The zero value for a MethodSet is a ready-to-use empty method set.
 
 
 <a id="example_MethodSet">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <p>ExampleMethodSet prints the method sets of various types.
 </p>
 
@@ -2257,6 +2269,12 @@ It is the outermost scope of any chain of nested scopes.
 <pre>var <span id="Universe">Universe</span> *<a href="#Scope">Scope</a></pre>
 
 <a id="example_Scope">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <p>ExampleScope prints the tree of Scopes of a package created from a
 set of parsed files.
 </p>
@@ -3185,7 +3203,6 @@ Pos returns the declaration position of the object's identifier.
 ### <a id="Var.Type">func</a> (\*Var) [Type](https://golang.org/src/go/types/object.go?s=4032:4062#L126)
 <pre>func (obj *<a href="#Var">Var</a>) Type() <a href="#Type">Type</a></pre>
 Type returns the object's type.
-
 
 
 

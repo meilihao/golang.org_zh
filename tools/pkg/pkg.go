@@ -21,6 +21,7 @@ import (
 	"crypto/tls"
 	"flag"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -198,7 +199,7 @@ func FindPkgs(doc *goquery.Document) {
 
 		pkgs = append(pkgs, tmp)
 
-		log.Printf("%03d - %s", i, tmp.StoreName) // 打印进度
+		log.Printf("%03d - %s ", i, tmp.StoreName) // 打印进度
 
 		return true
 	})
@@ -275,8 +276,9 @@ func InitPresentation() {
 	pres = godoc.NewPresentation(corpus)
 
 	// from https://github.com/golang/tools/blob/master///cmd/godoc/handlers.go#L125
-	pres.PackageHTML = readTemplate("package.html", pkgTemplate)
-	pres.ExampleHTML = readTemplate("example.html", exampleTemplate)
+	// version : c75e7e6983e78066d98496e6a979a9d3f14f3023
+	pres.PackageHTML = readTemplate("package.html", "tpls/pkg.tpl")
+	pres.ExampleHTML = readTemplate("example.html", "tpls/example.tpl")
 }
 
 func InjectInfo(subPath string) string {
@@ -293,9 +295,14 @@ func applyTemplate(t *template.Template, name string, data interface{}) []byte {
 	return buf.Bytes()
 }
 
-func readTemplate(name, content string) *template.Template {
+func readTemplate(name, file string) *template.Template {
+	data, err := ioutil.ReadFile(file)
+	if err != nil {
+		panic(err)
+	}
+
 	// be explicit with errors (for app engine use)
-	t, err := template.New(name).Funcs(pres.FuncMap()).Funcs(funcs).Parse(content)
+	t, err := template.New(name).Funcs(pres.FuncMap()).Funcs(funcs).Parse(string(data))
 	if err != nil {
 		log.Fatal("readTemplate: ", err)
 	}

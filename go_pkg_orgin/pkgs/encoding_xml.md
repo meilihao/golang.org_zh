@@ -13,7 +13,19 @@ understands XML name spaces.
 
 
 <a id="example__customMarshalXML">Example (CustomMarshalXML)</a>
+```go
+```
+
+output:
+```txt
+```
 <a id="example__textMarshalXML">Example (TextMarshalXML)</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ## <a id="pkg-index">Index</a>
@@ -193,6 +205,12 @@ copies of indent according to the nesting depth.
 
 
 <a id="example_MarshalIndent">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Unmarshal">func</a> [Unmarshal](https://golang.org/src/encoding/xml/read.go?s=5770:5818#L122)
 <pre>func Unmarshal(data []<a href="/pkg/builtin/#byte">byte</a>, v interface{}) <a href="/pkg/builtin/#error">error</a></pre>
@@ -308,6 +326,12 @@ field will be set to its zero value.
 
 
 <a id="example_Unmarshal">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <p>This example demonstrates unmarshaling an XML excerpt into a value with
 some preset fields. Note that the Phone field isn&#39;t modified and that
 the XML &lt;Company&gt; element is ignored. Also, the Groups field is assigned
@@ -585,6 +609,12 @@ An Encoder writes XML data to an output stream.
 
 
 <a id="example_Encoder">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -1028,7 +1058,6 @@ that cannot be converted into XML.
 
 ### <a id="UnsupportedTypeError.Error">func</a> (\*UnsupportedTypeError) [Error](https://golang.org/src/encoding/xml/marshal.go?s=28970:29015#L1017)
 <pre>func (e *<a href="#UnsupportedTypeError">UnsupportedTypeError</a>) Error() <a href="/pkg/builtin/#string">string</a></pre>
-
 
 
 

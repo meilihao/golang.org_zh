@@ -42,6 +42,12 @@ use format.Node (package go/format) for output that matches gofmt.
 
 
 <a id="example_Fprint">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -111,7 +117,6 @@ A Mode value is a set of flags (or 0). They control printing.
     <span id="UseSpaces">UseSpaces</span>                  <span class="comment">// use spaces instead of tabs for alignment</span>
     <span id="SourcePos">SourcePos</span>                  <span class="comment">// emit //line directives to preserve original source positions</span>
 )</pre>
-
 
 
 

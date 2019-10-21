@@ -275,7 +275,19 @@ signals independently.
 
 
 <a id="example_Notify">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <a id="example_Notify_allSignals">Example (AllSignals)</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Reset">func</a> [Reset](https://golang.org/src/os/signal/signal.go?s=3838:3866#L145)
 <pre>func Reset(sig ...<a href="/pkg/os/">os</a>.<a href="/pkg/os/#Signal">Signal</a>)</pre>
@@ -290,7 +302,6 @@ If no signals are provided, all signal handlers will be reset.
 Stop causes package signal to stop relaying incoming signals to c.
 It undoes the effect of all prior calls to Notify using c.
 When Stop returns, it is guaranteed that c will receive no more signals.
-
 
 
 

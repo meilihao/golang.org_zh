@@ -54,6 +54,12 @@ and return a formatting error, for instance due to an incorrect AST.
 
 
 <a id="example_Node">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Source">func</a> [Source](https://golang.org/src/go/format/format.go?s=3141:3180#L81)
 <pre>func Source(src []<a href="/pkg/builtin/#byte">byte</a>) ([]<a href="/pkg/builtin/#byte">byte</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
@@ -65,7 +71,6 @@ If src is a partial source file, the leading and trailing space of src
 is applied to the result (such that it has the same leading and trailing
 space as src), and the result is indented by the same amount as the first
 line of src containing code. Imports are not sorted for partial source files.
-
 
 
 

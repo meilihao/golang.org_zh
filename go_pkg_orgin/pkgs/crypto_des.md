@@ -54,6 +54,12 @@ NewTripleDESCipher creates and returns a new cipher.Block.
 
 
 <a id="example_NewTripleDESCipher">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -73,7 +79,6 @@ NewTripleDESCipher creates and returns a new cipher.Block.
 
 ### <a id="KeySizeError.Error">func</a> (KeySizeError) [Error](https://golang.org/src/crypto/des/cipher.go?s=334:370#L9)
 <pre>func (k <a href="#KeySizeError">KeySizeError</a>) Error() <a href="/pkg/builtin/#string">string</a></pre>
-
 
 
 

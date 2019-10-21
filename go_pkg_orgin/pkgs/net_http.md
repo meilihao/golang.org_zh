@@ -558,6 +558,12 @@ The documentation for ServeMux explains how patterns are matched.
 
 
 <a id="example_Handle">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="HandleFunc">func</a> [HandleFunc](https://golang.org/src/net/http/server.go?s=75575:75646#L2441)
 <pre>func HandleFunc(pattern <a href="/pkg/builtin/#string">string</a>, handler func(<a href="#ResponseWriter">ResponseWriter</a>, *<a href="#Request">Request</a>))</pre>
@@ -567,6 +573,12 @@ The documentation for ServeMux explains how patterns are matched.
 
 
 <a id="example_HandleFunc">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ListenAndServe">func</a> [ListenAndServe](https://golang.org/src/net/http/server.go?s=96333:96388#L3068)
 <pre>func ListenAndServe(addr <a href="/pkg/builtin/#string">string</a>, handler <a href="#Handler">Handler</a>) <a href="/pkg/builtin/#error">error</a></pre>
@@ -580,6 +592,12 @@ ListenAndServe always returns a non-nil error.
 
 
 <a id="example_ListenAndServe">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ListenAndServeTLS">func</a> [ListenAndServeTLS](https://golang.org/src/net/http/server.go?s=96861:96938#L3078)
 <pre>func ListenAndServeTLS(addr, certFile, keyFile <a href="/pkg/builtin/#string">string</a>, handler <a href="#Handler">Handler</a>) <a href="/pkg/builtin/#error">error</a></pre>
@@ -591,6 +609,12 @@ of the server's certificate, any intermediates, and the CA's certificate.
 
 
 <a id="example_ListenAndServeTLS">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="MaxBytesReader">func</a> [MaxBytesReader](https://golang.org/src/net/http/request.go?s=36495:36572#L1100)
 <pre>func MaxBytesReader(w <a href="#ResponseWriter">ResponseWriter</a>, r <a href="/pkg/io/">io</a>.<a href="/pkg/io/#ReadCloser">ReadCloser</a>, n <a href="/pkg/builtin/#int64">int64</a>) <a href="/pkg/io/">io</a>.<a href="/pkg/io/#ReadCloser">ReadCloser</a></pre>
@@ -1348,8 +1372,26 @@ ending in "/index.html" to the same path, without the final
 
 
 <a id="example_FileServer">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <a id="example_FileServer_dotFileHiding">Example (DotFileHiding)</a>
+```go
+```
+
+output:
+```txt
+```
 <a id="example_FileServer_stripPrefix">Example (StripPrefix)</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="NotFoundHandler">func</a> [NotFoundHandler](https://golang.org/src/net/http/server.go?s=62410:62440#L2018)
@@ -1359,6 +1401,12 @@ that replies to each request with a ``404 page not found'' reply.
 
 
 <a id="example_NotFoundHandler">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="RedirectHandler">func</a> [RedirectHandler](https://golang.org/src/net/http/server.go?s=66181:66231#L2143)
@@ -1383,6 +1431,12 @@ replying with an HTTP 404 not found error.
 
 
 <a id="example_StripPrefix">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="TimeoutHandler">func</a> [TimeoutHandler](https://golang.org/src/net/http/server.go?s=100317:100385#L3172)
@@ -1551,6 +1605,12 @@ should always test for this ability at runtime.
 
 
 <a id="example_Hijacker">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -2305,6 +2365,12 @@ DefaultClient.Do.
 
 
 <a id="example_Get">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Head">func</a> [Head](https://golang.org/src/net/http/client.go?s=26703:26752#L805)
@@ -2500,6 +2566,12 @@ has returned.
 
 
 <a id="example_ResponseWriter_trailers">Example (Trailers)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>HTTP Trailers are a set of key/value pairs like headers that come
 after the HTTP response, instead of before.
 </p>
@@ -2689,6 +2761,12 @@ If a handler already exists for pattern, Handle panics.
 
 
 <a id="example_ServeMux_Handle">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="ServeMux.HandleFunc">func</a> (\*ServeMux) [HandleFunc](https://golang.org/src/net/http/server.go?s=74982:75069#L2426)
@@ -2961,6 +3039,12 @@ future calls to methods such as Serve will return ErrServerClosed.
 
 
 <a id="example_Server_Shutdown">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ## <a id="Transport">type</a> [Transport](https://golang.org/src/net/http/transport.go?s=3397:10477#L85)
@@ -3218,7 +3302,6 @@ and redirects), see Get, Post, and the Client type.
 
 Like the RoundTripper interface, the error types returned
 by RoundTrip are unspecified.
-
 
 
 

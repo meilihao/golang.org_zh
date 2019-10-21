@@ -14,6 +14,12 @@ Unicode code points.
 
 
 <a id="example__is">Example (Is)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>Functions starting with &#34;Is&#34; can be used to inspect which table of range a
 rune belongs to. Note that runes may fit into more than one range.
 </p>
@@ -745,6 +751,12 @@ For example:
 
 
 <a id="example_SimpleFold">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="To">func</a> [To](https://golang.org/src/unicode/letter.go?s=7094:7125#L234)
 <pre>func To(_case <a href="/pkg/builtin/#int">int</a>, r <a href="/pkg/builtin/#rune">rune</a>) <a href="/pkg/builtin/#rune">rune</a></pre>
@@ -752,6 +764,12 @@ To maps the rune to the specified case: UpperCase, LowerCase, or TitleCase.
 
 
 <a id="example_To">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ToLower">func</a> [ToLower](https://golang.org/src/unicode/letter.go?s=7394:7419#L251)
 <pre>func ToLower(r <a href="/pkg/builtin/#rune">rune</a>) <a href="/pkg/builtin/#rune">rune</a></pre>
@@ -759,6 +777,12 @@ ToLower maps the rune to lower case.
 
 
 <a id="example_ToLower">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ToTitle">func</a> [ToTitle](https://golang.org/src/unicode/letter.go?s=7574:7599#L262)
 <pre>func ToTitle(r <a href="/pkg/builtin/#rune">rune</a>) <a href="/pkg/builtin/#rune">rune</a></pre>
@@ -766,6 +790,12 @@ ToTitle maps the rune to title case.
 
 
 <a id="example_ToTitle">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ToUpper">func</a> [ToUpper](https://golang.org/src/unicode/letter.go?s=7214:7239#L240)
 <pre>func ToUpper(r <a href="/pkg/builtin/#rune">rune</a>) <a href="/pkg/builtin/#rune">rune</a></pre>
@@ -773,6 +803,12 @@ ToUpper maps the rune to upper case.
 
 
 <a id="example_ToUpper">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -895,6 +931,12 @@ Methods of SpecialCase customize (by overriding) the standard mappings.
 <pre>var <span id="TurkishCase">TurkishCase</span> <a href="#SpecialCase">SpecialCase</a> = _TurkishCase</pre>
 
 <a id="example_SpecialCase">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -918,7 +960,6 @@ ToTitle maps the rune to title case giving priority to the special mapping.
 ### <a id="SpecialCase.ToUpper">func</a> (SpecialCase) [ToUpper](https://golang.org/src/unicode/letter.go?s=7831:7878#L273)
 <pre>func (special <a href="#SpecialCase">SpecialCase</a>) ToUpper(r <a href="/pkg/builtin/#rune">rune</a>) <a href="/pkg/builtin/#rune">rune</a></pre>
 ToUpper maps the rune to upper case giving priority to the special mapping.
-
 
 
 

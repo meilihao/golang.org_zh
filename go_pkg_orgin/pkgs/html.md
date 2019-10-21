@@ -41,6 +41,12 @@ always true.
 
 
 <a id="example_EscapeString">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="UnescapeString">func</a> [UnescapeString](https://golang.org/src/html/escape.go?s=4699:4735#L177)
 <pre>func UnescapeString(s <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
@@ -52,7 +58,12 @@ always true.
 
 
 <a id="example_UnescapeString">Example</a>
+```go
+```
 
+output:
+```txt
+```
 
 
 

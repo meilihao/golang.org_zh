@@ -17,6 +17,12 @@ including those produced by GNU and BSD tar tools.
 
 
 <a id="example__minimal">Example (Minimal)</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ## <a id="pkg-index">Index</a>
@@ -434,7 +440,6 @@ WriteHeader writes hdr and prepares to accept the file's contents.
 The Header.Size determines how many bytes can be written for the next file.
 If the current file is not fully written, then this returns an error.
 This implicitly flushes any padding necessary before writing the header.
-
 
 
 

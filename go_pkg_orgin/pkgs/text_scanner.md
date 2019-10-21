@@ -21,9 +21,33 @@ different identifier and white space characters.
 
 
 <a id="example_">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <a id="example__isIdentRune">Example (IsIdentRune)</a>
+```go
+```
+
+output:
+```txt
+```
 <a id="example__mode">Example (Mode)</a>
+```go
+```
+
+output:
+```txt
+```
 <a id="example__whitespace">Example (Whitespace)</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ## <a id="pkg-index">Index</a>
@@ -251,7 +275,6 @@ message to os.Stderr.
 <pre>func (s *<a href="#Scanner">Scanner</a>) TokenText() <a href="/pkg/builtin/#string">string</a></pre>
 TokenText returns the string corresponding to the most recently scanned token.
 Valid after calling Scan and in calls of Scanner.Error.
-
 
 
 

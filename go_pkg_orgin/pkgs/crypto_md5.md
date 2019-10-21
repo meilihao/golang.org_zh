@@ -51,7 +51,19 @@ marshal and unmarshal the internal state of the hash.
 
 
 <a id="example_New">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <a id="example_New_file">Example (File)</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Sum">func</a> [Sum](https://golang.org/src/crypto/md5/md5.go?s=4513:4545#L180)
 <pre>func Sum(data []<a href="/pkg/builtin/#byte">byte</a>) [<a href="#Size">Size</a>]<a href="/pkg/builtin/#byte">byte</a></pre>
@@ -59,7 +71,12 @@ Sum returns the MD5 checksum of the data.
 
 
 <a id="example_Sum">Example</a>
+```go
+```
 
+output:
+```txt
+```
 
 
 

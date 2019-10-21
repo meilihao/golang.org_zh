@@ -289,11 +289,29 @@ See "Gobs of data" for a design discussion of the gob wire format:
 
 
 <a id="example__basic">Example (Basic)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>This example shows the basic usage of the package: Create an encoder,
 transmit some values, receive them with a decoder.
 </p><a id="example__encodeDecode">Example (EncodeDecode)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>This example transmits a value that implements the custom encoding and decoding methods.
 </p><a id="example__interface">Example (Interface)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>This example shows how to encode an interface value. The key
 distinction from regular types is to register the concrete type that
 implements the interface.
@@ -519,7 +537,6 @@ to include a version number in the encoding.
     <span class="comment">// concrete type.</span>
     GobEncode() ([]<a href="/pkg/builtin/#byte">byte</a>, <a href="/pkg/builtin/#error">error</a>)
 }</pre>
-
 
 
 

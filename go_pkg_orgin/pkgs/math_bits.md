@@ -176,6 +176,12 @@ LeadingZeros16 returns the number of leading zero bits in x; the result is 16 fo
 
 
 <a id="example_LeadingZeros16">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="LeadingZeros32">func</a> [LeadingZeros32](https://golang.org/src/math/bits/bits.go?s=1027:1060#L18)
 <pre>func LeadingZeros32(x <a href="/pkg/builtin/#uint32">uint32</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -183,6 +189,12 @@ LeadingZeros32 returns the number of leading zero bits in x; the result is 32 fo
 
 
 <a id="example_LeadingZeros32">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="LeadingZeros64">func</a> [LeadingZeros64](https://golang.org/src/math/bits/bits.go?s=1180:1213#L21)
 <pre>func LeadingZeros64(x <a href="/pkg/builtin/#uint64">uint64</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -190,6 +202,12 @@ LeadingZeros64 returns the number of leading zero bits in x; the result is 64 fo
 
 
 <a id="example_LeadingZeros64">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="LeadingZeros8">func</a> [LeadingZeros8](https://golang.org/src/math/bits/bits.go?s=725:756#L12)
 <pre>func LeadingZeros8(x <a href="/pkg/builtin/#uint8">uint8</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -197,6 +215,12 @@ LeadingZeros8 returns the number of leading zero bits in x; the result is 8 for 
 
 
 <a id="example_LeadingZeros8">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Len">func</a> [Len](https://golang.org/src/math/bits/bits.go?s=9325:9345#L286)
 <pre>func Len(x <a href="/pkg/builtin/#uint">uint</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -210,6 +234,12 @@ Len16 returns the minimum number of bits required to represent x; the result is 
 
 
 <a id="example_Len16">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Len32">func</a> [Len32](https://golang.org/src/math/bits/bits.go?s=9867:9895#L308)
 <pre>func Len32(x <a href="/pkg/builtin/#uint32">uint32</a>) (n <a href="/pkg/builtin/#int">int</a>)</pre>
@@ -217,6 +247,12 @@ Len32 returns the minimum number of bits required to represent x; the result is 
 
 
 <a id="example_Len32">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Len64">func</a> [Len64](https://golang.org/src/math/bits/bits.go?s=10104:10132#L321)
 <pre>func Len64(x <a href="/pkg/builtin/#uint64">uint64</a>) (n <a href="/pkg/builtin/#int">int</a>)</pre>
@@ -224,6 +260,12 @@ Len64 returns the minimum number of bits required to represent x; the result is 
 
 
 <a id="example_Len64">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Len8">func</a> [Len8](https://golang.org/src/math/bits/bits.go?s=9522:9544#L294)
 <pre>func Len8(x <a href="/pkg/builtin/#uint8">uint8</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -231,6 +273,12 @@ Len8 returns the minimum number of bits required to represent x; the result is 0
 
 
 <a id="example_Len8">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Mul">func</a> [Mul](https://golang.org/src/math/bits/bits.go?s=13808:13841#L429)
 <pre>func Mul(x, y <a href="/pkg/builtin/#uint">uint</a>) (hi, lo <a href="/pkg/builtin/#uint">uint</a>)</pre>
@@ -268,6 +316,12 @@ OnesCount returns the number of one bits ("population count") in x.
 
 
 <a id="example_OnesCount">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="OnesCount16">func</a> [OnesCount16](https://golang.org/src/math/bits/bits.go?s=4230:4260#L114)
 <pre>func OnesCount16(x <a href="/pkg/builtin/#uint16">uint16</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -275,6 +329,12 @@ OnesCount16 returns the number of one bits ("population count") in x.
 
 
 <a id="example_OnesCount16">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="OnesCount32">func</a> [OnesCount32](https://golang.org/src/math/bits/bits.go?s=4384:4414#L119)
 <pre>func OnesCount32(x <a href="/pkg/builtin/#uint32">uint32</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -282,6 +342,12 @@ OnesCount32 returns the number of one bits ("population count") in x.
 
 
 <a id="example_OnesCount32">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="OnesCount64">func</a> [OnesCount64](https://golang.org/src/math/bits/bits.go?s=4582:4612#L124)
 <pre>func OnesCount64(x <a href="/pkg/builtin/#uint64">uint64</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -289,6 +355,12 @@ OnesCount64 returns the number of one bits ("population count") in x.
 
 
 <a id="example_OnesCount64">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="OnesCount8">func</a> [OnesCount8](https://golang.org/src/math/bits/bits.go?s=4099:4127#L109)
 <pre>func OnesCount8(x <a href="/pkg/builtin/#uint8">uint8</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -296,6 +368,12 @@ OnesCount8 returns the number of one bits ("population count") in x.
 
 
 <a id="example_OnesCount8">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Reverse">func</a> [Reverse](https://golang.org/src/math/bits/bits.go?s=7247:7272#L210)
 <pre>func Reverse(x <a href="/pkg/builtin/#uint">uint</a>) <a href="/pkg/builtin/#uint">uint</a></pre>
@@ -309,6 +387,12 @@ Reverse16 returns the value of x with its bits in reversed order.
 
 
 <a id="example_Reverse16">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Reverse32">func</a> [Reverse32](https://golang.org/src/math/bits/bits.go?s=7728:7759#L228)
 <pre>func Reverse32(x <a href="/pkg/builtin/#uint32">uint32</a>) <a href="/pkg/builtin/#uint32">uint32</a></pre>
@@ -316,6 +400,12 @@ Reverse32 returns the value of x with its bits in reversed order.
 
 
 <a id="example_Reverse32">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Reverse64">func</a> [Reverse64](https://golang.org/src/math/bits/bits.go?s=7974:8005#L237)
 <pre>func Reverse64(x <a href="/pkg/builtin/#uint64">uint64</a>) <a href="/pkg/builtin/#uint64">uint64</a></pre>
@@ -323,6 +413,12 @@ Reverse64 returns the value of x with its bits in reversed order.
 
 
 <a id="example_Reverse64">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Reverse8">func</a> [Reverse8](https://golang.org/src/math/bits/bits.go?s=7441:7469#L218)
 <pre>func Reverse8(x <a href="/pkg/builtin/#uint8">uint8</a>) <a href="/pkg/builtin/#uint8">uint8</a></pre>
@@ -330,6 +426,12 @@ Reverse8 returns the value of x with its bits in reversed order.
 
 
 <a id="example_Reverse8">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ReverseBytes">func</a> [ReverseBytes](https://golang.org/src/math/bits/bits.go?s=8317:8347#L250)
 <pre>func ReverseBytes(x <a href="/pkg/builtin/#uint">uint</a>) <a href="/pkg/builtin/#uint">uint</a></pre>
@@ -347,6 +449,12 @@ This function's execution time does not depend on the inputs.
 
 
 <a id="example_ReverseBytes16">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ReverseBytes32">func</a> [ReverseBytes32](https://golang.org/src/math/bits/bits.go?s=8806:8842#L267)
 <pre>func ReverseBytes32(x <a href="/pkg/builtin/#uint32">uint32</a>) <a href="/pkg/builtin/#uint32">uint32</a></pre>
@@ -356,6 +464,12 @@ This function's execution time does not depend on the inputs.
 
 
 <a id="example_ReverseBytes32">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ReverseBytes64">func</a> [ReverseBytes64](https://golang.org/src/math/bits/bits.go?s=9065:9101#L276)
 <pre>func ReverseBytes64(x <a href="/pkg/builtin/#uint64">uint64</a>) <a href="/pkg/builtin/#uint64">uint64</a></pre>
@@ -365,6 +479,12 @@ This function's execution time does not depend on the inputs.
 
 
 <a id="example_ReverseBytes64">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="RotateLeft">func</a> [RotateLeft](https://golang.org/src/math/bits/bits.go?s=5791:5826#L160)
 <pre>func RotateLeft(x <a href="/pkg/builtin/#uint">uint</a>, k <a href="/pkg/builtin/#int">int</a>) <a href="/pkg/builtin/#uint">uint</a></pre>
@@ -384,6 +504,12 @@ This function's execution time does not depend on the inputs.
 
 
 <a id="example_RotateLeft16">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="RotateLeft32">func</a> [RotateLeft32](https://golang.org/src/math/bits/bits.go?s=6744:6785#L191)
 <pre>func RotateLeft32(x <a href="/pkg/builtin/#uint32">uint32</a>, k <a href="/pkg/builtin/#int">int</a>) <a href="/pkg/builtin/#uint32">uint32</a></pre>
@@ -394,6 +520,12 @@ This function's execution time does not depend on the inputs.
 
 
 <a id="example_RotateLeft32">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="RotateLeft64">func</a> [RotateLeft64](https://golang.org/src/math/bits/bits.go?s=7051:7092#L201)
 <pre>func RotateLeft64(x <a href="/pkg/builtin/#uint64">uint64</a>, k <a href="/pkg/builtin/#int">int</a>) <a href="/pkg/builtin/#uint64">uint64</a></pre>
@@ -404,6 +536,12 @@ This function's execution time does not depend on the inputs.
 
 
 <a id="example_RotateLeft64">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="RotateLeft8">func</a> [RotateLeft8](https://golang.org/src/math/bits/bits.go?s=6134:6172#L171)
 <pre>func RotateLeft8(x <a href="/pkg/builtin/#uint8">uint8</a>, k <a href="/pkg/builtin/#int">int</a>) <a href="/pkg/builtin/#uint8">uint8</a></pre>
@@ -414,6 +552,12 @@ This function's execution time does not depend on the inputs.
 
 
 <a id="example_RotateLeft8">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Sub">func</a> [Sub](https://golang.org/src/math/bits/bits.go?s=12171:12221#L386)
 <pre>func Sub(x, y, borrow <a href="/pkg/builtin/#uint">uint</a>) (diff, borrowOut <a href="/pkg/builtin/#uint">uint</a>)</pre>
@@ -457,6 +601,12 @@ TrailingZeros16 returns the number of trailing zero bits in x; the result is 16 
 
 
 <a id="example_TrailingZeros16">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="TrailingZeros32">func</a> [TrailingZeros32](https://golang.org/src/math/bits/bits.go?s=2568:2602#L65)
 <pre>func TrailingZeros32(x <a href="/pkg/builtin/#uint32">uint32</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -464,6 +614,12 @@ TrailingZeros32 returns the number of trailing zero bits in x; the result is 32 
 
 
 <a id="example_TrailingZeros32">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="TrailingZeros64">func</a> [TrailingZeros64](https://golang.org/src/math/bits/bits.go?s=2820:2854#L74)
 <pre>func TrailingZeros64(x <a href="/pkg/builtin/#uint64">uint64</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -471,6 +627,12 @@ TrailingZeros64 returns the number of trailing zero bits in x; the result is 64 
 
 
 <a id="example_TrailingZeros64">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="TrailingZeros8">func</a> [TrailingZeros8](https://golang.org/src/math/bits/bits.go?s=2153:2185#L51)
 <pre>func TrailingZeros8(x <a href="/pkg/builtin/#uint8">uint8</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -478,7 +640,12 @@ TrailingZeros8 returns the number of trailing zero bits in x; the result is 8 fo
 
 
 <a id="example_TrailingZeros8">Example</a>
+```go
+```
 
+output:
+```txt
+```
 
 
 

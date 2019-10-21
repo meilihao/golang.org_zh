@@ -87,6 +87,12 @@ If the buffer is too small, PutUvarint will panic.
 
 
 <a id="example_PutUvarint">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="PutVarint">func</a> [PutVarint](https://golang.org/src/encoding/binary/varint.go?s=2477:2516#L68)
 <pre>func PutVarint(buf []<a href="/pkg/builtin/#byte">byte</a>, x <a href="/pkg/builtin/#int64">int64</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -95,6 +101,12 @@ If the buffer is too small, PutVarint will panic.
 
 
 <a id="example_PutVarint">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Read">func</a> [Read](https://golang.org/src/encoding/binary/binary.go?s=5180:5243#L151)
 <pre>func Read(r <a href="/pkg/io/">io</a>.<a href="/pkg/io/#Reader">Reader</a>, order <a href="#ByteOrder">ByteOrder</a>, data interface{}) <a href="/pkg/builtin/#error">error</a></pre>
@@ -117,7 +129,19 @@ Read returns ErrUnexpectedEOF.
 
 
 <a id="example_Read">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <a id="example_Read_multi">Example (Multi)</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ReadUvarint">func</a> [ReadUvarint](https://golang.org/src/encoding/binary/varint.go?s=3248:3297#L96)
 <pre>func ReadUvarint(r <a href="/pkg/io/">io</a>.<a href="/pkg/io/#ByteReader">ByteReader</a>) (<a href="/pkg/builtin/#uint64">uint64</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
@@ -152,6 +176,12 @@ and the number of bytes n is <= 0 meaning:
 
 
 <a id="example_Uvarint">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Varint">func</a> [Varint](https://golang.org/src/encoding/binary/varint.go?s=2926:2962#L84)
 <pre>func Varint(buf []<a href="/pkg/builtin/#byte">byte</a>) (<a href="/pkg/builtin/#int64">int64</a>, <a href="/pkg/builtin/#int">int</a>)</pre>
@@ -166,6 +196,12 @@ and the number of bytes n is <= 0 with the following meaning:
 
 
 <a id="example_Varint">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Write">func</a> [Write](https://golang.org/src/encoding/binary/binary.go?s=7469:7533#L244)
 <pre>func Write(w <a href="/pkg/io/">io</a>.<a href="/pkg/io/#Writer">Writer</a>, order <a href="#ByteOrder">ByteOrder</a>, data interface{}) <a href="/pkg/builtin/#error">error</a></pre>
@@ -180,7 +216,19 @@ with blank (_) field names.
 
 
 <a id="example_Write">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <a id="example_Write_multi">Example (Multi)</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -204,8 +252,19 @@ A ByteOrder specifies how to convert byte sequences into
 
 
 <a id="example_ByteOrder_get">Example (Get)</a>
-<a id="example_ByteOrder_put">Example (Put)</a>
+```go
+```
 
+output:
+```txt
+```
+<a id="example_ByteOrder_put">Example (Put)</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 

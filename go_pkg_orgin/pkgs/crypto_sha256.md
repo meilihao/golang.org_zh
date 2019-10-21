@@ -55,7 +55,19 @@ state of the hash.
 
 
 <a id="example_New">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <a id="example_New_file">Example (File)</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="New224">func</a> [New224](https://golang.org/src/crypto/sha256/sha256.go?s=3951:3974#L158)
 <pre>func New224() <a href="/pkg/hash/">hash</a>.<a href="/pkg/hash/#Hash">Hash</a></pre>
@@ -75,7 +87,12 @@ Sum256 returns the SHA256 checksum of the data.
 
 
 <a id="example_Sum256">Example</a>
+```go
+```
 
+output:
+```txt
+```
 
 
 

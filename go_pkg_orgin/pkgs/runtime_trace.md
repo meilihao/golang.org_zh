@@ -115,6 +115,12 @@ latency distributions for each task type found in the trace.
 
 
 <a id="example_">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <p>Example demonstrates the use of the trace package to trace
 the execution of a Go program. The trace output will be
 written to the file trace.out
@@ -290,7 +296,6 @@ call is used in the latency measurement.
 ### <a id="Task.End">func</a> (\*Task) [End](https://golang.org/src/runtime/trace/annotation.go?s=2453:2473#L65)
 <pre>func (t *<a href="#Task">Task</a>) End()</pre>
 End marks the end of the operation represented by the Task.
-
 
 
 

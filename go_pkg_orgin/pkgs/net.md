@@ -449,6 +449,12 @@ For example, ParseCIDR("192.0.2.1/24") returns the IP address
 
 
 <a id="example_ParseCIDR">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Pipe">func</a> [Pipe](https://golang.org/src/net/pipe.go?s=2871:2895#L108)
 <pre>func Pipe() (<a href="#Conn">Conn</a>, <a href="#Conn">Conn</a>)</pre>
@@ -1059,6 +1065,12 @@ IPv4 address a.b.c.d.
 
 
 <a id="example_IPv4">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="LookupIP">func</a> [LookupIP](https://golang.org/src/net/lookup.go?s=6178:6218#L180)
@@ -1079,6 +1091,12 @@ ParseIP returns nil.
 
 
 <a id="example_ParseIP">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -1091,6 +1109,12 @@ nil if ip is not a valid IPv4 address.
 
 
 <a id="example_IP_DefaultMask">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="IP.Equal">func</a> (IP) [Equal](https://golang.org/src/net/ip.go?s=10028:10057#L397)
@@ -1177,6 +1201,12 @@ Mask returns the result of masking the IP address ip with mask.
 
 
 <a id="example_IP_Mask">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="IP.String">func</a> (IP) [String](https://golang.org/src/net/ip.go?s=7520:7548#L278)
@@ -1486,6 +1516,12 @@ For a mask of this form, CIDRMask is the inverse of IPMask.Size.
 
 
 <a id="example_CIDRMask">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="IPv4Mask">func</a> [IPv4Mask](https://golang.org/src/net/ip.go?s=1499:1536#L49)
@@ -1495,6 +1531,12 @@ IPv4 mask a.b.c.d.
 
 
 <a id="example_IPv4Mask">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -1732,6 +1774,12 @@ Multiple goroutines may invoke methods on a Listener simultaneously.
 
 
 <a id="example_Listener">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -2815,6 +2863,12 @@ WriteTo implements the PacketConn WriteTo method.
 
 
 <a id="example_UDPConn_WriteTo">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="UDPConn.WriteToUDP">func</a> (\*UDPConn) [WriteToUDP](https://golang.org/src/net/udpsock.go?s=4113:4179#L140)
@@ -3211,7 +3265,6 @@ Write return an error.
 
 ### <a id="UnknownNetworkError.Timeout">func</a> (UnknownNetworkError) [Timeout](https://golang.org/src/net/net.go?s=17215:17258#L550)
 <pre>func (e <a href="#UnknownNetworkError">UnknownNetworkError</a>) Timeout() <a href="/pkg/builtin/#bool">bool</a></pre>
-
 
 
 

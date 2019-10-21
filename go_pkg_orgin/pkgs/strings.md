@@ -158,6 +158,12 @@ string comparison operators ==, <, >, and so on.
 
 
 <a id="example_Compare">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Contains">func</a> [Contains](https://golang.org/src/strings/strings.go?s=2326:2362#L88)
 <pre>func Contains(s, substr <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#bool">bool</a></pre>
@@ -165,6 +171,12 @@ Contains reports whether substr is within s.
 
 
 <a id="example_Contains">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ContainsAny">func</a> [ContainsAny](https://golang.org/src/strings/strings.go?s=2476:2514#L93)
 <pre>func ContainsAny(s, chars <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#bool">bool</a></pre>
@@ -172,6 +184,12 @@ ContainsAny reports whether any Unicode code points in chars are within s.
 
 
 <a id="example_ContainsAny">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ContainsRune">func</a> [ContainsRune](https://golang.org/src/strings/strings.go?s=2622:2662#L98)
 <pre>func ContainsRune(s <a href="/pkg/builtin/#string">string</a>, r <a href="/pkg/builtin/#rune">rune</a>) <a href="/pkg/builtin/#bool">bool</a></pre>
@@ -179,6 +197,12 @@ ContainsRune reports whether the Unicode code point r is within s.
 
 
 <a id="example_ContainsRune">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Count">func</a> [Count](https://golang.org/src/strings/strings.go?s=1986:2018#L68)
 <pre>func Count(s, substr <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -187,6 +211,12 @@ If substr is an empty string, Count returns 1 + the number of Unicode code point
 
 
 <a id="example_Count">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="EqualFold">func</a> [EqualFold](https://golang.org/src/strings/strings.go?s=24676:24708#L963)
 <pre>func EqualFold(s, t <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#bool">bool</a></pre>
@@ -195,6 +225,12 @@ are equal under Unicode case-folding.
 
 
 <a id="example_EqualFold">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Fields">func</a> [Fields](https://golang.org/src/strings/strings.go?s=8396:8426#L319)
 <pre>func Fields(s <a href="/pkg/builtin/#string">string</a>) []<a href="/pkg/builtin/#string">string</a></pre>
@@ -204,6 +240,12 @@ empty slice if s contains only white space.
 
 
 <a id="example_Fields">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="FieldsFunc">func</a> [FieldsFunc](https://golang.org/src/strings/strings.go?s=9792:9845#L373)
 <pre>func FieldsFunc(s <a href="/pkg/builtin/#string">string</a>, f func(<a href="/pkg/builtin/#rune">rune</a>) <a href="/pkg/builtin/#bool">bool</a>) []<a href="/pkg/builtin/#string">string</a></pre>
@@ -215,6 +257,12 @@ If f does not return consistent results for a given c, FieldsFunc may crash.
 
 
 <a id="example_FieldsFunc">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="HasPrefix">func</a> [HasPrefix](https://golang.org/src/strings/strings.go?s=11153:11190#L438)
 <pre>func HasPrefix(s, prefix <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#bool">bool</a></pre>
@@ -222,6 +270,12 @@ HasPrefix tests whether the string s begins with prefix.
 
 
 <a id="example_HasPrefix">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="HasSuffix">func</a> [HasSuffix](https://golang.org/src/strings/strings.go?s=11314:11351#L443)
 <pre>func HasSuffix(s, suffix <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#bool">bool</a></pre>
@@ -229,6 +283,12 @@ HasSuffix tests whether the string s ends with suffix.
 
 
 <a id="example_HasSuffix">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Index">func</a> [Index](https://golang.org/src/strings/strings.go?s=25852:25884#L1017)
 <pre>func Index(s, substr <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -236,6 +296,12 @@ Index returns the index of the first instance of substr in s, or -1 if substr is
 
 
 <a id="example_Index">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="IndexAny">func</a> [IndexAny](https://golang.org/src/strings/strings.go?s=4328:4362#L168)
 <pre>func IndexAny(s, chars <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -244,6 +310,12 @@ from chars in s, or -1 if no Unicode code point from chars is present in s.
 
 
 <a id="example_IndexAny">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="IndexByte">func</a> [IndexByte](https://golang.org/src/strings/strings.go?s=3564:3600#L140)
 <pre>func IndexByte(s <a href="/pkg/builtin/#string">string</a>, c <a href="/pkg/builtin/#byte">byte</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -251,6 +323,12 @@ IndexByte returns the index of the first instance of c in s, or -1 if c is not p
 
 
 <a id="example_IndexByte">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="IndexFunc">func</a> [IndexFunc](https://golang.org/src/strings/strings.go?s=18737:18784#L752)
 <pre>func IndexFunc(s <a href="/pkg/builtin/#string">string</a>, f func(<a href="/pkg/builtin/#rune">rune</a>) <a href="/pkg/builtin/#bool">bool</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -259,6 +337,12 @@ code point satisfying f(c), or -1 if none do.
 
 
 <a id="example_IndexFunc">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="IndexRune">func</a> [IndexRune](https://golang.org/src/strings/strings.go?s=3860:3896#L148)
 <pre>func IndexRune(s <a href="/pkg/builtin/#string">string</a>, r <a href="/pkg/builtin/#rune">rune</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -269,6 +353,12 @@ invalid UTF-8 byte sequence.
 
 
 <a id="example_IndexRune">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Join">func</a> [Join](https://golang.org/src/strings/strings.go?s=10765:10805#L415)
 <pre>func Join(a []<a href="/pkg/builtin/#string">string</a>, sep <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
@@ -277,6 +367,12 @@ sep is placed between elements in the resulting string.
 
 
 <a id="example_Join">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="LastIndex">func</a> [LastIndex](https://golang.org/src/strings/strings.go?s=2802:2838#L103)
 <pre>func LastIndex(s, substr <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -284,6 +380,12 @@ LastIndex returns the index of the last instance of substr in s, or -1 if substr
 
 
 <a id="example_LastIndex">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="LastIndexAny">func</a> [LastIndexAny](https://golang.org/src/strings/strings.go?s=4869:4907#L196)
 <pre>func LastIndexAny(s, chars <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -293,6 +395,12 @@ present in s.
 
 
 <a id="example_LastIndexAny">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="LastIndexByte">func</a> [LastIndexByte](https://golang.org/src/strings/strings.go?s=5419:5459#L224)
 <pre>func LastIndexByte(s <a href="/pkg/builtin/#string">string</a>, c <a href="/pkg/builtin/#byte">byte</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -300,6 +408,12 @@ LastIndexByte returns the index of the last instance of c in s, or -1 if c is no
 
 
 <a id="example_LastIndexByte">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="LastIndexFunc">func</a> [LastIndexFunc](https://golang.org/src/strings/strings.go?s=18931:18982#L758)
 <pre>func LastIndexFunc(s <a href="/pkg/builtin/#string">string</a>, f func(<a href="/pkg/builtin/#rune">rune</a>) <a href="/pkg/builtin/#bool">bool</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -308,6 +422,12 @@ Unicode code point satisfying f(c), or -1 if none do.
 
 
 <a id="example_LastIndexFunc">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Map">func</a> [Map](https://golang.org/src/strings/strings.go?s=11634:11684#L450)
 <pre>func Map(mapping func(<a href="/pkg/builtin/#rune">rune</a>) <a href="/pkg/builtin/#rune">rune</a>, s <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
@@ -317,6 +437,12 @@ dropped from the string with no replacement.
 
 
 <a id="example_Map">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Repeat">func</a> [Repeat](https://golang.org/src/strings/strings.go?s=12987:13026#L513)
 <pre>func Repeat(s <a href="/pkg/builtin/#string">string</a>, count <a href="/pkg/builtin/#int">int</a>) <a href="/pkg/builtin/#string">string</a></pre>
@@ -327,6 +453,12 @@ the result of (len(s) * count) overflows.
 
 
 <a id="example_Repeat">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Replace">func</a> [Replace](https://golang.org/src/strings/strings.go?s=23551:23597#L918)
 <pre>func Replace(s, old, new <a href="/pkg/builtin/#string">string</a>, n <a href="/pkg/builtin/#int">int</a>) <a href="/pkg/builtin/#string">string</a></pre>
@@ -339,6 +471,12 @@ If n < 0, there is no limit on the number of replacements.
 
 
 <a id="example_Replace">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ReplaceAll">func</a> [ReplaceAll](https://golang.org/src/strings/strings.go?s=24486:24528#L957)
 <pre>func ReplaceAll(s, old, new <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
@@ -350,6 +488,12 @@ for a k-rune string.
 
 
 <a id="example_ReplaceAll">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Split">func</a> [Split](https://golang.org/src/strings/strings.go?s=7505:7539#L298)
 <pre>func Split(s, sep <a href="/pkg/builtin/#string">string</a>) []<a href="/pkg/builtin/#string">string</a></pre>
@@ -366,6 +510,12 @@ It is equivalent to SplitN with a count of -1.
 
 
 <a id="example_Split">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="SplitAfter">func</a> [SplitAfter](https://golang.org/src/strings/strings.go?s=8004:8043#L310)
 <pre>func SplitAfter(s, sep <a href="/pkg/builtin/#string">string</a>) []<a href="/pkg/builtin/#string">string</a></pre>
@@ -382,6 +532,12 @@ It is equivalent to SplitAfterN with a count of -1.
 
 
 <a id="example_SplitAfter">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="SplitAfterN">func</a> [SplitAfterN](https://golang.org/src/strings/strings.go?s=6998:7045#L284)
 <pre>func SplitAfterN(s, sep <a href="/pkg/builtin/#string">string</a>, n <a href="/pkg/builtin/#int">int</a>) []<a href="/pkg/builtin/#string">string</a></pre>
@@ -400,6 +556,12 @@ as described in the documentation for SplitAfter.
 
 
 <a id="example_SplitAfterN">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="SplitN">func</a> [SplitN](https://golang.org/src/strings/strings.go?s=6461:6503#L272)
 <pre>func SplitN(s, sep <a href="/pkg/builtin/#string">string</a>, n <a href="/pkg/builtin/#int">int</a>) []<a href="/pkg/builtin/#string">string</a></pre>
@@ -418,6 +580,12 @@ as described in the documentation for Split.
 
 
 <a id="example_SplitN">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Title">func</a> [Title](https://golang.org/src/strings/strings.go?s=17489:17516#L704)
 <pre>func Title(s <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
@@ -428,6 +596,12 @@ BUG(rsc): The rule Title uses for word boundaries does not handle Unicode punctu
 
 
 <a id="example_Title">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ToLower">func</a> [ToLower](https://golang.org/src/strings/strings.go?s=14252:14281#L574)
 <pre>func ToLower(s <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
@@ -435,6 +609,12 @@ ToLower returns s with all Unicode letters mapped to their lower case.
 
 
 <a id="example_ToLower">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ToLowerSpecial">func</a> [ToLowerSpecial](https://golang.org/src/strings/strings.go?s=15314:15373#L615)
 <pre>func ToLowerSpecial(c <a href="/pkg/unicode/">unicode</a>.<a href="/pkg/unicode/#SpecialCase">SpecialCase</a>, s <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
@@ -443,6 +623,12 @@ lower case using the case mapping specified by c.
 
 
 <a id="example_ToLowerSpecial">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ToTitle">func</a> [ToTitle](https://golang.org/src/strings/strings.go?s=14871:14900#L605)
 <pre>func ToTitle(s <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
@@ -451,6 +637,12 @@ their Unicode title case.
 
 
 <a id="example_ToTitle">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ToTitleSpecial">func</a> [ToTitleSpecial](https://golang.org/src/strings/strings.go?s=15563:15622#L621)
 <pre>func ToTitleSpecial(c <a href="/pkg/unicode/">unicode</a>.<a href="/pkg/unicode/#SpecialCase">SpecialCase</a>, s <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
@@ -459,6 +651,12 @@ Unicode title case, giving priority to the special casing rules.
 
 
 <a id="example_ToTitleSpecial">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ToUpper">func</a> [ToUpper](https://golang.org/src/strings/strings.go?s=13665:13694#L544)
 <pre>func ToUpper(s <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
@@ -466,6 +664,12 @@ ToUpper returns s with all Unicode letters mapped to their upper case.
 
 
 <a id="example_ToUpper">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ToUpperSpecial">func</a> [ToUpperSpecial](https://golang.org/src/strings/strings.go?s=15080:15139#L609)
 <pre>func ToUpperSpecial(c <a href="/pkg/unicode/">unicode</a>.<a href="/pkg/unicode/#SpecialCase">SpecialCase</a>, s <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
@@ -474,6 +678,12 @@ upper case using the case mapping specified by c.
 
 
 <a id="example_ToUpperSpecial">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ToValidUTF8">func</a> [ToValidUTF8](https://golang.org/src/strings/strings.go?s=15805:15851#L627)
 <pre>func ToValidUTF8(s, replacement <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
@@ -489,6 +699,12 @@ trailing Unicode code points contained in cutset removed.
 
 
 <a id="example_Trim">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="TrimFunc">func</a> [TrimFunc](https://golang.org/src/strings/strings.go?s=18529:18578#L746)
 <pre>func TrimFunc(s <a href="/pkg/builtin/#string">string</a>, f func(<a href="/pkg/builtin/#rune">rune</a>) <a href="/pkg/builtin/#bool">bool</a>) <a href="/pkg/builtin/#string">string</a></pre>
@@ -497,6 +713,12 @@ and trailing Unicode code points c satisfying f(c) removed.
 
 
 <a id="example_TrimFunc">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="TrimLeft">func</a> [TrimLeft](https://golang.org/src/strings/strings.go?s=21347:21392#L841)
 <pre>func TrimLeft(s <a href="/pkg/builtin/#string">string</a>, cutset <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
@@ -507,6 +729,12 @@ To remove a prefix, use TrimPrefix instead.
 
 
 <a id="example_TrimLeft">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="TrimLeftFunc">func</a> [TrimLeftFunc](https://golang.org/src/strings/strings.go?s=17938:17991#L723)
 <pre>func TrimLeftFunc(s <a href="/pkg/builtin/#string">string</a>, f func(<a href="/pkg/builtin/#rune">rune</a>) <a href="/pkg/builtin/#bool">bool</a>) <a href="/pkg/builtin/#string">string</a></pre>
@@ -515,6 +743,12 @@ Unicode code points c satisfying f(c) removed.
 
 
 <a id="example_TrimLeftFunc">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="TrimPrefix">func</a> [TrimPrefix](https://golang.org/src/strings/strings.go?s=22869:22909#L896)
 <pre>func TrimPrefix(s, prefix <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
@@ -523,6 +757,12 @@ If s doesn't start with prefix, s is returned unchanged.
 
 
 <a id="example_TrimPrefix">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="TrimRight">func</a> [TrimRight](https://golang.org/src/strings/strings.go?s=21656:21702#L852)
 <pre>func TrimRight(s <a href="/pkg/builtin/#string">string</a>, cutset <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
@@ -533,6 +773,12 @@ To remove a suffix, use TrimSuffix instead.
 
 
 <a id="example_TrimRight">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="TrimRightFunc">func</a> [TrimRightFunc](https://golang.org/src/strings/strings.go?s=18186:18240#L733)
 <pre>func TrimRightFunc(s <a href="/pkg/builtin/#string">string</a>, f func(<a href="/pkg/builtin/#rune">rune</a>) <a href="/pkg/builtin/#bool">bool</a>) <a href="/pkg/builtin/#string">string</a></pre>
@@ -541,6 +787,12 @@ Unicode code points c satisfying f(c) removed.
 
 
 <a id="example_TrimRightFunc">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="TrimSpace">func</a> [TrimSpace](https://golang.org/src/strings/strings.go?s=21924:21955#L861)
 <pre>func TrimSpace(s <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
@@ -549,6 +801,12 @@ and trailing white space removed, as defined by Unicode.
 
 
 <a id="example_TrimSpace">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="TrimSuffix">func</a> [TrimSuffix](https://golang.org/src/strings/strings.go?s=23107:23147#L905)
 <pre>func TrimSuffix(s, suffix <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
@@ -557,6 +815,12 @@ If s doesn't end with suffix, s is returned unchanged.
 
 
 <a id="example_TrimSuffix">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -576,6 +840,12 @@ Do not copy a non-zero Builder.
 
 
 <a id="example_Builder">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -781,6 +1051,12 @@ NewReplacer panics if given an odd number of arguments.
 
 
 <a id="example_NewReplacer">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -795,7 +1071,6 @@ Replace returns a copy of s with all replacements performed.
 ### <a id="Replacer.WriteString">func</a> (\*Replacer) [WriteString](https://golang.org/src/strings/replace.go?s=2655:2727#L91)
 <pre>func (r *<a href="#Replacer">Replacer</a>) WriteString(w <a href="/pkg/io/">io</a>.<a href="/pkg/io/#Writer">Writer</a>, s <a href="/pkg/builtin/#string">string</a>) (n <a href="/pkg/builtin/#int">int</a>, err <a href="/pkg/builtin/#error">error</a>)</pre>
 WriteString writes s to w with all replacements performed.
-
 
 
 

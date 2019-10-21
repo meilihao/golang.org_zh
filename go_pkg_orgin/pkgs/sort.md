@@ -13,13 +13,37 @@ collections.
 
 
 <a id="example_">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <a id="example__sortKeys">Example (SortKeys)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>ExampleSortKeys demonstrates a technique for sorting a struct type using programmable sort criteria.
 </p><a id="example__sortMultiKeys">Example (SortMultiKeys)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>ExampleMultiKeys demonstrates a technique for sorting a struct type using different
 sets of multiple fields in the comparison. We chain together &#34;Less&#34; functions, each of
 which compares a single field.
 </p><a id="example__sortWrapper">Example (SortWrapper)</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ## <a id="pkg-index">Index</a>
@@ -93,6 +117,12 @@ Float64s sorts a slice of float64s in increasing order
 
 
 <a id="example_Float64s">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Float64sAreSorted">func</a> [Float64sAreSorted](https://golang.org/src/sort/sort.go?s=8630:8670#L311)
 <pre>func Float64sAreSorted(a []<a href="/pkg/builtin/#float64">float64</a>) <a href="/pkg/builtin/#bool">bool</a></pre>
@@ -101,6 +131,12 @@ Float64sAreSorted tests whether a slice of float64s is sorted in increasing orde
 
 
 <a id="example_Float64sAreSorted">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Ints">func</a> [Ints](https://golang.org/src/sort/sort.go?s=8010:8028#L297)
 <pre>func Ints(a []<a href="/pkg/builtin/#int">int</a>)</pre>
@@ -108,6 +144,12 @@ Ints sorts a slice of ints in increasing order.
 
 
 <a id="example_Ints">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="IntsAreSorted">func</a> [IntsAreSorted](https://golang.org/src/sort/sort.go?s=8414:8446#L307)
 <pre>func IntsAreSorted(a []<a href="/pkg/builtin/#int">int</a>) <a href="/pkg/builtin/#bool">bool</a></pre>
@@ -115,6 +157,12 @@ IntsAreSorted tests whether a slice of ints is sorted in increasing order.
 
 
 <a id="example_IntsAreSorted">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="IsSorted">func</a> [IsSorted](https://golang.org/src/sort/sort.go?s=6374:6408#L246)
 <pre>func IsSorted(data <a href="#Interface">Interface</a>) <a href="/pkg/builtin/#bool">bool</a></pre>
@@ -178,8 +226,20 @@ As a more whimsical example, this program guesses your number:
 
 
 <a id="example_Search">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <p>This example demonstrates searching a list sorted in ascending order.
 </p><a id="example_Search_descendingOrder">Example (DescendingOrder)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>This example demonstrates searching a list sorted in descending order.
 The approach is the same as searching a list in ascending order,
 but with the condition inverted.
@@ -222,6 +282,12 @@ The function panics if the provided interface is not a slice.
 
 
 <a id="example_Slice">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="SliceIsSorted">func</a> [SliceIsSorted](https://golang.org/src/sort/slice.go?s=1090:1158#L23)
 <pre>func SliceIsSorted(slice interface{}, less func(i, j <a href="/pkg/builtin/#int">int</a>) <a href="/pkg/builtin/#bool">bool</a>) <a href="/pkg/builtin/#bool">bool</a></pre>
@@ -240,6 +306,12 @@ The function panics if the provided interface is not a slice.
 
 
 <a id="example_SliceStable">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Sort">func</a> [Sort](https://golang.org/src/sort/sort.go?s=5416:5441#L206)
 <pre>func Sort(data <a href="#Interface">Interface</a>)</pre>
@@ -264,6 +336,12 @@ Strings sorts a slice of strings in increasing order.
 
 
 <a id="example_Strings">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="StringsAreSorted">func</a> [StringsAreSorted](https://golang.org/src/sort/sort.go?s=8793:8831#L314)
 <pre>func StringsAreSorted(a []<a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#bool">bool</a></pre>
@@ -394,6 +472,12 @@ Reverse returns the reverse order for data.
 
 
 <a id="example_Reverse">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -440,7 +524,6 @@ Sort is a convenience method.
 
 ### <a id="StringSlice.Swap">func</a> (StringSlice) [Swap](https://golang.org/src/sort/sort.go?s=7773:7808#L289)
 <pre>func (p <a href="#StringSlice">StringSlice</a>) Swap(i, j <a href="/pkg/builtin/#int">int</a>)</pre>
-
 
 
 

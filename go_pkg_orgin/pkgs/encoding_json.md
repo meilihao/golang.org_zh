@@ -17,7 +17,19 @@ See "JSON and Go" for an introduction to this package:
 
 
 <a id="example__customMarshalJSON">Example (CustomMarshalJSON)</a>
+```go
+```
+
+output:
+```txt
+```
 <a id="example__textMarshalJSON">Example (TextMarshalJSON)</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ## <a id="pkg-index">Index</a>
@@ -114,6 +126,12 @@ be used.
 
 
 <a id="example_HTMLEscape">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Indent">func</a> [Indent](https://golang.org/src/encoding/json/indent.go?s=2192:2263#L69)
 <pre>func Indent(dst *<a href="/pkg/bytes/">bytes</a>.<a href="/pkg/bytes/#Buffer">Buffer</a>, src []<a href="/pkg/builtin/#byte">byte</a>, prefix, indent <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#error">error</a></pre>
@@ -131,6 +149,12 @@ if src ends in a trailing newline, so will dst.
 
 
 <a id="example_Indent">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Marshal">func</a> [Marshal](https://golang.org/src/encoding/json/encode.go?s=6471:6514#L148)
 <pre>func Marshal(v interface{}) ([]<a href="/pkg/builtin/#byte">byte</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
@@ -270,6 +294,12 @@ an infinite recursion.
 
 
 <a id="example_Marshal">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="MarshalIndent">func</a> [MarshalIndent](https://golang.org/src/encoding/json/encode.go?s=6964:7036#L166)
 <pre>func MarshalIndent(v interface{}, prefix, indent <a href="/pkg/builtin/#string">string</a>) ([]<a href="/pkg/builtin/#byte">byte</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
@@ -279,6 +309,12 @@ followed by one or more copies of indent according to the indentation nesting.
 
 
 <a id="example_MarshalIndent">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Unmarshal">func</a> [Unmarshal](https://golang.org/src/encoding/json/decode.go?s=4043:4091#L85)
 <pre>func Unmarshal(data []<a href="/pkg/builtin/#byte">byte</a>, v interface{}) <a href="/pkg/builtin/#error">error</a></pre>
@@ -358,6 +394,12 @@ character U+FFFD.
 
 
 <a id="example_Unmarshal">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Valid">func</a> [Valid](https://golang.org/src/encoding/json/scanner.go?s=648:676#L9)
 <pre>func Valid(data []<a href="/pkg/builtin/#byte">byte</a>) <a href="/pkg/builtin/#bool">bool</a></pre>
@@ -365,6 +407,12 @@ Valid reports whether data is a valid JSON encoding.
 
 
 <a id="example_Valid">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -382,6 +430,12 @@ A Decoder reads and decodes JSON values from an input stream.
 
 
 <a id="example_Decoder">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <p>This example uses a Decoder to decode a stream of distinct JSON values.
 </p>
 
@@ -417,6 +471,12 @@ the conversion of JSON into a Go value.
 
 
 <a id="example_Decoder_Decode_stream">Example (Stream)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>This example uses a Decoder to decode a streaming array of JSON objects.
 </p>
 
@@ -453,6 +513,12 @@ Commas and colons are elided.
 
 
 <a id="example_Decoder_Token">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <p>This example uses a Decoder to decode a stream of distinct JSON values.
 </p>
 
@@ -697,8 +763,20 @@ be used to delay JSON decoding or precompute a JSON encoding.
 
 
 <a id="example_RawMessage_marshal">Example (Marshal)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>This example uses RawMessage to use a precomputed JSON during marshal.
 </p><a id="example_RawMessage_unmarshal">Example (Unmarshal)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>This example uses RawMessage to delay parsing part of a JSON message.
 </p>
 
@@ -897,7 +975,6 @@ to encode an unsupported value type.
 
 ### <a id="UnsupportedValueError.Error">func</a> (\*UnsupportedValueError) [Error](https://golang.org/src/encoding/json/encode.go?s=8826:8872#L235)
 <pre>func (e *<a href="#UnsupportedValueError">UnsupportedValueError</a>) Error() <a href="/pkg/builtin/#string">string</a></pre>
-
 
 
 

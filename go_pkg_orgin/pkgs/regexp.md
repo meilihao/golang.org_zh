@@ -79,6 +79,12 @@ before returning.
 
 
 <a id="example_">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ## <a id="pkg-index">Index</a>
@@ -173,6 +179,12 @@ More complicated queries need to use Compile and the full Regexp interface.
 
 
 <a id="example_Match">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="MatchReader">func</a> [MatchReader](https://golang.org/src/regexp/regexp.go?s=16022:16097#L509)
 <pre>func MatchReader(pattern <a href="/pkg/builtin/#string">string</a>, r <a href="/pkg/io/">io</a>.<a href="/pkg/io/#RuneReader">RuneReader</a>) (matched <a href="/pkg/builtin/#bool">bool</a>, err <a href="/pkg/builtin/#error">error</a>)</pre>
@@ -190,6 +202,12 @@ More complicated queries need to use Compile and the full Regexp interface.
 
 
 <a id="example_MatchString">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="QuoteMeta">func</a> [QuoteMeta](https://golang.org/src/regexp/regexp.go?s=21972:22003#L692)
 <pre>func QuoteMeta(s <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
@@ -199,6 +217,12 @@ the literal text.
 
 
 <a id="example_QuoteMeta">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -318,6 +342,12 @@ To insert a literal $ in the output, use $$ in the template.
 
 
 <a id="example_Regexp_Expand">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Regexp.ExpandString">func</a> (\*Regexp) [ExpandString](https://golang.org/src/regexp/regexp.go?s=27839:27930#L891)
@@ -328,6 +358,12 @@ code control over allocation.
 
 
 <a id="example_Regexp_ExpandString">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Regexp.Find">func</a> (\*Regexp) [Find](https://golang.org/src/regexp/regexp.go?s=24085:24124#L787)
@@ -337,6 +373,12 @@ A return value of nil indicates no match.
 
 
 <a id="example_Regexp_Find">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Regexp.FindAll">func</a> (\*Regexp) [FindAll](https://golang.org/src/regexp/regexp.go?s=32389:32440#L1048)
@@ -348,6 +390,12 @@ A return value of nil indicates no match.
 
 
 <a id="example_Regexp_FindAll">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Regexp.FindAllIndex">func</a> (\*Regexp) [FindAllIndex](https://golang.org/src/regexp/regexp.go?s=32912:32967#L1066)
@@ -369,6 +417,12 @@ A return value of nil indicates no match.
 
 
 <a id="example_Regexp_FindAllString">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Regexp.FindAllStringIndex">func</a> (\*Regexp) [FindAllStringIndex](https://golang.org/src/regexp/regexp.go?s=33953:34014#L1102)
@@ -390,6 +444,12 @@ A return value of nil indicates no match.
 
 
 <a id="example_Regexp_FindAllStringSubmatch">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Regexp.FindAllStringSubmatchIndex">func</a> (\*Regexp) [FindAllStringSubmatchIndex](https://golang.org/src/regexp/regexp.go?s=36372:36441#L1187)
@@ -402,6 +462,12 @@ A return value of nil indicates no match.
 
 
 <a id="example_Regexp_FindAllStringSubmatchIndex">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Regexp.FindAllSubmatch">func</a> (\*Regexp) [FindAllSubmatch](https://golang.org/src/regexp/regexp.go?s=34472:34533#L1120)
@@ -413,6 +479,12 @@ A return value of nil indicates no match.
 
 
 <a id="example_Regexp_FindAllSubmatch">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Regexp.FindAllSubmatchIndex">func</a> (\*Regexp) [FindAllSubmatchIndex](https://golang.org/src/regexp/regexp.go?s=35154:35217#L1144)
@@ -424,6 +496,12 @@ A return value of nil indicates no match.
 
 
 <a id="example_Regexp_FindAllSubmatchIndex">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Regexp.FindIndex">func</a> (\*Regexp) [FindIndex](https://golang.org/src/regexp/regexp.go?s=24476:24525#L800)
@@ -435,6 +513,12 @@ A return value of nil indicates no match.
 
 
 <a id="example_Regexp_FindIndex">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Regexp.FindReaderIndex">func</a> (\*Regexp) [FindReaderIndex](https://golang.org/src/regexp/regexp.go?s=25821:25883#L839)
@@ -469,6 +553,12 @@ necessary to distinguish these cases.
 
 
 <a id="example_Regexp_FindString">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Regexp.FindStringIndex">func</a> (\*Regexp) [FindStringIndex](https://golang.org/src/regexp/regexp.go?s=25369:25424#L826)
@@ -480,6 +570,12 @@ A return value of nil indicates no match.
 
 
 <a id="example_Regexp_FindStringIndex">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Regexp.FindStringSubmatch">func</a> (\*Regexp) [FindStringSubmatch](https://golang.org/src/regexp/regexp.go?s=30861:30916#L1009)
@@ -492,6 +588,12 @@ A return value of nil indicates no match.
 
 
 <a id="example_Regexp_FindStringSubmatch">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Regexp.FindStringSubmatchIndex">func</a> (\*Regexp) [FindStringSubmatchIndex](https://golang.org/src/regexp/regexp.go?s=31490:31547#L1029)
@@ -515,6 +617,12 @@ A return value of nil indicates no match.
 
 
 <a id="example_Regexp_FindSubmatch">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Regexp.FindSubmatchIndex">func</a> (\*Regexp) [FindSubmatchIndex](https://golang.org/src/regexp/regexp.go?s=30453:30504#L1000)
@@ -556,6 +664,12 @@ contains any match of the regular expression re.
 
 
 <a id="example_Regexp_Match">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Regexp.MatchReader">func</a> (\*Regexp) [MatchReader](https://golang.org/src/regexp/regexp.go?s=15384:15435#L490)
@@ -573,6 +687,12 @@ contains any match of the regular expression re.
 
 
 <a id="example_Regexp_MatchString">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Regexp.NumSubexp">func</a> (\*Regexp) [NumSubexp](https://golang.org/src/regexp/regexp.go?s=11501:11534#L325)
@@ -618,6 +738,12 @@ without using Expand.
 
 
 <a id="example_Regexp_ReplaceAllLiteralString">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Regexp.ReplaceAllString">func</a> (\*Regexp) [ReplaceAllString](https://golang.org/src/regexp/regexp.go?s=17125:17184#L542)
@@ -628,6 +754,12 @@ in Expand, so for instance $1 represents the text of the first submatch.
 
 
 <a id="example_Regexp_ReplaceAllString">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Regexp.ReplaceAllStringFunc">func</a> (\*Regexp) [ReplaceAllStringFunc](https://golang.org/src/regexp/regexp.go?s=18043:18126#L566)
@@ -639,6 +771,12 @@ directly, without using Expand.
 
 
 <a id="example_Regexp_ReplaceAllStringFunc">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Regexp.Split">func</a> (\*Regexp) [Split](https://golang.org/src/regexp/regexp.go?s=37375:37424#L1216)
@@ -665,6 +803,12 @@ The count determines the number of substrings to return:
 
 
 <a id="example_Regexp_Split">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Regexp.String">func</a> (\*Regexp) [String](https://golang.org/src/regexp/regexp.go?s=4488:4521#L95)
@@ -684,7 +828,12 @@ the empty string. The slice should not be modified.
 
 
 <a id="example_Regexp_SubexpNames">Example</a>
+```go
+```
 
+output:
+```txt
+```
 
 
 

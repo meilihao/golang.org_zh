@@ -317,6 +317,12 @@ call of f(nil).
 
 
 <a id="example_Inspect">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <p>This example demonstrates how to inspect the AST of a Go program.
 </p>
 ## <a id="IsExported">func</a> [IsExported](https://golang.org/src/go/ast/ast.go?s=16554:16587#L516)
@@ -350,6 +356,12 @@ Print(fset, x) is the same as Fprint(os.Stdout, fset, x, NotNilFilter).
 
 
 <a id="example_Print">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <p>This example shows what an AST looks like when printed for debugging.
 </p>
 ## <a id="SortImports">func</a> [SortImports](https://golang.org/src/go/ast/import.go?s=378:424#L5)
@@ -889,6 +901,12 @@ the association.
 
 
 <a id="example_CommentMap">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <p>This example illustrates how to remove a variable declaration
 in a Go program while maintaining correct comment association
 using an ast.CommentMap.
@@ -2623,7 +2641,6 @@ of node with the visitor w, followed by a call of w.Visit(nil).
 <pre>type Visitor interface {
     Visit(node <a href="#Node">Node</a>) (w <a href="#Visitor">Visitor</a>)
 }</pre>
-
 
 
 

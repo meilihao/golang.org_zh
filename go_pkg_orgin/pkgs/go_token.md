@@ -13,6 +13,12 @@ programming language and basic operations on tokens (printing, predicates).
 
 
 <a id="example__retrievePositionInfo">Example (RetrievePositionInfo)</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ## <a id="pkg-index">Index</a>
@@ -641,7 +647,6 @@ For operators, delimiters, and keywords the string is the actual
 token character sequence (e.g., for the token ADD, the string is
 "+"). For all other tokens the string corresponds to the token
 constant name (e.g. for the token IDENT, the string is "IDENT").
-
 
 
 

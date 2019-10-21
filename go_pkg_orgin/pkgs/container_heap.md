@@ -22,9 +22,21 @@ implementation; the file example_pq_test.go has the complete source.
 
 
 <a id="example__intHeap">Example (IntHeap)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>This example inserts several ints into an IntHeap, checks the minimum,
 and removes them in order of priority.
 </p><a id="example__priorityQueue">Example (PriorityQueue)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>This example creates a PriorityQueue with some items, adds and manipulates an item,
 and then removes the items in priority order.
 </p>
@@ -113,7 +125,6 @@ use heap.Push and heap.Pop.
     Push(x interface{}) <span class="comment">// add x as element Len()</span>
     Pop() interface{}   <span class="comment">// remove and return element Len() - 1.</span>
 }</pre>
-
 
 
 

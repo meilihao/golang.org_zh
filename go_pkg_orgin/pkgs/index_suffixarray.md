@@ -105,6 +105,12 @@ size of the indexed data.
 
 
 <a id="example_Index_Lookup">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Index.Read">func</a> (\*Index) [Read](https://golang.org/src/index/suffixarray/suffixarray.go?s=3726:3765#L145)
@@ -117,7 +123,6 @@ Read reads the index from r into x; x must not be nil.
 ### <a id="Index.Write">func</a> (\*Index) [Write](https://golang.org/src/index/suffixarray/suffixarray.go?s=4760:4800#L195)
 <pre>func (x *<a href="#Index">Index</a>) Write(w <a href="/pkg/io/">io</a>.<a href="/pkg/io/#Writer">Writer</a>) <a href="/pkg/builtin/#error">error</a></pre>
 Write writes the index x to w.
-
 
 
 

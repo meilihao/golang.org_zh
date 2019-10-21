@@ -240,7 +240,19 @@ EscapedPath method for more details.
 
 
 <a id="example_URL">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <a id="example_URL_roundtrip">Example (Roundtrip)</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -284,6 +296,12 @@ reading u.RawPath directly.
 
 
 <a id="example_URL_EscapedPath">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="URL.Hostname">func</a> (\*URL) [Hostname](https://golang.org/src/net/url/url.go?s=29753:29784#L1048)
@@ -295,6 +313,12 @@ the square brackets are removed from the result.
 
 
 <a id="example_URL_Hostname">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="URL.IsAbs">func</a> (\*URL) [IsAbs](https://golang.org/src/net/url/url.go?s=27318:27344#L964)
@@ -304,12 +328,24 @@ Absolute means that it has a non-empty scheme.
 
 
 <a id="example_URL_IsAbs">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="URL.MarshalBinary">func</a> (\*URL) [MarshalBinary](https://golang.org/src/net/url/url.go?s=30786:30840#L1082)
 <pre>func (u *<a href="#URL">URL</a>) MarshalBinary() (text []<a href="/pkg/builtin/#byte">byte</a>, err <a href="/pkg/builtin/#error">error</a>)</pre>
 
 <a id="example_URL_MarshalBinary">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="URL.Parse">func</a> (\*URL) [Parse](https://golang.org/src/net/url/url.go?s=27580:27625#L971)
@@ -320,6 +356,12 @@ failure, otherwise its return value is the same as ResolveReference.
 
 
 <a id="example_URL_Parse">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="URL.Port">func</a> (\*URL) [Port](https://golang.org/src/net/url/url.go?s=29989:30016#L1056)
@@ -330,6 +372,12 @@ If u.Host doesn't contain a valid numeric port, Port returns an empty string.
 
 
 <a id="example_URL_Port">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="URL.Query">func</a> (\*URL) [Query](https://golang.org/src/net/url/url.go?s=29031:29059#L1019)
@@ -340,6 +388,12 @@ To check errors use ParseQuery.
 
 
 <a id="example_URL_Query">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="URL.RequestURI">func</a> (\*URL) [RequestURI](https://golang.org/src/net/url/url.go?s=29223:29256#L1026)
@@ -349,6 +403,12 @@ string that would be used in an HTTP request for u.
 
 
 <a id="example_URL_RequestURI">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="URL.ResolveReference">func</a> (\*URL) [ResolveReference](https://golang.org/src/net/url/url.go?s=28129:28174#L985)
@@ -362,6 +422,12 @@ ignores base and returns a copy of ref.
 
 
 <a id="example_URL_ResolveReference">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="URL.String">func</a> (\*URL) [String](https://golang.org/src/net/url/url.go?s=22453:22482#L763)
@@ -393,12 +459,24 @@ In the second form, the following rules apply:
 
 
 <a id="example_URL_String">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="URL.UnmarshalBinary">func</a> (\*URL) [UnmarshalBinary](https://golang.org/src/net/url/url.go?s=30878:30926#L1086)
 <pre>func (u *<a href="#URL">URL</a>) UnmarshalBinary(text []<a href="/pkg/builtin/#byte">byte</a>) <a href="/pkg/builtin/#error">error</a></pre>
 
 <a id="example_URL_UnmarshalBinary">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ## <a id="Userinfo">type</a> [Userinfo](https://golang.org/src/net/url/url.go?s=11258:11340#L380)
@@ -481,6 +559,12 @@ are case-sensitive.
 
 
 <a id="example_Values">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -499,6 +583,12 @@ interpreted as a key set to an empty value.
 
 
 <a id="example_ParseQuery">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -540,7 +630,6 @@ directly.
 <pre>func (v <a href="#Values">Values</a>) Set(key, value <a href="/pkg/builtin/#string">string</a>)</pre>
 Set sets the key to value. It replaces any existing
 values.
-
 
 
 

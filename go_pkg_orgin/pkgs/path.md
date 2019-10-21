@@ -64,6 +64,12 @@ If the path consists entirely of slashes, Base returns "/".
 
 
 <a id="example_Base">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Clean">func</a> [Clean](https://golang.org/src/path/path.go?s=2075:2105#L64)
 <pre>func Clean(path <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
@@ -90,6 +96,12 @@ Getting Dot-Dot Right,''
 
 
 <a id="example_Clean">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Dir">func</a> [Dir](https://golang.org/src/path/path.go?s=5617:5645#L202)
 <pre>func Dir(path <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
@@ -103,6 +115,12 @@ slash.
 
 
 <a id="example_Dir">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Ext">func</a> [Ext](https://golang.org/src/path/path.go?s=4371:4399#L158)
 <pre>func Ext(path <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
@@ -113,6 +131,12 @@ it is empty if there is no dot.
 
 
 <a id="example_Ext">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="IsAbs">func</a> [IsAbs](https://golang.org/src/path/path.go?s=5145:5173#L191)
 <pre>func IsAbs(path <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#bool">bool</a></pre>
@@ -120,6 +144,12 @@ IsAbs reports whether the path is absolute.
 
 
 <a id="example_IsAbs">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Join">func</a> [Join](https://golang.org/src/path/path.go?s=4034:4066#L145)
 <pre>func Join(elem ...<a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
@@ -129,6 +159,12 @@ all empty strings are ignored.
 
 
 <a id="example_Join">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Match">func</a> [Match](https://golang.org/src/path/match.go?s=1084:1142#L28)
 <pre>func Match(pattern, name <a href="/pkg/builtin/#string">string</a>) (matched <a href="/pkg/builtin/#bool">bool</a>, err <a href="/pkg/builtin/#error">error</a>)</pre>
@@ -157,6 +193,12 @@ is malformed.
 
 
 <a id="example_Match">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Split">func</a> [Split](https://golang.org/src/path/path.go?s=3743:3785#L137)
 <pre>func Split(path <a href="/pkg/builtin/#string">string</a>) (dir, file <a href="/pkg/builtin/#string">string</a>)</pre>
@@ -168,7 +210,12 @@ The returned values have the property that path = dir+file.
 
 
 <a id="example_Split">Example</a>
+```go
+```
 
+output:
+```txt
+```
 
 
 

@@ -50,6 +50,12 @@ The type of Image returned depends on the PNG contents.
 
 
 <a id="example_Decode">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="DecodeConfig">func</a> [DecodeConfig](https://golang.org/src/image/png/reader.go?s=24912:24964#L966)
 <pre>func DecodeConfig(r <a href="/pkg/io/">io</a>.<a href="/pkg/io/#Reader">Reader</a>) (<a href="/pkg/image/">image</a>.<a href="/pkg/image/#Config">Config</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
@@ -65,6 +71,12 @@ encoded, but images that are not image.NRGBA might be encoded lossily.
 
 
 <a id="example_Encode">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -195,7 +207,6 @@ An UnsupportedError reports that the input uses a valid but unimplemented PNG fe
 
 ### <a id="UnsupportedError.Error">func</a> (UnsupportedError) [Error](https://golang.org/src/image/png/reader.go?s=2672:2712#L123)
 <pre>func (e <a href="#UnsupportedError">UnsupportedError</a>) Error() <a href="/pkg/builtin/#string">string</a></pre>
-
 
 
 

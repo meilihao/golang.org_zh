@@ -115,6 +115,12 @@ EncryptOAEP for details.
 
 
 <a id="example_DecryptOAEP">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="DecryptPKCS1v15">func</a> [DecryptPKCS1v15](https://golang.org/src/crypto/rsa/pkcs1v15.go?s=2396:2485#L66)
 <pre>func DecryptPKCS1v15(rand <a href="/pkg/io/">io</a>.<a href="/pkg/io/#Reader">Reader</a>, priv *<a href="#PrivateKey">PrivateKey</a>, ciphertext []<a href="/pkg/builtin/#byte">byte</a>) ([]<a href="/pkg/builtin/#byte">byte</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
@@ -153,6 +159,12 @@ function. Using at least a 16-byte key will protect against this attack.
 
 
 <a id="example_DecryptPKCS1v15SessionKey">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <p>RSA is able to encrypt only a very limited amount of data. In order
 to encrypt reasonable amounts of data a hybrid scheme is commonly
 used: RSA is used to encrypt a key for a symmetric primitive like
@@ -195,6 +207,12 @@ twice the hash length, minus a further 2.
 
 
 <a id="example_EncryptOAEP">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="EncryptPKCS1v15">func</a> [EncryptPKCS1v15](https://golang.org/src/crypto/rsa/pkcs1v15.go?s=1254:1334#L29)
 <pre>func EncryptPKCS1v15(rand <a href="/pkg/io/">io</a>.<a href="/pkg/io/#Reader">Reader</a>, pub *<a href="#PublicKey">PublicKey</a>, msg []<a href="/pkg/builtin/#byte">byte</a>) ([]<a href="/pkg/builtin/#byte">byte</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
@@ -229,6 +247,12 @@ signatures provide authenticity, not confidentiality.
 
 
 <a id="example_SignPKCS1v15">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="SignPSS">func</a> [SignPSS](https://golang.org/src/crypto/rsa/pss.go?s=6982:7095#L239)
 <pre>func SignPSS(rand <a href="/pkg/io/">io</a>.<a href="/pkg/io/#Reader">Reader</a>, priv *<a href="#PrivateKey">PrivateKey</a>, hash <a href="/pkg/crypto/">crypto</a>.<a href="/pkg/crypto/#Hash">Hash</a>, hashed []<a href="/pkg/builtin/#byte">byte</a>, opts *<a href="#PSSOptions">PSSOptions</a>) ([]<a href="/pkg/builtin/#byte">byte</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
@@ -249,6 +273,12 @@ isn't advisable except for interoperability.
 
 
 <a id="example_VerifyPKCS1v15">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="VerifyPSS">func</a> [VerifyPSS](https://golang.org/src/crypto/rsa/pss.go?s=7805:7904#L264)
 <pre>func VerifyPSS(pub *<a href="#PublicKey">PublicKey</a>, hash <a href="/pkg/crypto/">crypto</a>.<a href="/pkg/crypto/#Hash">Hash</a>, hashed []<a href="/pkg/builtin/#byte">byte</a>, sig []<a href="/pkg/builtin/#byte">byte</a>, opts *<a href="#PSSOptions">PSSOptions</a>) <a href="/pkg/builtin/#error">error</a></pre>
@@ -509,7 +539,6 @@ A PublicKey represents the public part of an RSA key.
 <pre>func (pub *<a href="#PublicKey">PublicKey</a>) Size() <a href="/pkg/builtin/#int">int</a></pre>
 Size returns the modulus size in bytes. Raw signatures and ciphertexts
 for or by this public key will have the same size.
-
 
 
 

@@ -12,6 +12,12 @@ Package base64 implements base64 encoding as specified by RFC 4648.
 
 
 <a id="example_">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ## <a id="pkg-index">Index</a>
@@ -88,6 +94,12 @@ partially written blocks.
 
 
 <a id="example_NewEncoder">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -161,6 +173,12 @@ DecodeString returns the bytes represented by the base64 string s.
 
 
 <a id="example_Encoding_DecodeString">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Encoding.DecodedLen">func</a> (\*Encoding) [DecodedLen](https://golang.org/src/encoding/base64/base64.go?s=14931:14973#L592)
@@ -189,6 +207,12 @@ EncodeToString returns the base64 encoding of src.
 
 
 <a id="example_Encoding_EncodeToString">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Encoding.EncodedLen">func</a> (\*Encoding) [EncodedLen](https://golang.org/src/encoding/base64/base64.go?s=6934:6976#L250)
@@ -215,7 +239,6 @@ with a specified padding character, or NoPadding to disable padding.
 The padding character must not be '\r' or '\n', must not
 be contained in the encoding's alphabet and must be a rune equal or
 below '\xff'.
-
 
 
 

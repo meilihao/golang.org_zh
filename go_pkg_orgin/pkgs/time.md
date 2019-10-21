@@ -340,6 +340,12 @@ instead and call Timer.Stop if the timer is no longer needed.
 
 
 <a id="example_After">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Sleep">func</a> [Sleep](https://golang.org/src/time/sleep.go?s=308:330#L1)
 <pre>func Sleep(d <a href="#Duration">Duration</a>)</pre>
@@ -348,6 +354,12 @@ A negative or zero duration causes Sleep to return immediately.
 
 
 <a id="example_Sleep">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Tick">func</a> [Tick](https://golang.org/src/time/tick.go?s=1752:1785#L44)
 <pre>func Tick(d <a href="#Duration">Duration</a>) &lt;-chan <a href="#Time">Time</a></pre>
@@ -359,6 +371,12 @@ Unlike NewTicker, Tick will return nil if d <= 0.
 
 
 <a id="example_Tick">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -375,6 +393,12 @@ largest representable duration to approximately 290 years.
 
 
 <a id="example_Duration">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -389,6 +413,12 @@ Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h".
 
 
 <a id="example_ParseDuration">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Since">func</a> [Since](https://golang.org/src/time/time.go?s=28864:28891#L913)
@@ -415,6 +445,12 @@ Hours returns the duration as a floating point number of hours.
 
 
 <a id="example_Duration_Hours">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Duration.Microseconds">func</a> (Duration) [Microseconds](https://golang.org/src/time/time.go?s=25047:25085#L777)
@@ -437,6 +473,12 @@ Minutes returns the duration as a floating point number of minutes.
 
 
 <a id="example_Duration_Minutes">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Duration.Nanoseconds">func</a> (Duration) [Nanoseconds](https://golang.org/src/time/time.go?s=24918:24955#L774)
@@ -445,6 +487,12 @@ Nanoseconds returns the duration as an integer nanosecond count.
 
 
 <a id="example_Duration_Nanoseconds">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Duration.Round">func</a> (Duration) [Round](https://golang.org/src/time/time.go?s=27044:27088#L833)
@@ -458,6 +506,12 @@ If m <= 0, Round returns d unchanged.
 
 
 <a id="example_Duration_Round">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Duration.Seconds">func</a> (Duration) [Seconds](https://golang.org/src/time/time.go?s=25783:25818#L792)
@@ -466,6 +520,12 @@ Seconds returns the duration as a floating point number of seconds.
 
 
 <a id="example_Duration_Seconds">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Duration.String">func</a> (Duration) [String](https://golang.org/src/time/time.go?s=22757:22790#L659)
@@ -477,6 +537,12 @@ that the leading digit is non-zero. The zero duration formats as 0s.
 
 
 <a id="example_Duration_String">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Duration.Truncate">func</a> (Duration) [Truncate](https://golang.org/src/time/time.go?s=26414:26461#L814)
@@ -486,6 +552,12 @@ If m <= 0, Truncate returns d unchanged.
 
 
 <a id="example_Duration_Truncate">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ## <a id="Location">type</a> [Location](https://golang.org/src/time/zoneinfo.go?s=537:1052#L8)
@@ -512,6 +584,12 @@ UTC represents Universal Coordinated Time (UTC).
 <pre>var <span id="UTC">UTC</span> *<a href="#Location">Location</a> = &amp;utcLoc</pre>
 
 <a id="example_Location">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -523,6 +601,12 @@ the given zone name and offset (seconds east of UTC).
 
 
 <a id="example_FixedZone">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="LoadLocation">func</a> [LoadLocation](https://golang.org/src/time/zoneinfo.go?s=7575:7624#L265)
@@ -544,6 +628,12 @@ and finally looks in $GOROOT/lib/time/zoneinfo.zip.
 
 
 <a id="example_LoadLocation">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="LoadLocationFromTZData">func</a> [LoadLocationFromTZData](https://golang.org/src/time/zoneinfo_read.go?s=2146:2218#L87)
@@ -592,6 +682,12 @@ A Month specifies a month of the year (January = 1, ...).
 
 
 <a id="example_Month">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -664,6 +760,12 @@ Stop the ticker to release associated resources.
 
 
 <a id="example_NewTicker">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -760,6 +862,12 @@ Date panics if loc is nil.
 
 
 <a id="example_Date">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Now">func</a> [Now](https://golang.org/src/time/time.go?s=33587:33602#L1083)
@@ -815,6 +923,12 @@ that use a numeric zone offset, or use ParseInLocation.
 
 
 <a id="example_Parse">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="ParseInLocation">func</a> [ParseInLocation](https://golang.org/src/time/format.go?s=25419:25490#L810)
@@ -827,6 +941,12 @@ against the Local location; ParseInLocation uses the given location.
 
 
 <a id="example_ParseInLocation">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Unix">func</a> [Unix](https://golang.org/src/time/time.go?s=40114:40151#L1306)
@@ -848,6 +968,12 @@ Add returns the time t+d.
 
 
 <a id="example_Time_Add">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Time.AddDate">func</a> (Time) [AddDate](https://golang.org/src/time/time.go?s=29847:29906#L945)
@@ -863,6 +989,12 @@ December 1, the normalized form for November 31.
 
 
 <a id="example_Time_AddDate">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Time.After">func</a> (Time) [After](https://golang.org/src/time/time.go?s=9543:9575#L231)
@@ -871,6 +1003,12 @@ After reports whether the time instant t is after u.
 
 
 <a id="example_Time_After">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Time.AppendFormat">func</a> (Time) [AppendFormat](https://golang.org/src/time/format.go?s=16394:16452#L501)
@@ -880,6 +1018,12 @@ representation to b and returns the extended buffer.
 
 
 <a id="example_Time_AppendFormat">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Time.Before">func</a> (Time) [Before](https://golang.org/src/time/time.go?s=9784:9817#L241)
@@ -888,6 +1032,12 @@ Before reports whether the time instant t is before u.
 
 
 <a id="example_Time_Before">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Time.Clock">func</a> (Time) [Clock](https://golang.org/src/time/time.go?s=20268:20310#L583)
@@ -903,6 +1053,12 @@ Date returns the year, month, and day in which t occurs.
 
 
 <a id="example_Time_Date">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Time.Day">func</a> (Time) [Day](https://golang.org/src/time/time.go?s=17968:17991#L506)
@@ -911,6 +1067,12 @@ Day returns the day of the month specified by t.
 
 
 <a id="example_Time_Day">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Time.Equal">func</a> (Time) [Equal](https://golang.org/src/time/time.go?s=10275:10307#L253)
@@ -923,6 +1085,12 @@ Time values; most code should use Equal instead.
 
 
 <a id="example_Time_Equal">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Time.Format">func</a> (Time) [Format](https://golang.org/src/time/format.go?s=16029:16071#L485)
@@ -949,6 +1117,12 @@ documentation for ANSIC and the other constants defined by this package.
 
 
 <a id="example_Time_Format">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Time.GobDecode">func</a> (\*Time) [GobDecode](https://golang.org/src/time/time.go?s=38056:38099#L1248)
@@ -1073,6 +1247,12 @@ minute, depending on the time's Location.
 
 
 <a id="example_Time_Round">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Time.Second">func</a> (Time) [Second](https://golang.org/src/time/time.go?s=21043:21069#L608)
@@ -1099,6 +1279,12 @@ with an explicit format string.
 
 
 <a id="example_Time_String">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Time.Sub">func</a> (Time) [Sub](https://golang.org/src/time/time.go?s=28156:28190#L886)
@@ -1110,6 +1296,12 @@ To compute t-d for a duration d, use t.Add(-d).
 
 
 <a id="example_Time_Sub">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Time.Truncate">func</a> (Time) [Truncate](https://golang.org/src/time/time.go?s=43638:43677#L1437)
@@ -1124,6 +1316,12 @@ minute, depending on the time's Location.
 
 
 <a id="example_Time_Truncate">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Time.UTC">func</a> (Time) [UTC](https://golang.org/src/time/time.go?s=33996:34020#L1098)
@@ -1141,6 +1339,12 @@ location associated with t.
 
 
 <a id="example_Time_Unix">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Time.UnixNano">func</a> (Time) [UnixNano](https://golang.org/src/time/time.go?s=35504:35534#L1151)
@@ -1336,7 +1540,6 @@ A Weekday specifies a day of the week (Sunday = 0, ...).
 ### <a id="Weekday.String">func</a> (Weekday) [String](https://golang.org/src/time/time.go?s=11419:11451#L327)
 <pre>func (d <a href="#Weekday">Weekday</a>) String() <a href="/pkg/builtin/#string">string</a></pre>
 String returns the English name of the day ("Sunday", "Monday", ...).
-
 
 
 

@@ -319,6 +319,12 @@ This kind of key is commonly encoded in PEM blocks of type "PUBLIC KEY".
 
 
 <a id="example_ParsePKIXPublicKey">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -579,6 +585,12 @@ WARNING: this function doesn't do any revocation checking.
 
 
 <a id="example_Certificate_Verify">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Certificate.VerifyHostname">func</a> (\*Certificate) [VerifyHostname](https://golang.org/src/crypto/x509/verify.go?s=31014:31066#L986)
@@ -1066,7 +1078,6 @@ because other PKIX verification APIs have ended up needing many options.
     MaxConstraintComparisions <a href="/pkg/builtin/#int">int</a>
 }
 </pre>
-
 
 
 

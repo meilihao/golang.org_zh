@@ -18,6 +18,12 @@ otherwise.
 
 
 <a id="example__complexNumbers">Example (ComplexNumbers)</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ## <a id="pkg-index">Index</a>
@@ -104,6 +110,12 @@ false.
 
 
 <a id="example_Compare">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Float32Val">func</a> [Float32Val](https://golang.org/src/go/constant/value.go?s=14345:14385#L510)
 <pre>func Float32Val(x <a href="#Value">Value</a>) (<a href="/pkg/builtin/#float32">float32</a>, <a href="/pkg/builtin/#bool">bool</a>)</pre>
@@ -137,6 +149,12 @@ otherwise it is != 0. If x is Unknown, the result is 1.
 
 
 <a id="example_Sign">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="StringVal">func</a> [StringVal](https://golang.org/src/go/constant/value.go?s=13135:13165#L466)
 <pre>func StringVal(x <a href="#Value">Value</a>) <a href="/pkg/builtin/#string">string</a></pre>
@@ -170,6 +188,12 @@ type. The possible dynamic return types are:
 
 
 <a id="example_Val">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -245,6 +269,12 @@ Division by zero leads to a run-time panic.
 
 
 <a id="example_BinaryOp">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Denom">func</a> [Denom](https://golang.org/src/go/constant/value.go?s=20200:20225#L759)
@@ -413,7 +443,12 @@ If y is Unknown, the result is Unknown.
 
 
 <a id="example_UnaryOp">Example</a>
+```go
+```
 
+output:
+```txt
+```
 
 
 

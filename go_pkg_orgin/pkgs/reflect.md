@@ -297,6 +297,12 @@ The zero Kind is not a valid kind.
 
 
 <a id="example_Kind">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -540,6 +546,12 @@ characters and Go string literal syntax.
 
 
 <a id="example_StructTag">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -568,6 +580,12 @@ the value returned by Lookup is unspecified.
 
 
 <a id="example_StructTag_Lookup">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ## <a id="Type">type</a> [Type](https://golang.org/src/reflect/type.go?s=1321:7563#L28)
@@ -828,6 +846,12 @@ These limitations may be lifted in a future version.
 
 
 <a id="example_StructOf">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="TypeOf">func</a> [TypeOf](https://golang.org/src/reflect/type.go?s=38787:38818#L1363)
@@ -837,6 +861,12 @@ If i is a nil interface value, TypeOf returns nil.
 
 
 <a id="example_TypeOf">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -937,6 +967,12 @@ of how to use MakeFunc to build a swap function for different types.
 
 
 <a id="example_MakeFunc">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="MakeMap">func</a> [MakeMap](https://golang.org/src/reflect/value.go?s=68085:68113#L2279)
@@ -1619,7 +1655,6 @@ in the description of each method.
 
 ### <a id="ValueError.Error">func</a> (\*ValueError) [Error](https://golang.org/src/reflect/value.go?s=5037:5072#L152)
 <pre>func (e *<a href="#ValueError">ValueError</a>) Error() <a href="/pkg/builtin/#string">string</a></pre>
-
 
 
 

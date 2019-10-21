@@ -119,7 +119,19 @@ on systems with hardware support for AES. See the crypto/aes package documentati
 
 
 <a id="example_NewGCM_decrypt">Example (Decrypt)</a>
+```go
+```
+
+output:
+```txt
+```
 <a id="example_NewGCM_encrypt">Example (Encrypt)</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="NewGCMWithNonceSize">func</a> [NewGCMWithNonceSize](https://golang.org/src/crypto/cipher/gcm.go?s=3858:3920#L84)
@@ -219,6 +231,12 @@ Block's block size and must match the iv used to encrypt the data.
 
 
 <a id="example_NewCBCDecrypter">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="NewCBCEncrypter">func</a> [NewCBCEncrypter](https://golang.org/src/crypto/cipher/cbc.go?s=1185:1235#L35)
@@ -229,6 +247,12 @@ Block's block size.
 
 
 <a id="example_NewCBCEncrypter">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -267,6 +291,12 @@ size.
 
 
 <a id="example_NewCFBDecrypter">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="NewCFBEncrypter">func</a> [NewCFBEncrypter](https://golang.org/src/crypto/cipher/cfb.go?s=1225:1276#L43)
@@ -277,6 +307,12 @@ size.
 
 
 <a id="example_NewCFBEncrypter">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="NewCTR">func</a> [NewCTR](https://golang.org/src/crypto/cipher/ctr.go?s=955:997#L25)
@@ -286,6 +322,12 @@ counter mode. The length of iv must be the same as the Block's block size.
 
 
 <a id="example_NewCTR">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="NewOFB">func</a> [NewOFB](https://golang.org/src/crypto/cipher/ofb.go?s=502:540#L11)
@@ -296,6 +338,12 @@ to b's block size.
 
 
 <a id="example_NewOFB">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -316,6 +364,12 @@ to process each slice of data which passes through.
 
 
 <a id="example_StreamReader">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -347,6 +401,12 @@ to be called to flush write data.
 
 
 <a id="example_StreamWriter">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -363,7 +423,6 @@ is also an io.Closer. Otherwise it returns nil.
 
 ### <a id="StreamWriter.Write">func</a> (StreamWriter) [Write](https://golang.org/src/crypto/cipher/io.go?s=1012:1070#L26)
 <pre>func (w <a href="#StreamWriter">StreamWriter</a>) Write(src []<a href="/pkg/builtin/#byte">byte</a>) (n <a href="/pkg/builtin/#int">int</a>, err <a href="/pkg/builtin/#error">error</a>)</pre>
-
 
 
 

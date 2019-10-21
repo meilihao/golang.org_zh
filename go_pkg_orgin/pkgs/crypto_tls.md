@@ -191,6 +191,12 @@ be nil because the parsed form of the certificate is not retained.
 
 
 <a id="example_LoadX509KeyPair">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="X509KeyPair">func</a> [X509KeyPair](https://golang.org/src/crypto/tls/tls.go?s=6170:6241#L190)
@@ -201,7 +207,19 @@ the parsed form of the certificate is not retained.
 
 
 <a id="example_X509KeyPair">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <a id="example_X509KeyPair_httpServer">Example (HttpServer)</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -576,6 +594,12 @@ modify it.
 
 
 <a id="example_Config_keyLogWriter">Example (KeyLogWriter)</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -649,6 +673,12 @@ for the defaults.
 
 
 <a id="example_Dial">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="DialWithDialer">func</a> [DialWithDialer](https://golang.org/src/crypto/tls/tls.go?s=3510:3602#L95)
@@ -963,7 +993,6 @@ RFC 8446, Section 4.2.3.
     <span id="PKCS1WithSHA1">PKCS1WithSHA1</span> <a href="#SignatureScheme">SignatureScheme</a> = 0x0201
     <span id="ECDSAWithSHA1">ECDSAWithSHA1</span> <a href="#SignatureScheme">SignatureScheme</a> = 0x0203
 )</pre>
-
 
 
 

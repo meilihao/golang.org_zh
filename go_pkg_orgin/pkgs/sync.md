@@ -304,6 +304,12 @@ Once is an object that will perform exactly one action.
 
 
 <a id="example_Once">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -386,6 +392,12 @@ A Pool must not be copied after first use.
 
 
 <a id="example_Pool">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -513,6 +525,12 @@ A WaitGroup must not be copied after first use.
 
 
 <a id="example_WaitGroup">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <p>This example fetches several URLs concurrently,
 using a WaitGroup to block until all the fetches are complete.
 </p>
@@ -550,7 +568,6 @@ Done decrements the WaitGroup counter by one.
 ### <a id="WaitGroup.Wait">func</a> (\*WaitGroup) [Wait](https://golang.org/src/sync/waitgroup.go?s=3500:3527#L93)
 <pre>func (wg *<a href="#WaitGroup">WaitGroup</a>) Wait()</pre>
 Wait blocks until the WaitGroup counter is zero.
-
 
 
 

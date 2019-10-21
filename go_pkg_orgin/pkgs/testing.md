@@ -593,6 +593,12 @@ Setting "ns/op" to 0 will suppress that built-in metric.
 
 
 <a id="example_B_ReportMetric">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="B.ResetTimer">func</a> (\*B) [ResetTimer](https://golang.org/src/testing/benchmark.go?s=4244:4268#L136)
@@ -630,6 +636,12 @@ because they have global effect. It should also not call Run.
 
 
 <a id="example_B_RunParallel">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="B.SetBytes">func</a> (\*B) [SetBytes](https://golang.org/src/testing/benchmark.go?s=4844:4873#L159)
@@ -1160,7 +1172,6 @@ TB is the interface common to T and B.
     Helper()
     <span class="comment">// contains filtered or unexported methods</span>
 }</pre>
-
 
 
 

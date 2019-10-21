@@ -75,6 +75,12 @@ partially written blocks.
 
 
 <a id="example_NewEncoder">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -144,6 +150,12 @@ DecodeString returns the bytes represented by the base32 string s.
 
 
 <a id="example_Encoding_DecodeString">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Encoding.DecodedLen">func</a> (\*Encoding) [DecodedLen](https://golang.org/src/encoding/base32/base32.go?s=12827:12869#L518)
@@ -172,6 +184,12 @@ EncodeToString returns the base32 encoding of src.
 
 
 <a id="example_Encoding_EncodeToString">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Encoding.EncodedLen">func</a> (\*Encoding) [EncodedLen](https://golang.org/src/encoding/base32/base32.go?s=6193:6235#L255)
@@ -189,7 +207,6 @@ with a specified padding character, or NoPadding to disable padding.
 The padding character must not be '\r' or '\n', must not
 be contained in the encoding's alphabet and must be a rune equal or
 below '\xff'.
-
 
 
 

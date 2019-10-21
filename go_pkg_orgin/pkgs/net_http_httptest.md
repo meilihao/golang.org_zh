@@ -122,6 +122,12 @@ records its mutations for later inspection in tests.
 
 
 <a id="example_ResponseRecorder">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -223,6 +229,12 @@ local loopback interface, for use in end-to-end HTTP tests.
 
 
 <a id="example_Server">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -242,6 +254,12 @@ The caller should call Close when finished, to shut it down.
 
 
 <a id="example_NewTLSServer">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="NewUnstartedServer">func</a> [NewUnstartedServer](https://golang.org/src/net/http/httptest/server.go?s=3149:3202#L100)
@@ -300,7 +318,6 @@ Start starts a server from NewUnstartedServer.
 ### <a id="Server.StartTLS">func</a> (\*Server) [StartTLS](https://golang.org/src/net/http/httptest/server.go?s=3745:3772#L125)
 <pre>func (s *<a href="#Server">Server</a>) StartTLS()</pre>
 StartTLS starts TLS on a server from NewUnstartedServer.
-
 
 
 

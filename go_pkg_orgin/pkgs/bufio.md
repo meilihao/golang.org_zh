@@ -415,14 +415,38 @@ on a reader, should use bufio.Reader instead.
 
 
 <a id="example_Scanner_custom">Example (Custom)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>Use a Scanner with a custom split function (built by wrapping ScanWords) to validate
 32-bit decimal input.
 </p><a id="example_Scanner_emptyFinalToken">Example (EmptyFinalToken)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>Use a Scanner with a custom split function to parse a comma-separated
 list with an empty final value.
 </p><a id="example_Scanner_lines">Example (Lines)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>The simplest use of a Scanner, to read standard input as a set of lines.
 </p><a id="example_Scanner_words">Example (Words)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>Use a Scanner to implement a simple word-count utility by scanning the
 input as a sequence of space-delimited tokens.
 </p>
@@ -462,6 +486,12 @@ by a subsequent call to Scan. It does no allocation.
 
 
 <a id="example_Scanner_Bytes">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <p>Return the most recent call to Scan as a []byte.
 </p>
 
@@ -560,6 +590,12 @@ the underlying io.Writer.
 
 
 <a id="example_Writer">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -658,7 +694,6 @@ WriteString writes a string.
 It returns the number of bytes written.
 If the count is less than len(s), it also returns an error explaining
 why the write is short.
-
 
 
 

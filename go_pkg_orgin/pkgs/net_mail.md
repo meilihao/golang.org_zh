@@ -93,6 +93,12 @@ ParseAddress parses a single RFC 5322 address, e.g. "Barry Gibbs <bg@example.com
 
 
 <a id="example_ParseAddress">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="ParseAddressList">func</a> [ParseAddressList](https://golang.org/src/net/mail/message.go?s=4219:4273#L147)
@@ -101,6 +107,12 @@ ParseAddressList parses the given string as a list of addresses.
 
 
 <a id="example_ParseAddressList">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -218,7 +230,12 @@ for reading from msg.Body.
 
 
 <a id="example_ReadMessage">Example</a>
+```go
+```
 
+output:
+```txt
+```
 
 
 

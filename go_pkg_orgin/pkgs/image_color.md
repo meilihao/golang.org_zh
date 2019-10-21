@@ -494,4 +494,3 @@ the JFIF specification at <a href="https://www.w3.org/Graphics/JPEG/jfif3.pdf">h
 
 
 
-

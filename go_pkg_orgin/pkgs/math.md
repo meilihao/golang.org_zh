@@ -180,6 +180,12 @@ Special cases are:
 
 
 <a id="example_Abs">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Acos">func</a> [Acos](https://golang.org/src/math/asin.go?s=897:925#L41)
 <pre>func Acos(x <a href="/pkg/builtin/#float64">float64</a>) <a href="/pkg/builtin/#float64">float64</a></pre>
@@ -192,6 +198,12 @@ Special case is:
 
 
 <a id="example_Acos">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Acosh">func</a> [Acosh](https://golang.org/src/math/acosh.go?s=1294:1323#L32)
 <pre>func Acosh(x <a href="/pkg/builtin/#float64">float64</a>) <a href="/pkg/builtin/#float64">float64</a></pre>
@@ -206,6 +218,12 @@ Special cases are:
 
 
 <a id="example_Acosh">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Asin">func</a> [Asin](https://golang.org/src/math/asin.go?s=434:462#L9)
 <pre>func Asin(x <a href="/pkg/builtin/#float64">float64</a>) <a href="/pkg/builtin/#float64">float64</a></pre>
@@ -219,6 +237,12 @@ Special cases are:
 
 
 <a id="example_Asin">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Asinh">func</a> [Asinh](https://golang.org/src/math/asinh.go?s=1228:1257#L29)
 <pre>func Asinh(x <a href="/pkg/builtin/#float64">float64</a>) <a href="/pkg/builtin/#float64">float64</a></pre>
@@ -233,6 +257,12 @@ Special cases are:
 
 
 <a id="example_Asinh">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Atan">func</a> [Atan](https://golang.org/src/math/atan.go?s=2901:2929#L85)
 <pre>func Atan(x <a href="/pkg/builtin/#float64">float64</a>) <a href="/pkg/builtin/#float64">float64</a></pre>
@@ -246,6 +276,12 @@ Special cases are:
 
 
 <a id="example_Atan">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Atan2">func</a> [Atan2](https://golang.org/src/math/atan2.go?s=770:802#L19)
 <pre>func Atan2(y, x <a href="/pkg/builtin/#float64">float64</a>) <a href="/pkg/builtin/#float64">float64</a></pre>
@@ -276,6 +312,12 @@ Special cases are (in order):
 
 
 <a id="example_Atan2">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Atanh">func</a> [Atanh](https://golang.org/src/math/atanh.go?s=1450:1479#L37)
 <pre>func Atanh(x <a href="/pkg/builtin/#float64">float64</a>) <a href="/pkg/builtin/#float64">float64</a></pre>
@@ -292,6 +334,12 @@ Special cases are:
 
 
 <a id="example_Atanh">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Cbrt">func</a> [Cbrt](https://golang.org/src/math/cbrt.go?s=807:835#L15)
 <pre>func Cbrt(x <a href="/pkg/builtin/#float64">float64</a>) <a href="/pkg/builtin/#float64">float64</a></pre>
@@ -319,6 +367,12 @@ Special cases are:
 
 
 <a id="example_Ceil">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Copysign">func</a> [Copysign](https://golang.org/src/math/copysign.go?s=248:283#L1)
 <pre>func Copysign(x, y <a href="/pkg/builtin/#float64">float64</a>) <a href="/pkg/builtin/#float64">float64</a></pre>
@@ -339,6 +393,12 @@ Special cases are:
 
 
 <a id="example_Cos">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Cosh">func</a> [Cosh](https://golang.org/src/math/sinh.go?s=1448:1476#L62)
 <pre>func Cosh(x <a href="/pkg/builtin/#float64">float64</a>) <a href="/pkg/builtin/#float64">float64</a></pre>
@@ -353,6 +413,12 @@ Special cases are:
 
 
 <a id="example_Cosh">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Dim">func</a> [Dim](https://golang.org/src/math/dim.go?s=324:354#L3)
 <pre>func Dim(x, y <a href="/pkg/builtin/#float64">float64</a>) <a href="/pkg/builtin/#float64">float64</a></pre>
@@ -507,6 +573,12 @@ Special cases are:
 
 
 <a id="example_Floor">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Frexp">func</a> [Frexp](https://golang.org/src/math/frexp.go?s=469:514#L6)
 <pre>func Frexp(f <a href="/pkg/builtin/#float64">float64</a>) (frac <a href="/pkg/builtin/#float64">float64</a>, exp <a href="/pkg/builtin/#int">int</a>)</pre>
@@ -669,6 +741,12 @@ Special cases are:
 
 
 <a id="example_Log">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Log10">func</a> [Log10](https://golang.org/src/math/log10.go?s=265:294#L1)
 <pre>func Log10(x <a href="/pkg/builtin/#float64">float64</a>) <a href="/pkg/builtin/#float64">float64</a></pre>
@@ -677,6 +755,12 @@ The special cases are the same as for Log.
 
 
 <a id="example_Log10">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Log1p">func</a> [Log1p](https://golang.org/src/math/log1p.go?s=3722:3751#L85)
 <pre>func Log1p(x <a href="/pkg/builtin/#float64">float64</a>) <a href="/pkg/builtin/#float64">float64</a></pre>
@@ -701,6 +785,12 @@ The special cases are the same as for Log.
 
 
 <a id="example_Log2">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Logb">func</a> [Logb](https://golang.org/src/math/logb.go?s=300:328#L3)
 <pre>func Logb(x <a href="/pkg/builtin/#float64">float64</a>) <a href="/pkg/builtin/#float64">float64</a></pre>
@@ -759,6 +849,12 @@ Special cases are:
 
 
 <a id="example_Mod">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Modf">func</a> [Modf](https://golang.org/src/math/modf.go?s=368:416#L3)
 <pre>func Modf(f <a href="/pkg/builtin/#float64">float64</a>) (int <a href="/pkg/builtin/#float64">float64</a>, frac <a href="/pkg/builtin/#float64">float64</a>)</pre>
@@ -835,6 +931,12 @@ Special cases are (in order):
 
 
 <a id="example_Pow">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Pow10">func</a> [Pow10](https://golang.org/src/math/pow10.go?s=980:1005#L20)
 <pre>func Pow10(n <a href="/pkg/builtin/#int">int</a>) <a href="/pkg/builtin/#float64">float64</a></pre>
@@ -848,6 +950,12 @@ Special cases are:
 
 
 <a id="example_Pow10">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Remainder">func</a> [Remainder](https://golang.org/src/math/remainder.go?s=1283:1319#L27)
 <pre>func Remainder(x, y <a href="/pkg/builtin/#float64">float64</a>) <a href="/pkg/builtin/#float64">float64</a></pre>
@@ -877,6 +985,12 @@ Special cases are:
 
 
 <a id="example_Round">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="RoundToEven">func</a> [RoundToEven](https://golang.org/src/math/floor.go?s=2165:2200#L91)
 <pre>func RoundToEven(x <a href="/pkg/builtin/#float64">float64</a>) <a href="/pkg/builtin/#float64">float64</a></pre>
@@ -891,6 +1005,12 @@ Special cases are:
 
 
 <a id="example_RoundToEven">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Signbit">func</a> [Signbit](https://golang.org/src/math/signbit.go?s=233:261#L1)
 <pre>func Signbit(x <a href="/pkg/builtin/#float64">float64</a>) <a href="/pkg/builtin/#bool">bool</a></pre>
@@ -911,6 +1031,12 @@ Special cases are:
 
 
 <a id="example_Sin">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Sincos">func</a> [Sincos](https://golang.org/src/math/sincos.go?s=376:417#L5)
 <pre>func Sincos(x <a href="/pkg/builtin/#float64">float64</a>) (sin, cos <a href="/pkg/builtin/#float64">float64</a>)</pre>
@@ -925,6 +1051,12 @@ Special cases are:
 
 
 <a id="example_Sincos">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Sinh">func</a> [Sinh](https://golang.org/src/math/sinh.go?s=564:592#L15)
 <pre>func Sinh(x <a href="/pkg/builtin/#float64">float64</a>) <a href="/pkg/builtin/#float64">float64</a></pre>
@@ -939,6 +1071,12 @@ Special cases are:
 
 
 <a id="example_Sinh">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Sqrt">func</a> [Sqrt](https://golang.org/src/math/sqrt.go?s=3702:3730#L82)
 <pre>func Sqrt(x <a href="/pkg/builtin/#float64">float64</a>) <a href="/pkg/builtin/#float64">float64</a></pre>
@@ -954,6 +1092,12 @@ Special cases are:
 
 
 <a id="example_Sqrt">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Tan">func</a> [Tan](https://golang.org/src/math/tan.go?s=2594:2621#L72)
 <pre>func Tan(x <a href="/pkg/builtin/#float64">float64</a>) <a href="/pkg/builtin/#float64">float64</a></pre>
@@ -968,6 +1112,12 @@ Special cases are:
 
 
 <a id="example_Tan">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Tanh">func</a> [Tanh](https://golang.org/src/math/tanh.go?s=2211:2239#L64)
 <pre>func Tanh(x <a href="/pkg/builtin/#float64">float64</a>) <a href="/pkg/builtin/#float64">float64</a></pre>
@@ -982,6 +1132,12 @@ Special cases are:
 
 
 <a id="example_Tanh">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Trunc">func</a> [Trunc](https://golang.org/src/math/floor.go?s=933:962#L38)
 <pre>func Trunc(x <a href="/pkg/builtin/#float64">float64</a>) <a href="/pkg/builtin/#float64">float64</a></pre>
@@ -1036,7 +1192,6 @@ Special cases are:
 	Yn(n < 0, 0) = +Inf if n is odd, -Inf if n is even
 	Yn(n, x < 0) = NaN
 	Yn(n, NaN) = NaN
-
 
 
 

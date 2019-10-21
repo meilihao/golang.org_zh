@@ -649,18 +649,54 @@ as unexported by all other clients.
 
 
 <a id="example_Template">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <a id="example_Template_block">Example (Block)</a>
+```go
+```
+
+output:
+```txt
+```
 <a id="example_Template_func">Example (Func)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>This example demonstrates a custom function to process template text.
 It installs the strings.Title function and uses it to
 Make Title Text Look Good In Our Template&#39;s Output.
 </p><a id="example_Template_glob">Example (Glob)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>Here we demonstrate loading a set of templates from a directory.
 </p><a id="example_Template_helpers">Example (Helpers)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>This example demonstrates one way to share some templates
 and use them in different contexts. In this variant we add multiple driver
 templates by hand to an existing bundle of templates.
 </p><a id="example_Template_share">Example (Share)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>This example demonstrates how to use one group of driver
 templates with distinct sets of helper templates.
 </p>
@@ -904,7 +940,6 @@ the last one mentioned will be the one that results.
 ### <a id="Template.Templates">func</a> (\*Template) [Templates](https://golang.org/src/text/template/template.go?s=3884:3926#L129)
 <pre>func (t *<a href="#Template">Template</a>) Templates() []*<a href="#Template">Template</a></pre>
 Templates returns a slice of defined templates associated with t.
-
 
 
 

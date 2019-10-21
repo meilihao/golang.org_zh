@@ -64,6 +64,12 @@ Abs returns the absolute value (also called the modulus) of x.
 
 
 <a id="example_Abs">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Acos">func</a> [Acos](https://golang.org/src/math/cmplx/asin.go?s=2730:2764#L77)
 <pre>func Acos(x <a href="/pkg/builtin/#complex128">complex128</a>) <a href="/pkg/builtin/#complex128">complex128</a></pre>
@@ -131,6 +137,12 @@ Exp returns e**x, the base-e exponential of x.
 
 
 <a id="example_Exp">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <p>ExampleExp computes Euler&#39;s identity.
 </p>
 ## <a id="Inf">func</a> [Inf](https://golang.org/src/math/cmplx/isinf.go?s=434:455#L8)
@@ -185,6 +197,12 @@ The phase is in the range [-Pi, Pi].
 
 
 <a id="example_Polar">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Pow">func</a> [Pow](https://golang.org/src/math/cmplx/pow.go?s=1709:1745#L39)
 <pre>func Pow(x, y <a href="/pkg/builtin/#complex128">complex128</a>) <a href="/pkg/builtin/#complex128">complex128</a></pre>
@@ -231,7 +249,6 @@ Tan returns the tangent of x.
 ## <a id="Tanh">func</a> [Tanh](https://golang.org/src/math/cmplx/tan.go?s=2396:2430#L73)
 <pre>func Tanh(x <a href="/pkg/builtin/#complex128">complex128</a>) <a href="/pkg/builtin/#complex128">complex128</a></pre>
 Tanh returns the hyperbolic tangent of x.
-
 
 
 

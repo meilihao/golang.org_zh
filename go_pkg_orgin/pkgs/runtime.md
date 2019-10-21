@@ -974,6 +974,12 @@ slice of PC values returned by Callers.
 
 
 <a id="example_Frames">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -1395,7 +1401,6 @@ A TypeAssertionError explains a failed type assertion.
 
 ### <a id="TypeAssertionError.RuntimeError">func</a> (\*TypeAssertionError) [RuntimeError](https://golang.org/src/runtime/error.go?s=733:774#L18)
 <pre>func (*<a href="#TypeAssertionError">TypeAssertionError</a>) RuntimeError()</pre>
-
 
 
 

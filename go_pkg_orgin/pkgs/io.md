@@ -151,6 +151,12 @@ the copy is implemented by calling dst.ReadFrom(src).
 
 
 <a id="example_Copy">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="CopyBuffer">func</a> [CopyBuffer](https://golang.org/src/io/io.go?s=13136:13214#L361)
 <pre>func CopyBuffer(dst <a href="#Writer">Writer</a>, src <a href="#Reader">Reader</a>, buf []<a href="/pkg/builtin/#byte">byte</a>) (written <a href="/pkg/builtin/#int64">int64</a>, err <a href="/pkg/builtin/#error">error</a>)</pre>
@@ -161,6 +167,12 @@ zero length, CopyBuffer panics.
 
 
 <a id="example_CopyBuffer">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="CopyN">func</a> [CopyN](https://golang.org/src/io/io.go?s=11951:12021#L329)
 <pre>func CopyN(dst <a href="#Writer">Writer</a>, src <a href="#Reader">Reader</a>, n <a href="/pkg/builtin/#int64">int64</a>) (written <a href="/pkg/builtin/#int64">int64</a>, err <a href="/pkg/builtin/#error">error</a>)</pre>
@@ -174,6 +186,12 @@ the copy is implemented using it.
 
 
 <a id="example_CopyN">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Pipe">func</a> [Pipe](https://golang.org/src/io/pipe.go?s=4782:4820#L176)
 <pre>func Pipe() (*<a href="#PipeReader">PipeReader</a>, *<a href="#PipeWriter">PipeWriter</a>)</pre>
@@ -195,6 +213,12 @@ the individual calls will be gated sequentially.
 
 
 <a id="example_Pipe">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ReadAtLeast">func</a> [ReadAtLeast](https://golang.org/src/io/io.go?s=10829:10895#L294)
 <pre>func ReadAtLeast(r <a href="#Reader">Reader</a>, buf []<a href="/pkg/builtin/#byte">byte</a>, min <a href="/pkg/builtin/#int">int</a>) (n <a href="/pkg/builtin/#int">int</a>, err <a href="/pkg/builtin/#error">error</a>)</pre>
@@ -209,6 +233,12 @@ If r returns an error having read at least min bytes, the error is dropped.
 
 
 <a id="example_ReadAtLeast">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ReadFull">func</a> [ReadFull](https://golang.org/src/io/io.go?s=11557:11611#L318)
 <pre>func ReadFull(r <a href="#Reader">Reader</a>, buf []<a href="/pkg/builtin/#byte">byte</a>) (n <a href="/pkg/builtin/#int">int</a>, err <a href="/pkg/builtin/#error">error</a>)</pre>
@@ -222,6 +252,12 @@ If r returns an error having read at least len(buf) bytes, the error is dropped.
 
 
 <a id="example_ReadFull">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="WriteString">func</a> [WriteString](https://golang.org/src/io/io.go?s=10163:10218#L279)
 <pre>func WriteString(w <a href="#Writer">Writer</a>, s <a href="/pkg/builtin/#string">string</a>) (n <a href="/pkg/builtin/#int">int</a>, err <a href="/pkg/builtin/#error">error</a>)</pre>
@@ -231,6 +267,12 @@ Otherwise, w.Write is called exactly once.
 
 
 <a id="example_WriteString">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -591,6 +633,12 @@ The underlying implementation is a *LimitedReader.
 
 
 <a id="example_LimitReader">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="MultiReader">func</a> [MultiReader](https://golang.org/src/io/multi.go?s=1269:1311#L38)
@@ -602,6 +650,12 @@ return a non-nil, non-EOF error, Read will return that error.
 
 
 <a id="example_MultiReader">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="TeeReader">func</a> [TeeReader](https://golang.org/src/io/io.go?s=16906:16947#L515)
@@ -614,6 +668,12 @@ Any error encountered while writing is reported as a read error.
 
 
 <a id="example_TeeReader">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -747,6 +807,12 @@ of an underlying ReaderAt.
 
 
 <a id="example_SectionReader">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -770,12 +836,24 @@ starting at offset off and stops with EOF after n bytes.
 <pre>func (s *<a href="#SectionReader">SectionReader</a>) ReadAt(p []<a href="/pkg/builtin/#byte">byte</a>, off <a href="/pkg/builtin/#int64">int64</a>) (n <a href="/pkg/builtin/#int">int</a>, err <a href="/pkg/builtin/#error">error</a>)</pre>
 
 <a id="example_SectionReader_ReadAt">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="SectionReader.Seek">func</a> (\*SectionReader) [Seek](https://golang.org/src/io/io.go?s=15828:15897#L473)
 <pre>func (s *<a href="#SectionReader">SectionReader</a>) Seek(offset <a href="/pkg/builtin/#int64">int64</a>, whence <a href="/pkg/builtin/#int">int</a>) (<a href="/pkg/builtin/#int64">int64</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
 
 <a id="example_SectionReader_Seek">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="SectionReader.Size">func</a> (\*SectionReader) [Size](https://golang.org/src/io/io.go?s=16528:16564#L508)
@@ -906,6 +984,12 @@ stops and returns the error; it does not continue down the list.
 
 
 <a id="example_MultiWriter">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -955,7 +1039,6 @@ The Copy function uses WriterTo if available.
 <pre>type WriterTo interface {
     WriteTo(w <a href="#Writer">Writer</a>) (n <a href="/pkg/builtin/#int64">int64</a>, err <a href="/pkg/builtin/#error">error</a>)
 }</pre>
-
 
 
 

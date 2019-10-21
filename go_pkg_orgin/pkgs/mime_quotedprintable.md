@@ -62,6 +62,12 @@ NewReader returns a quoted-printable reader, decoding from r.
 
 
 <a id="example_NewReader">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -99,6 +105,12 @@ NewWriter returns a new Writer that writes to w.
 
 
 <a id="example_NewWriter">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -116,7 +128,6 @@ io.Writer, but does not close the underlying io.Writer.
 Write encodes p using quoted-printable encoding and writes it to the
 underlying io.Writer. It limits line length to 76 characters. The encoded
 bytes are not necessarily flushed until the Writer is closed.
-
 
 
 

@@ -18,7 +18,19 @@ The text/tabwriter package is frozen and is not accepting new features.
 
 
 <a id="example__elastic">Example (Elastic)</a>
+```go
+```
+
+output:
+```txt
+```
 <a id="example__trailingTab">Example (TrailingTab)</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ## <a id="pkg-index">Index</a>
@@ -195,6 +207,12 @@ specifies the filter output. The remaining parameters control the formatting:
 
 
 <a id="example_Writer_Init">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Writer.Write">func</a> (\*Writer) [Write](https://golang.org/src/text/tabwriter/tabwriter.go?s=16248:16301#L520)
@@ -202,7 +220,6 @@ specifies the filter output. The remaining parameters control the formatting:
 Write writes buf to the writer b.
 The only errors returned are ones encountered
 while writing to the underlying output stream.
-
 
 
 

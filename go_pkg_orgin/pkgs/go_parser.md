@@ -100,6 +100,12 @@ are returned via a scanner.ErrorList which is sorted by file position.
 
 
 <a id="example_ParseFile">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -122,7 +128,6 @@ parser functionality.
     <span id="SpuriousErrors">SpuriousErrors</span>                                 <span class="comment">// same as AllErrors, for backward-compatibility</span>
     <span id="AllErrors">AllErrors</span>         = <a href="#SpuriousErrors">SpuriousErrors</a>             <span class="comment">// report all errors (not just the first 10 on different lines)</span>
 )</pre>
-
 
 
 

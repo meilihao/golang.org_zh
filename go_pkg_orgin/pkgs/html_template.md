@@ -204,8 +204,26 @@ and correctly infer what sanitization happens."
 
 
 <a id="example_">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <a id="example__autoescaping">Example (Autoescaping)</a>
+```go
+```
+
+output:
+```txt
+```
 <a id="example__escape">Example (Escape)</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ## <a id="pkg-index">Index</a>
@@ -761,15 +779,45 @@ HTML document fragment.
 
 
 <a id="example_Template_block">Example (Block)</a>
+```go
+```
+
+output:
+```txt
+```
 <a id="example_Template_glob">Example (Glob)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>Here we demonstrate loading a set of templates from a directory.
 </p><a id="example_Template_helpers">Example (Helpers)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>This example demonstrates one way to share some templates
 and use them in different contexts. In this variant we add multiple driver
 templates by hand to an existing bundle of templates.
 </p><a id="example_Template_parsefiles">Example (Parsefiles)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>Here we demonstrate loading a set of templates from files in different directories
 </p><a id="example_Template_share">Example (Share)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>This example demonstrates how to use one group of driver
 templates with distinct sets of helper templates.
 </p>
@@ -870,6 +918,12 @@ The return value is the template, so calls can be chained.
 
 
 <a id="example_Template_Delims">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Template.Execute">func</a> (\*Template) [Execute](https://golang.org/src/html/template/template.go?s=3487:3551#L108)
@@ -1030,7 +1084,6 @@ as it will be included verbatim in the template output.
 
 
 <pre>type URL <a href="/pkg/builtin/#string">string</a></pre>
-
 
 
 

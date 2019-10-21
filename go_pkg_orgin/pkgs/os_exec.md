@@ -85,6 +85,12 @@ The result may be an absolute path or a path relative to the current directory.
 
 
 <a id="example_LookPath">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -212,7 +218,19 @@ leaving Args empty.
 
 
 <a id="example_Command">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <a id="example_Command_environment">Example (Environment)</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="CommandContext">func</a> [CommandContext](https://golang.org/src/os/exec/exec.go?s=6740:6813#L178)
@@ -225,6 +243,12 @@ completes on its own.
 
 
 <a id="example_CommandContext">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -236,6 +260,12 @@ output and standard error.
 
 
 <a id="example_Cmd_CombinedOutput">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Cmd.Output">func</a> (\*Cmd) [Output](https://golang.org/src/os/exec/exec.go?s=15363:15401#L518)
@@ -246,6 +276,12 @@ If c.Stderr was nil, Output populates ExitError.Stderr.
 
 
 <a id="example_Cmd_Output">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Cmd.Run">func</a> (\*Cmd) [Run](https://golang.org/src/os/exec/exec.go?s=10431:10456#L327)
@@ -266,6 +302,12 @@ process will inherit the caller's thread state.
 
 
 <a id="example_Cmd_Run">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Cmd.Start">func</a> (\*Cmd) [Start](https://golang.org/src/os/exec/exec.go?s=11462:11489#L364)
@@ -277,6 +319,12 @@ once the command exits.
 
 
 <a id="example_Cmd_Start">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Cmd.StderrPipe">func</a> (\*Cmd) [StderrPipe](https://golang.org/src/os/exec/exec.go?s=18556:18605#L628)
@@ -292,6 +340,12 @@ See the StdoutPipe example for idiomatic usage.
 
 
 <a id="example_Cmd_StderrPipe">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Cmd.StdinPipe">func</a> (\*Cmd) [StdinPipe](https://golang.org/src/os/exec/exec.go?s=16573:16622#L561)
@@ -305,6 +359,12 @@ is closed, the caller must close the pipe.
 
 
 <a id="example_Cmd_StdinPipe">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Cmd.StdoutPipe">func</a> (\*Cmd) [StdoutPipe](https://golang.org/src/os/exec/exec.go?s=17670:17719#L603)
@@ -320,6 +380,12 @@ See the example for idiomatic usage.
 
 
 <a id="example_Cmd_StdoutPipe">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Cmd.String">func</a> (\*Cmd) [String](https://golang.org/src/os/exec/exec.go?s=7129:7158#L191)
@@ -421,7 +487,6 @@ An ExitError reports an unsuccessful exit by a command.
 
 ### <a id="ExitError.Error">func</a> (\*ExitError) [Error](https://golang.org/src/os/exec/exec.go?s=13833:13867#L461)
 <pre>func (e *<a href="#ExitError">ExitError</a>) Error() <a href="/pkg/builtin/#string">string</a></pre>
-
 
 
 

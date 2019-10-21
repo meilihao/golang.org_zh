@@ -65,10 +65,15 @@ On return, n == len(b) if and only if err == nil.
 
 
 <a id="example_Read">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <p>This example reads 10 cryptographically secure pseudorandom numbers from
 rand.Reader and writes them to a byte slice.
 </p>
-
 
 
 

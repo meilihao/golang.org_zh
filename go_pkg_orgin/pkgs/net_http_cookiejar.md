@@ -60,6 +60,12 @@ Options.
 
 
 <a id="example_New">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -139,7 +145,6 @@ golang.org/x/net/publicsuffix.
     <span class="comment">// stamp or version number.</span>
     String() <a href="/pkg/builtin/#string">string</a>
 }</pre>
-
 
 
 

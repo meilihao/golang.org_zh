@@ -14,14 +14,32 @@ formats.
 
 
 <a id="example__dictionary">Example (Dictionary)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>A preset dictionary can be used to improve the compression ratio.
 The downside to using a dictionary is that the compressor and decompressor
 must agree in advance what dictionary to use.
 </p><a id="example__reset">Example (Reset)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>In performance critical applications, Reset can be used to discard the
 current compressor or decompressor state and reinitialize them quickly
 by taking advantage of previously allocated memory.
 </p><a id="example__synchronization">Example (Synchronization)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>DEFLATE is suitable for transmitting compressed data across the network.
 </p>
 
@@ -331,7 +349,6 @@ and w's level and dictionary.
 <pre>func (w *<a href="#Writer">Writer</a>) Write(data []<a href="/pkg/builtin/#byte">byte</a>) (n <a href="/pkg/builtin/#int">int</a>, err <a href="/pkg/builtin/#error">error</a>)</pre>
 Write writes data to w, which will eventually write the
 compressed form of data to its underlying writer.
-
 
 
 

@@ -64,6 +64,12 @@ of bytes decoded before the error.
 
 
 <a id="example_Decode">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="DecodeString">func</a> [DecodeString](https://golang.org/src/encoding/hex/hex.go?s=3100:3143#L100)
 <pre>func DecodeString(s <a href="/pkg/builtin/#string">string</a>) ([]<a href="/pkg/builtin/#byte">byte</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
@@ -76,6 +82,12 @@ the bytes decoded before the error.
 
 
 <a id="example_DecodeString">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="DecodedLen">func</a> [DecodedLen](https://golang.org/src/encoding/hex/hex.go?s=1417:1443#L39)
 <pre>func DecodedLen(x <a href="/pkg/builtin/#int">int</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -91,6 +103,12 @@ of the hex dump matches the output of `hexdump -C` on the command line.
 
 
 <a id="example_Dump">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Dumper">func</a> [Dumper](https://golang.org/src/encoding/hex/hex.go?s=6082:6121#L205)
 <pre>func Dumper(w <a href="/pkg/io/">io</a>.<a href="/pkg/io/#Writer">Writer</a>) <a href="/pkg/io/">io</a>.<a href="/pkg/io/#WriteCloser">WriteCloser</a></pre>
@@ -100,6 +118,12 @@ line.
 
 
 <a id="example_Dumper">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Encode">func</a> [Encode](https://golang.org/src/encoding/hex/hex.go?s=687:719#L15)
 <pre>func Encode(dst, src []<a href="/pkg/builtin/#byte">byte</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -110,6 +134,12 @@ Encode implements hexadecimal encoding.
 
 
 <a id="example_Encode">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="EncodeToString">func</a> [EncodeToString](https://golang.org/src/encoding/hex/hex.go?s=2704:2742#L88)
 <pre>func EncodeToString(src []<a href="/pkg/builtin/#byte">byte</a>) <a href="/pkg/builtin/#string">string</a></pre>
@@ -117,6 +147,12 @@ EncodeToString returns the hexadecimal encoding of src.
 
 
 <a id="example_EncodeToString">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="EncodedLen">func</a> [EncodedLen](https://golang.org/src/encoding/hex/hex.go?s=419:445#L9)
 <pre>func EncodedLen(n <a href="/pkg/builtin/#int">int</a>) <a href="/pkg/builtin/#int">int</a></pre>
@@ -158,7 +194,6 @@ InvalidByteError values describe errors resulting from an invalid byte in a hex 
 
 ### <a id="InvalidByteError.Error">func</a> (InvalidByteError) [Error](https://golang.org/src/encoding/hex/hex.go?s=1206:1246#L33)
 <pre>func (e <a href="#InvalidByteError">InvalidByteError</a>) Error() <a href="/pkg/builtin/#string">string</a></pre>
-
 
 
 

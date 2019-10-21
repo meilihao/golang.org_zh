@@ -19,6 +19,12 @@ To iterate over a list (where l is a *List):
 
 
 <a id="example_">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ## <a id="pkg-index">Index</a>
@@ -239,7 +245,6 @@ The lists l and other may be the same. They must not be nil.
 Remove removes e from l if e is an element of list l.
 It returns the element value e.Value.
 The element must not be nil.
-
 
 
 

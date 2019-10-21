@@ -97,6 +97,12 @@ If the path consists entirely of separators, Base returns a single separator.
 
 
 <a id="example_Base">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Clean">func</a> [Clean](https://golang.org/src/path/filepath/path.go?s=2501:2531#L78)
 <pre>func Clean(path <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
@@ -138,6 +144,12 @@ The returned path does not end in a separator unless it is the root directory.
 
 
 <a id="example_Dir">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="EvalSymlinks">func</a> [EvalSymlinks](https://golang.org/src/path/filepath/path.go?s=6560:6606#L221)
 <pre>func EvalSymlinks(path <a href="/pkg/builtin/#string">string</a>) (<a href="/pkg/builtin/#string">string</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
@@ -158,6 +170,12 @@ no dot.
 
 
 <a id="example_Ext">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="FromSlash">func</a> [FromSlash](https://golang.org/src/path/filepath/path.go?s=4729:4763#L165)
 <pre>func FromSlash(path <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
@@ -195,6 +213,12 @@ IsAbs reports whether the path is absolute.
 
 
 <a id="example_IsAbs">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Join">func</a> [Join](https://golang.org/src/path/filepath/path.go?s=5893:5925#L199)
 <pre>func Join(elem ...<a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
@@ -206,6 +230,12 @@ element is a UNC path.
 
 
 <a id="example_Join">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Match">func</a> [Match](https://golang.org/src/path/filepath/match.go?s=1226:1284#L34)
 <pre>func Match(pattern, name <a href="/pkg/builtin/#string">string</a>) (matched <a href="/pkg/builtin/#bool">bool</a>, err <a href="/pkg/builtin/#error">error</a>)</pre>
@@ -237,6 +267,12 @@ path separator.
 
 
 <a id="example_Match">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Rel">func</a> [Rel](https://golang.org/src/path/filepath/path.go?s=7687:7738#L253)
 <pre>func Rel(basepath, targpath <a href="/pkg/builtin/#string">string</a>) (<a href="/pkg/builtin/#string">string</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
@@ -251,6 +287,12 @@ Rel calls Clean on the result.
 
 
 <a id="example_Rel">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Split">func</a> [Split](https://golang.org/src/path/filepath/path.go?s=5432:5474#L185)
 <pre>func Split(path <a href="/pkg/builtin/#string">string</a>) (dir, file <a href="/pkg/builtin/#string">string</a>)</pre>
@@ -262,6 +304,12 @@ The returned values have the property that path = dir+file.
 
 
 <a id="example_Split">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="SplitList">func</a> [SplitList](https://golang.org/src/path/filepath/path.go?s=5091:5127#L176)
 <pre>func SplitList(path <a href="/pkg/builtin/#string">string</a>) []<a href="/pkg/builtin/#string">string</a></pre>
@@ -272,6 +320,12 @@ string.
 
 
 <a id="example_SplitList">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ToSlash">func</a> [ToSlash](https://golang.org/src/path/filepath/path.go?s=4426:4458#L155)
 <pre>func ToSlash(path <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
@@ -301,6 +355,12 @@ Walk does not follow symbolic links.
 
 
 <a id="example_Walk">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -323,7 +383,6 @@ containing directory.
 
 
 <pre>type WalkFunc func(path <a href="/pkg/builtin/#string">string</a>, info <a href="/pkg/os/">os</a>.<a href="/pkg/os/#FileInfo">FileInfo</a>, err <a href="/pkg/builtin/#error">error</a>) <a href="/pkg/builtin/#error">error</a></pre>
-
 
 
 

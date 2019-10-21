@@ -13,6 +13,12 @@ as specified in RFC 1952.
 
 
 <a id="example__writerReader">Example (WriterReader)</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ## <a id="pkg-index">Index</a>
@@ -170,6 +176,12 @@ If there is no next stream, z.Reset(r) will return io.EOF.
 
 
 <a id="example_Reader_Multistream">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Reader.Read">func</a> (\*Reader) [Read](https://golang.org/src/compress/gzip/gunzip.go?s=7491:7541#L236)
@@ -272,7 +284,6 @@ allocating a new one.
 <pre>func (z *<a href="#Writer">Writer</a>) Write(p []<a href="/pkg/builtin/#byte">byte</a>) (<a href="/pkg/builtin/#int">int</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
 Write writes a compressed form of p to the underlying io.Writer. The
 compressed bytes are not necessarily flushed until the Writer is closed.
-
 
 
 

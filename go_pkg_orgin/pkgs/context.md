@@ -102,6 +102,12 @@ call cancel as soon as the operations running in this Context complete.
 
 
 <a id="example_WithCancel">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <p>This example demonstrates the use of a cancelable context to prevent a
 goroutine leak. By the end of the example function, the goroutine started
 by gen will return without leaking.
@@ -120,6 +126,12 @@ call cancel as soon as the operations running in this Context complete.
 
 
 <a id="example_WithDeadline">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <p>This example passes a context with an arbitrary deadline to tell a blocking
 function that it should abandon its work as soon as it gets to it.
 </p>
@@ -139,6 +151,12 @@ call cancel as soon as the operations running in this Context complete:
 
 
 <a id="example_WithTimeout">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <p>This example passes a context with a timeout to tell a blocking function that
 it should abandon its work after the timeout elapses.
 </p>
@@ -308,10 +326,15 @@ type should be a pointer or interface.
 
 
 <a id="example_WithValue">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <p>This example demonstrates how a value can be passed to the context
 and also how to retrieve it if it exists.
 </p>
-
 
 
 

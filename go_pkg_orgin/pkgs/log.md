@@ -224,6 +224,12 @@ multiple goroutines; it guarantees to serialize access to the Writer.
 
 
 <a id="example_Logger">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -279,6 +285,12 @@ paths it will be 2.
 
 
 <a id="example_Logger_Output">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Logger.Panic">func</a> (\*Logger) [Panic](https://golang.org/src/log/log.go?s=7007:7047#L199)
@@ -357,7 +369,6 @@ SetPrefix sets the output prefix for the logger.
 ### <a id="Logger.Writer">func</a> (\*Logger) [Writer](https://golang.org/src/log/log.go?s=8084:8119#L248)
 <pre>func (l *<a href="#Logger">Logger</a>) Writer() <a href="/pkg/io/">io</a>.<a href="/pkg/io/#Writer">Writer</a></pre>
 Writer returns the output destination for the logger.
-
 
 
 

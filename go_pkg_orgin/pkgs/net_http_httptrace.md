@@ -13,6 +13,12 @@ HTTP client requests.
 
 
 <a id="example_">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ## <a id="pkg-index">Index</a>
@@ -259,7 +265,6 @@ hook.
     Err <a href="/pkg/builtin/#error">error</a>
 }
 </pre>
-
 
 
 

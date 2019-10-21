@@ -112,13 +112,31 @@ printing.
 
 
 <a id="example__eConvergents">Example (EConvergents)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>This example demonstrates how to use big.Rat to compute the
 first 15 terms in the sequence of rational convergents for
 the constant e (base of natural logarithm).
 </p><a id="example__fibonacci">Example (Fibonacci)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>This example demonstrates how to use big.Int to compute the smallest
 Fibonacci number with 100 decimal digits and to test whether it is prime.
 </p><a id="example__sqrt2">Example (Sqrt2)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>This example shows how to use big.Float to compute the square root of 2 with
 a precision of 200 bits, and how to print the result as a decimal number.
 </p>
@@ -429,6 +447,12 @@ of Floats are not supported and may lead to errors.
 
 
 <a id="example_Float_shift">Example (Shift)</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -478,6 +502,12 @@ signs. The value of z is undefined in that case.
 
 
 <a id="example_Float_Add">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Float.Append">func</a> (\*Float) [Append](https://golang.org/src/math/big/ftoa.go?s=2522:2583#L53)
@@ -499,6 +529,12 @@ Cmp compares x and y and returns:
 
 
 <a id="example_Float_Cmp">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Float.Copy">func</a> (\*Float) [Copy](https://golang.org/src/math/big/float.go?s=18781:18818#L657)
@@ -760,6 +796,12 @@ Scan doesn't handle ±Inf.
 
 
 <a id="example_Float_Scan">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Float.Set">func</a> (\*Float) [Set](https://golang.org/src/math/big/float.go?s=18319:18355#L633)
@@ -1404,6 +1446,12 @@ the scanned number. It accepts the formats 'b' (binary), 'o' (octal),
 
 
 <a id="example_Int_Scan">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Int.Set">func</a> (\*Int) [Set](https://golang.org/src/math/big/int.go?s=1488:1518#L63)
@@ -1476,6 +1524,12 @@ and act like any other character that is not a valid digit.
 
 
 <a id="example_Int_SetString">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Int.SetUint64">func</a> (\*Int) [SetUint64](https://golang.org/src/math/big/int.go?s=1245:1283#L51)
@@ -1749,6 +1803,12 @@ Scan is a support routine for fmt.Scanner. It accepts the formats
 
 
 <a id="example_Rat_Scan">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Rat.Set">func</a> (\*Rat) [Set](https://golang.org/src/math/big/rat.go?s=9209:9239#L340)
@@ -1816,6 +1876,12 @@ operation failed, the value of z is undefined but the returned value is nil.
 
 
 <a id="example_Rat_SetString">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Rat.SetUint64">func</a> (\*Rat) [SetUint64](https://golang.org/src/math/big/rat.go?s=9056:9094#L333)
@@ -1882,6 +1948,12 @@ These constants define supported rounding modes.
 
 
 <a id="example_RoundingMode">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -1898,7 +1970,6 @@ A Word represents a single digit of a multi-precision unsigned integer.
 
 
 <pre>type Word <a href="/pkg/builtin/#uint">uint</a></pre>
-
 
 
 

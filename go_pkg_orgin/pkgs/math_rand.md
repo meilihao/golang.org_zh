@@ -25,7 +25,19 @@ package.
 
 
 <a id="example_">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <a id="example__rand">Example (Rand)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>This example shows the use of each of the methods on a *Rand.
 The use of the global functions is the same, without the receiver.
 </p>
@@ -161,6 +173,12 @@ It panics if n <= 0.
 
 
 <a id="example_Intn">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="NormFloat64">func</a> [NormFloat64](https://golang.org/src/math/rand/rand.go?s=11971:11997#L352)
 <pre>func NormFloat64() <a href="/pkg/builtin/#float64">float64</a></pre>
@@ -183,6 +201,12 @@ from the default Source.
 
 
 <a id="example_Perm">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Read">func</a> [Read](https://golang.org/src/math/rand/rand.go?s=11556:11594#L341)
 <pre>func Read(p []<a href="/pkg/builtin/#byte">byte</a>) (n <a href="/pkg/builtin/#int">int</a>, err <a href="/pkg/builtin/#error">error</a>)</pre>
@@ -210,7 +234,19 @@ swap swaps the elements with indexes i and j.
 
 
 <a id="example_Shuffle">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <a id="example_Shuffle_slicesInUnison">Example (SlicesInUnison)</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Uint32">func</a> [Uint32](https://golang.org/src/math/rand/rand.go?s=9607:9627#L293)
 <pre>func Uint32() <a href="/pkg/builtin/#uint32">uint32</a></pre>
@@ -475,7 +511,6 @@ Requirements: s > 1 and v >= 1.
 <pre>func (z *<a href="#Zipf">Zipf</a>) Uint64() <a href="/pkg/builtin/#uint64">uint64</a></pre>
 Uint64 returns a value drawn from the Zipf distribution described
 by the Zipf object.
-
 
 
 

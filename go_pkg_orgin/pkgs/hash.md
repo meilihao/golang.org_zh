@@ -13,6 +13,12 @@ Package hash provides interfaces for hash functions.
 
 
 <a id="example__binaryMarshaler">Example (BinaryMarshaler)</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ## <a id="pkg-index">Index</a>
@@ -113,7 +119,6 @@ Hash64 is the common interface implemented by all 64-bit hash functions.
     <a href="#Hash">Hash</a>
     Sum64() <a href="/pkg/builtin/#uint64">uint64</a>
 }</pre>
-
 
 
 

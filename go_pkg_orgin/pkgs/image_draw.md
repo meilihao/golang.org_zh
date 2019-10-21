@@ -73,6 +73,12 @@ diffusion.
 <pre>var <span id="FloydSteinberg">FloydSteinberg</span> <a href="#Drawer">Drawer</a> = floydSteinberg{}</pre>
 
 <a id="example_Drawer_floydSteinberg">Example (FloydSteinberg)</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -138,7 +144,6 @@ Quantizer produces a palette for an image.
     <span class="comment">// updated palette suitable for converting m to a paletted image.</span>
     Quantize(p <a href="/pkg/image/color/">color</a>.<a href="/pkg/image/color/#Palette">Palette</a>, m <a href="/pkg/image/">image</a>.<a href="/pkg/image/#Image">Image</a>) <a href="/pkg/image/color/">color</a>.<a href="/pkg/image/color/#Palette">Palette</a>
 }</pre>
-
 
 
 

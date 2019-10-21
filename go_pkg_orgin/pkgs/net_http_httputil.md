@@ -94,6 +94,12 @@ of req are included in the dump.
 
 
 <a id="example_DumpRequest">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="DumpRequestOut">func</a> [DumpRequestOut](https://golang.org/src/net/http/httputil/dump.go?s=1848:1913#L56)
 <pre>func DumpRequestOut(req *<a href="/pkg/net/http/">http</a>.<a href="/pkg/net/http/#Request">Request</a>, body <a href="/pkg/builtin/#bool">bool</a>) ([]<a href="/pkg/builtin/#byte">byte</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
@@ -103,6 +109,12 @@ User-Agent.
 
 
 <a id="example_DumpRequestOut">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="DumpResponse">func</a> [DumpResponse](https://golang.org/src/net/http/httputil/dump.go?s=8166:8231#L271)
 <pre>func DumpResponse(resp *<a href="/pkg/net/http/">http</a>.<a href="/pkg/net/http/#Response">Response</a>, body <a href="/pkg/builtin/#bool">bool</a>) ([]<a href="/pkg/builtin/#byte">byte</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
@@ -110,6 +122,12 @@ DumpResponse is like DumpRequest but dumps a response.
 
 
 <a id="example_DumpResponse">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="NewChunkedReader">func</a> [NewChunkedReader](https://golang.org/src/net/http/httputil/httputil.go?s=688:732#L10)
 <pre>func NewChunkedReader(r <a href="/pkg/io/">io</a>.<a href="/pkg/io/#Reader">Reader</a>) <a href="/pkg/io/">io</a>.<a href="/pkg/io/#Reader">Reader</a></pre>
@@ -324,6 +342,12 @@ client.
 
 
 <a id="example_ReverseProxy">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -422,7 +446,6 @@ HTTP/1.1 connection).
 Write writes resp in response to req. To close the connection gracefully, set the
 Response.Close field to true. Write should be considered operational until
 it returns an error, regardless of any errors returned on the Read side.
-
 
 
 

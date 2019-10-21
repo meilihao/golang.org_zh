@@ -154,6 +154,12 @@ Decode decodes an RFC 2047 encoded-word.
 
 
 <a id="example_WordDecoder_Decode">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="WordDecoder.DecodeHeader">func</a> (\*WordDecoder) [DecodeHeader](https://golang.org/src/mime/encodedword.go?s=6469:6534#L230)
@@ -163,6 +169,12 @@ error if and only if CharsetReader of d returns an error.
 
 
 <a id="example_WordDecoder_DecodeHeader">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ## <a id="WordEncoder">type</a> [WordEncoder](https://golang.org/src/mime/encodedword.go?s=329:350#L9)
@@ -189,7 +201,12 @@ charset name of s. It is case insensitive.
 
 
 <a id="example_WordEncoder_Encode">Example</a>
+```go
+```
 
+output:
+```txt
+```
 
 
 

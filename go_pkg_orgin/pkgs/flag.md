@@ -92,6 +92,12 @@ flag set.
 
 
 <a id="example_">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ## <a id="pkg-index">Index</a>
@@ -834,7 +840,12 @@ such as a nil pointer.
 
 
 <a id="example_Value">Example</a>
+```go
+```
 
+output:
+```txt
+```
 
 
 

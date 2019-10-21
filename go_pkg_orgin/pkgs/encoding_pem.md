@@ -41,6 +41,12 @@ Encode writes the PEM encoding of b to out.
 
 
 <a id="example_Encode">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="EncodeToMemory">func</a> [EncodeToMemory](https://golang.org/src/encoding/pem/pem.go?s=8702:8738#L324)
 <pre>func EncodeToMemory(b *<a href="#Block">Block</a>) []<a href="/pkg/builtin/#byte">byte</a></pre>
@@ -92,7 +98,12 @@ rest.
 
 
 <a id="example_Decode">Example</a>
+```go
+```
 
+output:
+```txt
+```
 
 
 

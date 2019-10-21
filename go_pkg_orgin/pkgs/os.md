@@ -283,6 +283,12 @@ and ModeTemporary are used.
 
 
 <a id="example_Chmod">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Chown">func</a> [Chown](https://golang.org/src/os/file_posix.go?s=1525:1568#L48)
 <pre>func Chown(name <a href="/pkg/builtin/#string">string</a>, uid, gid <a href="/pkg/builtin/#int">int</a>) <a href="/pkg/builtin/#error">error</a></pre>
@@ -307,6 +313,12 @@ If there is an error, it will be of type *PathError.
 
 
 <a id="example_Chtimes">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Clearenv">func</a> [Clearenv](https://golang.org/src/os/env.go?s=3747:3762#L123)
 <pre>func Clearenv()</pre>
@@ -356,6 +368,12 @@ For example, os.ExpandEnv(s) is equivalent to os.Expand(s, os.Getenv).
 
 
 <a id="example_Expand">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ExpandEnv">func</a> [ExpandEnv](https://golang.org/src/os/env.go?s=1321:1352#L40)
 <pre>func ExpandEnv(s <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
@@ -365,6 +383,12 @@ variables are replaced by the empty string.
 
 
 <a id="example_ExpandEnv">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Getegid">func</a> [Getegid](https://golang.org/src/os/proc.go?s=999:1017#L35)
 <pre>func Getegid() <a href="/pkg/builtin/#int">int</a></pre>
@@ -382,6 +406,12 @@ To distinguish between an empty value and an unset value, use LookupEnv.
 
 
 <a id="example_Getenv">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Geteuid">func</a> [Geteuid](https://golang.org/src/os/proc.go?s=718:736#L25)
 <pre>func Geteuid() <a href="/pkg/builtin/#int">int</a></pre>
@@ -465,6 +495,12 @@ ErrNotExist as well as some syscall errors.
 
 
 <a id="example_IsNotExist">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="IsPathSeparator">func</a> [IsPathSeparator](https://golang.org/src/os/path_unix.go?s=453:487#L5)
 <pre>func IsPathSeparator(c <a href="/pkg/builtin/#uint8">uint8</a>) <a href="/pkg/builtin/#bool">bool</a></pre>
@@ -515,6 +551,12 @@ be false.
 
 
 <a id="example_LookupEnv">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="Mkdir">func</a> [Mkdir](https://golang.org/src/os/file.go?s=6935:6979#L220)
 <pre>func Mkdir(name <a href="/pkg/builtin/#string">string</a>, perm <a href="#FileMode">FileMode</a>) <a href="/pkg/builtin/#error">error</a></pre>
@@ -637,6 +679,12 @@ Unsetenv unsets a single environment variable.
 
 
 <a id="example_Unsetenv">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="UserCacheDir">func</a> [UserCacheDir](https://golang.org/src/os/file.go?s=11379:11414#L358)
 <pre>func UserCacheDir() (<a href="/pkg/builtin/#string">string</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
@@ -746,7 +794,19 @@ If there is an error, it will be of type *PathError.
 
 
 <a id="example_OpenFile">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <a id="example_OpenFile_append">Example (Append)</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -1074,6 +1134,12 @@ changed, although new bits might be added.
 
 
 <a id="example_FileMode">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -1460,7 +1526,6 @@ Timeout reports whether this error represents a timeout.
 
 ### <a id="SyscallError.Unwrap">func</a> (\*SyscallError) [Unwrap](https://golang.org/src/os/error.go?s=1880:1917#L54)
 <pre>func (e *<a href="#SyscallError">SyscallError</a>) Unwrap() <a href="/pkg/builtin/#error">error</a></pre>
-
 
 
 

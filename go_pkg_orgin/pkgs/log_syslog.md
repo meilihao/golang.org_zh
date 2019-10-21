@@ -155,6 +155,12 @@ of network and raddr.
 
 
 <a id="example_Dial">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="New">func</a> [New](https://golang.org/src/log/syslog/syslog.go?s=2215:2271#L97)
@@ -243,7 +249,6 @@ severity passed to New.
 ### <a id="Writer.Write">func</a> (\*Writer) [Write](https://golang.org/src/log/syslog/syslog.go?s=3847:3892#L164)
 <pre>func (w *<a href="#Writer">Writer</a>) Write(b []<a href="/pkg/builtin/#byte">byte</a>) (<a href="/pkg/builtin/#int">int</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
 Write sends a log message to the syslog daemon.
-
 
 
 

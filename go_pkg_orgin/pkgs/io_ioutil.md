@@ -63,6 +63,12 @@ as an error to be reported.
 
 
 <a id="example_ReadAll">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ReadDir">func</a> [ReadDir](https://golang.org/src/io/ioutil/ioutil.go?s=2978:3029#L86)
 <pre>func ReadDir(dirname <a href="/pkg/builtin/#string">string</a>) ([]<a href="/pkg/os/">os</a>.<a href="/pkg/os/#FileInfo">FileInfo</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
@@ -71,6 +77,12 @@ a list of directory entries sorted by filename.
 
 
 <a id="example_ReadDir">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ReadFile">func</a> [ReadFile](https://golang.org/src/io/ioutil/ioutil.go?s=1503:1549#L42)
 <pre>func ReadFile(filename <a href="/pkg/builtin/#string">string</a>) ([]<a href="/pkg/builtin/#byte">byte</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
@@ -81,6 +93,12 @@ to be reported.
 
 
 <a id="example_ReadFile">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="TempDir">func</a> [TempDir](https://golang.org/src/io/ioutil/tempfile.go?s=2446:2503#L76)
 <pre>func TempDir(dir, prefix <a href="/pkg/builtin/#string">string</a>) (name <a href="/pkg/builtin/#string">string</a>, err <a href="/pkg/builtin/#error">error</a>)</pre>
@@ -94,6 +112,12 @@ to remove the directory when no longer needed.
 
 
 <a id="example_TempDir">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="TempFile">func</a> [TempFile](https://golang.org/src/io/ioutil/tempfile.go?s=1419:1477#L40)
 <pre>func TempFile(dir, pattern <a href="/pkg/builtin/#string">string</a>) (f *<a href="/pkg/os/">os</a>.<a href="/pkg/os/#File">File</a>, err <a href="/pkg/builtin/#error">error</a>)</pre>
@@ -111,7 +135,19 @@ to remove the file when no longer needed.
 
 
 <a id="example_TempFile">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <a id="example_TempFile_suffix">Example (Suffix)</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="WriteFile">func</a> [WriteFile](https://golang.org/src/io/ioutil/ioutil.go?s=2534:2602#L69)
 <pre>func WriteFile(filename <a href="/pkg/builtin/#string">string</a>, data []<a href="/pkg/builtin/#byte">byte</a>, perm <a href="/pkg/os/">os</a>.<a href="/pkg/os/#FileMode">FileMode</a>) <a href="/pkg/builtin/#error">error</a></pre>
@@ -121,7 +157,12 @@ otherwise WriteFile truncates it before writing.
 
 
 <a id="example_WriteFile">Example</a>
+```go
+```
 
+output:
+```txt
+```
 
 
 

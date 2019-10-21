@@ -83,6 +83,12 @@ The behavior of Do is undefined if f changes *r.
 
 
 <a id="example_Ring_Do">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Ring.Len">func</a> (\*Ring) [Len](https://golang.org/src/container/ring/ring.go?s=2869:2893#L111)
@@ -92,6 +98,12 @@ It executes in time proportional to the number of elements.
 
 
 <a id="example_Ring_Len">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Ring.Link">func</a> (\*Ring) [Link](https://golang.org/src/container/ring/ring.go?s=2221:2255#L83)
@@ -114,6 +126,12 @@ last element of s after insertion.
 
 
 <a id="example_Ring_Link">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Ring.Move">func</a> (\*Ring) [Move](https://golang.org/src/container/ring/ring.go?s=1146:1178#L34)
@@ -123,6 +141,12 @@ in the ring and returns that ring element. r must not be empty.
 
 
 <a id="example_Ring_Move">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Ring.Next">func</a> (\*Ring) [Next](https://golang.org/src/container/ring/ring.go?s=762:789#L16)
@@ -131,6 +155,12 @@ Next returns the next ring element. r must not be empty.
 
 
 <a id="example_Ring_Next">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Ring.Prev">func</a> (\*Ring) [Prev](https://golang.org/src/container/ring/ring.go?s=915:942#L24)
@@ -139,6 +169,12 @@ Prev returns the previous ring element. r must not be empty.
 
 
 <a id="example_Ring_Prev">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Ring.Unlink">func</a> (\*Ring) [Unlink](https://golang.org/src/container/ring/ring.go?s=2654:2688#L101)
@@ -149,7 +185,12 @@ The result is the removed subring. r must not be empty.
 
 
 <a id="example_Ring_Unlink">Example</a>
+```go
+```
 
+output:
+```txt
+```
 
 
 
