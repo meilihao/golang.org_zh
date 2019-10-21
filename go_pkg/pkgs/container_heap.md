@@ -234,6 +234,9 @@ but less expensive than, calling Remove(h, i) followed by a Push of the new valu
 The complexity is O(log n) where n = h.Len().
 
 
+在索引i的元素更改其值之后，Fix会重建堆顺序. 更改索引i处元素的值，然后调用Fix等价于调用Remove（h，i）后再紧跟着 Push 新值，但是花费更小. 当 n = h.Len()时, 复杂度是O(log n).
+
+
 
 ## <a id="Init">func</a> [Init](https://golang.org/src/container/heap/heap.go?s=1750:1772#L32)
 <pre>func Init(h <a href="#Interface">Interface</a>)</pre>
@@ -242,6 +245,7 @@ Init is idempotent with respect to the heap invariants
 and may be called whenever the heap invariants may have been invalidated.
 The complexity is O(n) where n = h.Len().
 
+Init 会建立 heap需要遵循的规则???. Init 是幂等的, 遵循head 规则. 只要heap的规则被打破就可以调用它. 当 n = h.Len()时, 复杂度是O(n).
 
 
 ## <a id="Pop">func</a> [Pop](https://golang.org/src/container/heap/heap.go?s=2190:2223#L50)
@@ -250,6 +254,7 @@ Pop removes and returns the minimum element (according to Less) from the heap.
 The complexity is O(log n) where n = h.Len().
 Pop is equivalent to Remove(h, 0).
 
+Pop 会 移除并返回 heap中最小的元素(通过 Less 方法). 但n = h.Len()时, 复杂度是O(log n). Pop等价于Remove(h, 0).
 
 
 ## <a id="Push">func</a> [Push](https://golang.org/src/container/heap/heap.go?s=1949:1986#L42)
@@ -257,14 +262,14 @@ Pop is equivalent to Remove(h, 0).
 Push pushes the element x onto the heap.
 The complexity is O(log n) where n = h.Len().
 
-
+Push 将元素x 放入heap. 当 n = h.Len() 时, 复杂度是O(log n).
 
 ## <a id="Remove">func</a> [Remove](https://golang.org/src/container/heap/heap.go?s=2409:2452#L59)
 <pre>func Remove(h <a href="#Interface">Interface</a>, i <a href="/pkg/builtin/#int">int</a>) interface{}</pre>
 Remove removes and returns the element at index i from the heap.
 The complexity is O(log n) where n = h.Len().
 
-
+Remove 移除heap中给定索引i的元素. 当 n = h.Len() 时, 复杂度是O(log n) .
 
 
 
@@ -282,6 +287,13 @@ Note that Push and Pop in this interface are for package heap's
 implementation to call. To add and remove things from the heap,
 use heap.Push and heap.Pop.
 
+Interface 描述了使用本包时需要满足的要求. 可以用作最小堆的任何类型实现需要遵循以下规则 (Init调用后会遵循(该规则)或数据是空的或已排序)
+
+
+	!h.Less(j, i) for 0 <= i < h.Len() and 2*i+1 <= j <= 2*i+2 and j < h.Len()
+
+
+注意, 接口中的Push和Pop是heap的实现者调用的. 为了添加或移除元素, 请使用heap.Push 和 heap.Pop.
 
 <pre>type Interface interface {
     <a href="/pkg/sort/">sort</a>.<a href="/pkg/sort/#Interface">Interface</a>

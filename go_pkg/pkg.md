@@ -14,7 +14,7 @@
 |[lzw](pkgs/compress_lzw.md)|Package lzw implements the Lempel-Ziv-Welch compressed data format, described in T. A. Welch, “A Technique for High-Performance Data Compression”, Computer, 17(6) (June 1984), pp 8-19.|0%|
 |[zlib](pkgs/compress_zlib.md)|Package zlib implements reading and writing of zlib format compressed data, as specified in RFC 1950.|0%|
 |container|||
-|[heap](pkgs/container_heap.md)|Package heap provides heap operations for any type that implements heap.Interface.|0%|
+|[heap](pkgs/container_heap.md)|heap 为实现了heap.Interface接口的任意类型提供了 heap 操作.|done|
 |[list](pkgs/container_list.md)|Package list implements a doubly linked list.|0%|
 |[ring](pkgs/container_ring.md)|Package ring implements operations on circular lists.|0%|
 |[context](pkgs/context.md)|Package context defines the Context type, which carries deadlines, cancellation signals, and other request-scoped values across API boundaries and between processes.|0%|
