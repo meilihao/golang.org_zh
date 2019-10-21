@@ -18,8 +18,9 @@ Because these interfaces and primitives wrap lower-level operations with
 various implementations, unless otherwise informed clients should not
 assume they are safe for parallel execution.
 
+io包提供了操作I/O原语的基础接口. 本包的主要功能是封装这些原语的现有实现(如os包里的原语), 抽象其功能使之成为可共享的公共接口, 并附加了一些其他相关的原语.
 
-
+因为这些接口和原语是对底层操作的各种实现的封装. 除非另有说明，调用者不应假定它们是并发安全的.
 
 ## <a id="pkg-index">Index</a>
 * [Constants](#pkg-constants)
@@ -98,11 +99,12 @@ assume they are safe for parallel execution.
 ## <a id="pkg-constants">Constants</a>
 Seek whence values.
 
+从哪开始Seek的标记.
 
 <pre>const (
-    <span id="SeekStart">SeekStart</span>   = 0 <span class="comment">// seek relative to the origin of the file</span>
-    <span id="SeekCurrent">SeekCurrent</span> = 1 <span class="comment">// seek relative to the current offset</span>
-    <span id="SeekEnd">SeekEnd</span>     = 2 <span class="comment">// seek relative to the end</span>
+    <span id="SeekStart">SeekStart</span>   = 0 <span class="comment">// seek relative to the origin of the file // seek是相对于文件的开始</span>
+    <span id="SeekCurrent">SeekCurrent</span> = 1 <span class="comment">// seek relative to the current offset // seek是相对于当前的偏移量</span>
+    <span id="SeekEnd">SeekEnd</span>     = 2 <span class="comment">// seek relative to the end // seek是相对于文件的结尾</span>
 )</pre>
 
 ## <a id="pkg-variables">Variables</a>
@@ -112,25 +114,31 @@ If the EOF occurs unexpectedly in a structured data stream,
 the appropriate error is either ErrUnexpectedEOF or some other error
 giving more detail.
 
+EOF 是Read方法在无法获得更多输入时返回的错误. 只有当函数标识一个输入已正常地结束时才会返回EOF. 如果在(读取)一个结构化数据流中意外出现了EOF，则应返回错误ErrUnexpectedEOF或者其它能给出更多细节的错误.
 
 <pre>var <span id="EOF">EOF</span> = <a href="/pkg/errors/">errors</a>.<a href="/pkg/errors/#New">New</a>(&#34;EOF&#34;)</pre>ErrClosedPipe is the error used for read or write operations on a closed pipe.
 
+ErrClosedPipe 当在一个已关闭的pipe(管道)上读取或者写入时返回的错误.
 
 <pre>var <span id="ErrClosedPipe">ErrClosedPipe</span> = <a href="/pkg/errors/">errors</a>.<a href="/pkg/errors/#New">New</a>(&#34;io: read/write on closed pipe&#34;)</pre>ErrNoProgress is returned by some clients of an io.Reader when
 many calls to Read have failed to return any data or error,
 usually the sign of a broken io.Reader implementation.
 
+ErrNoProgress 使用者多次调用io.Reader接口的Read方法都得不到任何数据和错误时就会返回该错误，通常是io.Reader的实现有问题的标志.
 
 <pre>var <span id="ErrNoProgress">ErrNoProgress</span> = <a href="/pkg/errors/">errors</a>.<a href="/pkg/errors/#New">New</a>(&#34;multiple Read calls return no data or error&#34;)</pre>ErrShortBuffer means that a read required a longer buffer than was provided.
 
+ErrShortBuffer 表示读取操作需要比所提供的缓冲区更大的缓冲区.
 
 <pre>var <span id="ErrShortBuffer">ErrShortBuffer</span> = <a href="/pkg/errors/">errors</a>.<a href="/pkg/errors/#New">New</a>(&#34;short buffer&#34;)</pre>ErrShortWrite means that a write accepted fewer bytes than requested
 but failed to return an explicit error.
 
+ErrShortWrite 表示写入操作写入的数据比提供的少，却没有返回明确的错误.
 
 <pre>var <span id="ErrShortWrite">ErrShortWrite</span> = <a href="/pkg/errors/">errors</a>.<a href="/pkg/errors/#New">New</a>(&#34;short write&#34;)</pre>ErrUnexpectedEOF means that EOF was encountered in the
 middle of reading a fixed-size block or data structure.
 
+ErrUnexpectedEOF表示在读取一个固定大小的块或者数据结构的中途遇到了错误EOF.
 
 <pre>var <span id="ErrUnexpectedEOF">ErrUnexpectedEOF</span> = <a href="/pkg/errors/">errors</a>.<a href="/pkg/errors/#New">New</a>(&#34;unexpected EOF&#34;)</pre>
 
@@ -188,13 +196,42 @@ provided buffer (if one is required) rather than allocating a
 temporary one. If buf is nil, one is allocated; otherwise if it has
 zero length, CopyBuffer panics.
 
+CopyBuffer 和Copy类似, 除了CopyBuffer是通过buf提供的缓冲区(如果需要的话)进行复制,而不是临时分配的缓冲区. 如果buf是nil,会临时分配一个缓冲区; 但len(buf)为0, 它会panic.
 
 <a id="example_CopyBuffer">Example</a>
 ```go
+package main
+
+import (
+	"io"
+	"log"
+	"os"
+	"strings"
+)
+
+func main() {
+	r1 := strings.NewReader("first reader\n")
+	r2 := strings.NewReader("second reader\n")
+	buf := make([]byte, 8)
+
+	// buf is used here...
+	if _, err := io.CopyBuffer(os.Stdout, r1, buf); err != nil {
+		log.Fatal(err)
+	}
+
+	// ... reused here also. No need to allocate an extra buffer.
+	// ... 在这里复用. 不需要额外分配一个缓冲区.
+	if _, err := io.CopyBuffer(os.Stdout, r2, buf); err != nil {
+		log.Fatal(err)
+	}
+
+}
 ```
 
 output:
 ```txt
+first reader
+second reader
 ```
 
 ## <a id="CopyN">func</a> [CopyN](https://golang.org/src/io/io.go?s=11951:12021#L329)
@@ -207,13 +244,34 @@ On return, written == n if and only if err == nil.
 If dst implements the ReaderFrom interface,
 the copy is implemented using it.
 
+CopyN 会从src拷贝n个字节数据(或直到遇到错误为止)到dst. 其返回已拷贝的字节数和复制时遇到的第一个错误. 只且仅有err为nil时，written才会等于n.
+
+如果dst实现了ReaderFrom接口，本函数就会调用它来实现拷贝.
 
 <a id="example_CopyN">Example</a>
 ```go
+package main
+
+import (
+	"io"
+	"log"
+	"os"
+	"strings"
+)
+
+func main() {
+	r := strings.NewReader("some io.Reader stream to be read")
+
+	if _, err := io.CopyN(os.Stdout, r, 5); err != nil {
+		log.Fatal(err)
+	}
+
+}
 ```
 
 output:
 ```txt
+some
 ```
 
 ## <a id="Pipe">func</a> [Pipe](https://golang.org/src/io/pipe.go?s=4782:4820#L176)
@@ -234,13 +292,41 @@ It is safe to call Read and Write in parallel with each other or with Close.
 Parallel calls to Read and parallel calls to Write are also safe:
 the individual calls will be gated sequentially.
 
+Pipe 创建一个同步的内存管道.它可用于将代码期望的io.Reader和io.Writer连接在一起.
+
+在pipe上的读取和写入操作是一一对应的,除非一次写入需要多次读取才能消费完. 也就是说,每次在PipeWriter上写入后都会阻塞直到从PipeReader上一次或多次消费完写入的数据为止.它没有内部缓存, 写入的数据可以直接拷贝给若干个读取.
+
+并行地交替调用Read, Write 和 Close 是安全的???. 并行调用Read和并行调用Write也同样安全: 每个调用将按顺序进行.
+
 
 <a id="example_Pipe">Example</a>
 ```go
+package main
+
+import (
+	"bytes"
+	"fmt"
+	"io"
+)
+
+func main() {
+	r, w := io.Pipe()
+
+	go func() {
+		fmt.Fprint(w, "some text to be read\n")
+		w.Close()
+	}()
+
+	buf := new(bytes.Buffer)
+	buf.ReadFrom(r)
+	fmt.Print(buf.String())
+
+}
 ```
 
 output:
 ```txt
+some text to be read
 ```
 
 ## <a id="ReadAtLeast">func</a> [ReadAtLeast](https://golang.org/src/io/io.go?s=10829:10895#L294)
@@ -254,13 +340,51 @@ If min is greater than the length of buf, ReadAtLeast returns ErrShortBuffer.
 On return, n >= min if and only if err == nil.
 If r returns an error having read at least min bytes, the error is dropped.
 
+ReadAtLeast 从r至少读取min个字节数据填充进buf. 函数返回已写入的字节数和错误(如果没有读取足够的字节数). 只有没有读取到任何字节时才返回EOF. 如果读取到了数据但不够min时遇到了EOF，函数会返回ErrUnexpectedEOF. 如果min比buf的长度还大，函数会返回ErrShortBuffer. 当且仅当err==nil时，n>=min.
 
 <a id="example_ReadAtLeast">Example</a>
 ```go
+package main
+
+import (
+	"fmt"
+	"io"
+	"log"
+	"strings"
+)
+
+func main() {
+	r := strings.NewReader("some io.Reader stream to be read\n")
+
+	buf := make([]byte, 33)
+	if _, err := io.ReadAtLeast(r, buf, 4); err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("%s\n", buf)
+
+	// buffer smaller than minimal read size.
+	// 缓冲区比最少读取的大小还小.
+	shortBuf := make([]byte, 3)
+	if _, err := io.ReadAtLeast(r, shortBuf, 4); err != nil {
+		fmt.Println("error:", err)
+	}
+
+	// minimal read size bigger than io.Reader stream
+	// 最少读取的大小比io.Reader的数据流更大
+	longBuf := make([]byte, 64)
+	if _, err := io.ReadAtLeast(r, longBuf, 64); err != nil {
+		fmt.Println("error:", err)
+	}
+
+}
 ```
 
 output:
 ```txt
+some io.Reader stream to be read
+
+error: short buffer
+error: EOF
 ```
 
 ## <a id="ReadFull">func</a> [ReadFull](https://golang.org/src/io/io.go?s=11557:11611#L318)
@@ -273,13 +397,42 @@ ReadFull returns ErrUnexpectedEOF.
 On return, n == len(buf) if and only if err == nil.
 If r returns an error having read at least len(buf) bytes, the error is dropped.
 
+ReadFull 从r准确地读取长度为len(buf)的字节数据填充进buf. 函数返回已拷贝的字节数和错误(如果没有读取足够的字节数). 只有没有读取到任何字节时才可能返回EOF. 如果读取到了数据但不够len(buf)时遇到了EOF，函数会返回ErrUnexpectedEOF. 当且仅当err==nil时，n==len(buf). 如果r返回读取到至少len（buf）个字节且报错了，则该错误应被丢弃???.
 
 <a id="example_ReadFull">Example</a>
 ```go
+package main
+
+import (
+	"fmt"
+	"io"
+	"log"
+	"strings"
+)
+
+func main() {
+	r := strings.NewReader("some io.Reader stream to be read\n")
+
+	buf := make([]byte, 4)
+	if _, err := io.ReadFull(r, buf); err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("%s\n", buf)
+
+	// minimal read size bigger than io.Reader stream
+	// 最少读取的限定比io.Reader的数据流更大
+	longBuf := make([]byte, 64)
+	if _, err := io.ReadFull(r, longBuf); err != nil {
+		fmt.Println("error:", err)
+	}
+
+}
 ```
 
 output:
 ```txt
+some
+error: unexpected EOF
 ```
 
 ## <a id="WriteString">func</a> [WriteString](https://golang.org/src/io/io.go?s=10163:10218#L279)
@@ -288,13 +441,26 @@ WriteString writes the contents of the string s to w, which accepts a slice of b
 If w implements StringWriter, its WriteString method is invoked directly.
 Otherwise, w.Write is called exactly once.
 
+WriteString 将字符串s的内容写入w(接收一个byte slice)中. 如果w已经实现了WriteString方法，函数会直接调用该方法; 否则 只调用一次w.Write.
 
 <a id="example_WriteString">Example</a>
 ```go
+package main
+
+import (
+	"io"
+	"os"
+)
+
+func main() {
+	io.WriteString(os.Stdout, "Hello World")
+
+}
 ```
 
 output:
 ```txt
+Hello World
 ```
 
 
@@ -306,6 +472,9 @@ ReadByte reads and returns the next byte from the input or
 any error encountered. If ReadByte returns an error, no input
 byte was consumed, and the returned byte value is undefined.
 
+ByteReader 封装了ReadByte方法的接口.
+
+ReadByte 从输入中读取并返回下一个字节或遇到的任何错误. 如果没有可读的字节，将产生错误err且返回值中的byte是未赋值的.
 
 <pre>type ByteReader interface {
     ReadByte() (<a href="/pkg/builtin/#byte">byte</a>, <a href="/pkg/builtin/#error">error</a>)
@@ -331,6 +500,13 @@ It may be an error to call UnreadByte twice without an intervening
 call to ReadByte.
 
 
+ByteScanner是一个接口，它将 UnreadByte 方法和基础的ReadByte组合在了一起.
+
+按照ReadByte->UnreadByte->ReadByte的顺序调用时, 最后一个ReadByte返回的字节和第一个ReadByte的返回值相同.
+连续调用两次UnreadByte而中间没有调用ReadByte时, 本方法可能会产生错误.
+</p>
+
+
 <pre>type ByteScanner interface {
     <a href="#ByteReader">ByteReader</a>
     UnreadByte() <a href="/pkg/builtin/#error">error</a>
@@ -349,6 +525,7 @@ call to ReadByte.
 ## <a id="ByteWriter">type</a> [ByteWriter](https://golang.org/src/io/io.go?s=9094:9148#L246)
 ByteWriter is the interface that wraps the WriteByte method.
 
+ByteWriter 封装了WriteByte方法的接口.
 
 <pre>type ByteWriter interface {
     WriteByte(c <a href="/pkg/builtin/#byte">byte</a>) <a href="/pkg/builtin/#error">error</a>
