@@ -92,7 +92,7 @@
 |[png](pkgs/image_png.md)|Package png implements a PNG image decoder and encoder.|0%|
 |index|||
 |[suffixarray](pkgs/index_suffixarray.md)|Package suffixarray implements substring search in logarithmic time using an in-memory suffix array.|0%|
-|[io](pkgs/io.md)|Package io provides basic interfaces to I/O primitives.|0%|
+|[io](pkgs/io.md)|io包提供了操作I/O原语的基础接口.|done|
 |[ioutil](pkgs/io_ioutil.md)|ioutil 包实现了一些实用的 I/O 函数.|done|
 |[log](pkgs/log.md)|Package log implements a simple logging package.|0%|
 |[syslog](pkgs/log_syslog.md)|Package syslog provides a simple interface to the system log service.|0%|
