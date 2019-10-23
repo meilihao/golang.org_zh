@@ -53,6 +53,29 @@ Contexts are safe for simultaneous use by multiple goroutines.
 See <a href="https://blog.golang.org/context">https://blog.golang.org/context</a> for example code for a server that uses
 Contexts.
 
+context 定义了 Context 类型, 它可在 API 边界和进程之间传递截止时间, 取消信号, 以及其他请求的生命周期中的值.
+
+请求到达server后需创建一个 Context 实例. 服务器的响应也应该接受 Context。在它们之间的函数调用链必须传递该Context, 也可以用 WithCancel, WithDeadline, WithTimeout 或 WithValue 衍生出的新 Context 实例代替它. 当取消一个 Context 实例时, 所有由它衍生出的 Context 实例都会被取消.
+
+函数 WithCancel，WithDeadline，WithTimeout 接受一个父级 Context 实例, 并返回一个衍生的子代 Context 和一个 CancelFunc. 调用 CancelFunc 会取消该子代Context及其后代的Context, 删除父级与它的联系并停止所有关联的定时器. 不调用 CancelFunc 会使子代及其子代泄漏，直到父代被取消或计时器触发. `go vet` 工具可以检查是否所有的流程控制都使用了 CancelFunc.
+
+为了各个包之间的接口保持一致并且能够使用静态工具检查context的传递，使用 Context 时需要遵循以下规则：
+
+不要将 Context 储存在结构体中, 而是在函数中按需传递 Context. Context 应该作为函数的第一个参数, 一般叫 ctx：
+
+```go
+func DoSomething(ctx context.Context, arg Arg) error {
+    // ... use ctx ...
+}
+```
+
+即使函数允许也不要传递值为 nil 的 Context. 如果你不确定使用哪个 Context 则可以使用 context.TODO.
+
+仅将context的Value用于传递处理过程和API的生命周期中的数据, 不将其作为函数的可选参数.
+
+相同的 Context 可以传递给不同的 goroutines. Context 可以安全地被多个 goroutine 同时使用.
+
+server端示例见 https://blog.golang.org/context.
 
 
 
