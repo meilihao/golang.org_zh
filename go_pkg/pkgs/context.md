@@ -107,10 +107,12 @@ server端示例见 https://blog.golang.org/context.
 ## <a id="pkg-variables">Variables</a>
 Canceled is the error returned by Context.Err when the context is canceled.
 
+Canceled 是 context 取消后, `Context.Err()`返回的error.
 
 <pre>var <span id="Canceled">Canceled</span> = <a href="/pkg/errors/">errors</a>.<a href="/pkg/errors/#New">New</a>(&#34;context canceled&#34;)</pre>DeadlineExceeded is the error returned by Context.Err when the context's
 deadline passes.
 
+DeadlineExceeded 是 context 超过截止时间后, `Context.Err()`返回的error.
 
 <pre>var <span id="DeadlineExceeded">DeadlineExceeded</span> <a href="/pkg/builtin/#error">error</a> = deadlineExceededError{}</pre>
 
@@ -123,12 +125,72 @@ or when the parent context's Done channel is closed, whichever happens first.
 Canceling this context releases resources associated with it, so code should
 call cancel as soon as the operations running in this Context complete.
 
+WithCancel 返回拥有 Done channel 的 parent 副本. 当 cancel 函数被调用后或者父context的Done channel被关闭后(以先发生的为准), 返回的子context的 Done channel会被close.
+
+取消 context 会释放和它关联的资源，所以我们应该在 Context 完成后立即调用cancel.
 
 <a id="example_WithCancel">Example</a>
 <p>This example demonstrates the use of a cancelable context to prevent a
 goroutine leak. By the end of the example function, the goroutine started
 by gen will return without leaking.
 </p>
+
+此示例演示了在使用可取消的context时如何防止goroutine泄漏. 在示例函数结束时，由gen启动的goroutine将返回而不会泄漏.
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+)
+
+func main() {
+	// gen generates integers in a separate goroutine and
+	// sends them to the returned channel.
+	// The callers of gen need to cancel the context once
+	// they are done consuming generated integers not to leak
+    // the internal goroutine started by gen.
+    //
+    // gen在单独的goroutine中生成整数, 然后将它们发送到channel上.
+    // gen的调用者需要在消费完生成的整数后需要立即取消context, 避免gen生成的内部goroutine泄露
+	gen := func(ctx context.Context) <-chan int {
+		dst := make(chan int)
+		n := 1
+		go func() {
+			for {
+				select {
+				case <-ctx.Done():
+					return // returning not to leak the goroutine
+				case dst <- n:
+					n++
+				}
+			}
+		}()
+		return dst
+	}
+
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel() // cancel when we are finished consuming integers
+
+	for n := range gen(ctx) {
+		fmt.Println(n)
+		if n == 5 {
+			break
+		}
+	}
+}
+```
+
+output
+```txt
+1
+2
+3
+4
+5
+```
+
 ## <a id="WithDeadline">func</a> [WithDeadline](https://golang.org/src/context/context.go?s=12430:12498#L384)
 <pre>func WithDeadline(parent <a href="#Context">Context</a>, d <a href="/pkg/time/">time</a>.<a href="/pkg/time/#Time">Time</a>) (<a href="#Context">Context</a>, <a href="#CancelFunc">CancelFunc</a>)</pre>
 WithDeadline returns a copy of the parent context with the deadline adjusted
@@ -146,6 +208,13 @@ call cancel as soon as the operations running in this Context complete.
 <p>This example passes a context with an arbitrary deadline to tell a blocking
 function that it should abandon its work as soon as it gets to it.
 </p>
+```go
+```
+
+output
+```txt
+```
+
 ## <a id="WithTimeout">func</a> [WithTimeout](https://golang.org/src/context/context.go?s=14448:14525#L453)
 <pre>func WithTimeout(parent <a href="#Context">Context</a>, timeout <a href="/pkg/time/">time</a>.<a href="/pkg/time/#Duration">Duration</a>) (<a href="#Context">Context</a>, <a href="#CancelFunc">CancelFunc</a>)</pre>
 WithTimeout returns WithDeadline(parent, time.Now().Add(timeout)).
@@ -165,6 +234,12 @@ call cancel as soon as the operations running in this Context complete:
 <p>This example passes a context with a timeout to tell a blocking function that
 it should abandon its work after the timeout elapses.
 </p>
+```go
+```
+
+output
+```txt
+```
 
 
 ## <a id="CancelFunc">type</a> [CancelFunc](https://golang.org/src/context/context.go?s=7884:7906#L211)
@@ -334,6 +409,12 @@ type should be a pointer or interface.
 <p>This example demonstrates how a value can be passed to the context
 and also how to retrieve it if it exists.
 </p>
+```go
+```
+
+output
+```txt
+```
 
 
 
