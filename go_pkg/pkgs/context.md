@@ -204,15 +204,50 @@ Canceling this context releases resources associated with it, so code should
 call cancel as soon as the operations running in this Context complete.
 
 
+WithDeadline 返回拥有截止时间的 parent 副本, 并将截止时间调整为不晚于d. 如果 parent 的截止时间早于 d, 那么`WithDeadline(parent, d)`在语义上等同于使用 parent 的截止时间. 当截止时间到来, 或返回的cancel函数被调用, 或父context的Done channel被关闭(以先发生为准), 返回的context的Done channel会被关闭.
+
+取消 context 会释放和他关联的资源，所以我们应该在 Context 完成后立即立即调用cancel.
+
 <a id="example_WithDeadline">Example</a>
 <p>This example passes a context with an arbitrary deadline to tell a blocking
 function that it should abandon its work as soon as it gets to it.
 </p>
+
+这个例子传递了一个带有截止时间的context来告诉阻塞函数: 时间到后应该立即放弃继续执行.
+
 ```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"time"
+)
+
+func main() {
+	d := time.Now().Add(50 * time.Millisecond)
+	ctx, cancel := context.WithDeadline(context.Background(), d)
+
+	// Even though ctx will be expired, it is good practice to call its
+	// cancellation function in any case. Failure to do so may keep the
+	// context and its parent alive longer than necessary.
+    //
+    // 即使 ctx 将要过期，在最后调用取消函数也是很好的做法. 不这么做会导致 context 和它的父级在不必要的时候继续存在.
+	defer cancel()
+
+	select {
+	case <-time.After(1 * time.Second):
+		fmt.Println("overslept")
+	case <-ctx.Done():
+		fmt.Println(ctx.Err())
+	}
+
+}
 ```
 
 output
 ```txt
+context deadline exceeded
 ```
 
 ## <a id="WithTimeout">func</a> [WithTimeout](https://golang.org/src/context/context.go?s=14448:14525#L453)
@@ -222,10 +257,14 @@ WithTimeout returns WithDeadline(parent, time.Now().Add(timeout)).
 Canceling this context releases resources associated with it, so code should
 call cancel as soon as the operations running in this Context complete:
 
+WithTimeout 返回 WithDeadline(parent, time.Now().Add(timeout)).
+
+取消 context 会释放和他关联的资源，所以我们应该在 Context 完成后立即立即调用cancel:
+
 
 	func slowOperationWithTimeout(ctx context.Context) (Result, error) {
 		ctx, cancel := context.WithTimeout(ctx, 100*time.Millisecond)
-		defer cancel()  // releases resources if slowOperation completes before timeout elapses
+		defer cancel()  // releases resources if slowOperation completes before timeout elapses // 如果slowOperation在超时之前完成就立即释放资源
 		return slowOperation(ctx)
 	}
 
@@ -234,11 +273,39 @@ call cancel as soon as the operations running in this Context complete:
 <p>This example passes a context with a timeout to tell a blocking function that
 it should abandon its work after the timeout elapses.
 </p>
+
+这个例子传递了一个带有超时时间的context来告诉阻塞函数: 超时后应该立即放弃继续执行.
+
 ```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"time"
+)
+
+func main() {
+	// Pass a context with a timeout to tell a blocking function that it
+    // should abandon its work after the timeout elapses.
+    //
+    // 通过一个传带超时的 context 可以通知阻塞函数应该在到达超时时间后放弃继续执行.
+	ctx, cancel := context.WithTimeout(context.Background(), 50*time.Millisecond)
+	defer cancel()
+
+	select {
+	case <-time.After(1 * time.Second):
+		fmt.Println("overslept")
+	case <-ctx.Done():
+		fmt.Println(ctx.Err()) // prints "context deadline exceeded"
+	}
+
+}
 ```
 
 output
 ```txt
+context deadline exceeded
 ```
 
 
@@ -248,6 +315,7 @@ A CancelFunc does not wait for the work to stop.
 A CancelFunc may be called by multiple goroutines simultaneously.
 After the first call, subsequent calls to a CancelFunc do nothing.
 
+CancelFunc 会通知一个操作终止其工作. CancelFunc 不会等待工作完成后再终止. 多个goroutine可以同时调用CancelFunc. 在首次调用 CancelFunc 后，再调用 CancelFunc 不做任何事.
 
 <pre>type CancelFunc func()</pre>
 
@@ -267,105 +335,103 @@ API boundaries.
 
 Context's methods may be called by multiple goroutines simultaneously.
 
+Context可以携带截止时间, 取消信号和跨越 API 边界的其他值.
 
-<pre>type Context interface {
-    <span class="comment">// Deadline returns the time when work done on behalf of this context</span>
-    <span class="comment">// should be canceled. Deadline returns ok==false when no deadline is</span>
-    <span class="comment">// set. Successive calls to Deadline return the same results.</span>
-    Deadline() (deadline <a href="/pkg/time/">time</a>.<a href="/pkg/time/#Time">Time</a>, ok <a href="/pkg/builtin/#bool">bool</a>)
+Context的方法可以同时被多个goroutine调用.
 
-    <span class="comment">// Done returns a channel that&#39;s closed when work done on behalf of this</span>
-    <span class="comment">// context should be canceled. Done may return nil if this context can</span>
-    <span class="comment">// never be canceled. Successive calls to Done return the same value.</span>
-    <span class="comment">//</span>
-    <span class="comment">// WithCancel arranges for Done to be closed when cancel is called;</span>
-    <span class="comment">// WithDeadline arranges for Done to be closed when the deadline</span>
-    <span class="comment">// expires; WithTimeout arranges for Done to be closed when the timeout</span>
-    <span class="comment">// elapses.</span>
-    <span class="comment">//</span>
-    <span class="comment">// Done is provided for use in select statements:</span>
-    <span class="comment">//</span>
-    <span class="comment">//  // Stream generates values with DoSomething and sends them to out</span>
-    <span class="comment">//  // until DoSomething returns an error or ctx.Done is closed.</span>
-    <span class="comment">//  func Stream(ctx context.Context, out chan&lt;- Value) error {</span>
-    <span class="comment">//  	for {</span>
-    <span class="comment">//  		v, err := DoSomething(ctx)</span>
-    <span class="comment">//  		if err != nil {</span>
-    <span class="comment">//  			return err</span>
-    <span class="comment">//  		}</span>
-    <span class="comment">//  		select {</span>
-    <span class="comment">//  		case &lt;-ctx.Done():</span>
-    <span class="comment">//  			return ctx.Err()</span>
-    <span class="comment">//  		case out &lt;- v:</span>
-    <span class="comment">//  		}</span>
-    <span class="comment">//  	}</span>
-    <span class="comment">//  }</span>
-    <span class="comment">//</span>
-    <span class="comment">// See https://blog.golang.org/pipelines for more examples of how to use</span>
-    <span class="comment">// a Done channel for cancellation.</span>
-    Done() &lt;-chan struct{}
+```go
+type Context interface {
+    // Deadline returns the time when work done on behalf of this context
+    // should be canceled. Deadline returns ok==false when no deadline is
+    // set. Successive calls to Deadline return the same results.
+    Deadline() (deadline time.Time, ok bool)
 
-    <span class="comment">// If Done is not yet closed, Err returns nil.</span>
-    <span class="comment">// If Done is closed, Err returns a non-nil error explaining why:</span>
-    <span class="comment">// Canceled if the context was canceled</span>
-    <span class="comment">// or DeadlineExceeded if the context&#39;s deadline passed.</span>
-    <span class="comment">// After Err returns a non-nil error, successive calls to Err return the same error.</span>
-    Err() <a href="/pkg/builtin/#error">error</a>
+    // Done returns a channel that's closed when work done on behalf of this
+    // context should be canceled. Done may return nil if this context can
+    // never be canceled. Successive calls to Done return the same value.
+    //
+    // WithCancel arranges for Done to be closed when cancel is called;
+    // WithDeadline arranges for Done to be closed when the deadline
+    // expires; WithTimeout arranges for Done to be closed when the timeout
+    // elapses.
+    //
+    // Done is provided for use in select statements:
+    //
+    //  // Stream generates values with DoSomething and sends them to out
+    //  // until DoSomething returns an error or ctx.Done is closed.
+    //  func Stream(ctx context.Context, out chan<- Value) error {
+    //  	for {
+    //  		v, err := DoSomething(ctx)
+    //  		if err != nil {
+    //  			return err
+    //  		}
+    //  		select {
+    //  		case <-ctx.Done():
+    //  			return ctx.Err()
+    //  		case out <- v:
+    //  		}
+    //  	}
+    //  }
+    //
+    // See https://blog.golang.org/pipelines for more examples of how to use
+    // a Done channel for cancellation.
+    Done() <-chan struct{}
 
-    <span class="comment">// Value returns the value associated with this context for key, or nil</span>
-    <span class="comment">// if no value is associated with key. Successive calls to Value with</span>
-    <span class="comment">// the same key returns the same result.</span>
-    <span class="comment">//</span>
-    <span class="comment">// Use context values only for request-scoped data that transits</span>
-    <span class="comment">// processes and API boundaries, not for passing optional parameters to</span>
-    <span class="comment">// functions.</span>
-    <span class="comment">//</span>
-    <span class="comment">// A key identifies a specific value in a Context. Functions that wish</span>
-    <span class="comment">// to store values in Context typically allocate a key in a global</span>
-    <span class="comment">// variable then use that key as the argument to context.WithValue and</span>
-    <span class="comment">// Context.Value. A key can be any type that supports equality;</span>
-    <span class="comment">// packages should define keys as an unexported type to avoid</span>
-    <span class="comment">// collisions.</span>
-    <span class="comment">//</span>
-    <span class="comment">// Packages that define a Context key should provide type-safe accessors</span>
-    <span class="comment">// for the values stored using that key:</span>
-    <span class="comment">//</span>
-    <span class="comment">// 	// Package user defines a User type that&#39;s stored in Contexts.</span>
-    <span class="comment">// 	package user</span>
-    <span class="comment">//</span>
-    <span class="comment">// 	import &#34;context&#34;</span>
-    <span class="comment">//</span>
-    <span class="comment">// 	// User is the type of value stored in the Contexts.</span>
-    <span class="comment">// 	type User struct {...}</span>
-    <span class="comment">//</span>
-    <span class="comment">// 	// key is an unexported type for keys defined in this package.</span>
-    <span class="comment">// 	// This prevents collisions with keys defined in other packages.</span>
-    <span class="comment">// 	type key int</span>
-    <span class="comment">//</span>
-    <span class="comment">// 	// userKey is the key for user.User values in Contexts. It is</span>
-    <span class="comment">// 	// unexported; clients use user.NewContext and user.FromContext</span>
-    <span class="comment">// 	// instead of using this key directly.</span>
-    <span class="comment">// 	var userKey key</span>
-    <span class="comment">//</span>
-    <span class="comment">// 	// NewContext returns a new Context that carries value u.</span>
-    <span class="comment">// 	func NewContext(ctx context.Context, u *User) context.Context {</span>
-    <span class="comment">// 		return context.WithValue(ctx, userKey, u)</span>
-    <span class="comment">// 	}</span>
-    <span class="comment">//</span>
-    <span class="comment">// 	// FromContext returns the User value stored in ctx, if any.</span>
-    <span class="comment">// 	func FromContext(ctx context.Context) (*User, bool) {</span>
-    <span class="comment">// 		u, ok := ctx.Value(userKey).(*User)</span>
-    <span class="comment">// 		return u, ok</span>
-    <span class="comment">// 	}</span>
+    // If Done is not yet closed, Err returns nil.
+    // If Done is closed, Err returns a non-nil error explaining why:
+    // Canceled if the context was canceled
+    // or DeadlineExceeded if the context's deadline passed.
+    // After Err returns a non-nil error, successive calls to Err return the same error.
+    Err() error
+
+    // Value returns the value associated with this context for key, or nil
+    // if no value is associated with key. Successive calls to Value with
+    // the same key returns the same result.
+    //
+    // Use context values only for request-scoped data that transits
+    // processes and API boundaries, not for passing optional parameters to
+    // functions.
+    //
+    // A key identifies a specific value in a Context. Functions that wish
+    // to store values in Context typically allocate a key in a global
+    // variable then use that key as the argument to context.WithValue and
+    // Context.Value. A key can be any type that supports equality;
+    // packages should define keys as an unexported type to avoid
+    // collisions.
+    //
+    // Packages that define a Context key should provide type-safe accessors
+    // for the values stored using that key:
+    //
+    // 	// Package user defines a User type that's stored in Contexts.
+    // 	package user
+    //
+    // 	import "context"
+    //
+    // 	// User is the type of value stored in the Contexts.
+    // 	type User struct {...}
+    //
+    // 	// key is an unexported type for keys defined in this package.
+    // 	// This prevents collisions with keys defined in other packages.
+    // 	type key int
+    //
+    // 	// userKey is the key for user.User values in Contexts. It is
+    // 	// unexported; clients use user.NewContext and user.FromContext
+    // 	// instead of using this key directly.
+    // 	var userKey key
+    //
+    // 	// NewContext returns a new Context that carries value u.
+    // 	func NewContext(ctx context.Context, u *User) context.Context {
+    // 		return context.WithValue(ctx, userKey, u)
+    // 	}
+    //
+    // 	// FromContext returns the User value stored in ctx, if any.
+    // 	func FromContext(ctx context.Context) (*User, bool) {
+    // 		u, ok := ctx.Value(userKey).(*User)
+    // 		return u, ok
+    // 	}
     Value(key interface{}) interface{}
-}</pre>
-
-
-
-
-
-
-
+}
+```
 
 
 ### <a id="Background">func</a> [Background](https://golang.org/src/context/context.go?s=7311:7336#L195)
@@ -374,6 +440,8 @@ Background returns a non-nil, empty Context. It is never canceled, has no
 values, and has no deadline. It is typically used by the main function,
 initialization, and tests, and as the top-level Context for incoming
 requests.
+
+Background 返回一个非 nil 的空 Context. 它不能取消，不包含值，没有截止时间. 它的典型应该用场景包括：main 函数，初始化，测试，或者作为所有请求的顶级 Context.
 
 
 
@@ -385,6 +453,7 @@ it's unclear which Context to use or it is not yet available (because the
 surrounding function has not yet been extended to accept a Context
 parameter).
 
+TODO 返回一个非 nil 的空 Context. 当不知道该使用哪种 Context 或者它尚未可用(因为周围的函数尚未扩展为可接受Context参数)时, 此时应该使用 context.TODO.
 
 
 
@@ -404,16 +473,52 @@ interface{}, context keys often have concrete type
 struct{}. Alternatively, exported context key variables' static
 type should be a pointer or interface.
 
+WithValue 将 key = value 的键值对保存在 parent 的副本中并返回.
+
+仅将context的Value用于传递处理过程和API的生命周期中的数据, 不将其作为函数的可选参数.
+
+提供的key必须具有可比性, 并且不能使用字符串类型或其他任何的built-in类型以避免不同的package间使用context发生冲突. WithValue 的用户应该定义自己的 key 类型. 为了避免在分配时赋值给了`interface{}`，context的key通常是具有具体类型的`struct{}`. 另外，导出的contex 的key的静态类型应该是指针或接口.
+
 
 <a id="example_WithValue">Example</a>
 <p>This example demonstrates how a value can be passed to the context
 and also how to retrieve it if it exists.
 </p>
+
+此示例演示如何将值传递给context以及如何将其取回(如果存在).
+
 ```go
+package main
+
+import (
+	"context"
+	"fmt"
+)
+
+func main() {
+	type favContextKey string
+
+	f := func(ctx context.Context, k favContextKey) {
+		if v := ctx.Value(k); v != nil {
+			fmt.Println("found value:", v)
+			return
+		}
+		fmt.Println("key not found:", k)
+	}
+
+	k := favContextKey("language")
+	ctx := context.WithValue(context.Background(), k, "Go")
+
+	f(ctx, k)
+	f(ctx, favContextKey("color"))
+
+}
 ```
 
 output
 ```txt
+found value: Go
+key not found: color
 ```
 
 
