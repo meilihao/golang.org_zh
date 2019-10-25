@@ -21,7 +21,7 @@ The Fatal functions call os.Exit(1) after writing the log message.
 The Panic functions call panic after writing the log message.
 
 
-
+log 实现了简单的日志记录. 它定义了Logger, 用于格式化输出. 它同样有一个预先定义的'standard' Logger, 可通过辅助函数`Print[f|ln], Fatal[f|ln] 和 Panic[f|ln]`来使用, 比自行创建的Logger更方便. logger会将日志打到stderr, 且每条日志都带有日期和时间. 每行日志自成一行: 如果该日志没有换行符, logger会自动添加. Fatal 在写完日志后会调用os.Exit(1). Panic 在写完日志后会调用panic.
 
 ## <a id="pkg-index">Index</a>
 * [Constants](#pkg-constants)
@@ -86,6 +86,16 @@ while flags Ldate | Ltime | Lmicroseconds | Llongfile produce,
 
 
 	2009/01/23 01:23:23.123123 /a/b/c/d.go:23: message
+
+
+这些标志定义了 Logger 打印的每行日志的前缀. 这些标志通过或操作组合起来控制打印格式. 标志(这里列出的或注释中所描述的)顺序无法控制其在前缀中的出现顺序. 仅当 Llongfile 或 Lshortfile 被指定时, 前缀会以冒号结尾. 举个例子， `Ldate | Ltime`(或 LstdFlags ) 标志产生：
+
+  2009/01/23 01:23:23 message
+
+当使用`Ldate | Ltime | Lmicroseconds | Llongfile`标志产生:
+
+
+  2009/01/23 01:23:23.123123 /a/b/c/d.go:23: message
 
 
 <pre>const (
