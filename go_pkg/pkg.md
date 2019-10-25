@@ -16,7 +16,7 @@
 |container|||
 |[heap](pkgs/container_heap.md)|heap 为实现了heap.Interface接口的任意类型提供了 heap 操作.|done|
 |[list](pkgs/container_list.md)|list 是双向链表的实现.|done|
-|[ring](pkgs/container_ring.md)|Package ring implements operations on circular lists.|0%|
+|[ring](pkgs/container_ring.md)|ring 实现了环形(或循环)链表的操作.|done|
 |[context](pkgs/context.md)|context 定义了 Context 类型, 它可在 API 边界和进程之间传递截止时间, 取消信号, 以及其他请求的生命周期中的值.|done|
 |[crypto](pkgs/crypto.md)|Package crypto collects common cryptographic constants.|0%|
 |[aes](pkgs/crypto_aes.md)|AES包 实现了 AES 加密算法(以前叫Rijndael), 由U.S. Federal Information Processing Standards Publication 197(美国联邦信息处理标准出版物197)定义.|done|
