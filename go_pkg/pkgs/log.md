@@ -99,13 +99,13 @@ while flags Ldate | Ltime | Lmicroseconds | Llongfile produce,
 
 
 <pre>const (
-    <span id="Ldate">Ldate</span>         = 1 &lt;&lt; <a href="/pkg/builtin/#iota">iota</a>     <span class="comment">// the date in the local time zone: 2009/01/23</span>
-    <span id="Ltime">Ltime</span>                         <span class="comment">// the time in the local time zone: 01:23:23</span>
-    <span id="Lmicroseconds">Lmicroseconds</span>                 <span class="comment">// microsecond resolution: 01:23:23.123123.  assumes Ltime.</span>
-    <span id="Llongfile">Llongfile</span>                     <span class="comment">// full file name and line number: /a/b/c/d.go:23</span>
-    <span id="Lshortfile">Lshortfile</span>                    <span class="comment">// final file name element and line number: d.go:23. overrides Llongfile</span>
-    <span id="LUTC">LUTC</span>                          <span class="comment">// if Ldate or Ltime is set, use UTC rather than the local time zone</span>
-    <span id="LstdFlags">LstdFlags</span>     = <a href="#Ldate">Ldate</a> | <a href="#Ltime">Ltime</a> <span class="comment">// initial values for the standard logger</span>
+    <span id="Ldate">Ldate</span>         = 1 &lt;&lt; <a href="/pkg/builtin/#iota">iota</a>     <span class="comment">// the date in the local time zone: 2009/01/23 // 本地日期</span>
+    <span id="Ltime">Ltime</span>                         <span class="comment">// the time in the local time zone: 01:23:23 // 本地时间</span>
+    <span id="Lmicroseconds">Lmicroseconds</span>                 <span class="comment">// microsecond resolution: 01:23:23.123123.  assumes Ltime. // 本地时间带微秒格式 </span>
+    <span id="Llongfile">Llongfile</span>                     <span class="comment">// full file name and line number: /a/b/c/d.go:23 // 文件路径+行号</span>
+    <span id="Lshortfile">Lshortfile</span>                    <span class="comment">// final file name element and line number: d.go:23. overrides Llongfile // 文件名+行号</span>
+    <span id="LUTC">LUTC</span>                          <span class="comment">// if Ldate or Ltime is set, use UTC rather than the local time zone // UTC时间, 且比Ldate 和 Ltime优先</span>
+    <span id="LstdFlags">LstdFlags</span>     = <a href="#Ldate">Ldate</a> | <a href="#Ltime">Ltime</a> <span class="comment">// initial values for the standard logger // standard logger使用的初始值</span>
 )</pre>
 
 
@@ -114,25 +114,25 @@ while flags Ldate | Ltime | Lmicroseconds | Llongfile produce,
 <pre>func Fatal(v ...interface{})</pre>
 Fatal is equivalent to Print() followed by a call to os.Exit(1).
 
-
+Fatal 等价于 Print() 后调用 os.Exit(1).
 
 ## <a id="Fatalf">func</a> [Fatalf](https://golang.org/src/log/log.go?s=9702:9746#L313)
 <pre>func Fatalf(format <a href="/pkg/builtin/#string">string</a>, v ...interface{})</pre>
 Fatalf is equivalent to Printf() followed by a call to os.Exit(1).
 
-
+Fatalf 等价于 Printf() 后调用 os.Exit(1).
 
 ## <a id="Fatalln">func</a> [Fatalln](https://golang.org/src/log/log.go?s=9878:9908#L319)
 <pre>func Fatalln(v ...interface{})</pre>
 Fatalln is equivalent to Println() followed by a call to os.Exit(1).
 
-
+Fatalln 等价于 Println() 后调用 os.Exit(1).
 
 ## <a id="Flags">func</a> [Flags](https://golang.org/src/log/log.go?s=8382:8398#L262)
 <pre>func Flags() <a href="/pkg/builtin/#int">int</a></pre>
 Flags returns the output flags for the standard logger.
 
-
+Flags 返回 standard logger的output flag.
 
 ## <a id="Output">func</a> [Output](https://golang.org/src/log/log.go?s=10880:10922#L352)
 <pre>func Output(calldepth <a href="/pkg/builtin/#int">int</a>, s <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#error">error</a></pre>
@@ -144,77 +144,78 @@ frames to skip when computing the file name and line number
 if Llongfile or Lshortfile is set; a value of 1 will print the details
 for the caller of Output.
 
+Output 打印一个 logging 事件的信息. 打印的内容包括日志内容以及被 Logger 的标志指定的前缀文本. 如果参数 s 的最后一个字符不是换行符，会自动追加换行符. 如果 Llongfile 或 Lshortfile 被指定，参数 calldepth 表示计算文件名和行数时，忽略的函数调用的次数. 如果值为1会打印函数调用者的详细信息.
 
 
 ## <a id="Panic">func</a> [Panic](https://golang.org/src/log/log.go?s=10026:10054#L325)
 <pre>func Panic(v ...interface{})</pre>
 Panic is equivalent to Print() followed by a call to panic().
 
-
+Panic 相当于 Print() 后调用 panic().
 
 ## <a id="Panicf">func</a> [Panicf](https://golang.org/src/log/log.go?s=10178:10222#L332)
 <pre>func Panicf(format <a href="/pkg/builtin/#string">string</a>, v ...interface{})</pre>
 Panicf is equivalent to Printf() followed by a call to panic().
 
-
+Panicf 相当于 Printf() 后调用 panic().
 
 ## <a id="Panicln">func</a> [Panicln](https://golang.org/src/log/log.go?s=10357:10387#L339)
 <pre>func Panicln(v ...interface{})</pre>
 Panicln is equivalent to Println() followed by a call to panic().
 
-
+Panicln 相当于 Println() 后调用 panic().
 
 ## <a id="Prefix">func</a> [Prefix](https://golang.org/src/log/log.go?s=8593:8613#L272)
 <pre>func Prefix() <a href="/pkg/builtin/#string">string</a></pre>
 Prefix returns the output prefix for the standard logger.
 
-
+Prefix 返回 standard logger的输出前缀.
 
 ## <a id="Print">func</a> [Print](https://golang.org/src/log/log.go?s=9033:9061#L290)
 <pre>func Print(v ...interface{})</pre>
 Print calls Output to print to the standard logger.
 Arguments are handled in the manner of fmt.Print.
 
-
+Print 函数调用 Output 来使用standard logger 打印日志. 参数按照 fmt.Print 的方式处理.
 
 ## <a id="Printf">func</a> [Printf](https://golang.org/src/log/log.go?s=9210:9254#L296)
 <pre>func Printf(format <a href="/pkg/builtin/#string">string</a>, v ...interface{})</pre>
 Printf calls Output to print to the standard logger.
 Arguments are handled in the manner of fmt.Printf.
 
-
+Printf 函数调用 Output 来使用standard logger 打印日志. 参数按照 fmt.Printf 的方式处理.
 
 ## <a id="Println">func</a> [Println](https://golang.org/src/log/log.go?s=9414:9444#L302)
 <pre>func Println(v ...interface{})</pre>
 Println calls Output to print to the standard logger.
 Arguments are handled in the manner of fmt.Println.
 
-
+Println 函数调用 Output 来使用standard logger 打印日志. 参数按照 fmt.Println 的方式处理.
 
 ## <a id="SetFlags">func</a> [SetFlags](https://golang.org/src/log/log.go?s=8483:8506#L267)
 <pre>func SetFlags(flag <a href="/pkg/builtin/#int">int</a>)</pre>
 SetFlags sets the output flags for the standard logger.
 
-
+SetFlags 设置 standard logger的打印标志.
 
 ## <a id="SetOutput">func</a> [SetOutput](https://golang.org/src/log/log.go?s=8239:8266#L255)
 <pre>func SetOutput(w <a href="/pkg/io/">io</a>.<a href="/pkg/io/#Writer">Writer</a>)</pre>
 SetOutput sets the output destination for the standard logger.
 
-
+SetOutput 设置standard logger 的输出目标.
 
 ## <a id="SetPrefix">func</a> [SetPrefix](https://golang.org/src/log/log.go?s=8701:8730#L277)
 <pre>func SetPrefix(prefix <a href="/pkg/builtin/#string">string</a>)</pre>
 SetPrefix sets the output prefix for the standard logger.
 
-
+SetPrefix 设置standard logger 的打印前缀文本.
 
 ## <a id="Writer">func</a> [Writer](https://golang.org/src/log/log.go?s=8825:8848#L282)
 <pre>func Writer() <a href="/pkg/io/">io</a>.<a href="/pkg/io/#Writer">Writer</a></pre>
 Writer returns the output destination for the standard logger.
 
 
-
+Writer 返回 standard logger的输出目标.
 
 
 ## <a id="Logger">type</a> [Logger](https://golang.org/src/log/log.go?s=2378:2670#L40)
@@ -223,6 +224,7 @@ output to an io.Writer. Each logging operation makes a single call to
 the Writer's Write method. A Logger can be used simultaneously from
 multiple goroutines; it guarantees to serialize access to the Writer.
 
+一个 Logger 表示一个活动的记录对象，该对象会将生成的行输出到io.Writer. 每个日志记录操作都调用Writer的Write方法. 记录仪可以同时在多个goroutines中使用; 它保证序列化访问Writer.
 
 <pre>type Logger struct {
     <span class="comment">// contains filtered or unexported fields</span>
@@ -245,6 +247,7 @@ destination to which log data will be written.
 The prefix appears at the beginning of each generated log line.
 The flag argument defines the logging properties.
 
+New 生成一个新的Logger. 参数 out 设置日志信息的输出目标. 参数 prefix 出现在每行日志的开始位置. 参数 flag 定义 logging 的属性.
 
 
 
@@ -254,29 +257,28 @@ The flag argument defines the logging properties.
 <pre>func (l *<a href="#Logger">Logger</a>) Fatal(v ...interface{})</pre>
 Fatal is equivalent to l.Print() followed by a call to os.Exit(1).
 
-
+Fatal 等价于 l.Print() 后调用 os.Exit(1).
 
 
 ### <a id="Logger.Fatalf">func</a> (\*Logger) [Fatalf](https://golang.org/src/log/log.go?s=6659:6715#L187)
 <pre>func (l *<a href="#Logger">Logger</a>) Fatalf(format <a href="/pkg/builtin/#string">string</a>, v ...interface{})</pre>
 Fatalf is equivalent to l.Printf() followed by a call to os.Exit(1).
 
-
+Fatalf 等价于 l.Printf() 后调用 os.Exit(1).
 
 
 ### <a id="Logger.Fatalln">func</a> (\*Logger) [Fatalln](https://golang.org/src/log/log.go?s=6847:6889#L193)
 <pre>func (l *<a href="#Logger">Logger</a>) Fatalln(v ...interface{})</pre>
 Fatalln is equivalent to l.Println() followed by a call to os.Exit(1).
 
-
+Fatalfln 等价于 l.Println() 后调用 os.Exit(1).
 
 
 ### <a id="Logger.Flags">func</a> (\*Logger) [Flags](https://golang.org/src/log/log.go?s=7511:7539#L220)
 <pre>func (l *<a href="#Logger">Logger</a>) Flags() <a href="/pkg/builtin/#int">int</a></pre>
 Flags returns the output flags for the logger.
 
-
-
+Flags 返回 logger 的 输出标志.
 
 ### <a id="Logger.Output">func</a> (\*Logger) [Output](https://golang.org/src/log/log.go?s=5252:5306#L139)
 <pre>func (l *<a href="#Logger">Logger</a>) Output(calldepth <a href="/pkg/builtin/#int">int</a>, s <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#error">error</a></pre>
@@ -287,29 +289,59 @@ already a newline. Calldepth is used to recover the PC and is
 provided for generality, although at the moment on all pre-defined
 paths it will be 2.
 
+Output 打印一个 logging 事件的信息. 打印的内容包括日志内容以及被 Logger 的标志指定的前缀文本. 如果参数 s 的最后一个字符不是换行符，会自动追加换行符. 参数 calldepth 一般用来恢复 PC 并提供通用性, 尽管当前所有预定义的路径上它都是2.
+
 
 <a id="example_Logger_Output">Example</a>
+```go
+package main
 
+import (
+	"bytes"
+	"fmt"
+	"log"
+)
+
+func main() {
+	var (
+		buf    bytes.Buffer
+		logger = log.New(&buf, "INFO: ", log.Lshortfile)
+
+		infof = func(info string) {
+			logger.Output(2, info)
+		}
+	)
+
+	infof("Hello world")
+
+	fmt.Print(&buf)
+}
+```
+
+output:
+```txt
+INFO: prog.go:19: Hello world
+```
 
 ### <a id="Logger.Panic">func</a> (\*Logger) [Panic](https://golang.org/src/log/log.go?s=7007:7047#L199)
 <pre>func (l *<a href="#Logger">Logger</a>) Panic(v ...interface{})</pre>
 Panic is equivalent to l.Print() followed by a call to panic().
 
-
+Panic 等价于 l.Print() 后调用 panic().
 
 
 ### <a id="Logger.Panicf">func</a> (\*Logger) [Panicf](https://golang.org/src/log/log.go?s=7171:7227#L206)
 <pre>func (l *<a href="#Logger">Logger</a>) Panicf(format <a href="/pkg/builtin/#string">string</a>, v ...interface{})</pre>
 Panicf is equivalent to l.Printf() followed by a call to panic().
 
-
+Panicf 等价于 l.Printf() 后调用 panic().
 
 
 ### <a id="Logger.Panicln">func</a> (\*Logger) [Panicln](https://golang.org/src/log/log.go?s=7362:7404#L213)
 <pre>func (l *<a href="#Logger">Logger</a>) Panicln(v ...interface{})</pre>
 Panicln is equivalent to l.Println() followed by a call to panic().
 
-
+Panicln 等价于 l.Println() 后调用 panic().
 
 
 ### <a id="Logger.Prefix">func</a> (\*Logger) [Prefix](https://golang.org/src/log/log.go?s=7786:7818#L234)
@@ -317,14 +349,14 @@ Panicln is equivalent to l.Println() followed by a call to panic().
 Prefix returns the output prefix for the logger.
 
 
-
+Prefix 返回 logger 的输出前缀文本.
 
 ### <a id="Logger.Print">func</a> (\*Logger) [Print](https://golang.org/src/log/log.go?s=6167:6207#L174)
 <pre>func (l *<a href="#Logger">Logger</a>) Print(v ...interface{})</pre>
 Print calls l.Output to print to the logger.
 Arguments are handled in the manner of fmt.Print.
 
-
+Print 调用l.Output来打印. 参数按照 fmt.Print 的格式处理.
 
 
 ### <a id="Logger.Printf">func</a> (\*Logger) [Printf](https://golang.org/src/log/log.go?s=5964:6020#L168)
@@ -332,7 +364,7 @@ Arguments are handled in the manner of fmt.Print.
 Printf calls l.Output to print to the logger.
 Arguments are handled in the manner of fmt.Printf.
 
-
+Printf 调用l.Output来打印. 参数按照 fmt.Printf 的格式处理.
 
 
 ### <a id="Logger.Println">func</a> (\*Logger) [Println](https://golang.org/src/log/log.go?s=6348:6390#L178)
@@ -340,7 +372,7 @@ Arguments are handled in the manner of fmt.Printf.
 Println calls l.Output to print to the logger.
 Arguments are handled in the manner of fmt.Println.
 
-
+Println 调用l.Output来打印. 参数按照 fmt.Println 的格式处理.
 
 
 ### <a id="Logger.SetFlags">func</a> (\*Logger) [SetFlags](https://golang.org/src/log/log.go?s=7644:7679#L227)
@@ -348,20 +380,20 @@ Arguments are handled in the manner of fmt.Println.
 SetFlags sets the output flags for the logger.
 
 
-
+SetFlags 返回 logger 的 输出标志.
 
 ### <a id="Logger.SetOutput">func</a> (\*Logger) [SetOutput](https://golang.org/src/log/log.go?s=3070:3109#L57)
 <pre>func (l *<a href="#Logger">Logger</a>) SetOutput(w <a href="/pkg/io/">io</a>.<a href="/pkg/io/#Writer">Writer</a>)</pre>
 SetOutput sets the output destination for the logger.
 
-
+SetOutput 设置 logger的输出目的.
 
 
 ### <a id="Logger.SetPrefix">func</a> (\*Logger) [SetPrefix](https://golang.org/src/log/log.go?s=7927:7968#L241)
 <pre>func (l *<a href="#Logger">Logger</a>) SetPrefix(prefix <a href="/pkg/builtin/#string">string</a>)</pre>
 SetPrefix sets the output prefix for the logger.
 
-
+SetPrefix 设置 logger的输出前缀文本.
 
 
 ### <a id="Logger.Writer">func</a> (\*Logger) [Writer](https://golang.org/src/log/log.go?s=8084:8119#L248)
@@ -369,7 +401,7 @@ SetPrefix sets the output prefix for the logger.
 Writer returns the output destination for the logger.
 
 
-
+Writer 返回 logger 的输出目的.
 
 
 

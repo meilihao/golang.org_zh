@@ -94,7 +94,7 @@
 |[suffixarray](pkgs/index_suffixarray.md)|Package suffixarray implements substring search in logarithmic time using an in-memory suffix array.|0%|
 |[io](pkgs/io.md)|io包提供了操作I/O原语的基础接口.|done|
 |[ioutil](pkgs/io_ioutil.md)|ioutil 包实现了一些实用的 I/O 函数.|done|
-|[log](pkgs/log.md)|Package log implements a simple logging package.|0%|
+|[log](pkgs/log.md)|log 实现了简单的日志记录.|done|
 |[syslog](pkgs/log_syslog.md)|Package syslog provides a simple interface to the system log service.|0%|
 |[math](pkgs/math.md)|Package math provides basic constants and mathematical functions.|0%|
 |[big](pkgs/math_big.md)|Package big implements arbitrary-precision arithmetic (big numbers).|0%|
