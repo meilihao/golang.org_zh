@@ -344,6 +344,8 @@ type Context interface {
     // Deadline returns the time when work done on behalf of this context
     // should be canceled. Deadline returns ok==false when no deadline is
     // set. Successive calls to Deadline return the same results.
+    //
+    // Deadline 返回work的截止时间, 表示到时该context需要被取消. ok表示是否设置过deadline, ok==false 表示未设置. 连续调用 Deadline 返回同样的结果.
     Deadline() (deadline time.Time, ok bool)
 
     // Done returns a channel that's closed when work done on behalf of this
@@ -375,6 +377,31 @@ type Context interface {
     //
     // See https://blog.golang.org/pipelines for more examples of how to use
     // a Done channel for cancellation.
+    //
+    // Done 返回 一个channel, 当它关闭了的话表示work已完成, 此时需要取消该context.
+    // Done可能返回nil, 此时该context永远不会被取消. 连续调用 Done 返回相同的值.
+    //
+    // WithCancel 会在 cancel 调用后关闭 Done; WithDeadline 会在 deadline到期后关闭 Done; WithTimeout会在超时后关闭 Done.
+    //
+    // Done 和 select 搭配使用:
+    //
+    //  // Stream generates values with DoSomething and sends them to out
+    //  // until DoSomething returns an error or ctx.Done is closed.
+    //  func Stream(ctx context.Context, out chan<- Value) error {
+    //      for {
+    //          v, err := DoSomething(ctx)
+    //          if err != nil {
+    //              return err
+    //          }
+    //          select {
+    //          case <-ctx.Done():
+    //              return ctx.Err()
+    //          case out <- v:
+    //          }
+    //      }
+    //  }
+    //
+    // 参考 https://blog.golang.org/pipelines, 上面有更多的示例解释了如何使用Done channel来取消context.
     Done() <-chan struct{}
 
     // If Done is not yet closed, Err returns nil.
@@ -382,6 +409,12 @@ type Context interface {
     // Canceled if the context was canceled
     // or DeadlineExceeded if the context's deadline passed.
     // After Err returns a non-nil error, successive calls to Err return the same error.
+    //
+    // 如果 Done 还没有被关闭，Err 返回 nil.
+    // 如果 Done 已经关闭，Err 回返回非 nil 值来解释原因:
+    // Canceled : context 是被取消的
+    // DeadlineExceeded: context 到达截止时间
+    // 在 Err 返回非 nil 值后，连续调用 Err 都返回相同结果
     Err() error
 
     // Value returns the value associated with this context for key, or nil
@@ -429,6 +462,52 @@ type Context interface {
     // 		u, ok := ctx.Value(userKey).(*User)
     // 		return u, ok
     // 	}
+    //
+    // Value 返回context中与该key关联的value, 如果该key没有关联值则会返回nil. 使用相同的key连续调用 Value 返回相同的值.
+    //
+    // 仅将context的Value用于传递处理过程和API的生命周期中的数据, 不将其作为函数的可选参数.
+    //
+    // Context 中使用key来标识特定的值.
+    // 函数通常会希望分配一个全局变量来标识存储在 Context 中的值, 然后将该key作为参数传递给 context.WithValue 和 Context.Value.
+    // key 可以是任意类型但必须支持相等比较, 通常需要将key定义成非导出类型已避免碰撞.
+    //
+    // 定义了一个 Context 中使用的key, 为相应的值提供了类型安全的访问器.
+    // Packages that define a Context key should provide type-safe accessors
+    // for the values stored using that key:
+    //
+    //  // Package user defines a User type that's stored in Contexts.
+    //  // user 包定义了一个保存在 Context 中的 User 类型.
+    //  package user
+    //
+    //  import "context"
+    //
+    //  // User is the type of value stored in the Contexts.
+    //  // User 是保存在 Context 中的类型.
+    //  type User struct {...}
+    //
+    //  // key is an unexported type for keys defined in this package.
+    //  // This prevents collisions with keys defined in other packages.
+    //  //
+    //  // key 是未导出的类型, 用于表示该package中的keys.
+    //  // 这样可以避免与其他包中定义的 key 类型发生冲突.
+    //  type key int
+    //
+    //  // userKey 是 保存在Context中的user.User值的key.
+    //  // 它是不可导出的; 用户可使用 user.NewContext 和 user.FromContext 以避免直接使用该key.
+    //  var userKey key
+    //
+    //  // NewContext returns a new Context that carries value u.
+    //  // NewContext 返回一个新的Context并携带了u.
+    //  func NewContext(ctx context.Context, u *User) context.Context {
+    //      return context.WithValue(ctx, userKey, u)
+    //  }
+    //
+    //  // FromContext returns the User value stored in ctx, if any.
+    //  // 如果存在, FromContext 返回 ctx 中 存储的 User 值.
+    //  func FromContext(ctx context.Context) (*User, bool) {
+    //      u, ok := ctx.Value(userKey).(*User)
+    //      return u, ok
+    //  }
     Value(key interface{}) interface{}
 }
 ```
