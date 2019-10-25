@@ -22,6 +22,14 @@ Some external packages provide more functionality. See:
 
 	<a href="https://godoc.org/?q=syslog">https://godoc.org/?q=syslog</a>
 
+syslog 为系统日志服务提供了一个简单的接口. 它能通过UNIX domain socket, UDP 或 TCP发送消息给syslog守护进程.
+
+Dial 函数只需要调用一次. 如果写入失败， syslog 客户端会尝试重新连接服务器并再次写入.
+
+syslog 包处于冻结状态，不会接受新的功能. 一些其它包提供更多的功能. 参考：
+
+
+	<a href="https://godoc.org/?q=syslog">https://godoc.org/?q=syslog</a>
 
 
 
@@ -62,7 +70,7 @@ system log service with the specified priority, a combination of
 the syslog facility and severity. The logFlag argument is the flag
 set passed through to log.New to create the Logger.
 
-
+NewLogger 创建一个 log.Logger 对象，它会把携带特定优先级(syslog 类型和严重程度的组合)的消息写到系统日志服务. 参数 logFlag 和 log.New 的 flag 参数作用相同.
 
 
 
@@ -71,6 +79,8 @@ The Priority is a combination of the syslog facility and
 severity. For example, LOG_ALERT | LOG_FTP sends an alert severity
 message from the FTP facility. The default severity is LOG_EMERG;
 the default facility is LOG_KERN.
+
+Priority 是 syslog 类型和严重程度的结合. 比如， LOG_ALERT | LOG_FTP 是从 FTP 设备发送过来的一个警告消息. 默认的严重程度是 LOG_EMERG，默认的类型是 LOG_KERN.
 
 
 <pre>type Priority <a href="/pkg/builtin/#int">int</a></pre>
@@ -129,6 +139,7 @@ the default facility is LOG_KERN.
 ## <a id="Writer">type</a> [Writer](https://golang.org/src/log/syslog/syslog.go?s=1273:1432#L66)
 A Writer is a connection to a syslog server.
 
+Writer 是一个 syslog 服务器的链接.
 
 <pre>type Writer struct {
     <span class="comment">// contains filtered or unexported fields</span>
@@ -153,8 +164,36 @@ If network is empty, Dial will connect to the local syslog server.
 Otherwise, see the documentation for net.Dial for valid values
 of network and raddr.
 
+Dial 通过network和raddr 建立与日志守护程序的连接. 每次向返回的writer写入都会发送一条日志消息，其中包含`类型和严重性(来自优先级)`和tag. 如果tag参数为空，则使用 os.Args[0]. 如果network参数为空，Dial 将连接到本地系统日志服务. 否则，请参阅 net.Dial 的文档以传递有效的network和 raddr.
+
 
 <a id="example_Dial">Example</a>
+```go
+package main
+
+import (
+	"fmt"
+	"log"
+	"log/syslog"
+)
+
+func main() {
+	sysLog, err := syslog.Dial("tcp", "localhost:1234",
+		syslog.LOG_WARNING|syslog.LOG_DAEMON, "demotag")
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Fprintf(sysLog, "This is a daemon warning with demotag.")
+	sysLog.Emerg("And this is a daemon emergency with demotag.")
+}
+```
+
+output:
+```txt
+./prog.go:10:17: undefined: syslog.Dial
+./prog.go:11:3: undefined: syslog.LOG_WARNING
+./prog.go:11:22: undefined: syslog.LOG_DAEMON
+```
 
 
 ### <a id="New">func</a> [New](https://golang.org/src/log/syslog/syslog.go?s=2215:2271#L97)
@@ -164,7 +203,7 @@ write to the returned writer sends a log message with the given
 priority (a combination of the syslog facility and severity) and
 prefix tag. If tag is empty, the os.Args[0] is used.
 
-
+New 与系统日志守护进程建立一个新的连接. 每次向返回的writer写入都会发送一条携带指定优先级(syslog 类型和严重程度的组合)和前缀tag的日志消息. 如果参数 tag 为空，会使用os.Args[0].
 
 
 
@@ -174,6 +213,7 @@ prefix tag. If tag is empty, the os.Args[0] is used.
 Alert logs a message with severity LOG_ALERT, ignoring the severity
 passed to New.
 
+Alert 记录一个严重程度是 LOG_ALERT 的消息，忽略传递给 New 里的 severity 参数.
 
 
 
@@ -181,7 +221,7 @@ passed to New.
 <pre>func (w *<a href="#Writer">Writer</a>) Close() <a href="/pkg/builtin/#error">error</a></pre>
 Close closes a connection to the syslog daemon.
 
-
+Close 关闭与syslog daemon的连接.
 
 
 ### <a id="Writer.Crit">func</a> (\*Writer) [Crit](https://golang.org/src/log/syslog/syslog.go?s=4613:4650#L197)
@@ -189,7 +229,7 @@ Close closes a connection to the syslog daemon.
 Crit logs a message with severity LOG_CRIT, ignoring the severity
 passed to New.
 
-
+Crit 记录一个严重程度是 LOG_CRIT 的消息，忽略传递给 New 里的 severity 参数.
 
 
 ### <a id="Writer.Debug">func</a> (\*Writer) [Debug](https://golang.org/src/log/syslog/syslog.go?s=5541:5579#L232)
@@ -197,7 +237,7 @@ passed to New.
 Debug logs a message with severity LOG_DEBUG, ignoring the severity
 passed to New.
 
-
+Debug 记录一个严重程度是 LOG_DEBUG 的消息，忽略传递给 New 里的 severity 参数.
 
 
 ### <a id="Writer.Emerg">func</a> (\*Writer) [Emerg](https://golang.org/src/log/syslog/syslog.go?s=4243:4281#L183)
@@ -205,7 +245,7 @@ passed to New.
 Emerg logs a message with severity LOG_EMERG, ignoring the severity
 passed to New.
 
-
+Emerg 记录一个严重程度是 LOG_EMERG 的消息，忽略传递给 New 里的 severity 参数.
 
 
 ### <a id="Writer.Err">func</a> (\*Writer) [Err](https://golang.org/src/log/syslog/syslog.go?s=4793:4829#L204)
@@ -213,7 +253,7 @@ passed to New.
 Err logs a message with severity LOG_ERR, ignoring the severity
 passed to New.
 
-
+Err 记录一个严重程度是 LOG_ERR 的消息，忽略传递给 New 里的 severity 参数.
 
 
 ### <a id="Writer.Info">func</a> (\*Writer) [Info](https://golang.org/src/log/syslog/syslog.go?s=5357:5394#L225)
@@ -221,7 +261,7 @@ passed to New.
 Info logs a message with severity LOG_INFO, ignoring the severity
 passed to New.
 
-
+Info 记录一个严重程度是 Info 的消息，忽略传递给 New 里的 severity 参数.
 
 
 ### <a id="Writer.Notice">func</a> (\*Writer) [Notice](https://golang.org/src/log/syslog/syslog.go?s=5171:5210#L218)
@@ -229,7 +269,7 @@ passed to New.
 Notice logs a message with severity LOG_NOTICE, ignoring the
 severity passed to New.
 
-
+Notice 记录一个严重程度是 Notice 的消息，忽略传递给 New 里的 severity 参数.
 
 
 ### <a id="Writer.Warning">func</a> (\*Writer) [Warning](https://golang.org/src/log/syslog/syslog.go?s=4979:5019#L211)
@@ -237,15 +277,14 @@ severity passed to New.
 Warning logs a message with severity LOG_WARNING, ignoring the
 severity passed to New.
 
-
+Warning 记录一个严重程度是 Warning 的消息，忽略传递给 New 里的 severity 参数.
 
 
 ### <a id="Writer.Write">func</a> (\*Writer) [Write](https://golang.org/src/log/syslog/syslog.go?s=3847:3892#L164)
 <pre>func (w *<a href="#Writer">Writer</a>) Write(b []<a href="/pkg/builtin/#byte">byte</a>) (<a href="/pkg/builtin/#int">int</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
 Write sends a log message to the syslog daemon.
 
-
-
+Write 向syslog daemon发送一条log消息.
 
 
 
