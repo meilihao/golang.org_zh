@@ -116,7 +116,88 @@ functions. Manually configuring HTTP/2 via the golang.org/x/net/http2
 package takes precedence over the net/http package's built-in HTTP/2
 support.
 
+http 提供了 http client 和 server 的实现.
 
+使用Get, Head, Post, 和 PostForm 发起 http/https 请求:
+
+	resp, err := http.Get("<a href="http://example.com/">http://example.com/</a>")
+	...
+	resp, err := http.Post("<a href="http://example.com/upload">http://example.com/upload</a>", "image/jpeg", &buf)
+	...
+	resp, err := http.PostForm("<a href="http://example.com/form">http://example.com/form</a>",
+		url.Values{"key": {"Value"}, "id": {"123"}})
+
+client 必须在使用完成后 close 响应的body:
+
+
+	resp, err := http.Get("<a href="http://example.com/">http://example.com/</a>")
+	if err != nil {
+		// handle error
+	}
+	defer resp.Body.Close()
+	body, err := ioutil.ReadAll(resp.Body)
+	// ...
+
+自行创建的 Client, 可控制HTTP 请求头，重定向策略和其他设置:
+
+
+	client := &http.Client{
+		CheckRedirect: redirectPolicyFunc,
+	}
+
+	resp, err := client.Get("<a href="http://example.com">http://example.com</a>")
+	// ...
+
+	req, err := http.NewRequest("GET", "<a href="http://example.com">http://example.com</a>", nil)
+	// ...
+	req.Header.Add("If-None-Match", `W/"wyzzy"`)
+	resp, err := client.Do(req)
+	// ...
+
+自行创建的 Transport 可以自定义代理、TLS 、keep-alive、压缩和其他配置：
+
+	tr := &http.Transport{
+		MaxIdleConns:       10,
+		IdleConnTimeout:    30 * time.Second,
+		DisableCompression: true,
+	}
+	client := &http.Client{Transport: tr}
+	resp, err := client.Get("<a href="https://example.com">https://example.com</a>")
+
+Client 和 Transport 都可以安全的被多个 goroutine 同时使用，所以我们应该只创建一个实例并多次复用.
+
+ListenAndServe 根据指定地址和处理函数启动 HTTP 服务器. handler通常为 nil (这时默认使用 DefaultServeMux). Handle 和 HandleFunc 可为 DefaultServeMux 添加处理函数：
+
+	http.Handle("/foo", fooHandler)
+
+	http.HandleFunc("/bar", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintf(w, "Hello, %q", html.EscapeString(r.URL.Path))
+	})
+
+	log.Fatal(http.ListenAndServe(":8080", nil))
+
+通过自定义的 Server 可以更好的控制服务器的行为:
+
+	s := &http.Server{
+		Addr:           ":8080",
+		Handler:        myHandler,
+		ReadTimeout:    10 * time.Second,
+		WriteTimeout:   10 * time.Second,
+		MaxHeaderBytes: 1 << 20,
+	}
+	log.Fatal(s.ListenAndServe())
+
+从 Go 1.6 开始 http 包在使用 HTTPS 时支持 HTTP/2 协议. 如果程序需要禁用 HTTPS 可以设置 Transport.TLSNextProto(客户端)或 Server.TLSNextProto(服务端)为一个空 map(非 nil). 或者使用目前支持的以下 GODEBUG 环境变量：
+
+
+	GODEBUG=http2client=0  # disable HTTP/2 client support
+	GODEBUG=http2server=0  # disable HTTP/2 server support
+	GODEBUG=http2debug=1   # enable verbose HTTP/2 debug logs
+	GODEBUG=http2debug=2   # ... even more verbose, with frame dumps
+
+不是所有的 Go API 都兼容 GODEBUG 环境变量. 如果遇到问题, 在禁用HTTP/2前, 请在 <a href="https://golang.org/s/http2bug">https://golang.org/s/http2bug</a> 提出该问题.
+
+http 包的 Transport 和 Server 都可以通过简单配置自动支持 HTTP/2. 如果需要启用更复杂的 HTTP/2 配置或使用 HTTP/2 的底层功能, 或想用 Go 的 http2 较新版本的包可以直接使用 "golang.org/x/net/http2" 包中的 ConfigureTransport 和 ConfigureServer. 通过 golang.org/x/net/http2 进行手动配置会覆盖 net/http 内建 的HTTP/2.
 
 
 ## <a id="pkg-index">Index</a>
@@ -558,6 +639,12 @@ The documentation for ServeMux explains how patterns are matched.
 
 
 <a id="example_Handle">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="HandleFunc">func</a> [HandleFunc](https://golang.org/src/net/http/server.go?s=75575:75646#L2441)
 <pre>func HandleFunc(pattern <a href="/pkg/builtin/#string">string</a>, handler func(<a href="#ResponseWriter">ResponseWriter</a>, *<a href="#Request">Request</a>))</pre>
@@ -567,6 +654,12 @@ The documentation for ServeMux explains how patterns are matched.
 
 
 <a id="example_HandleFunc">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ListenAndServe">func</a> [ListenAndServe](https://golang.org/src/net/http/server.go?s=96333:96388#L3068)
 <pre>func ListenAndServe(addr <a href="/pkg/builtin/#string">string</a>, handler <a href="#Handler">Handler</a>) <a href="/pkg/builtin/#error">error</a></pre>
@@ -580,6 +673,12 @@ ListenAndServe always returns a non-nil error.
 
 
 <a id="example_ListenAndServe">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="ListenAndServeTLS">func</a> [ListenAndServeTLS](https://golang.org/src/net/http/server.go?s=96861:96938#L3078)
 <pre>func ListenAndServeTLS(addr, certFile, keyFile <a href="/pkg/builtin/#string">string</a>, handler <a href="#Handler">Handler</a>) <a href="/pkg/builtin/#error">error</a></pre>
@@ -591,6 +690,12 @@ of the server's certificate, any intermediates, and the CA's certificate.
 
 
 <a id="example_ListenAndServeTLS">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 ## <a id="MaxBytesReader">func</a> [MaxBytesReader](https://golang.org/src/net/http/request.go?s=36495:36572#L1100)
 <pre>func MaxBytesReader(w <a href="#ResponseWriter">ResponseWriter</a>, r <a href="/pkg/io/">io</a>.<a href="/pkg/io/#ReadCloser">ReadCloser</a>, n <a href="/pkg/builtin/#int64">int64</a>) <a href="/pkg/io/">io</a>.<a href="/pkg/io/#ReadCloser">ReadCloser</a></pre>
@@ -1348,8 +1453,26 @@ ending in "/index.html" to the same path, without the final
 
 
 <a id="example_FileServer">Example</a>
+```go
+```
+
+output:
+```txt
+```
 <a id="example_FileServer_dotFileHiding">Example (DotFileHiding)</a>
+```go
+```
+
+output:
+```txt
+```
 <a id="example_FileServer_stripPrefix">Example (StripPrefix)</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="NotFoundHandler">func</a> [NotFoundHandler](https://golang.org/src/net/http/server.go?s=62410:62440#L2018)
@@ -1359,6 +1482,12 @@ that replies to each request with a ``404 page not found'' reply.
 
 
 <a id="example_NotFoundHandler">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="RedirectHandler">func</a> [RedirectHandler](https://golang.org/src/net/http/server.go?s=66181:66231#L2143)
@@ -1383,6 +1512,12 @@ replying with an HTTP 404 not found error.
 
 
 <a id="example_StripPrefix">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="TimeoutHandler">func</a> [TimeoutHandler](https://golang.org/src/net/http/server.go?s=100317:100385#L3172)
@@ -1551,6 +1686,12 @@ should always test for this ability at runtime.
 
 
 <a id="example_Hijacker">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 
@@ -2305,6 +2446,12 @@ DefaultClient.Do.
 
 
 <a id="example_Get">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="Head">func</a> [Head](https://golang.org/src/net/http/client.go?s=26703:26752#L805)
@@ -2500,6 +2647,12 @@ has returned.
 
 
 <a id="example_ResponseWriter_trailers">Example (Trailers)</a>
+```go
+```
+
+output:
+```txt
+```
 <p>HTTP Trailers are a set of key/value pairs like headers that come
 after the HTTP response, instead of before.
 </p>
@@ -2689,6 +2842,12 @@ If a handler already exists for pattern, Handle panics.
 
 
 <a id="example_ServeMux_Handle">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ### <a id="ServeMux.HandleFunc">func</a> (\*ServeMux) [HandleFunc](https://golang.org/src/net/http/server.go?s=74982:75069#L2426)
@@ -2961,6 +3120,12 @@ future calls to methods such as Serve will return ErrServerClosed.
 
 
 <a id="example_Server_Shutdown">Example</a>
+```go
+```
+
+output:
+```txt
+```
 
 
 ## <a id="Transport">type</a> [Transport](https://golang.org/src/net/http/transport.go?s=3397:10477#L85)
@@ -3218,7 +3383,6 @@ and redirects), see Get, Post, and the Client type.
 
 Like the RoundTripper interface, the error types returned
 by RoundTrip are unspecified.
-
 
 
 
