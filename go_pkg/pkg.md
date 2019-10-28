@@ -138,7 +138,7 @@
 |[trace](pkgs/runtime_trace.md)|Package trace contains facilities for programs to generate traces for the Go execution tracer.|0%|
 |[sort](pkgs/sort.md)|Package sort provides primitives for sorting slices and user-defined collections.|0%|
 |[strconv](pkgs/strconv.md)|Package strconv implements conversions to and from string representations of basic data types.|0%|
-|[strings](pkgs/strings.md)|Package strings implements simple functions to manipulate UTF-8 encoded strings.|0%|
+|[strings](pkgs/strings.md)|strings 实现简单的函数来操纵 UTF-8 编码的字符串.|done|
 |[sync](pkgs/sync.md)|Package sync provides basic synchronization primitives such as mutual exclusion locks.|0%|
 |[atomic](pkgs/sync_atomic.md)|Package atomic provides low-level atomic memory primitives useful for implementing synchronization algorithms.|0%|
 |[syscall](pkgs/syscall.md)|Package syscall contains an interface to the low-level operating system primitives.|0%|

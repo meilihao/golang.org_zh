@@ -1566,7 +1566,7 @@ Cap returns the capacity of the builder's underlying byte slice. It is the
 total space allocated for the string being built and includes any bytes
 already written.
 
-
+Cap 返回 builder 底层`[]byte`的容量. 它是为构建的字符串分配的总空间，包括已用的字节数.
 
 
 ### <a id="Builder.Grow">func</a> (\*Builder) [Grow](https://golang.org/src/strings/builder.go?s=2344:2373#L65)
@@ -1575,28 +1575,28 @@ Grow grows b's capacity, if necessary, to guarantee space for
 another n bytes. After Grow(n), at least n bytes can be written to b
 without another allocation. If n is negative, Grow panics.
 
-
+Grow 会增加 b 的容量确保它有足够的空间容纳另 n 个字节. 在调用 Grow(n) 后，向 b 中写入至多 n 个字节时不会重新分配内存. 如果 n 为负数，Grow 会 panic.
 
 
 ### <a id="Builder.Len">func</a> (\*Builder) [Len](https://golang.org/src/strings/builder.go?s=1537:1564#L41)
 <pre>func (b *<a href="#Builder">Builder</a>) Len() <a href="/pkg/builtin/#int">int</a></pre>
 Len returns the number of accumulated bytes; b.Len() == len(b.String()).
 
-
+Len 返回已经写入的字节; b.Len() == len(b.String())
 
 
 ### <a id="Builder.Reset">func</a> (\*Builder) [Reset](https://golang.org/src/strings/builder.go?s=1853:1878#L49)
 <pre>func (b *<a href="#Builder">Builder</a>) Reset()</pre>
 Reset resets the Builder to be empty.
 
-
+Reset 将 Builder 重置为空.
 
 
 ### <a id="Builder.String">func</a> (\*Builder) [String](https://golang.org/src/strings/builder.go?s=1379:1412#L36)
 <pre>func (b *<a href="#Builder">Builder</a>) String() <a href="/pkg/builtin/#string">string</a></pre>
 String returns the accumulated string.
 
-
+String 已经写入的字符串.
 
 
 ### <a id="Builder.Write">func</a> (\*Builder) [Write](https://golang.org/src/strings/builder.go?s=2591:2637#L77)
@@ -1604,7 +1604,7 @@ String returns the accumulated string.
 Write appends the contents of p to b's buffer.
 Write always returns len(p), nil.
 
-
+Write 会把 p 的内容追加到 b 的缓冲中. Write 总是返回`len(p), nil`.
 
 
 ### <a id="Builder.WriteByte">func</a> (\*Builder) [WriteByte](https://golang.org/src/strings/builder.go?s=2791:2832#L85)
@@ -1612,7 +1612,7 @@ Write always returns len(p), nil.
 WriteByte appends the byte c to b's buffer.
 The returned error is always nil.
 
-
+WriteByte 将字节 c 追加到 b 的缓冲中. 返回的错误总是 nil.
 
 
 ### <a id="Builder.WriteRune">func</a> (\*Builder) [WriteRune](https://golang.org/src/strings/builder.go?s=3017:3065#L93)
@@ -1620,7 +1620,7 @@ The returned error is always nil.
 WriteRune appends the UTF-8 encoding of Unicode code point r to b's buffer.
 It returns the length of r and a nil error.
 
-
+WriteRune 将 UTF-8 编码的 Unicode 代码点 r 追加到 b 的缓冲中. 它返回 r 的长度和 nil.
 
 
 ### <a id="Builder.WriteString">func</a> (\*Builder) [WriteString](https://golang.org/src/strings/builder.go?s=3425:3477#L110)
@@ -1628,7 +1628,7 @@ It returns the length of r and a nil error.
 WriteString appends the contents of s to b's buffer.
 It returns the length of s and a nil error.
 
-
+WriteString 将 s 的内容追加到 b 的缓冲中. 它返回 s 的长度和 nil.
 
 
 ## <a id="Reader">type</a> [Reader](https://golang.org/src/strings/reader.go?s=446:576#L7)
@@ -1637,6 +1637,9 @@ io.ByteScanner, and io.RuneScanner interfaces by reading
 from a string.
 The zero value for Reader operates like a Reader of an empty string.
 
+Reader 实现对字符串读取的 io.Reader、io.ReaderAt、io.Seeker、io.WriterTo、io.ByteScanner 和 io.RuneScanner 接口.
+
+Reader的零值等同于空字符串的Reader.
 
 <pre>type Reader struct {
     <span class="comment">// contains filtered or unexported fields</span>
@@ -1656,7 +1659,7 @@ The zero value for Reader operates like a Reader of an empty string.
 NewReader returns a new Reader reading from s.
 It is similar to bytes.NewBufferString but more efficient and read-only.
 
-
+NewReader 返回一个读取 s 的 Reader. 它与 bytes.NewBufferString 类似不过 Reader 是只读的并且效率更高.
 
 
 
@@ -1666,7 +1669,7 @@ It is similar to bytes.NewBufferString but more efficient and read-only.
 Len returns the number of bytes of the unread portion of the
 string.
 
-
+Len 返回字符串未读取部分的字节数.
 
 
 ### <a id="Reader.Read">func</a> (\*Reader) [Read](https://golang.org/src/strings/reader.go?s=1042:1092#L28)
@@ -1693,14 +1696,14 @@ string.
 <pre>func (r *<a href="#Reader">Reader</a>) Reset(s <a href="/pkg/builtin/#string">string</a>)</pre>
 Reset resets the Reader to be reading from s.
 
-
+Reset 使 Reader 开始重新读取 s.
 
 
 ### <a id="Reader.Seek">func</a> (\*Reader) [Seek](https://golang.org/src/strings/reader.go?s=2495:2557#L100)
 <pre>func (r *<a href="#Reader">Reader</a>) Seek(offset <a href="/pkg/builtin/#int64">int64</a>, whence <a href="/pkg/builtin/#int">int</a>) (<a href="/pkg/builtin/#int64">int64</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
 Seek implements the io.Seeker interface.
 
-
+Seek 实现了 io.Seeker 接口.
 
 
 ### <a id="Reader.Size">func</a> (\*Reader) [Size](https://golang.org/src/strings/reader.go?s=984:1013#L26)
@@ -1710,7 +1713,7 @@ Size is the number of bytes available for reading via ReadAt.
 The returned value is always the same and is not affected by calls
 to any other method.
 
-
+Size 方法返回底层字符串的长度. 它也是 ReadAt 能读取到的有效字节数. 该返回值不受其他方法影响, 总是返回相同的值.
 
 
 ### <a id="Reader.UnreadByte">func</a> (\*Reader) [UnreadByte](https://golang.org/src/strings/reader.go?s=1678:1713#L63)
@@ -1727,13 +1730,13 @@ to any other method.
 <pre>func (r *<a href="#Reader">Reader</a>) WriteTo(w <a href="/pkg/io/">io</a>.<a href="/pkg/io/#Writer">Writer</a>) (n <a href="/pkg/builtin/#int64">int64</a>, err <a href="/pkg/builtin/#error">error</a>)</pre>
 WriteTo implements the io.WriterTo interface.
 
-
-
+WriteTo 实现了 io.WriterTo 接口.
 
 ## <a id="Replacer">type</a> [Replacer](https://golang.org/src/strings/replace.go?s=318:421#L4)
 Replacer replaces a list of strings with replacements.
 It is safe for concurrent use by multiple goroutines.
 
+Replacer 根据给定的替换列表来替换字符串. 它可以安全地被多个 goroutine 同时使用.
 
 <pre>type Replacer struct {
     <span class="comment">// contains filtered or unexported fields</span>
@@ -1757,13 +1760,28 @@ comparisons are done in argument order.
 
 NewReplacer panics if given an odd number of arguments.
 
+NewReplacer 会配置 Replacer 的替换列表（每项都包含一个原始值和替换值）并返回 Replacer. 替换操作会按顺序进行并且不会重叠.
+
+如果输入的参数是奇数, NewReplacer 会 panic.
 
 <a id="example_NewReplacer">Example</a>
 ```go
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func main() {
+	r := strings.NewReplacer("<", "&lt;", ">", "&gt;")
+	fmt.Println(r.Replace("This is <b>HTML</b>!"))
+}
 ```
 
 output:
 ```txt
+This is &lt;b&gt;HTML&lt;/b&gt;!
 ```
 
 
@@ -1773,14 +1791,19 @@ output:
 <pre>func (r *<a href="#Replacer">Replacer</a>) Replace(s <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
 Replace returns a copy of s with all replacements performed.
 
-
+Replace 对 s 应用替换并返回替换结果.
 
 
 ### <a id="Replacer.WriteString">func</a> (\*Replacer) [WriteString](https://golang.org/src/strings/replace.go?s=2655:2727#L91)
 <pre>func (r *<a href="#Replacer">Replacer</a>) WriteString(w <a href="/pkg/io/">io</a>.<a href="/pkg/io/#Writer">Writer</a>, s <a href="/pkg/builtin/#string">string</a>) (n <a href="/pkg/builtin/#int">int</a>, err <a href="/pkg/builtin/#error">error</a>)</pre>
 WriteString writes s to w with all replacements performed.
 
+WriteString 对 s 应用替换后将结果写入 w 中.
 
+## Bugs
+
+    ☞ The rule Title uses for word boundaries does not handle Unicode punctuation properly.
+    ☞ Title 使用的判断字边界的规则会忽略 Unicode 标点符号.
 
 
 

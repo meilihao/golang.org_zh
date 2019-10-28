@@ -286,6 +286,23 @@ Write sends a log message to the syslog daemon.
 
 Write 向syslog daemon发送一条log消息.
 
+# Bugs
+
+    ☞
+
+    This package is not implemented on Windows. As the syslog package is frozen, Windows users are encouraged to use a package outside of the standard library. For background, see https://golang.org/issue/1108.
+    ☞
+
+    This package is not implemented on Plan 9.
+    ☞
+
+    This package is not implemented on NaCl (Native Client).
+
+
+    ☞ 这个包不支持 Windows. 鉴于 syslog 包处于冻结状态， 我们鼓励 Windows 用户使用标准库外的包. 想了解更多背景，请参考 https://golang.org/issue/1108.
+    ☞ 这个包不支持 Plan 9.
+    ☞ 这个包不支持 NaCl (Native Client) .
+
 
 
 
