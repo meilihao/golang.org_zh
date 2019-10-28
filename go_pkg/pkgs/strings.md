@@ -632,13 +632,29 @@ foo, bar, baz
 <pre>func LastIndex(s, substr <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#int">int</a></pre>
 LastIndex returns the index of the last instance of substr in s, or -1 if substr is not present in s.
 
+LastIndex 会返回substr在s中最后一次出现的位置, 不存在则返回-1.
 
 <a id="example_LastIndex">Example</a>
 ```go
+package main
+
+import (
+  "fmt"
+  "strings"
+)
+
+func main() {
+  fmt.Println(strings.Index("go gopher", "go"))
+  fmt.Println(strings.LastIndex("go gopher", "go"))
+  fmt.Println(strings.LastIndex("go gopher", "rodent"))
+}
 ```
 
 output:
 ```txt
+0
+3
+-1
 ```
 
 ## <a id="LastIndexAny">func</a> [LastIndexAny](https://golang.org/src/strings/strings.go?s=4869:4907#L196)
@@ -647,26 +663,58 @@ LastIndexAny returns the index of the last instance of any Unicode code
 point from chars in s, or -1 if no Unicode code point from chars is
 present in s.
 
+LastIndexAny 返回字符串chars中的任意一个Unicode码点在s中最后一次出现的位置, 不存在则返回-1.
 
 <a id="example_LastIndexAny">Example</a>
 ```go
+package main
+
+import (
+  "fmt"
+  "strings"
+)
+
+func main() {
+  fmt.Println(strings.LastIndexAny("go gopher", "go"))
+  fmt.Println(strings.LastIndexAny("go gopher", "rodent"))
+  fmt.Println(strings.LastIndexAny("go gopher", "fail"))
+}
 ```
 
 output:
 ```txt
+4
+8
+-1
 ```
 
 ## <a id="LastIndexByte">func</a> [LastIndexByte](https://golang.org/src/strings/strings.go?s=5419:5459#L224)
 <pre>func LastIndexByte(s <a href="/pkg/builtin/#string">string</a>, c <a href="/pkg/builtin/#byte">byte</a>) <a href="/pkg/builtin/#int">int</a></pre>
 LastIndexByte returns the index of the last instance of c in s, or -1 if c is not present in s.
 
+LastIndexByte 返回字符c在s中最后一次出现的位置, 不存在则返回-1.
 
 <a id="example_LastIndexByte">Example</a>
 ```go
+package main
+
+import (
+  "fmt"
+  "strings"
+)
+
+func main() {
+  fmt.Println(strings.LastIndexByte("Hello, world", 'l'))
+  fmt.Println(strings.LastIndexByte("Hello, world", 'o'))
+  fmt.Println(strings.LastIndexByte("Hello, world", 'x'))
+}
 ```
 
 output:
 ```txt
+10
+8
+-1
 ```
 
 ## <a id="LastIndexFunc">func</a> [LastIndexFunc](https://golang.org/src/strings/strings.go?s=18931:18982#L758)
@@ -674,13 +722,30 @@ output:
 LastIndexFunc returns the index into s of the last
 Unicode code point satisfying f(c), or -1 if none do.
 
+LastIndexFunc 返回s中最后一个满足f(c)的码点的位置, 不存在则返回-1.
 
 <a id="example_LastIndexFunc">Example</a>
 ```go
+package main
+
+import (
+  "fmt"
+  "strings"
+  "unicode"
+)
+
+func main() {
+  fmt.Println(strings.LastIndexFunc("go 123", unicode.IsNumber))
+  fmt.Println(strings.LastIndexFunc("123 go", unicode.IsNumber))
+  fmt.Println(strings.LastIndexFunc("go", unicode.IsNumber))
+}
 ```
 
 output:
 ```txt
+5
+2
+-1
 ```
 
 ## <a id="Map">func</a> [Map](https://golang.org/src/strings/strings.go?s=11634:11684#L450)
@@ -689,13 +754,34 @@ Map returns a copy of the string s with all its characters modified
 according to the mapping function. If mapping returns a negative value, the character is
 dropped from the string with no replacement.
 
+Map 返回s的副本, 且所有字符已根据mapping函数进行了修改. 如果mapping返回一个负值, 将会丢弃该码值且不会被替换.
 
 <a id="example_Map">Example</a>
 ```go
+package main
+
+import (
+  "fmt"
+  "strings"
+)
+
+func main() {
+  rot13 := func(r rune) rune {
+    switch {
+    case r >= 'A' && r <= 'Z':
+      return 'A' + (r-'A'+13)%26
+    case r >= 'a' && r <= 'z':
+      return 'a' + (r-'a'+13)%26
+    }
+    return r
+  }
+  fmt.Println(strings.Map(rot13, "'Twas brillig and the slithy gopher..."))
+}
 ```
 
 output:
 ```txt
+'Gjnf oevyyvt naq gur fyvgul tbcure...
 ```
 
 ## <a id="Repeat">func</a> [Repeat](https://golang.org/src/strings/strings.go?s=12987:13026#L513)
@@ -705,13 +791,27 @@ Repeat returns a new string consisting of count copies of the string s.
 It panics if count is negative or if
 the result of (len(s) * count) overflows.
 
+Repeat 返回count个s串联而成的新string.
+
+如果count是负数或(len(s) * count)的值溢出, 它会panic.
 
 <a id="example_Repeat">Example</a>
 ```go
+package main
+
+import (
+  "fmt"
+  "strings"
+)
+
+func main() {
+  fmt.Println("ba" + strings.Repeat("na", 2))
+}
 ```
 
 output:
 ```txt
+banana
 ```
 
 ## <a id="Replace">func</a> [Replace](https://golang.org/src/strings/strings.go?s=23551:23597#L918)
@@ -723,13 +823,27 @@ and after each UTF-8 sequence, yielding up to k+1 replacements
 for a k-rune string.
 If n < 0, there is no limit on the number of replacements.
 
+Replace 返回s的一个副本,且将s中前n个不重叠的old替换成了new. 如果old为空,则在每个utf8字符前面和后面都插入一个new, k个字符需要k+1次替换. 如果n<0则不会限制替换次数.
 
 <a id="example_Replace">Example</a>
 ```go
+package main
+
+import (
+  "fmt"
+  "strings"
+)
+
+func main() {
+  fmt.Println(strings.Replace("oink oink oink", "k", "ky", 2))
+  fmt.Println(strings.Replace("oink oink oink", "oink", "moo", -1))
+}
 ```
 
 output:
 ```txt
+oinky oinky oink
+moo moo moo
 ```
 
 ## <a id="ReplaceAll">func</a> [ReplaceAll](https://golang.org/src/strings/strings.go?s=24486:24528#L957)
@@ -740,13 +854,25 @@ If old is empty, it matches at the beginning of the string
 and after each UTF-8 sequence, yielding up to k+1 replacements
 for a k-rune string.
 
+ReplaceAll 返回s的一个副本,且将s中所有不重叠的old切片替换成了new. 如果old为空,则在每个utf8字符前面和后面都插入一个new, k个字符需要k+1次替换.
 
 <a id="example_ReplaceAll">Example</a>
 ```go
+package main
+
+import (
+  "fmt"
+  "strings"
+)
+
+func main() {
+  fmt.Println(strings.ReplaceAll("oink oink oink", "oink", "moo"))
+}
 ```
 
 output:
 ```txt
+moo moo moo
 ```
 
 ## <a id="Split">func</a> [Split](https://golang.org/src/strings/strings.go?s=7505:7539#L298)
@@ -762,13 +888,37 @@ and sep are empty, Split returns an empty slice.
 
 It is equivalent to SplitN with a count of -1.
 
+Split 根据sep将s分割并返回分割结果.
+
+如果s不包含sep且sep不为空，则 Split 返回长度为1的slice, 其唯一元素为s.
+
+如果sep为空,Split按每个utf8编码切分. 如果s和sep都为空, Split返回空slice.
+
+它等效于参数为-1的SplitN方法.
 
 <a id="example_Split">Example</a>
 ```go
+package main
+
+import (
+  "fmt"
+  "strings"
+)
+
+func main() {
+  fmt.Printf("%q\n", strings.Split("a,b,c", ","))
+  fmt.Printf("%q\n", strings.Split("a man a plan a canal panama", "a "))
+  fmt.Printf("%q\n", strings.Split(" xyz ", ""))
+  fmt.Printf("%q\n", strings.Split("", "Bernardo O'Higgins"))
+}
 ```
 
 output:
 ```txt
+["a" "b" "c"]
+["" "man " "plan " "canal panama"]
+[" " "x" "y" "z" " "]
+[""]
 ```
 
 ## <a id="SplitAfter">func</a> [SplitAfter](https://golang.org/src/strings/strings.go?s=8004:8043#L310)
@@ -784,13 +934,31 @@ both s and sep are empty, SplitAfter returns an empty slice.
 
 It is equivalent to SplitAfterN with a count of -1.
 
+SplitAfter 从 s 中的每个 sep 之后的位置分割 s 并返回分割结果.
+
+如果s不包含sep且sep不为空，则 SplitAfter 返回长度为1的slice, 其唯一元素为s.
+
+如果sep为空, SplitAfter 按每个utf8编码切分. 如果s和sep都为空, SplitAfter 返回空slice.
+
+它等效于参数为-1的SplitAfterN方法.
 
 <a id="example_SplitAfter">Example</a>
 ```go
+package main
+
+import (
+  "fmt"
+  "strings"
+)
+
+func main() {
+  fmt.Printf("%q\n", strings.SplitAfter("a,b,c", ","))
+}
 ```
 
 output:
 ```txt
+["a," "b," "c"]
 ```
 
 ## <a id="SplitAfterN">func</a> [SplitAfterN](https://golang.org/src/strings/strings.go?s=6998:7045#L284)
@@ -808,13 +976,35 @@ The count determines the number of substrings to return:
 Edge cases for s and sep (for example, empty strings) are handled
 as described in the documentation for SplitAfter.
 
+SplitAfterN slices s into substrings after each instance of sep and
+returns a slice of those substrings.
+
+SplitAfterN 从 s 中的每个 sep 之后的位置分割 s 并返回分割结果. 参数n决定返回的子字符串的数目:
+
+  n > 0: at most n substrings; the last substring will be the unsplit remainder. // 至多 n 个元素; 其中最后一个元素不会再分割.
+  n == 0: the result is nil (zero substrings) // 返回nil
+  n < 0: all substrings // 所有的子切片
+
+s和sep的边缘情况（例如，空字符串）的处理方法同SplitAfter文档中所述.
+
 
 <a id="example_SplitAfterN">Example</a>
 ```go
+package main
+
+import (
+  "fmt"
+  "strings"
+)
+
+func main() {
+  fmt.Printf("%q\n", strings.SplitAfterN("a,b,c", ",", 2))
+}
 ```
 
 output:
 ```txt
+["a," "b,c"]
 ```
 
 ## <a id="SplitN">func</a> [SplitN](https://golang.org/src/strings/strings.go?s=6461:6503#L272)
@@ -832,13 +1022,34 @@ The count determines the number of substrings to return:
 Edge cases for s and sep (for example, empty strings) are handled
 as described in the documentation for Split.
 
+Split 根据sep将s分割并返回分割结果. 参数n决定返回的子字符串的数目:
+
+  n > 0: at most n substrings; the last substring will be the unsplit remainder. // 至多 n 个元素; 其中最后一个元素不会再分割.
+  n == 0: the result is nil (zero substrings) // 返回nil
+  n < 0: all substrings // 所有的子切片
+
+s和sep的边缘情况（例如，空字符串）的处理方法同Split文档中所述.
 
 <a id="example_SplitN">Example</a>
 ```go
+package main
+
+import (
+  "fmt"
+  "strings"
+)
+
+func main() {
+  fmt.Printf("%q\n", strings.SplitN("a,b,c", ",", 2))
+  z := strings.SplitN("a,b,c", ",", 0)
+  fmt.Printf("%q (nil = %v)\n", z, z == nil)
+}
 ```
 
 output:
 ```txt
+["a" "b,c"]
+[] (nil = true)
 ```
 
 ## <a id="Title">func</a> [Title](https://golang.org/src/strings/strings.go?s=17489:17516#L704)
@@ -848,26 +1059,57 @@ mapped to their Unicode title case.
 
 BUG(rsc): The rule Title uses for word boundaries does not handle Unicode punctuation properly.
 
+Title 它会返回s的一个副本，并把s中每个单词的首字母改为其Unicode的Title(大写)形式.
+
+BUG(rsc): Title方法中用于分词的规则不能正确地处理Unicode标点符号.
 
 <a id="example_Title">Example</a>
 ```go
+package main
+
+import (
+  "fmt"
+  "strings"
+)
+
+func main() {
+  // Compare this example to the ToTitle example.
+  fmt.Println(strings.Title("her royal highness"))
+  fmt.Println(strings.Title("loud noises"))
+  fmt.Println(strings.Title("хлеб"))
+}
 ```
 
 output:
 ```txt
+Her Royal Highness
+Loud Noises
+Хлеб
 ```
 
 ## <a id="ToLower">func</a> [ToLower](https://golang.org/src/strings/strings.go?s=14252:14281#L574)
 <pre>func ToLower(s <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
 ToLower returns s with all Unicode letters mapped to their lower case.
 
+ToLower 返回s的一个副本，并把其中所有的Unicode字母转换为小写.
 
 <a id="example_ToLower">Example</a>
 ```go
+package main
+
+import (
+  "fmt"
+  "strings"
+)
+
+func main() {
+  fmt.Println(strings.ToLower("Gopher"))
+}
 ```
 
 output:
 ```txt
+gopher
 ```
 
 ## <a id="ToLowerSpecial">func</a> [ToLowerSpecial](https://golang.org/src/strings/strings.go?s=15314:15373#L615)
@@ -875,13 +1117,26 @@ output:
 ToLowerSpecial returns a copy of the string s with all Unicode letters mapped to their
 lower case using the case mapping specified by c.
 
+ToLowerSpecial 返回s的一个副本, 已把其中所有的Unicode字母转换为小写,且优先使用指定的特殊转换规则.
 
 <a id="example_ToLowerSpecial">Example</a>
 ```go
+package main
+
+import (
+  "fmt"
+  "strings"
+  "unicode"
+)
+
+func main() {
+  fmt.Println(strings.ToLowerSpecial(unicode.TurkishCase, "Önnek İş"))
+}
 ```
 
 output:
 ```txt
+önnek iş
 ```
 
 ## <a id="ToTitle">func</a> [ToTitle](https://golang.org/src/strings/strings.go?s=14871:14900#L605)
@@ -889,13 +1144,30 @@ output:
 ToTitle returns a copy of the string s with all Unicode letters mapped to
 their Unicode title case.
 
+ToTitle 返回s的一个副本，已把其中所有的Unicode字母转换为title形式.
 
 <a id="example_ToTitle">Example</a>
 ```go
+package main
+
+import (
+  "fmt"
+  "strings"
+)
+
+func main() {
+  // Compare this example to the Title example.
+  fmt.Println(strings.ToTitle("her royal highness"))
+  fmt.Println(strings.ToTitle("loud noises"))
+  fmt.Println(strings.ToTitle("хлеб"))
+}
 ```
 
 output:
 ```txt
+HER ROYAL HIGHNESS
+LOUD NOISES
+ХЛЕБ
 ```
 
 ## <a id="ToTitleSpecial">func</a> [ToTitleSpecial](https://golang.org/src/strings/strings.go?s=15563:15622#L621)
@@ -904,25 +1176,51 @@ ToTitleSpecial returns a copy of the string s with all Unicode letters mapped to
 Unicode title case, giving priority to the special casing rules.
 
 
+ToTitleSpecial 返回s的一个副本, 已把其中所有的Unicode字母转换为Title形式, 且优先使用指定的特殊转换规则.
+
 <a id="example_ToTitleSpecial">Example</a>
 ```go
+package main
+
+import (
+  "fmt"
+  "strings"
+  "unicode"
+)
+
+func main() {
+  fmt.Println(strings.ToTitleSpecial(unicode.TurkishCase, "dünyanın ilk borsa yapısı Aizonai kabul edilir"))
+}
 ```
 
 output:
 ```txt
+DÜNYANIN İLK BORSA YAPISI AİZONAİ KABUL EDİLİR
 ```
 
 ## <a id="ToUpper">func</a> [ToUpper](https://golang.org/src/strings/strings.go?s=13665:13694#L544)
 <pre>func ToUpper(s <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
 ToUpper returns s with all Unicode letters mapped to their upper case.
 
+ToUpper 返回s的一个副本，并把其中所有的Unicode字母转换为大写.
 
 <a id="example_ToUpper">Example</a>
 ```go
+package main
+
+import (
+  "fmt"
+  "strings"
+)
+
+func main() {
+  fmt.Println(strings.ToUpper("Gopher"))
+}
 ```
 
 output:
 ```txt
+GOPHER
 ```
 
 ## <a id="ToUpperSpecial">func</a> [ToUpperSpecial](https://golang.org/src/strings/strings.go?s=15080:15139#L609)
@@ -930,13 +1228,26 @@ output:
 ToUpperSpecial returns a copy of the string s with all Unicode letters mapped to their
 upper case using the case mapping specified by c.
 
+ToUpperSpecial 返回s的一个副本, 已把其中所有的Unicode字母转换为大写形式, 且优先使用指定的特殊转换规则.
 
 <a id="example_ToUpperSpecial">Example</a>
 ```go
+package main
+
+import (
+  "fmt"
+  "strings"
+  "unicode"
+)
+
+func main() {
+  fmt.Println(strings.ToUpperSpecial(unicode.TurkishCase, "örnek iş"))
+}
 ```
 
 output:
 ```txt
+ÖRNEK İŞ
 ```
 
 ## <a id="ToValidUTF8">func</a> [ToValidUTF8](https://golang.org/src/strings/strings.go?s=15805:15851#L627)
@@ -944,20 +1255,32 @@ output:
 ToValidUTF8 returns a copy of the string s with each run of invalid UTF-8 byte sequences
 replaced by the replacement string, which may be empty.
 
-
+ToValidUTF8 返回一个副本，其中已将每个无效的UTF-8替换为replacement，replacement可以为空.
 
 ## <a id="Trim">func</a> [Trim](https://golang.org/src/strings/strings.go?s=21049:21090#L830)
 <pre>func Trim(s <a href="/pkg/builtin/#string">string</a>, cutset <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
 Trim returns a slice of the string s with all leading and
 trailing Unicode code points contained in cutset removed.
 
+Trim 返回将s前后端所有cutset中包含的utf8码点都已去掉的字符串.
 
 <a id="example_Trim">Example</a>
 ```go
+package main
+
+import (
+  "fmt"
+  "strings"
+)
+
+func main() {
+  fmt.Print(strings.Trim("¡¡¡Hello, Gophers!!!", "!¡"))
+}
 ```
 
 output:
 ```txt
+Hello, Gophers
 ```
 
 ## <a id="TrimFunc">func</a> [TrimFunc](https://golang.org/src/strings/strings.go?s=18529:18578#L746)
@@ -965,13 +1288,28 @@ output:
 TrimFunc returns a slice of the string s with all leading
 and trailing Unicode code points c satisfying f(c) removed.
 
+TrimFunc 返回将s前后端中所有满足f(c)的utf8码点都去掉的字符串.
 
 <a id="example_TrimFunc">Example</a>
 ```go
+package main
+
+import (
+  "fmt"
+  "strings"
+  "unicode"
+)
+
+func main() {
+  fmt.Print(strings.TrimFunc("¡¡¡Hello, Gophers!!!", func(r rune) bool {
+    return !unicode.IsLetter(r) && !unicode.IsNumber(r)
+  }))
+}
 ```
 
 output:
 ```txt
+Hello, Gophers
 ```
 
 ## <a id="TrimLeft">func</a> [TrimLeft](https://golang.org/src/strings/strings.go?s=21347:21392#L841)
@@ -981,13 +1319,27 @@ Unicode code points contained in cutset removed.
 
 To remove a prefix, use TrimPrefix instead.
 
+TrimLeft 返回将s前端中所有cutset包含的utf8码点都已去掉的字符串.
+
+如果是移除prefix, 请使用 TrimPrefix.
 
 <a id="example_TrimLeft">Example</a>
 ```go
+package main
+
+import (
+  "fmt"
+  "strings"
+)
+
+func main() {
+  fmt.Print(strings.TrimLeft("¡¡¡Hello, Gophers!!!", "!¡"))
+}
 ```
 
 output:
 ```txt
+Hello, Gophers!!!
 ```
 
 ## <a id="TrimLeftFunc">func</a> [TrimLeftFunc](https://golang.org/src/strings/strings.go?s=17938:17991#L723)
@@ -995,13 +1347,28 @@ output:
 TrimLeftFunc returns a slice of the string s with all leading
 Unicode code points c satisfying f(c) removed.
 
+TrimFunc 返回将s前端中所有满足f(c)的utf8码点都去掉的字符串.
 
 <a id="example_TrimLeftFunc">Example</a>
 ```go
+package main
+
+import (
+  "fmt"
+  "strings"
+  "unicode"
+)
+
+func main() {
+  fmt.Print(strings.TrimLeftFunc("¡¡¡Hello, Gophers!!!", func(r rune) bool {
+    return !unicode.IsLetter(r) && !unicode.IsNumber(r)
+  }))
+}
 ```
 
 output:
 ```txt
+Hello, Gophers!!!
 ```
 
 ## <a id="TrimPrefix">func</a> [TrimPrefix](https://golang.org/src/strings/strings.go?s=22869:22909#L896)
@@ -1009,13 +1376,28 @@ output:
 TrimPrefix returns s without the provided leading prefix string.
 If s doesn't start with prefix, s is returned unchanged.
 
+TrimPrefix 删除s头部的前缀prefix. 如果不存在前缀prefix则返回原始的s.
 
 <a id="example_TrimPrefix">Example</a>
 ```go
+package main
+
+import (
+  "fmt"
+  "strings"
+)
+
+func main() {
+  var s = "¡¡¡Hello, Gophers!!!"
+  s = strings.TrimPrefix(s, "¡¡¡Hello, ")
+  s = strings.TrimPrefix(s, "¡¡¡Howdy, ")
+  fmt.Print(s)
+}
 ```
 
 output:
 ```txt
+Gophers!!!
 ```
 
 ## <a id="TrimRight">func</a> [TrimRight](https://golang.org/src/strings/strings.go?s=21656:21702#L852)
@@ -1025,13 +1407,25 @@ Unicode code points contained in cutset removed.
 
 To remove a suffix, use TrimSuffix instead.
 
+TrimRight 返回将s后端中所有cutset包含的utf8码点都已去掉的字符串.
 
 <a id="example_TrimRight">Example</a>
 ```go
+package main
+
+import (
+  "fmt"
+  "strings"
+)
+
+func main() {
+  fmt.Print(strings.TrimRight("¡¡¡Hello, Gophers!!!", "!¡"))
+}
 ```
 
 output:
 ```txt
+¡¡¡Hello, Gophers
 ```
 
 ## <a id="TrimRightFunc">func</a> [TrimRightFunc](https://golang.org/src/strings/strings.go?s=18186:18240#L733)
@@ -1039,13 +1433,28 @@ output:
 TrimRightFunc returns a slice of the string s with all trailing
 Unicode code points c satisfying f(c) removed.
 
+TrimRightFunc 返回将s后端中所有满足f(c)的utf8码点都去掉的字符串.
 
 <a id="example_TrimRightFunc">Example</a>
 ```go
+package main
+
+import (
+  "fmt"
+  "strings"
+  "unicode"
+)
+
+func main() {
+  fmt.Print(strings.TrimRightFunc("¡¡¡Hello, Gophers!!!", func(r rune) bool {
+    return !unicode.IsLetter(r) && !unicode.IsNumber(r)
+  }))
+}
 ```
 
 output:
 ```txt
+¡¡¡Hello, Gophers
 ```
 
 ## <a id="TrimSpace">func</a> [TrimSpace](https://golang.org/src/strings/strings.go?s=21924:21955#L861)
@@ -1053,13 +1462,25 @@ output:
 TrimSpace returns a slice of the string s, with all leading
 and trailing white space removed, as defined by Unicode.
 
+TrimSpace 删除s前后端所有unicode中定义的空白符.
 
 <a id="example_TrimSpace">Example</a>
 ```go
+package main
+
+import (
+  "fmt"
+  "strings"
+)
+
+func main() {
+  fmt.Println(strings.TrimSpace(" \t\n Hello, Gophers \n\t\r\n"))
+}
 ```
 
 output:
 ```txt
+Hello, Gophers
 ```
 
 ## <a id="TrimSuffix">func</a> [TrimSuffix](https://golang.org/src/strings/strings.go?s=23107:23147#L905)
@@ -1067,13 +1488,28 @@ output:
 TrimSuffix returns s without the provided trailing suffix string.
 If s doesn't end with suffix, s is returned unchanged.
 
+TrimPrefix 删除s尾部的后缀suffix. 如果不存在后缀suffix则返回原始的s.
 
 <a id="example_TrimSuffix">Example</a>
 ```go
+package main
+
+import (
+  "fmt"
+  "strings"
+)
+
+func main() {
+  var s = "¡¡¡Hello, Gophers!!!"
+  s = strings.TrimSuffix(s, ", Gophers!!!")
+  s = strings.TrimSuffix(s, ", Marmots!!!")
+  fmt.Print(s)
+}
 ```
 
 output:
 ```txt
+¡¡¡Hello
 ```
 
 
@@ -1083,6 +1519,7 @@ A Builder is used to efficiently build a string using Write methods.
 It minimizes memory copying. The zero value is ready to use.
 Do not copy a non-zero Builder.
 
+Builder 可以使用 Write 高效地创建字符串. 它会把内存拷贝降到最低程度. 可以直接使用 Builder 的零值. 不要复制一个非零值的 Builder.
 
 <pre>type Builder struct {
     <span class="comment">// contains filtered or unexported fields</span>
@@ -1095,10 +1532,27 @@ Do not copy a non-zero Builder.
 
 <a id="example_Builder">Example</a>
 ```go
+package main
+
+import (
+  "fmt"
+  "strings"
+)
+
+func main() {
+  var b strings.Builder
+  for i := 3; i >= 1; i-- {
+    fmt.Fprintf(&b, "%d...", i)
+  }
+  b.WriteString("ignition")
+  fmt.Println(b.String())
+
+}
 ```
 
 output:
 ```txt
+3...2...1...ignition
 ```
 
 

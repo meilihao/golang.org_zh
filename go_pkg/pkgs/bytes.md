@@ -1318,14 +1318,14 @@ ToUpper : AHOJ VÝVOJÁRİ GOLANG
 ToValidUTF8 treats s as UTF-8-encoded bytes and returns a copy with each run of bytes
 representing invalid UTF-8 replaced with the bytes in replacement, which may be empty.
 
-ToValidUTF8 将s视为UTF-8编码的字节序列并返回一个副本，其中已将每次个无效的UTF-8替换为replacement，replacement可以为空.
+ToValidUTF8 将s视为UTF-8编码的字节序列并返回一个副本，其中已将每个无效的UTF-8替换为replacement，replacement可以为空.
 
 ## <a id="Trim">func</a> [Trim](https://golang.org/src/bytes/bytes.go?s=21520:21561#L806)
 <pre>func Trim(s []<a href="/pkg/builtin/#byte">byte</a>, cutset <a href="/pkg/builtin/#string">string</a>) []<a href="/pkg/builtin/#byte">byte</a></pre>
 Trim returns a subslice of s by slicing off all leading and
 trailing UTF-8-encoded code points contained in cutset.
 
-Trim 返回将s前后端所有cutset中包含的utf8编码都已去掉的子切片.
+Trim 返回将s前后端所有cutset中包含的utf8码点都已去掉的子切片.
 
 <a id="example_Trim">Example</a>
 ```go
@@ -1350,7 +1350,7 @@ output:
 TrimFunc returns a subslice of s by slicing off all leading and trailing
 UTF-8-encoded code points c that satisfy f(c).
 
-TrimFunc 返回将s前后端中所有满足f(c)的utf8编码都去掉的子切片.
+TrimFunc 返回将s前后端中所有满足f(c)的utf8码点都去掉的子切片.
 
 <a id="example_TrimFunc">Example</a>
 ```go
@@ -1382,7 +1382,7 @@ go-gopher!
 TrimLeft returns a subslice of s by slicing off all leading
 UTF-8-encoded code points contained in cutset.
 
-TrimLeft 返回将s前端所有cutset中包含的utf8编码都已去掉的子切片.
+TrimLeft 返回将s前端中所有cutset包含的utf8码点都已去掉的子切片.
 
 <a id="example_TrimLeft">Example</a>
 ```go
@@ -1407,7 +1407,7 @@ gopher8257
 TrimLeftFunc treats s as UTF-8-encoded bytes and returns a subslice of s by slicing off
 all leading UTF-8-encoded code points c that satisfy f(c).
 
-TrimFunc 返回将s前端中所有满足f(c)的utf8编码都去掉的子切片.
+TrimFunc 返回将s前端中所有满足f(c)的utf8码点都去掉的子切片.
 
 <a id="example_TrimLeftFunc">Example</a>
 ```go
@@ -1465,7 +1465,7 @@ Hello, world!
 TrimRight returns a subslice of s by slicing off all trailing
 UTF-8-encoded code points that are contained in cutset.
 
-TrimRight 返回将s后端所有cutset中包含的utf8编码都已去掉的子切片.
+TrimRight 返回将s后端中所有cutset包含的utf8码点都已去掉的子切片.
 
 <a id="example_TrimRight">Example</a>
 ```go
@@ -1490,7 +1490,7 @@ output:
 TrimRightFunc returns a subslice of s by slicing off all trailing
 UTF-8-encoded code points c that satisfy f(c).
 
-TrimRightFunc 返回将s后端中所有满足f(c)的utf8编码都去掉的子切片.
+TrimRightFunc 返回将s后端中所有满足f(c)的utf8码点都去掉的子切片.
 
 <a id="example_TrimRightFunc">Example</a>
 ```go
