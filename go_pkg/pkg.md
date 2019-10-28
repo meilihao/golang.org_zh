@@ -76,7 +76,7 @@
 |[scanner](pkgs/go_scanner.md)|Package scanner implements a scanner for Go source text.|0%|
 |[token](pkgs/go_token.md)|Package token defines constants representing the lexical tokens of the Go programming language and basic operations on tokens (printing, predicates).|0%|
 |[types](pkgs/go_types.md)|Package types declares the data types and implements the algorithms for type-checking of Go packages.|0%|
-|[hash](pkgs/hash.md)|Package hash provides interfaces for hash functions.|0%|
+|[hash](pkgs/hash.md)|hash 提供了hash函数所需的接口.|done|
 |[adler32](pkgs/hash_adler32.md)|Package adler32 implements the Adler-32 checksum.|0%|
 |[crc32](pkgs/hash_crc32.md)|Package crc32 implements the 32-bit cyclic redundancy check, or CRC-32, checksum.|0%|
 |[crc64](pkgs/hash_crc64.md)|Package crc64 implements the 64-bit cyclic redundancy check, or CRC-64, checksum.|0%|
