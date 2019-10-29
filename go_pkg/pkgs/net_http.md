@@ -606,59 +606,107 @@ var (
 
 DefaultClient is the default Client and is used by Get, Head, and Post.
 
+DefaultClient 是 http 中默认的 Client, Get、Head 和 Post 都使用该 Client.
 
-<pre>var <span id="DefaultClient">DefaultClient</span> = &amp;<a href="#Client">Client</a>{}</pre>DefaultServeMux is the default ServeMux used by Serve.
+
+<pre>var <span id="DefaultClient">DefaultClient</span> = &amp;<a href="#Client">Client</a>{}</pre>
+
+DefaultServeMux is the default ServeMux used by Serve.
+
+DefaultServeMux 是 Serve 默认使用的 ServeMux.
 
 
-<pre>var <span id="DefaultServeMux">DefaultServeMux</span> = &amp;defaultServeMux</pre>ErrAbortHandler is a sentinel panic value to abort a handler.
+<pre>var <span id="DefaultServeMux">DefaultServeMux</span> = &amp;defaultServeMux</pre>
+
+ErrAbortHandler is a sentinel panic value to abort a handler.
 While any panic from ServeHTTP aborts the response to the client,
 panicking with ErrAbortHandler also suppresses logging of a stack
 trace to the server's error log.
 
+ErrAbortHandler 会监控处理函数中的 panic 事件. 当 ServeHTTP 发生 panic 并中止响应的时, ErrAbortHandler能阻止记录栈信息到服务器的错误日志中.
 
-<pre>var <span id="ErrAbortHandler">ErrAbortHandler</span> = <a href="/pkg/errors/">errors</a>.<a href="/pkg/errors/#New">New</a>(&#34;net/http: abort Handler&#34;)</pre>ErrBodyReadAfterClose is returned when reading a Request or Response
+
+<pre>var <span id="ErrAbortHandler">ErrAbortHandler</span> = <a href="/pkg/errors/">errors</a>.<a href="/pkg/errors/#New">New</a>(&#34;net/http: abort Handler&#34;)</pre>
+
+ErrBodyReadAfterClose is returned when reading a Request or Response
 Body after the body has been closed. This typically happens when the body is
 read after an HTTP Handler calls WriteHeader or Write on its
 ResponseWriter.
 
+ErrBodyReadAfterClose 会在读取一个已经关闭的 Request 或 Response 的 Body 时返回. 通常发生在 HTTP 处理函数在调用 ResponseWriter 的 WriteHeader 或 Write 之后读取 Body.
 
-<pre>var <span id="ErrBodyReadAfterClose">ErrBodyReadAfterClose</span> = <a href="/pkg/errors/">errors</a>.<a href="/pkg/errors/#New">New</a>(&#34;http: invalid Read on closed Body&#34;)</pre>ErrHandlerTimeout is returned on ResponseWriter Write calls
+
+<pre>var <span id="ErrBodyReadAfterClose">ErrBodyReadAfterClose</span> = <a href="/pkg/errors/">errors</a>.<a href="/pkg/errors/#New">New</a>(&#34;http: invalid Read on closed Body&#34;)</pre>
+
+ErrHandlerTimeout is returned on ResponseWriter Write calls
 in handlers which have timed out.
 
+在超时以后调用 ResponseWriter 的 Write 会返回 ErrHandlerTimeout.
 
-<pre>var <span id="ErrHandlerTimeout">ErrHandlerTimeout</span> = <a href="/pkg/errors/">errors</a>.<a href="/pkg/errors/#New">New</a>(&#34;http: Handler timeout&#34;)</pre>ErrLineTooLong is returned when reading request or response bodies
+
+<pre>var <span id="ErrHandlerTimeout">ErrHandlerTimeout</span> = <a href="/pkg/errors/">errors</a>.<a href="/pkg/errors/#New">New</a>(&#34;http: Handler timeout&#34;)</pre>
+
+ErrLineTooLong is returned when reading request or response bodies
 with malformed chunked encoding.
 
+ErrLineTooLong 读取请求体或响应体遇到格式不正确的分块编码时返回 ErrLineTooLong.
 
-<pre>var <span id="ErrLineTooLong">ErrLineTooLong</span> = <a href="/pkg/net/http/internal/">internal</a>.<a href="/pkg/net/http/internal/#ErrLineTooLong">ErrLineTooLong</a></pre>ErrMissingFile is returned by FormFile when the provided file field name
+
+<pre>var <span id="ErrLineTooLong">ErrLineTooLong</span> = <a href="/pkg/net/http/internal/">internal</a>.<a href="/pkg/net/http/internal/#ErrLineTooLong">ErrLineTooLong</a></pre>
+
+ErrMissingFile is returned by FormFile when the provided file field name
 is either not present in the request or not a file field.
 
+FromFile 在文件名不存在于请求中或不是文件名时返回 ErrMissingFile.
 
-<pre>var <span id="ErrMissingFile">ErrMissingFile</span> = <a href="/pkg/errors/">errors</a>.<a href="/pkg/errors/#New">New</a>(&#34;http: no such file&#34;)</pre>ErrNoCookie is returned by Request's Cookie method when a cookie is not found.
+
+<pre>var <span id="ErrMissingFile">ErrMissingFile</span> = <a href="/pkg/errors/">errors</a>.<a href="/pkg/errors/#New">New</a>(&#34;http: no such file&#34;)</pre>
+
+ErrNoCookie is returned by Request's Cookie method when a cookie is not found.
+
+请求的 Cookie 方法没有找到 cookie 时返回 ErrNoCookie.
 
 
-<pre>var <span id="ErrNoCookie">ErrNoCookie</span> = <a href="/pkg/errors/">errors</a>.<a href="/pkg/errors/#New">New</a>(&#34;http: named cookie not present&#34;)</pre>ErrNoLocation is returned by Response's Location method
+<pre>var <span id="ErrNoCookie">ErrNoCookie</span> = <a href="/pkg/errors/">errors</a>.<a href="/pkg/errors/#New">New</a>(&#34;http: named cookie not present&#34;)</pre>
+
+ErrNoLocation is returned by Response's Location method
 when no Location header is present.
 
+Response的Location 方法没有找到Location header 时返回 ErrNoLocation.
 
-<pre>var <span id="ErrNoLocation">ErrNoLocation</span> = <a href="/pkg/errors/">errors</a>.<a href="/pkg/errors/#New">New</a>(&#34;http: no Location header in response&#34;)</pre>ErrServerClosed is returned by the Server's Serve, ServeTLS, ListenAndServe,
+
+<pre>var <span id="ErrNoLocation">ErrNoLocation</span> = <a href="/pkg/errors/">errors</a>.<a href="/pkg/errors/#New">New</a>(&#34;http: no Location header in response&#34;)</pre>
+
+ErrServerClosed is returned by the Server's Serve, ServeTLS, ListenAndServe,
 and ListenAndServeTLS methods after a call to Shutdown or Close.
 
+在服务器 Close 或者 Shutdown 以后调用 Serve，ServeTLS，ListenAndServe 和 ListenAndServeTLS 方法时返回 ErrServerClosed.
 
-<pre>var <span id="ErrServerClosed">ErrServerClosed</span> = <a href="/pkg/errors/">errors</a>.<a href="/pkg/errors/#New">New</a>(&#34;http: Server closed&#34;)</pre>ErrSkipAltProtocol is a sentinel error value defined by Transport.RegisterProtocol.
 
+<pre>var <span id="ErrServerClosed">ErrServerClosed</span> = <a href="/pkg/errors/">errors</a>.<a href="/pkg/errors/#New">New</a>(&#34;http: Server closed&#34;)</pre>
 
-<pre>var <span id="ErrSkipAltProtocol">ErrSkipAltProtocol</span> = <a href="/pkg/errors/">errors</a>.<a href="/pkg/errors/#New">New</a>(&#34;net/http: skip alternate protocol&#34;)</pre>ErrUseLastResponse can be returned by Client.CheckRedirect hooks to
+ErrSkipAltProtocol is a sentinel error value defined by Transport.RegisterProtocol.
+
+ErrSkipAltProtocol 是一个被 Transport.RegisterProtocol 定义的错误标记.
+
+<pre>var <span id="ErrSkipAltProtocol">ErrSkipAltProtocol</span> = <a href="/pkg/errors/">errors</a>.<a href="/pkg/errors/#New">New</a>(&#34;net/http: skip alternate protocol&#34;)</pre>
+
+ErrUseLastResponse can be returned by Client.CheckRedirect hooks to
 control how redirects are processed. If returned, the next request
 is not sent and the most recent response is returned with its body
 unclosed.
 
+Client.CheckRedirect的hook在控制如何处理redirect时会返回ErrUseLastResponse. 如果有返回, 则下一个请求还未发出, 且最近的response(它的body还没有closed)已到达.???
 
-<pre>var <span id="ErrUseLastResponse">ErrUseLastResponse</span> = <a href="/pkg/errors/">errors</a>.<a href="/pkg/errors/#New">New</a>(&#34;net/http: use last response&#34;)</pre>NoBody is an io.ReadCloser with no bytes. Read always returns EOF
+
+<pre>var <span id="ErrUseLastResponse">ErrUseLastResponse</span> = <a href="/pkg/errors/">errors</a>.<a href="/pkg/errors/#New">New</a>(&#34;net/http: use last response&#34;)</pre>
+
+NoBody is an io.ReadCloser with no bytes. Read always returns EOF
 and Close always returns nil. It can be used in an outgoing client
 request to explicitly signal that a request has zero bytes.
 An alternative, however, is to simply set Request.Body to nil.
 
+NoBody 是一个 0 字节的 io.ReadCloser. Read 一直返回 EOF，Close 一直返回 nil. 它可以被用来明确表示一个 0 字节的外部请求. 另一种相对简单的方法是直接把 Request.Body 设置为 nil.
 
 <pre>var <span id="NoBody">NoBody</span> = noBody{}</pre>
 
@@ -672,6 +720,8 @@ canonical key for "accept-encoding" is "Accept-Encoding".
 If s contains a space or invalid header field bytes, it is
 returned without modifications.
 
+CanonicalHeaderKey 返回header key的格式. 它会把 s 的首字母和连字符后的字母转换成大写，其他部分小写. 例如 "accept-encoding" 会变成 "Accept-Encoding". 如果含有空格或者非法字节则不对 s 做变动.
+
 
 
 ## <a id="DetectContentType">func</a> [DetectContentType](https://golang.org/src/net/http/sniff.go?s=646:688#L11)
@@ -683,7 +733,7 @@ first 512 bytes of data. DetectContentType always returns
 a valid MIME type: if it cannot determine a more specific one, it
 returns "application/octet-stream".
 
-
+DetectContentType 实现了 <a href="https://mimesniff.spec.whatwg.org/">https://mimesniff.spec.whatwg.org/</a> 所述判断数据 Content-Type 类型的算法. 该算法会分析数据的前 512 个字节. DetectContentType 一直返回有效的 MIME 类型. 如果找不到一个适合的类型会返回 application/octet-stream.
 
 ## <a id="Error">func</a> [Error](https://golang.org/src/net/http/server.go?s=61907:61959#L2006)
 <pre>func Error(w <a href="#ResponseWriter">ResponseWriter</a>, error <a href="/pkg/builtin/#string">string</a>, code <a href="/pkg/builtin/#int">int</a>)</pre>
@@ -692,7 +742,7 @@ It does not otherwise end the request; the caller should ensure no further
 writes are done to w.
 The error message should be plain text.
 
-
+Error 以指定错误信息和 HTTP 状态码响应客户端请求. 它不会以其他方式结束请求. 在此之后不能再向 w 中写入信息. 错误信息必须是纯文本.
 
 ## <a id="Handle">func</a> [Handle](https://golang.org/src/net/http/server.go?s=75321:75365#L2436)
 <pre>func Handle(pattern <a href="/pkg/builtin/#string">string</a>, handler <a href="#Handler">Handler</a>)</pre>
@@ -700,13 +750,36 @@ Handle registers the handler for the given pattern
 in the DefaultServeMux.
 The documentation for ServeMux explains how patterns are matched.
 
+Handle 将指定 URI pattern 的处理函数 handler 注册进 DefaultServeMux. ServeMux 的文档会说明 patterns 的匹配方式.
+
 
 <a id="example_Handle">Example</a>
 ```go
-```
+package main
 
-output:
-```txt
+import (
+	"fmt"
+	"log"
+	"net/http"
+	"sync"
+)
+
+type countHandler struct {
+	mu sync.Mutex // guards n
+	n  int
+}
+
+func (h *countHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	h.mu.Lock()
+	defer h.mu.Unlock()
+	h.n++
+	fmt.Fprintf(w, "count is %d\n", h.n)
+}
+
+func main() {
+	http.Handle("/count", new(countHandler))
+	log.Fatal(http.ListenAndServe(":8080", nil))
+}
 ```
 
 ## <a id="HandleFunc">func</a> [HandleFunc](https://golang.org/src/net/http/server.go?s=75575:75646#L2441)
@@ -715,13 +788,31 @@ HandleFunc registers the handler function for the given pattern
 in the DefaultServeMux.
 The documentation for ServeMux explains how patterns are matched.
 
+HandleFunc 将指定 URI pattern 的处理函数 handler 注册进 DefaultServeMux. ServeMux 的文档会说明 patterns 的匹配方式.
 
 <a id="example_HandleFunc">Example</a>
 ```go
-```
+package main
 
-output:
-```txt
+import (
+	"io"
+	"log"
+	"net/http"
+)
+
+func main() {
+	h1 := func(w http.ResponseWriter, _ *http.Request) {
+		io.WriteString(w, "Hello from a HandleFunc #1!\n")
+	}
+	h2 := func(w http.ResponseWriter, _ *http.Request) {
+		io.WriteString(w, "Hello from a HandleFunc #2!\n")
+	}
+
+	http.HandleFunc("/", h1)
+	http.HandleFunc("/endpoint", h2)
+
+	log.Fatal(http.ListenAndServe(":8080", nil))
+}
 ```
 
 ## <a id="ListenAndServe">func</a> [ListenAndServe](https://golang.org/src/net/http/server.go?s=96333:96388#L3068)
@@ -733,6 +824,12 @@ Accepted connections are configured to enable TCP keep-alives.
 The handler is typically nil, in which case the DefaultServeMux is used.
 
 ListenAndServe always returns a non-nil error.
+
+ListenAndServe 在 TCP addr 上进行监听，然后调用Serve利用handler来处理连接上来的请求. 接收到的链接都会启用 keep-alives.
+
+在 Handler 为 nil 的时候使用 DefaultServeMux.
+
+ListenAndServe 总是返回非nil的errors.
 
 
 <a id="example_ListenAndServe">Example</a>
