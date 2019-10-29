@@ -349,6 +349,10 @@ Common HTTP methods.
 Unless otherwise noted, these are defined in RFC 7231 section 4.3.
 
 
+常用 HTTP 方法.
+
+除非另有说明，否则这些都定义在RFC 7231第4.3节里.
+
 <pre>const (
     <span id="MethodGet">MethodGet</span>     = &#34;GET&#34;
     <span id="MethodHead">MethodHead</span>    = &#34;HEAD&#34;
@@ -359,9 +363,12 @@ Unless otherwise noted, these are defined in RFC 7231 section 4.3.
     <span id="MethodConnect">MethodConnect</span> = &#34;CONNECT&#34;
     <span id="MethodOptions">MethodOptions</span> = &#34;OPTIONS&#34;
     <span id="MethodTrace">MethodTrace</span>   = &#34;TRACE&#34;
-)</pre>HTTP status codes as registered with IANA.
+)</pre>
+
+HTTP status codes as registered with IANA.
 See: <a href="https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml">https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml</a>
 
+向IANA注册的HTTP状态代码. 请参阅：<a href="https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml">https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml</a>
 
 <pre>const (
     <span id="StatusContinue">StatusContinue</span>           = 100 <span class="comment">// RFC 7231, 6.2.1</span>
@@ -431,25 +438,39 @@ See: <a href="https://www.iana.org/assignments/http-status-codes/http-status-cod
     <span id="StatusLoopDetected">StatusLoopDetected</span>                  = 508 <span class="comment">// RFC 5842, 7.2</span>
     <span id="StatusNotExtended">StatusNotExtended</span>                   = 510 <span class="comment">// RFC 2774, 7</span>
     <span id="StatusNetworkAuthenticationRequired">StatusNetworkAuthenticationRequired</span> = 511 <span class="comment">// RFC 6585, 6</span>
-)</pre>DefaultMaxHeaderBytes is the maximum permitted size of the headers
+)</pre>
+
+DefaultMaxHeaderBytes is the maximum permitted size of the headers
 in an HTTP request.
 This can be overridden by setting Server.MaxHeaderBytes.
 
+DefaultMaxHeaderBytes是HTTP请求的头部允许的最大大小. 这可以通过设置Server.MaxHeaderBytes来覆盖.
 
 <pre>const <span id="DefaultMaxHeaderBytes">DefaultMaxHeaderBytes</span> = 1 &lt;&lt; 20 <span class="comment">// 1 MB</span>
-</pre>DefaultMaxIdleConnsPerHost is the default value of Transport's
+</pre>
+
+DefaultMaxIdleConnsPerHost is the default value of Transport's
 MaxIdleConnsPerHost.
 
+DefaultMaxIdleConnsPerHost是Transport的MaxIdleConnsPerHost的默认值.
 
-<pre>const <span id="DefaultMaxIdleConnsPerHost">DefaultMaxIdleConnsPerHost</span> = 2</pre>TimeFormat is the time format to use when generating times in HTTP
+<pre>const <span id="DefaultMaxIdleConnsPerHost">DefaultMaxIdleConnsPerHost</span> = 2</pre>
+
+TimeFormat is the time format to use when generating times in HTTP
 headers. It is like time.RFC1123 but hard-codes GMT as the time
 zone. The time being formatted must be in UTC for Format to
 generate the correct format.
 
 For parsing this time format, see ParseTime.
 
+TimeFormat是HTTP头的创建时间所使用的时间格式. 它就像time.RFC1123类似，但是会将GMT编码为时区. 被格式化的时间必须是 UTC 格式才能保证产生正确的格式化结果.
 
-<pre>const <span id="TimeFormat">TimeFormat</span> = &#34;Mon, 02 Jan 2006 15:04:05 GMT&#34;</pre>TrailerPrefix is a magic prefix for ResponseWriter.Header map keys
+有关解析此时间格式的信息，请参阅ParseTime.
+
+
+<pre>const <span id="TimeFormat">TimeFormat</span> = &#34;Mon, 02 Jan 2006 15:04:05 GMT&#34;</pre>
+
+TrailerPrefix is a magic prefix for ResponseWriter.Header map keys
 that, if present, signals that the map entry is actually for
 the response trailers, and not the response headers. The prefix
 is stripped after the ServeHTTP call finishes and the values are
@@ -460,6 +481,10 @@ prior to the headers being written. If the set of trailers is fixed
 or known before the header is written, the normal Go trailers mechanism
 is preferred:
 
+TrailerPrefix 是 ResponseWriter.Header map 的键的特定前缀，如果存在，就意味着这个 map 实体其实是响应 trailer 而不是响应头. ServeHTTP 调用完成后会去掉这个前缀并把它送入 trailer.
+
+这个机制仅在写入头部时还不知道 trailer 的相关信息的情况下使用. 如果 trailer 是固定的或者在写入头部时就可以确定，推荐使用正常的 Go trailer 机制：
+
 
 	<a href="https://golang.org/pkg/net/http/#ResponseWriter">https://golang.org/pkg/net/http/#ResponseWriter</a>
 	<a href="https://golang.org/pkg/net/http/#example_ResponseWriter_trailers">https://golang.org/pkg/net/http/#example_ResponseWriter_trailers</a>
@@ -469,79 +494,117 @@ is preferred:
 
 ## <a id="pkg-variables">Variables</a>
 
-<pre>var (
-    <span class="comment">// ErrNotSupported is returned by the Push method of Pusher</span>
-    <span class="comment">// implementations to indicate that HTTP/2 Push support is not</span>
-    <span class="comment">// available.</span>
-    <span id="ErrNotSupported">ErrNotSupported</span> = &amp;<a href="#ProtocolError">ProtocolError</a>{&#34;feature not supported&#34;}
+```go
+var (
+    // ErrNotSupported is returned by the Push method of Pusher
+    // implementations to indicate that HTTP/2 Push support is not
+    // available.
+    //
+    // 当 Pusher 的实现不支持 HTTP/2 的 Push 时返回 ErrNotSupported.
+    ErrNotSupported = &ProtocolError{"feature not supported"}
 
-    <span class="comment">// Deprecated: ErrUnexpectedTrailer is no longer returned by</span>
-    <span class="comment">// anything in the net/http package. Callers should not</span>
-    <span class="comment">// compare errors against this variable.</span>
-    <span id="ErrUnexpectedTrailer">ErrUnexpectedTrailer</span> = &amp;<a href="#ProtocolError">ProtocolError</a>{&#34;trailer header without chunked transfer encoding&#34;}
+    // Deprecated: ErrUnexpectedTrailer is no longer returned by
+    // anything in the net/http package. Callers should not
+    // compare errors against this variable.
+    //
+    // 不推荐使用: net/http 中已不再使用ErrUnexpectedTrailer. 调用者不应将error与该变量进行比较.
+    ErrUnexpectedTrailer = &ProtocolError{"trailer header without chunked transfer encoding"}
 
-    <span class="comment">// ErrMissingBoundary is returned by Request.MultipartReader when the</span>
-    <span class="comment">// request&#39;s Content-Type does not include a &#34;boundary&#34; parameter.</span>
-    <span id="ErrMissingBoundary">ErrMissingBoundary</span> = &amp;<a href="#ProtocolError">ProtocolError</a>{&#34;no multipart boundary param in Content-Type&#34;}
+    // ErrMissingBoundary is returned by Request.MultipartReader when the
+    // request's Content-Type does not include a "boundary" parameter.
+    //
+    // 当请求的 Content-Type 不包含 boundary 参数时 Request.MultipartReader 返回 ErrMissingBoundary
+    ErrMissingBoundary = &ProtocolError{"no multipart boundary param in Content-Type"}
 
-    <span class="comment">// ErrNotMultipart is returned by Request.MultipartReader when the</span>
-    <span class="comment">// request&#39;s Content-Type is not multipart/form-data.</span>
-    <span id="ErrNotMultipart">ErrNotMultipart</span> = &amp;<a href="#ProtocolError">ProtocolError</a>{&#34;request Content-Type isn&#39;t multipart/form-data&#34;}
+    // ErrNotMultipart is returned by Request.MultipartReader when the
+    // request's Content-Type is not multipart/form-data.
+    //
+    // 当请求的 Content-Type 不是 multipart/form-data 时 Request.MultipartReader 返回 ErrNotMultipart
+    ErrNotMultipart = &ProtocolError{"request Content-Type isn't multipart/form-data"}
 
-    <span class="comment">// Deprecated: ErrHeaderTooLong is no longer returned by</span>
-    <span class="comment">// anything in the net/http package. Callers should not</span>
-    <span class="comment">// compare errors against this variable.</span>
-    <span id="ErrHeaderTooLong">ErrHeaderTooLong</span> = &amp;<a href="#ProtocolError">ProtocolError</a>{&#34;header too long&#34;}
+    // Deprecated: ErrHeaderTooLong is no longer returned by
+    // anything in the net/http package. Callers should not
+    // compare errors against this variable.
+    //
+    // 不推荐使用: net/http 中已不再使用 ErrHeaderTooLong. 调用者不应将error与该变量进行比较.
+    ErrHeaderTooLong = &ProtocolError{"header too long"}
 
-    <span class="comment">// Deprecated: ErrShortBody is no longer returned by</span>
-    <span class="comment">// anything in the net/http package. Callers should not</span>
-    <span class="comment">// compare errors against this variable.</span>
-    <span id="ErrShortBody">ErrShortBody</span> = &amp;<a href="#ProtocolError">ProtocolError</a>{&#34;entity body too short&#34;}
+    // Deprecated: ErrShortBody is no longer returned by
+    // anything in the net/http package. Callers should not
+    // compare errors against this variable.
+    //
+    // 不推荐使用: net/http 中已不再使用 ErrShortBody. 调用者不应将error与该变量进行比较.
+    ErrShortBody = &ProtocolError{"entity body too short"}
 
-    <span class="comment">// Deprecated: ErrMissingContentLength is no longer returned by</span>
-    <span class="comment">// anything in the net/http package. Callers should not</span>
-    <span class="comment">// compare errors against this variable.</span>
-    <span id="ErrMissingContentLength">ErrMissingContentLength</span> = &amp;<a href="#ProtocolError">ProtocolError</a>{&#34;missing ContentLength in HEAD response&#34;}
-)</pre>Errors used by the HTTP server.
+    // Deprecated: ErrMissingContentLength is no longer returned by
+    // anything in the net/http package. Callers should not
+    // compare errors against this variable.
+    //
+    // 不推荐使用: net/http 中已不再使用 ErrMissingContentLength. 调用者不应将error与该变量进行比较.
+    ErrMissingContentLength = &ProtocolError{"missing ContentLength in HEAD response"}
+)
+```
 
+Errors used by the HTTP server.
 
-<pre>var (
-    <span class="comment">// ErrBodyNotAllowed is returned by ResponseWriter.Write calls</span>
-    <span class="comment">// when the HTTP method or response code does not permit a</span>
-    <span class="comment">// body.</span>
-    <span id="ErrBodyNotAllowed">ErrBodyNotAllowed</span> = <a href="/pkg/errors/">errors</a>.<a href="/pkg/errors/#New">New</a>(&#34;http: request method or response status code does not allow body&#34;)
+HTTP server使用的error.
 
-    <span class="comment">// ErrHijacked is returned by ResponseWriter.Write calls when</span>
-    <span class="comment">// the underlying connection has been hijacked using the</span>
-    <span class="comment">// Hijacker interface. A zero-byte write on a hijacked</span>
-    <span class="comment">// connection will return ErrHijacked without any other side</span>
-    <span class="comment">// effects.</span>
-    <span id="ErrHijacked">ErrHijacked</span> = <a href="/pkg/errors/">errors</a>.<a href="/pkg/errors/#New">New</a>(&#34;http: connection has been hijacked&#34;)
+```go
+var (
+    // ErrBodyNotAllowed is returned by ResponseWriter.Write calls
+    // when the HTTP method or response code does not permit a
+    // body.
+    //
+    // 当 HTTP 方法或响应码不包含请求体时，ResponseWriter.Write 返回 ErrBodyNotAllowed.
+    ErrBodyNotAllowed = errors.New("http: request method or response status code does not allow body")
 
-    <span class="comment">// ErrContentLength is returned by ResponseWriter.Write calls</span>
-    <span class="comment">// when a Handler set a Content-Length response header with a</span>
-    <span class="comment">// declared size and then attempted to write more bytes than</span>
-    <span class="comment">// declared.</span>
-    <span id="ErrContentLength">ErrContentLength</span> = <a href="/pkg/errors/">errors</a>.<a href="/pkg/errors/#New">New</a>(&#34;http: wrote more than the declared Content-Length&#34;)
+    // ErrHijacked is returned by ResponseWriter.Write calls when
+    // the underlying connection has been hijacked using the
+    // Hijacker interface. A zero-byte write on a hijacked
+    // connection will return ErrHijacked without any other side
+    // effects.
+    //
+    // 当底层链接被 Hijacker 劫持的时候 ResponseWriter.Write 返回 ErrHijacked.
+    // 在劫持链接中写入0字节也会返回 ErrHijacked.
+    ErrHijacked = errors.New("http: connection has been hijacked")
 
-    <span class="comment">// Deprecated: ErrWriteAfterFlush is no longer returned by</span>
-    <span class="comment">// anything in the net/http package. Callers should not</span>
-    <span class="comment">// compare errors against this variable.</span>
-    <span id="ErrWriteAfterFlush">ErrWriteAfterFlush</span> = <a href="/pkg/errors/">errors</a>.<a href="/pkg/errors/#New">New</a>(&#34;unused&#34;)
-)</pre>
-<pre>var (
-    <span class="comment">// ServerContextKey is a context key. It can be used in HTTP</span>
-    <span class="comment">// handlers with Context.Value to access the server that</span>
-    <span class="comment">// started the handler. The associated value will be of</span>
-    <span class="comment">// type *Server.</span>
-    <span id="ServerContextKey">ServerContextKey</span> = &amp;contextKey{&#34;http-server&#34;}
+    // ErrContentLength is returned by ResponseWriter.Write calls
+    // when a Handler set a Content-Length response header with a
+    // declared size and then attempted to write more bytes than
+    // declared.
+    //
+    // 当处理函数调用ResponseWriter.Write写入比 Content-Length 响应头声明的字节数更大长度时返回 ErrContentLength。.
+    ErrContentLength = errors.New("http: wrote more than the declared Content-Length")
 
-    <span class="comment">// LocalAddrContextKey is a context key. It can be used in</span>
-    <span class="comment">// HTTP handlers with Context.Value to access the local</span>
-    <span class="comment">// address the connection arrived on.</span>
-    <span class="comment">// The associated value will be of type net.Addr.</span>
-    <span id="LocalAddrContextKey">LocalAddrContextKey</span> = &amp;contextKey{&#34;local-addr&#34;}
-)</pre>DefaultClient is the default Client and is used by Get, Head, and Post.
+    // Deprecated: ErrWriteAfterFlush is no longer returned by
+    // anything in the net/http package. Callers should not
+    // compare errors against this variable.
+    //
+    // 不推荐使用: net/http 中已不再使用 ErrWriteAfterFlush. 调用者不应将error与该变量进行比较.
+    ErrWriteAfterFlush = errors.New("unused")
+)
+
+var (
+    // ServerContextKey is a context key. It can be used in HTTP
+    // handlers with Context.Value to access the server that
+    // started the handler. The associated value will be of
+    // type *Server.
+    //
+    // ServerContextKey 是一个 context key. 能在 HTTP 处理函数中获取其对应的服务器实例. 对应值类型为 *Server.
+    ServerContextKey = &contextKey{"http-server"}
+
+    // LocalAddrContextKey is a context key. It can be used in
+    // HTTP handlers with Context.Value to access the local
+    // address the connection arrived on.
+    // The associated value will be of type net.Addr.
+    //
+    // LocalAddrContextKey 是一个 context key. 它能在 HTTP 处理函数中获取链接到达时的本地地址.
+    // 对应值类型为 net.Addr.
+    LocalAddrContextKey = &contextKey{"local-addr"}
+)
+```
+
+DefaultClient is the default Client and is used by Get, Head, and Post.
 
 
 <pre>var <span id="DefaultClient">DefaultClient</span> = &amp;<a href="#Client">Client</a>{}</pre>DefaultServeMux is the default ServeMux used by Serve.
