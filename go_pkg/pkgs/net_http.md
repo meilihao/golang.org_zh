@@ -834,10 +834,24 @@ ListenAndServe 总是返回非nil的errors.
 
 <a id="example_ListenAndServe">Example</a>
 ```go
-```
+package main
 
-output:
-```txt
+import (
+	"io"
+	"log"
+	"net/http"
+)
+
+func main() {
+	// Hello world, the web server
+
+	helloHandler := func(w http.ResponseWriter, req *http.Request) {
+		io.WriteString(w, "Hello, world!\n")
+	}
+
+	http.HandleFunc("/hello", helloHandler)
+	log.Fatal(http.ListenAndServe(":8080", nil))
+}
 ```
 
 ## <a id="ListenAndServeTLS">func</a> [ListenAndServeTLS](https://golang.org/src/net/http/server.go?s=96861:96938#L3078)
@@ -848,13 +862,28 @@ matching private key for the server must be provided. If the certificate
 is signed by a certificate authority, the certFile should be the concatenation
 of the server's certificate, any intermediates, and the CA's certificate.
 
+ListenAndServeTLS 与 ListenAndServe 相同除了它接收的是 HTTPS 的链接. 此外，必须提供服务器的证书文件和相应的私钥. 如果证书由证书颁发机构签署，certFile 就应该是包含服务器证书，任何中间证书和 CA 证书的完整证书链.
 
 <a id="example_ListenAndServeTLS">Example</a>
 ```go
-```
+package main
 
-output:
-```txt
+import (
+	"io"
+	"log"
+	"net/http"
+)
+
+func main() {
+	http.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
+		io.WriteString(w, "Hello, TLS!\n")
+	})
+
+	// One can use generate_cert.go in crypto/tls to generate cert.pem and key.pem.
+	log.Printf("About to listen on 8443. Go to https://127.0.0.1:8443/")
+	err := http.ListenAndServeTLS(":8443", "cert.pem", "key.pem", nil)
+	log.Fatal(err)
+}
 ```
 
 ## <a id="MaxBytesReader">func</a> [MaxBytesReader](https://golang.org/src/net/http/request.go?s=36495:36572#L1100)
@@ -868,18 +897,24 @@ underlying reader when its Close method is called.
 MaxBytesReader prevents clients from accidentally or maliciously
 sending a large request and wasting server resources.
 
+MaxBytesReader 和 io.LimitReader 相似，不过它是用来限制http body的大小. 和 io.LimitReader 的差异主要体现在 MaxBytesReader 的返回值是一个 ReadCloser，超过上限会返回一个非 EOF 的错误, 并且在调用 Close 的时候会关闭底层的 reader.
+
+MaxBytesReader 可以防止客户端意外或恶意发送大请求并浪费服务器资源.
 
 
 ## <a id="NotFound">func</a> [NotFound](https://golang.org/src/net/http/server.go?s=62193:62236#L2014)
 <pre>func NotFound(w <a href="#ResponseWriter">ResponseWriter</a>, r *<a href="#Request">Request</a>)</pre>
 NotFound replies to the request with an HTTP 404 not found error.
 
+NotFound 以 404 错误响应客户端请求.
 
 
 ## <a id="ParseHTTPVersion">func</a> [ParseHTTPVersion](https://golang.org/src/net/http/request.go?s=25474:25536#L758)
 <pre>func ParseHTTPVersion(vers <a href="/pkg/builtin/#string">string</a>) (major, minor <a href="/pkg/builtin/#int">int</a>, ok <a href="/pkg/builtin/#bool">bool</a>)</pre>
 ParseHTTPVersion parses a HTTP version string.
 "HTTP/1.0" returns (1, 0, true).
+
+ParseHTTPVersion 解析 HTTP 版本字符串. "HTTP/1.0" 返回 (1, 0, true).
 
 
 
@@ -889,6 +924,7 @@ ParseTime parses a time header (such as the Date: header),
 trying each of the three formats allowed by HTTP/1.1:
 TimeFormat, time.RFC850, and time.ANSIC.
 
+ParseTime 尝试使用 HTTP/1.1 允许的三种时间格式： TimeFormat、time.RFC850 和 time.ANSIC 来解析头部时间(例如：Date 头).
 
 
 ## <a id="ProxyFromEnvironment">func</a> [ProxyFromEnvironment](https://golang.org/src/net/http/transport.go?s=15179:15236#L391)
@@ -910,6 +946,13 @@ as defined by NO_PROXY.
 As a special case, if req.URL.Host is "localhost" (with or without
 a port number), then a nil URL and nil error will be returned.
 
+ProxyFromEnvironment 返回该请求需要使用的代理 URL, 它根据环境变量 HTTP_PROXY、HTTPS_PROXY 和 NO_PROXY（或者其的第几版本）来提供代理. HTTPS_PROXY 的优先级高于 HTTP_PROXY 请求.
+
+环境变量的值可以为完整的 URL 或假定使用 http 的 "host[:port]" 形式. 如果不是以上格式将会返回错误.
+
+如果没有定义代理环境变量将会返回 `nil，nil`. 如果请求不想使用代理应该定义环境变量 NO_PROXY.
+
+作为特例，如果 req.URL.Host 是 localhost (带/不带端口号), 那么返回 `nil，nil`.
 
 
 ## <a id="ProxyURL">func</a> [ProxyURL](https://golang.org/src/net/http/transport.go?s=15373:15438#L397)
@@ -917,6 +960,7 @@ a port number), then a nil URL and nil error will be returned.
 ProxyURL returns a proxy function (for use in a Transport)
 that always returns the same URL.
 
+ProxyURL 返回一个供 Transport 使用的代理函数，它一直返回相同 URL.
 
 
 ## <a id="Redirect">func</a> [Redirect](https://golang.org/src/net/http/server.go?s=63587:63652#L2053)
@@ -932,7 +976,12 @@ to "text/html; charset=utf-8" and writes a small HTML body.
 Setting the Content-Type header to any value, including nil,
 disables that behavior.
 
+Redirect 以一个重定向的 url（可能是一个当前请求路径的相对路径）响应客户端请求.
 
+返回的状态码在 3xx 的范围内, 一般为 StatusMovedPermanently、StatusFound 或 StatusSeeOther.
+
+如果尚未设置Content-Type, Redirect会设置成"text/html; charset=utf-8", 并写入一段小的HTML正文.
+不应该将Content-Type设置为任何值，包括nil.
 
 ## <a id="Serve">func</a> [Serve](https://golang.org/src/net/http/server.go?s=76163:76212#L2456)
 <pre>func Serve(l <a href="/pkg/net/">net</a>.<a href="/pkg/net/#Listener">Listener</a>, handler <a href="#Handler">Handler</a>) <a href="/pkg/builtin/#error">error</a></pre>
