@@ -997,7 +997,13 @@ Config.NextProtos.
 
 Serve always returns a non-nil error.
 
+Serve 接受 l 上的 HTTP 链接, 并为每个链接创建一个 goroutine 去服务. 该 goroutine 会读取请求并写入响应.
 
+通常 Handler 为 nil, 此时使用默认的 DefaultServeMux.
+
+仅在 Listener 为 *tls.Conn且该TLS Config.NextProtos配置为"h2"时才启用HTTP/2.
+
+Serve 通常返回一个非nild错误.
 
 ## <a id="ServeContent">func</a> [ServeContent](https://golang.org/src/net/http/fs.go?s=4932:5036#L143)
 <pre>func ServeContent(w <a href="#ResponseWriter">ResponseWriter</a>, req *<a href="#Request">Request</a>, name <a href="/pkg/builtin/#string">string</a>, modtime <a href="/pkg/time/">time</a>.<a href="/pkg/time/#Time">Time</a>, content <a href="/pkg/io/">io</a>.<a href="/pkg/io/#ReadSeeker">ReadSeeker</a>)</pre>
@@ -1028,6 +1034,17 @@ ServeContent uses it to handle requests using If-Match, If-None-Match, or If-Ran
 Note that *os.File implements the io.ReadSeeker interface.
 
 
+ServeContent 使用 ReadSeeker 的内容来响应请求. ServeContent 相对 io.Copy 的主要优势是它能正确处理 Range 请求，设置 MIME 类型和处理 If-Match、If-Unmodified-Since、If-None-Match、If-Modified-Since 及 If-Range 请求.
+
+如果响应没有设置 Content-Type, ServeContent 会先尝试使用文件名(参数name)的扩展名判断类型, 如果失败会读取第一块数据并使用 DetectContentType 解析它. 其他情况下是不使用参数name的, 特别是它允许为空且永远不会写入响应.
+
+如果 modtime 不是 time的零值 或 Unix 时间起点, ServeContent 会将其设置为 Last-Modified 响应头. 如果请求头中包含 If-Modified-Since，ServeContent 会使用 modtime 来判断是否需要发送数据.
+
+Seek 方法必须有用: ServerContent需要使用它找到数据的结尾, 确定数据的大小.
+
+如果调用者已经按照RFC 7232 第 2.3 章格式设置了 w 的 ETag 头部, ServeContent 会使用它处理使用了 If-Match、If-None-Match 或 If-Range 的请求.
+
+注意：*os.File 实现了 io.ReadSeeker 接口.
 
 ## <a id="ServeFile">func</a> [ServeFile](https://golang.org/src/net/http/fs.go?s=19393:19450#L662)
 <pre>func ServeFile(w <a href="#ResponseWriter">ResponseWriter</a>, r *<a href="#Request">Request</a>, name <a href="/pkg/builtin/#string">string</a>)</pre>
