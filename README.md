@@ -2,7 +2,7 @@
 改用markdown保存pkg文档, 便于对比更新
 
 ## 最新 go version
-go 1.13.3
+go 1.13.4
 
 ## 进度
 [已完成列表, 请见pkg.md](go_pkg/pkg.md).

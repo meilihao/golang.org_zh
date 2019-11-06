@@ -3555,7 +3555,7 @@ wire.
 
 
 
-### <a id="Transport.CancelRequest">func</a> (\*Transport) [CancelRequest](https://golang.org/src/net/http/transport.go?s=23383:23430#L662)
+### <a id="Transport.CancelRequest">func</a> (\*Transport) [CancelRequest](https://golang.org/src/net/http/transport.go?s=23511:23558#L667)
 <pre>func (t *<a href="#Transport">Transport</a>) CancelRequest(req *<a href="#Request">Request</a>)</pre>
 CancelRequest cancels an in-flight request by closing its connection.
 CancelRequest should only be called after RoundTrip has returned.
@@ -3574,7 +3574,7 @@ Clone returns a deep copy of t's exported fields.
 
 
 
-### <a id="Transport.CloseIdleConnections">func</a> (\*Transport) [CloseIdleConnections](https://golang.org/src/net/http/transport.go?s=22683:22725#L638)
+### <a id="Transport.CloseIdleConnections">func</a> (\*Transport) [CloseIdleConnections](https://golang.org/src/net/http/transport.go?s=22811:22853#L643)
 <pre>func (t *<a href="#Transport">Transport</a>) CloseIdleConnections()</pre>
 CloseIdleConnections closes any connections which were previously
 connected from previous requests but are now sitting idle in
@@ -3584,7 +3584,7 @@ in use.
 
 
 
-### <a id="Transport.RegisterProtocol">func</a> (\*Transport) [RegisterProtocol](https://golang.org/src/net/http/transport.go?s=22060:22128#L619)
+### <a id="Transport.RegisterProtocol">func</a> (\*Transport) [RegisterProtocol](https://golang.org/src/net/http/transport.go?s=22188:22256#L624)
 <pre>func (t *<a href="#Transport">Transport</a>) RegisterProtocol(scheme <a href="/pkg/builtin/#string">string</a>, rt <a href="#RoundTripper">RoundTripper</a>)</pre>
 RegisterProtocol registers a new protocol with scheme.
 The Transport will pass requests using the given scheme to rt.
