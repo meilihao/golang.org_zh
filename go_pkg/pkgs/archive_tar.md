@@ -15,8 +15,87 @@ can be read and written in a streaming manner.
 This package aims to cover most variations of the format,
 including those produced by GNU and BSD tar tools.
 
+tar 实现对tar格式文档的访问.
+
+tar是一种文件格式, 用于存储一系列的文件, 这些文件可以以stream的方式读写.
+本包旨在涵盖绝大多数tar的变种, 包括GNU和BSD生成的tar文档. 
+
 
 <a id="example__minimal">Example (Minimal)</a>
+```go
+package main
+
+import (
+	"archive/tar"
+	"bytes"
+	"fmt"
+	"io"
+	"log"
+	"os"
+)
+
+func main() {
+	// Create and add some files to the archive.
+    // 创建一个buf用于写缓冲.
+	var buf bytes.Buffer
+	tw := tar.NewWriter(&buf)
+	var files = []struct {
+		Name, Body string
+	}{
+		{"readme.txt", "This archive contains some text files."},
+		{"gopher.txt", "Gopher names:\nGeorge\nGeoffrey\nGonzo"},
+		{"todo.txt", "Get animal handling license."},
+	}
+	for _, file := range files {
+		hdr := &tar.Header{
+			Name: file.Name,
+			Mode: 0600,
+			Size: int64(len(file.Body)),
+		}
+		if err := tw.WriteHeader(hdr); err != nil {
+			log.Fatal(err)
+		}
+		if _, err := tw.Write([]byte(file.Body)); err != nil {
+			log.Fatal(err)
+		}
+	}
+	if err := tw.Close(); err != nil {
+		log.Fatal(err)
+	}
+
+	// Open and iterate through the files in the archive.
+    // 打开tar文档并遍历其中的文件.
+	tr := tar.NewReader(&buf)
+	for {
+		hdr, err := tr.Next()
+		if err == io.EOF {
+			break // End of archive
+		}
+		if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Printf("Contents of %s:\n", hdr.Name)
+		if _, err := io.Copy(os.Stdout, tr); err != nil {
+			log.Fatal(err)
+		}
+		fmt.Println()
+	}
+
+}
+```
+
+output:
+```txt
+Contents of readme.txt:
+This archive contains some text files.
+Contents of gopher.txt:
+Gopher names:
+George
+Geoffrey
+Gonzo
+Contents of todo.txt:
+Get animal handling license.
+```
 
 
 ## <a id="pkg-index">Index</a>
@@ -51,51 +130,67 @@ including those produced by GNU and BSD tar tools.
 Type flags for Header.Typeflag.
 
 
-<pre>const (
-    <span class="comment">// Type &#39;0&#39; indicates a regular file.</span>
-    <span id="TypeReg">TypeReg</span>  = &#39;0&#39;
-    <span id="TypeRegA">TypeRegA</span> = &#39;\x00&#39; <span class="comment">// Deprecated: Use TypeReg instead.</span>
+```go
+const (
+    // Type '0' indicates a regular file.
+    // '0'表示普通文件
+    TypeReg  = '0'
+    TypeRegA = '\x00' // Deprecated: Use TypeReg instead.
 
-    <span class="comment">// Type &#39;1&#39; to &#39;6&#39; are header-only flags and may not have a data body.</span>
-    <span id="TypeLink">TypeLink</span>    = &#39;1&#39; <span class="comment">// Hard link</span>
-    <span id="TypeSymlink">TypeSymlink</span> = &#39;2&#39; <span class="comment">// Symbolic link</span>
-    <span id="TypeChar">TypeChar</span>    = &#39;3&#39; <span class="comment">// Character device node</span>
-    <span id="TypeBlock">TypeBlock</span>   = &#39;4&#39; <span class="comment">// Block device node</span>
-    <span id="TypeDir">TypeDir</span>     = &#39;5&#39; <span class="comment">// Directory</span>
-    <span id="TypeFifo">TypeFifo</span>    = &#39;6&#39; <span class="comment">// FIFO node</span>
+    // Type '1' to '6' are header-only flags and may not have a data body.
+    // '1' ~ '6'是header-only flag, 可能没有具体数据.
+    TypeLink    = '1' // Hard link // 硬链接
+    TypeSymlink = '2' // Symbolic link // 软链接
+    TypeChar    = '3' // Character device node // 字符设备节点
+    TypeBlock   = '4' // Block device node // 块设备节点
+    TypeDir     = '5' // Directory // 目录
+    TypeFifo    = '6' // FIFO node // fifo节点
 
-    <span class="comment">// Type &#39;7&#39; is reserved.</span>
-    <span id="TypeCont">TypeCont</span> = &#39;7&#39;
+    // Type '7' is reserved. // 保留项
+    TypeCont = '7'
 
-    <span class="comment">// Type &#39;x&#39; is used by the PAX format to store key-value records that</span>
-    <span class="comment">// are only relevant to the next file.</span>
-    <span class="comment">// This package transparently handles these types.</span>
-    <span id="TypeXHeader">TypeXHeader</span> = &#39;x&#39;
+    // Type 'x' is used by the PAX format to store key-value records that
+    // are only relevant to the next file.
+    // This package transparently handles these types.
+    //
+    // 'x'是PAX格式用于保存kv记录(该记录仅与下一个文件有关)
+    // 本包透明地处理这些类型.
+    TypeXHeader = 'x'
 
-    <span class="comment">// Type &#39;g&#39; is used by the PAX format to store key-value records that</span>
-    <span class="comment">// are relevant to all subsequent files.</span>
-    <span class="comment">// This package only supports parsing and composing such headers,</span>
-    <span class="comment">// but does not currently support persisting the global state across files.</span>
-    <span id="TypeXGlobalHeader">TypeXGlobalHeader</span> = &#39;g&#39;
+    // Type 'g' is used by the PAX format to store key-value records that
+    // are relevant to all subsequent files.
+    // This package only supports parsing and composing such headers,
+    // but does not currently support persisting the global state across files.
+    //
+    // 'g'是PAX格式用于保存kv记录(该记录与所有后续文件有关).
+    // 本包仅支持解析和组合这类header, 但目前还不支持在文件间保留全局状态???.
+    TypeXGlobalHeader = 'g'
 
-    <span class="comment">// Type &#39;S&#39; indicates a sparse file in the GNU format.</span>
-    <span id="TypeGNUSparse">TypeGNUSparse</span> = &#39;S&#39;
+    // Type 'S' indicates a sparse file in the GNU format.
+    // 表示GNU格式中的稀疏文件
+    TypeGNUSparse = 'S'
 
-    <span class="comment">// Types &#39;L&#39; and &#39;K&#39; are used by the GNU format for a meta file</span>
-    <span class="comment">// used to store the path or link name for the next file.</span>
-    <span class="comment">// This package transparently handles these types.</span>
-    <span id="TypeGNULongName">TypeGNULongName</span> = &#39;L&#39;
-    <span id="TypeGNULongLink">TypeGNULongLink</span> = &#39;K&#39;
-)</pre>
+    // Types 'L' and 'K' are used by the GNU format for a meta file
+    // used to store the path or link name for the next file.
+    // This package transparently handles these types.
+    //
+    // 'L' 和 'K' 是GNU格式的元数据文件用于存储下一个文件的路径或链接名称.
+    // 本包透明地处理这些类型.
+    TypeGNULongName = 'L'
+    TypeGNULongLink = 'K'
+)
+```
 
 ## <a id="pkg-variables">Variables</a>
 
-<pre>var (
-    <span id="ErrHeader">ErrHeader</span>          = <a href="/pkg/errors/">errors</a>.<a href="/pkg/errors/#New">New</a>(&#34;archive/tar: invalid tar header&#34;)
-    <span id="ErrWriteTooLong">ErrWriteTooLong</span>    = <a href="/pkg/errors/">errors</a>.<a href="/pkg/errors/#New">New</a>(&#34;archive/tar: write too long&#34;)
-    <span id="ErrFieldTooLong">ErrFieldTooLong</span>    = <a href="/pkg/errors/">errors</a>.<a href="/pkg/errors/#New">New</a>(&#34;archive/tar: header field too long&#34;)
-    <span id="ErrWriteAfterClose">ErrWriteAfterClose</span> = <a href="/pkg/errors/">errors</a>.<a href="/pkg/errors/#New">New</a>(&#34;archive/tar: write after close&#34;)
-)</pre>
+```go
+var (
+    ErrHeader          = errors.New("archive/tar: invalid tar header") // 无效的tar header
+    ErrWriteTooLong    = errors.New("archive/tar: write too long") // 写入内容过长
+    ErrFieldTooLong    = errors.New("archive/tar: header field too long") // header字段过长
+    ErrWriteAfterClose = errors.New("archive/tar: write after close") // 在关闭后写入
+)
+```
 
 
 
@@ -139,66 +234,121 @@ or support for sparse files.
 
 The Writer currently provides no support for sparse files.
 
+Format 标识 tar文件的格式.
+
+最初tar格式是在Unix V7引入的. 从那时起, 已有多种竞争的格式试图标准化或扩展V7格式以克服其局限性. 最常见的格式是STAR, PAX 和 GNU, 每种格式都有其自身的优点和局限性.
+
+下表列举了每种格式的功能:
+
+
+	                  |  USTAR |       PAX |       GNU
+	------------------+--------+-----------+----------
+	Name              |   256B | unlimited | unlimited
+	Linkname          |   100B | unlimited | unlimited
+	Size              | uint33 | unlimited |    uint89
+	Mode              | uint21 |    uint21 |    uint57
+	Uid/Gid           | uint21 | unlimited |    uint57
+	Uname/Gname       |    32B | unlimited |       32B
+	ModTime           | uint33 | unlimited |     int89
+	AccessTime        |    n/a | unlimited |     int89
+	ChangeTime        |    n/a | unlimited |     int89
+	Devmajor/Devminor | uint21 |    uint21 |    uint57
+	------------------+--------+-----------+----------
+	string encoding   |  ASCII |     UTF-8 |    binary
+	sub-second times  |     no |       yes |        no
+	sparse files      |     no |       yes |       yes
+
+表格的上部显示了每种格式每个字符串字段允许的最大字节数, 以及用于存储每个数值字段的整数类型(时间戳是存储在Unix纪元以来的秒数).
+
+表格的下部显示了每种格式的特殊功能, 比如支持的字符串编码, 对亚秒及时间戳的支持或支持稀疏文件.
+
+Writer 当前不支持稀疏文件.
 
 <pre>type Format <a href="/pkg/builtin/#int">int</a></pre>
 
 
 Constants to identify various tar formats.
 
+标识各种tar格式的常量.
 
-<pre>const (
+```go
+const (
 
-    <span class="comment">// FormatUnknown indicates that the format is unknown.</span>
-    <span id="FormatUnknown">FormatUnknown</span> <a href="#Format">Format</a>
+    // FormatUnknown indicates that the format is unknown.
+    // 表示未知格式
+    FormatUnknown Format
 
-    <span class="comment">// FormatUSTAR represents the USTAR header format defined in POSIX.1-1988.</span>
-    <span class="comment">//</span>
-    <span class="comment">// While this format is compatible with most tar readers,</span>
-    <span class="comment">// the format has several limitations making it unsuitable for some usages.</span>
-    <span class="comment">// Most notably, it cannot support sparse files, files larger than 8GiB,</span>
-    <span class="comment">// filenames larger than 256 characters, and non-ASCII filenames.</span>
-    <span class="comment">//</span>
-    <span class="comment">// Reference:</span>
-    <span class="comment">//	http://pubs.opengroup.org/onlinepubs/9699919799/utilities/pax.html#tag_20_92_13_06</span>
-    <span id="FormatUSTAR">FormatUSTAR</span>
+    // FormatUSTAR represents the USTAR header format defined in POSIX.1-1988.
+    //
+    // While this format is compatible with most tar readers,
+    // the format has several limitations making it unsuitable for some usages.
+    // Most notably, it cannot support sparse files, files larger than 8GiB,
+    // filenames larger than 256 characters, and non-ASCII filenames.
+    //
+    // Reference:
+    //	http://pubs.opengroup.org/onlinepubs/9699919799/utilities/pax.html#tag_20_92_13_06
+    //
+    // FormatUSTAR 表示 定义在POSIX.1-1988中的USTAR header.
+    //
+    // 虽然此格式与大多数tar reader兼容, 但该格式还是有一些限制, 使其不适合用于某些用途.
+    // 最值得注意的是，它不支持稀疏文件, 大于8GiB的文件, 大于256个字符的文件名和非ASCII文件名.
+    //
+    // Reference:
+    //	http://pubs.opengroup.org/onlinepubs/9699919799/utilities/pax.html#tag_20_92_13_06
+    FormatUSTAR
 
-    <span class="comment">// FormatPAX represents the PAX header format defined in POSIX.1-2001.</span>
-    <span class="comment">//</span>
-    <span class="comment">// PAX extends USTAR by writing a special file with Typeflag TypeXHeader</span>
-    <span class="comment">// preceding the original header. This file contains a set of key-value</span>
-    <span class="comment">// records, which are used to overcome USTAR&#39;s shortcomings, in addition to</span>
-    <span class="comment">// providing the ability to have sub-second resolution for timestamps.</span>
-    <span class="comment">//</span>
-    <span class="comment">// Some newer formats add their own extensions to PAX by defining their</span>
-    <span class="comment">// own keys and assigning certain semantic meaning to the associated values.</span>
-    <span class="comment">// For example, sparse file support in PAX is implemented using keys</span>
-    <span class="comment">// defined by the GNU manual (e.g., &#34;GNU.sparse.map&#34;).</span>
-    <span class="comment">//</span>
-    <span class="comment">// Reference:</span>
-    <span class="comment">//	http://pubs.opengroup.org/onlinepubs/009695399/utilities/pax.html</span>
-    <span id="FormatPAX">FormatPAX</span>
+    // FormatPAX represents the PAX header format defined in POSIX.1-2001.
+    //
+    // PAX extends USTAR by writing a special file with Typeflag TypeXHeader
+    // preceding the original header. This file contains a set of key-value
+    // records, which are used to overcome USTAR's shortcomings, in addition to
+    // providing the ability to have sub-second resolution for timestamps.
+    //
+    // Some newer formats add their own extensions to PAX by defining their
+    // own keys and assigning certain semantic meaning to the associated values.
+    // For example, sparse file support in PAX is implemented using keys
+    // defined by the GNU manual (e.g., "GNU.sparse.map").
+    //
+    // Reference:
+    //	http://pubs.opengroup.org/onlinepubs/009695399/utilities/pax.html
+    //
+    // FormatPAX 表示定义在 POSIX.1-2001 中的PAX header.
+    //
+    // PAX通过在原始标头之前使用Typeflag TypeXHeader写入特殊文件来扩展USTAR.
+    // 该文件包含一组键值记录，除了克服USTAR的缺点外，提供了亚秒级时间戳的功能.
+    //
+    // 一些较新的格式通过定义它们自己的扩展名到PAX, 并为相应的值分配某些语义.
+    // 例如，PAX中的稀疏文件支持由GNU手册定义(例如,"GNU.sparse.map")的keys来实现.
+    //
+    // Reference:
+    //	http://pubs.opengroup.org/onlinepubs/009695399/utilities/pax.html
+    FormatPAX
 
-    <span class="comment">// FormatGNU represents the GNU header format.</span>
-    <span class="comment">//</span>
-    <span class="comment">// The GNU header format is older than the USTAR and PAX standards and</span>
-    <span class="comment">// is not compatible with them. The GNU format supports</span>
-    <span class="comment">// arbitrary file sizes, filenames of arbitrary encoding and length,</span>
-    <span class="comment">// sparse files, and other features.</span>
-    <span class="comment">//</span>
-    <span class="comment">// It is recommended that PAX be chosen over GNU unless the target</span>
-    <span class="comment">// application can only parse GNU formatted archives.</span>
-    <span class="comment">//</span>
-    <span class="comment">// Reference:</span>
-    <span class="comment">//	https://www.gnu.org/software/tar/manual/html_node/Standard.html</span>
-    <span id="FormatGNU">FormatGNU</span>
-)</pre>
-
-
-
-
-
-
-
+    // FormatGNU represents the GNU header format.
+    //
+    // The GNU header format is older than the USTAR and PAX standards and
+    // is not compatible with them. The GNU format supports
+    // arbitrary file sizes, filenames of arbitrary encoding and length,
+    // sparse files, and other features.
+    //
+    // It is recommended that PAX be chosen over GNU unless the target
+    // application can only parse GNU formatted archives.
+    //
+    // Reference:
+    //	https://www.gnu.org/software/tar/manual/html_node/Standard.html
+    //
+    // FormatGNU 表示 GNU header.
+    //
+    // GNU header格式早于USTAR 和 PAX 标准, 且与它们不兼容.  GNU格式支持任意文件大小，任意编码和长度的文件名，
+    // 支持稀疏文件和其他功能.
+    //
+    // 除非目标应用只能解析GNU格式的tar文件, 否则推荐使用PAX.
+    //
+    // Reference:
+    //	https://www.gnu.org/software/tar/manual/html_node/Standard.html
+    FormatGNU
+)
+```
 
 
 ### <a id="Format.String">func</a> (Format) [String](https://golang.org/src/archive/tar/format.go?s=4648:4679#L107)
@@ -215,77 +365,76 @@ mutate it in some ways, and then pass it back to Writer.WriteHeader
 should do so by creating a new Header and copying the fields
 that they are interested in preserving.
 
+Header 表示 tar文档中的当个header, 某些字段可能未填充.
 
-<pre>type Header struct {
-<span id="Header.Typeflag"></span>    <span class="comment">// Typeflag is the type of header entry.</span>
-    <span class="comment">// The zero value is automatically promoted to either TypeReg or TypeDir</span>
-    <span class="comment">// depending on the presence of a trailing slash in Name.</span>
-    Typeflag <a href="/pkg/builtin/#byte">byte</a>
+为了向前兼容, 用户需要从Reader.Next获取一个Header, 以某种方式对其进行变换, 然后将其传递回Writer.WriteHeader, 无论创建新的Header还是拷贝他们感兴趣的字段都应这么做.
 
-<span id="Header.Name"></span>    Name     <a href="/pkg/builtin/#string">string</a> <span class="comment">// Name of file entry</span>
-<span id="Header.Linkname"></span>    Linkname <a href="/pkg/builtin/#string">string</a> <span class="comment">// Target name of link (valid for TypeLink or TypeSymlink)</span>
+```go
+type Header struct {
+    // Typeflag is the type of header entry.
+    // The zero value is automatically promoted to either TypeReg or TypeDir
+    // depending on the presence of a trailing slash in Name.
+    Typeflag byte
 
-<span id="Header.Size"></span>    Size  <a href="/pkg/builtin/#int64">int64</a>  <span class="comment">// Logical file size in bytes</span>
-<span id="Header.Mode"></span>    Mode  <a href="/pkg/builtin/#int64">int64</a>  <span class="comment">// Permission and mode bits</span>
-<span id="Header.Uid"></span>    Uid   <a href="/pkg/builtin/#int">int</a>    <span class="comment">// User ID of owner</span>
-<span id="Header.Gid"></span>    Gid   <a href="/pkg/builtin/#int">int</a>    <span class="comment">// Group ID of owner</span>
-<span id="Header.Uname"></span>    Uname <a href="/pkg/builtin/#string">string</a> <span class="comment">// User name of owner</span>
-<span id="Header.Gname"></span>    Gname <a href="/pkg/builtin/#string">string</a> <span class="comment">// Group name of owner</span>
+    Name     string // Name of file entry
+    Linkname string // Target name of link (valid for TypeLink or TypeSymlink)
 
-    <span class="comment">// If the Format is unspecified, then Writer.WriteHeader rounds ModTime</span>
-    <span class="comment">// to the nearest second and ignores the AccessTime and ChangeTime fields.</span>
-    <span class="comment">//</span>
-    <span class="comment">// To use AccessTime or ChangeTime, specify the Format as PAX or GNU.</span>
-    <span class="comment">// To use sub-second resolution, specify the Format as PAX.</span>
-<span id="Header.ModTime"></span>    ModTime    <a href="/pkg/time/">time</a>.<a href="/pkg/time/#Time">Time</a> <span class="comment">// Modification time</span>
-<span id="Header.AccessTime"></span>    AccessTime <a href="/pkg/time/">time</a>.<a href="/pkg/time/#Time">Time</a> <span class="comment">// Access time (requires either PAX or GNU support)</span>
-<span id="Header.ChangeTime"></span>    ChangeTime <a href="/pkg/time/">time</a>.<a href="/pkg/time/#Time">Time</a> <span class="comment">// Change time (requires either PAX or GNU support)</span>
+    Size  int64  // Logical file size in bytes
+    Mode  int64  // Permission and mode bits
+    Uid   int    // User ID of owner
+    Gid   int    // Group ID of owner
+    Uname string // User name of owner
+    Gname string // Group name of owner
 
-<span id="Header.Devmajor"></span>    Devmajor <a href="/pkg/builtin/#int64">int64</a> <span class="comment">// Major device number (valid for TypeChar or TypeBlock)</span>
-<span id="Header.Devminor"></span>    Devminor <a href="/pkg/builtin/#int64">int64</a> <span class="comment">// Minor device number (valid for TypeChar or TypeBlock)</span>
+    // If the Format is unspecified, then Writer.WriteHeader rounds ModTime
+    // to the nearest second and ignores the AccessTime and ChangeTime fields.
+    //
+    // To use AccessTime or ChangeTime, specify the Format as PAX or GNU.
+    // To use sub-second resolution, specify the Format as PAX.
+    ModTime    time.Time // Modification time
+    AccessTime time.Time // Access time (requires either PAX or GNU support)
+    ChangeTime time.Time // Change time (requires either PAX or GNU support)
 
-<span id="Header.Xattrs"></span>    <span class="comment">// Xattrs stores extended attributes as PAX records under the</span>
-    <span class="comment">// &#34;SCHILY.xattr.&#34; namespace.</span>
-    <span class="comment">//</span>
-    <span class="comment">// The following are semantically equivalent:</span>
-    <span class="comment">//  h.Xattrs[key] = value</span>
-    <span class="comment">//  h.PAXRecords[&#34;SCHILY.xattr.&#34;+key] = value</span>
-    <span class="comment">//</span>
-    <span class="comment">// When Writer.WriteHeader is called, the contents of Xattrs will take</span>
-    <span class="comment">// precedence over those in PAXRecords.</span>
-    <span class="comment">//</span>
-    <span class="comment">// Deprecated: Use PAXRecords instead.</span>
-    Xattrs map[<a href="/pkg/builtin/#string">string</a>]<a href="/pkg/builtin/#string">string</a>
+    Devmajor int64 // Major device number (valid for TypeChar or TypeBlock)
+    Devminor int64 // Minor device number (valid for TypeChar or TypeBlock)
 
-<span id="Header.PAXRecords"></span>    <span class="comment">// PAXRecords is a map of PAX extended header records.</span>
-    <span class="comment">//</span>
-    <span class="comment">// User-defined records should have keys of the following form:</span>
-    <span class="comment">//	VENDOR.keyword</span>
-    <span class="comment">// Where VENDOR is some namespace in all uppercase, and keyword may</span>
-    <span class="comment">// not contain the &#39;=&#39; character (e.g., &#34;GOLANG.pkg.version&#34;).</span>
-    <span class="comment">// The key and value should be non-empty UTF-8 strings.</span>
-    <span class="comment">//</span>
-    <span class="comment">// When Writer.WriteHeader is called, PAX records derived from the</span>
-    <span class="comment">// other fields in Header take precedence over PAXRecords.</span>
-    PAXRecords map[<a href="/pkg/builtin/#string">string</a>]<a href="/pkg/builtin/#string">string</a>
+    // Xattrs stores extended attributes as PAX records under the
+    // "SCHILY.xattr." namespace.
+    //
+    // The following are semantically equivalent:
+    //  h.Xattrs[key] = value
+    //  h.PAXRecords["SCHILY.xattr."+key] = value
+    //
+    // When Writer.WriteHeader is called, the contents of Xattrs will take
+    // precedence over those in PAXRecords.
+    //
+    // Deprecated: Use PAXRecords instead.
+    Xattrs map[string]string // Go 1.3
 
-<span id="Header.Format"></span>    <span class="comment">// Format specifies the format of the tar header.</span>
-    <span class="comment">//</span>
-    <span class="comment">// This is set by Reader.Next as a best-effort guess at the format.</span>
-    <span class="comment">// Since the Reader liberally reads some non-compliant files,</span>
-    <span class="comment">// it is possible for this to be FormatUnknown.</span>
-    <span class="comment">//</span>
-    <span class="comment">// If the format is unspecified when Writer.WriteHeader is called,</span>
-    <span class="comment">// then it uses the first format (in the order of USTAR, PAX, GNU)</span>
-    <span class="comment">// capable of encoding this Header (see Format).</span>
-    Format <a href="#Format">Format</a>
+    // PAXRecords is a map of PAX extended header records.
+    //
+    // User-defined records should have keys of the following form:
+    //	VENDOR.keyword
+    // Where VENDOR is some namespace in all uppercase, and keyword may
+    // not contain the '=' character (e.g., "GOLANG.pkg.version").
+    // The key and value should be non-empty UTF-8 strings.
+    //
+    // When Writer.WriteHeader is called, PAX records derived from the
+    // other fields in Header take precedence over PAXRecords.
+    PAXRecords map[string]string // Go 1.10
+
+    // Format specifies the format of the tar header.
+    //
+    // This is set by Reader.Next as a best-effort guess at the format.
+    // Since the Reader liberally reads some non-compliant files,
+    // it is possible for this to be FormatUnknown.
+    //
+    // If the format is unspecified when Writer.WriteHeader is called,
+    // then it uses the first format (in the order of USTAR, PAX, GNU)
+    // capable of encoding this Header (see Format).
+    Format Format // Go 1.10
 }
-</pre>
-
-
-
-
-
+```
 
 
 
@@ -434,7 +583,6 @@ WriteHeader writes hdr and prepares to accept the file's contents.
 The Header.Size determines how many bytes can be written for the next file.
 If the current file is not fully written, then this returns an error.
 This implicitly flushes any padding necessary before writing the header.
-
 
 
 
