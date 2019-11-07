@@ -374,29 +374,37 @@ type Header struct {
     // Typeflag is the type of header entry.
     // The zero value is automatically promoted to either TypeReg or TypeDir
     // depending on the presence of a trailing slash in Name.
+    //
+    // Typeflag 是 header的类型.
+    // 零值将根据Name尾部的斜杠自动提升为TypeReg或TypeDir.
     Typeflag byte
 
-    Name     string // Name of file entry
-    Linkname string // Target name of link (valid for TypeLink or TypeSymlink)
+    Name     string // Name of file entry // 文件条目的名称
+    Linkname string // Target name of link (valid for TypeLink or TypeSymlink) // 链接目标的名称(对TypeLink 和 TypeSymlink有效)
 
-    Size  int64  // Logical file size in bytes
-    Mode  int64  // Permission and mode bits
-    Uid   int    // User ID of owner
-    Gid   int    // Group ID of owner
-    Uname string // User name of owner
-    Gname string // Group name of owner
+    Size  int64  // Logical file size in bytes // 逻辑文件的大小(字节)
+    Mode  int64  // Permission and mode bits // 权限和模式位
+    Uid   int    // User ID of owner // 所有者的id
+    Gid   int    // Group ID of owner // 所有者的组id
+    Uname string // User name of owner // 所有者的名称
+    Gname string // Group name of owner // 所有者的组名
 
     // If the Format is unspecified, then Writer.WriteHeader rounds ModTime
     // to the nearest second and ignores the AccessTime and ChangeTime fields.
     //
     // To use AccessTime or ChangeTime, specify the Format as PAX or GNU.
     // To use sub-second resolution, specify the Format as PAX.
-    ModTime    time.Time // Modification time
-    AccessTime time.Time // Access time (requires either PAX or GNU support)
-    ChangeTime time.Time // Change time (requires either PAX or GNU support)
+    //
+    // 如果未指定Format, 则Writer.WriteHeader会将ModTime舍入到秒, 并忽略AccessTime和ChangeTime字段.
+    //
+    // 要使用AccessTime或ChangeTime, 请将格式指定为PAX或GNU.
+    // 要使用亚秒级分辨率，请将格式指定为PAX.
+    ModTime    time.Time // Modification time // 修改时间
+    AccessTime time.Time // Access time (requires either PAX or GNU support) // 访问时间(需要PAX或GNU支持)
+    ChangeTime time.Time // Change time (requires either PAX or GNU support) // 变更时间(需要PAX或GNU支持)
 
-    Devmajor int64 // Major device number (valid for TypeChar or TypeBlock)
-    Devminor int64 // Minor device number (valid for TypeChar or TypeBlock)
+    Devmajor int64 // Major device number (valid for TypeChar or TypeBlock) // 主设备号（对TypeChar或TypeBlock有效）
+    Devminor int64 // Minor device number (valid for TypeChar or TypeBlock) // 次设备号（对TypeChar或TypeBlock有效)
 
     // Xattrs stores extended attributes as PAX records under the
     // "SCHILY.xattr." namespace.
@@ -409,6 +417,16 @@ type Header struct {
     // precedence over those in PAXRecords.
     //
     // Deprecated: Use PAXRecords instead.
+    //
+    // Xattrs将扩展属性保存为PAX记录, 位于"SCHILY.xattr."命名空间下.
+    //
+    // 以下语句是等效的:
+    // h.Xattrs[key] = value
+    // h.PAXRecords["SCHILY.xattr."+key] = value
+    //
+    // 调用Writer.WriteHeader时，Xattrs的内容将优先于PAXRecords.
+    //
+    // 不推荐使用：请改用PAXRecords.
     Xattrs map[string]string // Go 1.3
 
     // PAXRecords is a map of PAX extended header records.
@@ -421,6 +439,15 @@ type Header struct {
     //
     // When Writer.WriteHeader is called, PAX records derived from the
     // other fields in Header take precedence over PAXRecords.
+    //
+    // PAXRecords 是 PAX扩展头的记录.
+    //
+    // 用户定义的记录应具有以下格式的键:
+    //	VENDOR.keyword
+    // VENDOR是所有大写形式的命名空间，而关键字可以不包含'='字符（例如，"GOLANG.pkg.version"）.
+    // 键和值应为非空的UTF-8字符串.
+    //
+    // 调用Writer.WriteHeader时，从Header中的其他字段派生出来的PAX记录优先于PAXRecords.
     PAXRecords map[string]string // Go 1.10
 
     // Format specifies the format of the tar header.
@@ -432,6 +459,13 @@ type Header struct {
     // If the format is unspecified when Writer.WriteHeader is called,
     // then it uses the first format (in the order of USTAR, PAX, GNU)
     // capable of encoding this Header (see Format).
+    //
+    // Format 指定了tar header的格式.
+    //
+    // 这是由Reader.Next设置的，是对格式的最大努力匹配尝试.
+    // 由于阅读器会读到一些不兼容的文件，那么这值可能是FormatUnknown.
+    //
+    // 如果在调用Writer.WriteHeader时未指定格式， 然后使用第一种能够对该Header进行编码的格式（按照USTAR，PAX和GNU的顺序）（请参见Format）.
     Format Format // Go 1.10
 }
 ```
@@ -450,7 +484,9 @@ the file it describes, it may be necessary to modify Header.Name
 to provide the full path name of the file.
 
 
+FileInfoHeader 返回一个基于fi填充了部分字段的Header. 如果fi是一个软链接, FileInfoHeader会将link参数作为链接目标. 如果fi是一个目录, 会在文件名后面追加一个斜杠.
 
+因为os.FileInfo的Name方法返回的文件名不带路径, 因此有可能需要将Header的Name字段改为文件的完整路径名.
 
 
 
@@ -458,7 +494,7 @@ to provide the full path name of the file.
 <pre>func (h *<a href="#Header">Header</a>) FileInfo() <a href="/pkg/os/">os</a>.<a href="/pkg/os/#FileInfo">FileInfo</a></pre>
 FileInfo returns an os.FileInfo for the Header.
 
-
+FileInfo 为 Header 返回一个 os.FileInfo.
 
 
 ## <a id="Reader">type</a> [Reader](https://golang.org/src/archive/tar/reader.go?s=470:845#L9)
@@ -466,6 +502,7 @@ Reader provides sequential access to the contents of a tar archive.
 Reader.Next advances to the next file in the archive (including the first),
 and then Reader can be treated as an io.Reader to access the file's data.
 
+Reader提供了对tar文档内容的顺序访问. Reader.Next前进到tar文档中的下一个文件（包括第一个文件）, 然后可将Reader视为io.Reader来访问该文件的数据.
 
 <pre>type Reader struct {
     <span class="comment">// contains filtered or unexported fields</span>
@@ -484,7 +521,7 @@ and then Reader can be treated as an io.Reader to access the file's data.
 <pre>func NewReader(r <a href="/pkg/io/">io</a>.<a href="/pkg/io/#Reader">Reader</a>) *<a href="#Reader">Reader</a></pre>
 NewReader creates a new Reader reading from r.
 
-
+NewReader 创建一个从r读取的Reader.
 
 
 
@@ -497,7 +534,9 @@ Any remaining data in the current file is automatically discarded.
 
 io.EOF is returned at the end of the input.
 
+Next将指向tar文档中的下一个记录. Header.Size确定下一个文件可读取多少个字节. 当前文件中的所有剩余数据将被自动丢弃.
 
+io.EOF表示文档已读完.
 
 
 ### <a id="Reader.Read">func</a> (\*Reader) [Read](https://golang.org/src/archive/tar/reader.go?s=19854:19899#L612)
@@ -513,7 +552,11 @@ Calling Read on special types like TypeLink, TypeSymlink, TypeChar,
 TypeBlock, TypeDir, and TypeFifo returns (0, io.EOF) regardless of what
 the Header.Size claims.
 
+Read是读取当前的记录. 当读到记录的结尾时会返回(0, io.EOF), 直到调用Next方法指向下一条记录前都可读取当前的文件.
 
+如果当前文件是稀疏的，则标记为孔的区域的内容全是NUL.
+
+无论Header.Size是多少, 在特殊类型比如TypeLink, TypeSymLink, TypeChar, TypeBlock, TypeDir和TypeFifo上调用Read都会返回(0, io.EOF).
 
 
 ## <a id="Writer">type</a> [Writer](https://golang.org/src/archive/tar/writer.go?s=432:876#L9)
@@ -521,6 +564,7 @@ Writer provides sequential writing of a tar archive.
 Write.WriteHeader begins a new file with the provided Header,
 and then Writer can be treated as an io.Writer to supply that file's data.
 
+Writer提供tar存档的顺序写入. Write.WriteHeader使用提供的Header描述新文件，然后将Writer视为提供对该文件数据进行写入的io.Writer.
 
 <pre>type Writer struct {
     <span class="comment">// contains filtered or unexported fields</span>
@@ -539,7 +583,7 @@ and then Writer can be treated as an io.Writer to supply that file's data.
 <pre>func NewWriter(w <a href="/pkg/io/">io</a>.<a href="/pkg/io/#Writer">Writer</a>) *<a href="#Writer">Writer</a></pre>
 NewWriter creates a new Writer writing to w.
 
-
+NewWriter 创建一个向w写入的Writer.
 
 
 
@@ -550,7 +594,7 @@ Close closes the tar archive by flushing the padding, and writing the footer.
 If the current file (from a prior call to WriteHeader) is not fully written,
 then this returns an error.
 
-
+Close 关闭tar文件,并将所有未写入的(缓冲)数据写入到底层的writer. 如果当前文件（即WriteHeader就立即调用Close）未完全写入，则返回错误.
 
 
 ### <a id="Writer.Flush">func</a> (\*Writer) [Flush](https://golang.org/src/archive/tar/writer.go?s=1353:1384#L39)
@@ -561,7 +605,9 @@ The current file must be fully written before Flush can be called.
 This is unnecessary as the next call to WriteHeader or Close
 will implicitly flush out the file's padding.
 
+Flush 完成当前文件的块填充. 必须先完全写入当前文件，然后才能调用Flush.
 
+这是不必要的，因为下次调用是 WriteHeader或Close 时将隐式调用Flush.
 
 
 ### <a id="Writer.Write">func</a> (\*Writer) [Write](https://golang.org/src/archive/tar/writer.go?s=13015:13061#L421)
@@ -574,8 +620,9 @@ Calling Write on special types like TypeLink, TypeSymlink, TypeChar,
 TypeBlock, TypeDir, and TypeFifo returns (0, ErrWriteTooLong) regardless
 of what the Header.Size claims.
 
+Write 会将当前文件写入到tar文档. 如果写入数据的总长度超过WriteHeader方法中指定的长度hdr.Size,Write方法会返回错误ErrWriteTooLong.
 
-
+无论Header.Size声明的大小是多少, 在TypeLink，TypeSymlink，TypeChar，TypeBlock，TypeDir和TypeFifo上调用Write都会返回（0，ErrWriteTooLong）.
 
 ### <a id="Writer.WriteHeader">func</a> (\*Writer) [WriteHeader](https://golang.org/src/archive/tar/writer.go?s=1948:1996#L57)
 <pre>func (tw *<a href="#Writer">Writer</a>) WriteHeader(hdr *<a href="#Header">Header</a>) <a href="/pkg/builtin/#error">error</a></pre>
@@ -585,7 +632,7 @@ If the current file is not fully written, then this returns an error.
 This implicitly flushes any padding necessary before writing the header.
 
 
-
+WriteHeader会写入hdr并准备接收文件数据. Header.Size确定可以为下一个文件写入多少个字节. 如果当前文件未完全写入，则会返回错误.  WriteHeader在写入hdr前会隐式调用Flush刷新数据.
 
 
 

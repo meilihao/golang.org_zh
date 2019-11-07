@@ -2,7 +2,7 @@
 | name / 名称   |  synopsis / 概述    |progress / 进度|
 |--------------|:-------------------|--------------|
 |archive|||
-|[tar](pkgs/archive_tar.md)|Package tar implements access to tar archives.|0%|
+|[tar](pkgs/archive_tar.md)|tar 实现对tar格式文档的访问|done|
 |[zip](pkgs/archive_zip.md)|Package zip provides support for reading and writing ZIP archives.|0%|
 |[bufio](pkgs/bufio.md)|Package bufio implements buffered I/O. It wraps an io.Reader or io.Writer object, creating another object (Reader or Writer) that also implements the interface but provides buffering and some help for textual I/O.|0%|
 |[builtin](pkgs/builtin.md)|builtin包提供了Go的预声明标识符的文档.|done|
