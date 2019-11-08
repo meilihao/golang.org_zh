@@ -219,9 +219,17 @@ type FileHeader struct {
     // appropriate, including canonicalizing slash directions,
     // validating that paths are relative, and preventing path
     // traversal through filenames ("../../../").
+    //
+    // Name 是文件的名称
+    //
+    // 它必须是相对路径, 不能以盘符(比如"C:")开头, 并且必须使用正斜杠而不是反斜杠. 名称末尾的斜杠表示此文件是目录, 不应包含任何数据.
+    //
+    // 读取zip文件时, 能从zip文件中直接获取到Name, 但还未验证是否正确. 调用者有责任进行适当地处理, 包括规范化的斜线方向, 验证路径是相对的, 并防止通过路径
+    // 遍历文件名("../../../").
     Name string
 
     // Comment is any arbitrary user-defined string shorter than 64KiB.
+    // Comment 是 用户自定义的短于64KB的任意字符串.
     Comment string
 
     // NonUTF8 indicates that Name and Comment are not encoded in UTF-8.
@@ -233,6 +241,12 @@ type FileHeader struct {
     // This flag should only be set if the user intends to encode a non-portable
     // ZIP file for a specific localized region. Otherwise, the Writer
     // automatically sets the ZIP format's UTF-8 flag for valid UTF-8 strings.
+    //
+    // NonUTF8 表示 Name和Comment未使用UTF-8编码.
+    //
+    // 根据规范，唯一允许的其他编码应为CP-437，但历史上许多ZIP reader将 Name 和 Comment 解释为系统的本地字符编码.
+    //
+    // 仅当用户打算为特定的本地区域编码不可移植的zip文件时，才应设置此标志. 否则，将自动为有效的UTF-8字符串设置ZIP格式的UTF-8 flag.
     NonUTF8 bool // Go 1.10
 
     CreatorVersion uint16
@@ -240,6 +254,7 @@ type FileHeader struct {
     Flags          uint16
 
     // Method is the compression method. If zero, Store is used.
+    // Method 是 压缩方式. 如果是零值就使用 Store.
     Method uint16
 
     // Modified is the modified time of the file.
@@ -251,17 +266,23 @@ type FileHeader struct {
     // When writing, an extended timestamp (which is timezone-agnostic) is
     // always emitted. The legacy MS-DOS date field is encoded according to the
     // location of the Modified time.
+    //
+    // Modified 是文件的修改时间.
+    //
+    // 读取时，扩展时间戳优先于过时的MS-DOS日期字段，并且时间之间的偏移量作为时区. 如果仅存在MS-DOS日期，则将时区假定为UTC.
+    //
+    // 写入时，将使用扩展的时间戳（与时区无关）. 过时的MS-DOS日期字段将根据Modified进行设置.
     Modified     time.Time // Go 1.10
-    ModifiedTime uint16 // Deprecated: Legacy MS-DOS date; use Modified instead.
-    ModifiedDate uint16 // Deprecated: Legacy MS-DOS time; use Modified instead.
+    ModifiedTime uint16 // Deprecated: Legacy MS-DOS date; use Modified instead. // 已弃用: 过时的MS-DOS日期, 用 Modified 代替.
+    ModifiedDate uint16 // Deprecated: Legacy MS-DOS time; use Modified instead. // 已弃用: 过时的MS-DOS时间, 用 Modified 代替.
 
     CRC32              uint32
-    CompressedSize     uint32 // Deprecated: Use CompressedSize64 instead.
-    UncompressedSize   uint32 // Deprecated: Use UncompressedSize64 instead.
+    CompressedSize     uint32 // Deprecated: Use CompressedSize64 instead. // 已弃用: 请使用CompressedSize64
+    UncompressedSize   uint32 // Deprecated: Use UncompressedSize64 instead. // 已弃用: 请使用UncompressedSize64
     CompressedSize64   uint64 // Go 1.1
     UncompressedSize64 uint64 // Go 1.1
     Extra              []byte
-    ExternalAttrs      uint32 // Meaning depends on CreatorVersion
+    ExternalAttrs      uint32 // Meaning depends on CreatorVersion // 其含义依赖于CreatorVersion
 }
 ```
 
@@ -301,7 +322,7 @@ ModifiedDate and ModifiedTime fields.
 
 Deprecated: Use Modified instead.
 
-ModTime 使用旧版的ModifiedDate和ModifiedTime字段以返回UTC格式的修改时间.
+ModTime 使用过时的ModifiedDate和ModifiedTime字段以返回UTC格式的修改时间.
 
 不推荐使用：改用Modified.
 
