@@ -4,7 +4,7 @@
 |archive|||
 |[tar](pkgs/archive_tar.md)|tar 实现对tar格式文档的访问.|done|
 |[zip](pkgs/archive_zip.md)|zip 提供了对zip格式文件的读写支持.|done|
-|[bufio](pkgs/bufio.md)|Package bufio implements buffered I/O. It wraps an io.Reader or io.Writer object, creating another object (Reader or Writer) that also implements the interface but provides buffering and some help for textual I/O.|0%|
+|[bufio](pkgs/bufio.md)|bufio 实现了带缓冲的I/O. 它封装了一个io.Reader或者io.Writer对象, 创建了另外一个对象(Reader或者Writer), 这个对象也实现了该接口, 并提供了缓冲机制, 同时支持一些文本I/O的帮助函数.|done|
 |[builtin](pkgs/builtin.md)|builtin包提供了Go的预声明标识符的文档.|done|
 |[bytes](pkgs/bytes.md)|bytes实现了操作byte切片的函数.|done|
 |compress|||

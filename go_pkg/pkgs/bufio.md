@@ -790,6 +790,7 @@ After all data has been written, the client should call the
 Flush method to guarantee all data has been forwarded to
 the underlying io.Writer.
 
+Writer 实现了带buffer机制的io.Writer对象. 如果在写数据到Writer时出现错误，那么将不会再有数据被写入, 而且所有随后的写操作和Flush方法都会返回error. 当所有数据被写入后, 使用者应调用Flush方法以确保所有数据都已写入底层的io.Writer.
 
 <pre>type Writer struct {
     <span class="comment">// contains filtered or unexported fields</span>
@@ -802,10 +803,25 @@ the underlying io.Writer.
 
 <a id="example_Writer">Example</a>
 ```go
+package main
+
+import (
+  "bufio"
+  "fmt"
+  "os"
+)
+
+func main() {
+  w := bufio.NewWriter(os.Stdout)
+  fmt.Fprint(w, "Hello, ")
+  fmt.Fprint(w, "world!")
+  w.Flush() // Don't forget to flush! // 不要忘记调用Flush方法!
+}
 ```
 
 output:
 ```txt
+Hello, world!
 ```
 
 
@@ -815,7 +831,7 @@ output:
 <pre>func NewWriter(w <a href="/pkg/io/">io</a>.<a href="/pkg/io/#Writer">Writer</a>) *<a href="#Writer">Writer</a></pre>
 NewWriter returns a new Writer whose buffer has the default size.
 
-
+NewWriter 创建一个带默认大小的缓冲区的Writer.
 
 
 ### <a id="NewWriterSize">func</a> [NewWriterSize](https://golang.org/src/bufio/bufio.go?s=14434:14483#L544)
@@ -824,7 +840,7 @@ NewWriterSize returns a new Writer whose buffer has at least the specified
 size. If the argument io.Writer is already a Writer with large enough
 size, it returns the underlying Writer.
 
-
+NewWriterSize 会创建一个Writer,其拥有至少是size大小的缓冲区. 如果参数w已经是带有足够大缓冲的Writer了，那么它会返回底层的Writer.
 
 
 
@@ -833,21 +849,21 @@ size, it returns the underlying Writer.
 <pre>func (b *<a href="#Writer">Writer</a>) Available() <a href="/pkg/builtin/#int">int</a></pre>
 Available returns how many bytes are unused in the buffer.
 
-
+Available 返回buffer中未使用空间的字节数.
 
 
 ### <a id="Writer.Buffered">func</a> (\*Writer) [Buffered](https://golang.org/src/bufio/bufio.go?s=15742:15773#L603)
 <pre>func (b *<a href="#Writer">Writer</a>) Buffered() <a href="/pkg/builtin/#int">int</a></pre>
 Buffered returns the number of bytes that have been written into the current buffer.
 
-
+Buffered 返回已写到当前buffer中的字节数.
 
 
 ### <a id="Writer.Flush">func</a> (\*Writer) [Flush](https://golang.org/src/bufio/bufio.go?s=15189:15219#L576)
 <pre>func (b *<a href="#Writer">Writer</a>) Flush() <a href="/pkg/builtin/#error">error</a></pre>
 Flush writes any buffered data to the underlying io.Writer.
 
-
+Flush 会将所有缓冲的数据写入底层的io.Writer.
 
 
 ### <a id="Writer.ReadFrom">func</a> (\*Writer) [ReadFrom](https://golang.org/src/bufio/bufio.go?s=17892:17951#L700)
@@ -856,7 +872,7 @@ ReadFrom implements io.ReaderFrom. If the underlying writer
 supports the ReadFrom method, and b has no buffered data yet,
 this calls the underlying ReadFrom without buffering.
 
-
+ReadFrom 实现了 io.ReaderFrom 接口. 如果底层的writer支持ReadFrom方法, 且b还未缓存过数据, 那么本方法会使用底层的ReadFrom且不缓冲数据.
 
 
 ### <a id="Writer.Reset">func</a> (\*Writer) [Reset](https://golang.org/src/bufio/bufio.go?s=15053:15088#L569)
@@ -864,14 +880,14 @@ this calls the underlying ReadFrom without buffering.
 Reset discards any unflushed buffered data, clears any error, and
 resets b to write its output to w.
 
-
+Reset 会丢弃缓冲中未刷新的数据，清除所有错误，将b的写入定向到w.
 
 
 ### <a id="Writer.Size">func</a> (\*Writer) [Size](https://golang.org/src/bufio/bufio.go?s=14895:14922#L565)
 <pre>func (b *<a href="#Writer">Writer</a>) Size() <a href="/pkg/builtin/#int">int</a></pre>
 Size returns the size of the underlying buffer in bytes.
 
-
+Size 返回底层缓冲的大小(字节).
 
 
 ### <a id="Writer.Write">func</a> (\*Writer) [Write](https://golang.org/src/bufio/bufio.go?s=15966:16018#L609)
@@ -881,14 +897,14 @@ It returns the number of bytes written.
 If nn < len(p), it also returns an error explaining
 why the write is short.
 
-
+Write会将p的内容写入缓冲,并返回写入的字节数.如果nn < len(p), 它会返回error来解释为什么写入的数据会短缺.
 
 
 ### <a id="Writer.WriteByte">func</a> (\*Writer) [WriteByte](https://golang.org/src/bufio/bufio.go?s=16442:16482#L634)
 <pre>func (b *<a href="#Writer">Writer</a>) WriteByte(c <a href="/pkg/builtin/#byte">byte</a>) <a href="/pkg/builtin/#error">error</a></pre>
 WriteByte writes a single byte.
 
-
+WriteByte 会写入单个字节.
 
 
 ### <a id="Writer.WriteRune">func</a> (\*Writer) [WriteRune](https://golang.org/src/bufio/bufio.go?s=16728:16784#L648)
@@ -896,7 +912,7 @@ WriteByte writes a single byte.
 WriteRune writes a single Unicode code point, returning
 the number of bytes written and any error.
 
-
+WriteRune 会写入单个的Unicode码点,并返回写的字节数和遇到的错误.
 
 
 ### <a id="Writer.WriteString">func</a> (\*Writer) [WriteString](https://golang.org/src/bufio/bufio.go?s=17416:17467#L679)
@@ -906,7 +922,7 @@ It returns the number of bytes written.
 If the count is less than len(s), it also returns an error explaining
 why the write is short.
 
-
+WriteString 会写入一个字符串,并返回写入的字节数. 如果写入的字节数比len(s)少，它会返回error来解释为什么写入的数据会短缺.
 
 
 
