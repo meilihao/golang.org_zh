@@ -64,16 +64,19 @@ Read is a helper function that calls Reader.Read using io.ReadFull.
 On return, n == len(b) if and only if err == nil.
 
 
+
 <a id="example_Read">Example</a>
+<p>This example reads 10 cryptographically secure pseudorandom numbers from
+rand.Reader and writes them to a byte slice.
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
-<p>This example reads 10 cryptographically secure pseudorandom numbers from
-rand.Reader and writes them to a byte slice.
-</p>
+
 
 
 

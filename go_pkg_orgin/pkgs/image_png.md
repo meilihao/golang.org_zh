@@ -49,7 +49,10 @@ Decode reads a PNG image from r and returns it as an image.Image.
 The type of Image returned depends on the PNG contents.
 
 
+
 <a id="example_Decode">Example</a>
+
+
 ```go
 ```
 
@@ -70,7 +73,10 @@ Encode writes the Image m to w in PNG format. Any Image may be
 encoded, but images that are not image.NRGBA might be encoded lossily.
 
 
+
 <a id="example_Encode">Example</a>
+
+
 ```go
 ```
 

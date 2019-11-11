@@ -288,34 +288,43 @@ See "Gobs of data" for a design discussion of the gob wire format:
 <a href="https://blog.golang.org/gobs-of-data">https://blog.golang.org/gobs-of-data</a>
 
 
-<a id="example__basic">Example (Basic)</a>
-```go
-```
 
-output:
-```txt
-```
+<a id="example__basic">Example (Basic)</a>
 <p>This example shows the basic usage of the package: Create an encoder,
 transmit some values, receive them with a decoder.
-</p><a id="example__encodeDecode">Example (EncodeDecode)</a>
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
+<a id="example__encodeDecode">Example (EncodeDecode)</a>
 <p>This example transmits a value that implements the custom encoding and decoding methods.
-</p><a id="example__interface">Example (Interface)</a>
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
+<a id="example__interface">Example (Interface)</a>
 <p>This example shows how to encode an interface value. The key
 distinction from regular types is to register the concrete type that
 implements the interface.
 </p>
+
+```go
+```
+
+output:
+```txt
+```
+
 
 ## <a id="pkg-index">Index</a>
 * [func Register(value interface{})](#Register)

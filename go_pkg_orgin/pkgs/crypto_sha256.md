@@ -54,14 +54,20 @@ encoding.BinaryUnmarshaler to marshal and unmarshal the internal
 state of the hash.
 
 
+
 <a id="example_New">Example</a>
+
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
 <a id="example_New_file">Example (File)</a>
+
+
 ```go
 ```
 
@@ -86,7 +92,10 @@ Sum224 returns the SHA224 checksum of the data.
 Sum256 returns the SHA256 checksum of the data.
 
 
+
 <a id="example_Sum256">Example</a>
+
+
 ```go
 ```
 

@@ -557,7 +557,10 @@ in the DefaultServeMux.
 The documentation for ServeMux explains how patterns are matched.
 
 
+
 <a id="example_Handle">Example</a>
+
+
 ```go
 ```
 
@@ -572,7 +575,10 @@ in the DefaultServeMux.
 The documentation for ServeMux explains how patterns are matched.
 
 
+
 <a id="example_HandleFunc">Example</a>
+
+
 ```go
 ```
 
@@ -591,7 +597,10 @@ The handler is typically nil, in which case the DefaultServeMux is used.
 ListenAndServe always returns a non-nil error.
 
 
+
 <a id="example_ListenAndServe">Example</a>
+
+
 ```go
 ```
 
@@ -608,7 +617,10 @@ is signed by a certificate authority, the certFile should be the concatenation
 of the server's certificate, any intermediates, and the CA's certificate.
 
 
+
 <a id="example_ListenAndServeTLS">Example</a>
+
+
 ```go
 ```
 
@@ -1371,21 +1383,30 @@ ending in "/index.html" to the same path, without the final
 "index.html".
 
 
+
 <a id="example_FileServer">Example</a>
+
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
 <a id="example_FileServer_dotFileHiding">Example (DotFileHiding)</a>
+
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
 <a id="example_FileServer_stripPrefix">Example (StripPrefix)</a>
+
+
 ```go
 ```
 
@@ -1400,7 +1421,10 @@ NotFoundHandler returns a simple request handler
 that replies to each request with a ``404 page not found'' reply.
 
 
+
 <a id="example_NotFoundHandler">Example</a>
+
+
 ```go
 ```
 
@@ -1430,7 +1454,10 @@ request for a path that doesn't begin with prefix by
 replying with an HTTP 404 not found error.
 
 
+
 <a id="example_StripPrefix">Example</a>
+
+
 ```go
 ```
 
@@ -1604,7 +1631,10 @@ should always test for this ability at runtime.
 
 
 
+
 <a id="example_Hijacker">Example</a>
+
+
 ```go
 ```
 
@@ -2364,7 +2394,10 @@ To make a request with custom headers, use NewRequest and
 DefaultClient.Do.
 
 
+
 <a id="example_Get">Example</a>
+
+
 ```go
 ```
 
@@ -2565,16 +2598,19 @@ has returned.
 
 
 
+
 <a id="example_ResponseWriter_trailers">Example (Trailers)</a>
+<p>HTTP Trailers are a set of key/value pairs like headers that come
+after the HTTP response, instead of before.
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
-<p>HTTP Trailers are a set of key/value pairs like headers that come
-after the HTTP response, instead of before.
-</p>
+
 
 
 
@@ -2760,7 +2796,10 @@ Handle registers the handler for the given pattern.
 If a handler already exists for pattern, Handle panics.
 
 
+
 <a id="example_ServeMux_Handle">Example</a>
+
+
 ```go
 ```
 
@@ -3038,7 +3077,10 @@ Once Shutdown has been called on a server, it may not be reused;
 future calls to methods such as Serve will return ErrServerClosed.
 
 
+
 <a id="example_Server_Shutdown">Example</a>
+
+
 ```go
 ```
 

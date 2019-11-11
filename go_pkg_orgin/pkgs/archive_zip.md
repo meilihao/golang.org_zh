@@ -352,7 +352,10 @@ Close closes the Zip file, rendering it unusable for I/O.
 
 
 
+
 <a id="example_Reader">Example</a>
+
+
 ```go
 ```
 
@@ -395,7 +398,10 @@ Writer implements a zip file writer.
 
 
 
+
 <a id="example_Writer">Example</a>
+
+
 ```go
 ```
 
@@ -466,7 +472,10 @@ method ID. If a compressor for a given method is not found, Writer will
 default to looking up the compressor at the package level.
 
 
+
 <a id="example_Writer_RegisterCompressor">Example</a>
+
+
 ```go
 ```
 

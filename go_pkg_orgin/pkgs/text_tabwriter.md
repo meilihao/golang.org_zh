@@ -17,14 +17,20 @@ The package is using the Elastic Tabstops algorithm described at
 The text/tabwriter package is frozen and is not accepting new features.
 
 
+
 <a id="example__elastic">Example (Elastic)</a>
+
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
 <a id="example__trailingTab">Example (TrailingTab)</a>
+
+
 ```go
 ```
 
@@ -206,7 +212,10 @@ specifies the filter output. The remaining parameters control the formatting:
 	flags		formatting control
 
 
+
 <a id="example_Writer_Init">Example</a>
+
+
 ```go
 ```
 

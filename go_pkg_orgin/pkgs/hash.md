@@ -12,7 +12,10 @@
 Package hash provides interfaces for hash functions.
 
 
+
 <a id="example__binaryMarshaler">Example (BinaryMarshaler)</a>
+
+
 ```go
 ```
 

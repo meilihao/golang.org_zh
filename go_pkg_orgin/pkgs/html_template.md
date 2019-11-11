@@ -203,21 +203,30 @@ knows that contextual autoescaping happens should be able to look at a {{.}}
 and correctly infer what sanitization happens."
 
 
+
 <a id="example_">Example</a>
+
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
 <a id="example__autoescaping">Example (Autoescaping)</a>
+
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
 <a id="example__escape">Example (Escape)</a>
+
+
 ```go
 ```
 
@@ -778,49 +787,64 @@ HTML document fragment.
 
 
 
+
 <a id="example_Template_block">Example (Block)</a>
+
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
 <a id="example_Template_glob">Example (Glob)</a>
-```go
-```
-
-output:
-```txt
-```
 <p>Here we demonstrate loading a set of templates from a directory.
-</p><a id="example_Template_helpers">Example (Helpers)</a>
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
+<a id="example_Template_helpers">Example (Helpers)</a>
 <p>This example demonstrates one way to share some templates
 and use them in different contexts. In this variant we add multiple driver
 templates by hand to an existing bundle of templates.
-</p><a id="example_Template_parsefiles">Example (Parsefiles)</a>
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
+<a id="example_Template_parsefiles">Example (Parsefiles)</a>
 <p>Here we demonstrate loading a set of templates from files in different directories
-</p><a id="example_Template_share">Example (Share)</a>
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
+<a id="example_Template_share">Example (Share)</a>
 <p>This example demonstrates how to use one group of driver
 templates with distinct sets of helper templates.
 </p>
+
+```go
+```
+
+output:
+```txt
+```
+
 
 
 
@@ -917,7 +941,10 @@ corresponding default: {{ or }}.
 The return value is the template, so calls can be chained.
 
 
+
 <a id="example_Template_Delims">Example</a>
+
+
 ```go
 ```
 

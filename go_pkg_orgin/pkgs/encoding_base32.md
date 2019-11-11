@@ -74,7 +74,10 @@ writing, the caller must Close the returned encoder to flush any
 partially written blocks.
 
 
+
 <a id="example_NewEncoder">Example</a>
+
+
 ```go
 ```
 
@@ -149,7 +152,10 @@ New line characters (\r and \n) are ignored.
 DecodeString returns the bytes represented by the base32 string s.
 
 
+
 <a id="example_Encoding_DecodeString">Example</a>
+
+
 ```go
 ```
 
@@ -183,7 +189,10 @@ of a large data stream. Use NewEncoder() instead.
 EncodeToString returns the base32 encoding of src.
 
 
+
 <a id="example_Encoding_EncodeToString">Example</a>
+
+
 ```go
 ```
 

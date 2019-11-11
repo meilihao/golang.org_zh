@@ -414,42 +414,54 @@ on a reader, should use bufio.Reader instead.
 
 
 
-<a id="example_Scanner_custom">Example (Custom)</a>
-```go
-```
 
-output:
-```txt
-```
+<a id="example_Scanner_custom">Example (Custom)</a>
 <p>Use a Scanner with a custom split function (built by wrapping ScanWords) to validate
 32-bit decimal input.
-</p><a id="example_Scanner_emptyFinalToken">Example (EmptyFinalToken)</a>
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
+<a id="example_Scanner_emptyFinalToken">Example (EmptyFinalToken)</a>
 <p>Use a Scanner with a custom split function to parse a comma-separated
 list with an empty final value.
-</p><a id="example_Scanner_lines">Example (Lines)</a>
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
+<a id="example_Scanner_lines">Example (Lines)</a>
 <p>The simplest use of a Scanner, to read standard input as a set of lines.
-</p><a id="example_Scanner_words">Example (Words)</a>
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
+<a id="example_Scanner_words">Example (Words)</a>
 <p>Use a Scanner to implement a simple word-count utility by scanning the
 input as a sequence of space-delimited tokens.
 </p>
+
+```go
+```
+
+output:
+```txt
+```
+
 
 
 
@@ -485,15 +497,18 @@ The underlying array may point to data that will be overwritten
 by a subsequent call to Scan. It does no allocation.
 
 
+
 <a id="example_Scanner_Bytes">Example</a>
+<p>Return the most recent call to Scan as a []byte.
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
-<p>Return the most recent call to Scan as a []byte.
-</p>
+
 
 ### <a id="Scanner.Err">func</a> (\*Scanner) [Err](https://golang.org/src/bufio/scan.go?s=4094:4123#L85)
 <pre>func (s *<a href="#Scanner">Scanner</a>) Err() <a href="/pkg/builtin/#error">error</a></pre>
@@ -589,7 +604,10 @@ the underlying io.Writer.
 
 
 
+
 <a id="example_Writer">Example</a>
+
+
 ```go
 ```
 

@@ -82,7 +82,10 @@ Do calls function f on each element of the ring, in forward order.
 The behavior of Do is undefined if f changes *r.
 
 
+
 <a id="example_Ring_Do">Example</a>
+
+
 ```go
 ```
 
@@ -97,7 +100,10 @@ Len computes the number of elements in ring r.
 It executes in time proportional to the number of elements.
 
 
+
 <a id="example_Ring_Len">Example</a>
+
+
 ```go
 ```
 
@@ -125,7 +131,10 @@ after r. The result points to the element following the
 last element of s after insertion.
 
 
+
 <a id="example_Ring_Link">Example</a>
+
+
 ```go
 ```
 
@@ -140,7 +149,10 @@ Move moves n % r.Len() elements backward (n < 0) or forward (n >= 0)
 in the ring and returns that ring element. r must not be empty.
 
 
+
 <a id="example_Ring_Move">Example</a>
+
+
 ```go
 ```
 
@@ -154,7 +166,10 @@ output:
 Next returns the next ring element. r must not be empty.
 
 
+
 <a id="example_Ring_Next">Example</a>
+
+
 ```go
 ```
 
@@ -168,7 +183,10 @@ output:
 Prev returns the previous ring element. r must not be empty.
 
 
+
 <a id="example_Ring_Prev">Example</a>
+
+
 ```go
 ```
 
@@ -184,7 +202,10 @@ at r.Next(). If n % r.Len() == 0, r remains unchanged.
 The result is the removed subring. r must not be empty.
 
 
+
 <a id="example_Ring_Unlink">Example</a>
+
+
 ```go
 ```
 

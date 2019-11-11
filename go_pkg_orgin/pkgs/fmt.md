@@ -400,13 +400,8 @@ methods to a reader without that capability, use
 bufio.NewReader.
 
 
-<a id="example__formats">Example (Formats)</a>
-```go
-```
 
-output:
-```txt
-```
+<a id="example__formats">Example (Formats)</a>
 <p>These examples demonstrate the basics of printing using a format string. Printf,
 Sprintf, and Fprintf all take a format string that specifies how to format the
 subsequent arguments. For example, %d (we call that a &#39;verb&#39;) says to print the
@@ -416,13 +411,16 @@ always formats the argument in its default form, just how Print or Println would
 show it. The special verb %T (&#39;T&#39; for &#39;Type&#39;) prints the type of the argument
 rather than its value. The examples are not exhaustive; see the package comment
 for all the details.
-</p><a id="example__printers">Example (Printers)</a>
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
+<a id="example__printers">Example (Printers)</a>
 <p>Print, Println, and Printf lay out their arguments differently. In this example
 we can compare their behaviors. Println always adds blanks between the items it
 prints, while Print adds blanks only between non-string arguments and Printf
@@ -430,6 +428,14 @@ does exactly what it is told.
 Sprint, Sprintln, Sprintf, Fprint, Fprintln, and Fprintf behave the same as
 their corresponding Print, Println, and Printf functions shown here.
 </p>
+
+```go
+```
+
+output:
+```txt
+```
+
 
 ## <a id="pkg-index">Index</a>
 * [func Errorf(format string, a ...interface{}) error](#Errorf)
@@ -499,16 +505,19 @@ that does not implement the error interface. The %w verb is otherwise
 a synonym for %v.
 
 
+
 <a id="example_Errorf">Example</a>
+<p>The Errorf function lets us use formatting features
+to create descriptive error messages.
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
-<p>The Errorf function lets us use formatting features
-to create descriptive error messages.
-</p>
+
 ## <a id="Fprint">func</a> [Fprint](https://golang.org/src/fmt/print.go?s=6438:6499#L220)
 <pre>func Fprint(w <a href="/pkg/io/">io</a>.<a href="/pkg/io/#Writer">Writer</a>, a ...interface{}) (n <a href="/pkg/builtin/#int">int</a>, err <a href="/pkg/builtin/#error">error</a>)</pre>
 Fprint formats using the default formats for its operands and writes to w.
@@ -516,7 +525,10 @@ Spaces are added between operands when neither is a string.
 It returns the number of bytes written and any write error encountered.
 
 
+
 <a id="example_Fprint">Example</a>
+
+
 ```go
 ```
 
@@ -530,7 +542,10 @@ Fprintf formats according to a format specifier and writes to w.
 It returns the number of bytes written and any write error encountered.
 
 
+
 <a id="example_Fprintf">Example</a>
+
+
 ```go
 ```
 
@@ -545,7 +560,10 @@ Spaces are always added between operands and a newline is appended.
 It returns the number of bytes written and any write error encountered.
 
 
+
 <a id="example_Fprintln">Example</a>
+
+
 ```go
 ```
 
@@ -570,7 +588,10 @@ returns the number of items successfully parsed.
 Newlines in the input must match newlines in the format.
 
 
+
 <a id="example_Fscanf">Example</a>
+
+
 ```go
 ```
 
@@ -584,7 +605,10 @@ Fscanln is similar to Fscan, but stops scanning at a newline and
 after the final item there must be a newline or EOF.
 
 
+
 <a id="example_Fscanln">Example</a>
+
+
 ```go
 ```
 
@@ -599,7 +623,10 @@ Spaces are added between operands when neither is a string.
 It returns the number of bytes written and any write error encountered.
 
 
+
 <a id="example_Print">Example</a>
+
+
 ```go
 ```
 
@@ -613,7 +640,10 @@ Printf formats according to a format specifier and writes to standard output.
 It returns the number of bytes written and any write error encountered.
 
 
+
 <a id="example_Printf">Example</a>
+
+
 ```go
 ```
 
@@ -628,7 +658,10 @@ Spaces are always added between operands and a newline is appended.
 It returns the number of bytes written and any write error encountered.
 
 
+
 <a id="example_Println">Example</a>
+
+
 ```go
 ```
 
@@ -670,7 +703,10 @@ Sprint formats using the default formats for its operands and returns the result
 Spaces are added between operands when neither is a string.
 
 
+
 <a id="example_Sprint">Example</a>
+
+
 ```go
 ```
 
@@ -683,7 +719,10 @@ output:
 Sprintf formats according to a format specifier and returns the resulting string.
 
 
+
 <a id="example_Sprintf">Example</a>
+
+
 ```go
 ```
 
@@ -697,7 +736,10 @@ Sprintln formats using the default formats for its operands and returns the resu
 Spaces are always added between operands and a newline is appended.
 
 
+
 <a id="example_Sprintln">Example</a>
+
+
 ```go
 ```
 
@@ -722,7 +764,10 @@ returns the number of items successfully parsed.
 Newlines in the input must match newlines in the format.
 
 
+
 <a id="example_Sscanf">Example</a>
+
+
 ```go
 ```
 
@@ -774,7 +819,10 @@ to a %#v format.
 
 
 
+
 <a id="example_GoStringer">Example</a>
+
+
 ```go
 ```
 
@@ -898,7 +946,10 @@ such as Print.
 
 
 
+
 <a id="example_Stringer">Example</a>
+
+
 ```go
 ```
 

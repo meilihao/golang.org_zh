@@ -78,7 +78,10 @@ out of range, or is not the shortest possible UTF-8 encoding for the
 value. No other validation is performed.
 
 
+
 <a id="example_DecodeLastRune">Example</a>
+
+
 ```go
 ```
 
@@ -98,7 +101,10 @@ out of range, or is not the shortest possible UTF-8 encoding for the
 value. No other validation is performed.
 
 
+
 <a id="example_DecodeLastRuneInString">Example</a>
+
+
 ```go
 ```
 
@@ -118,7 +124,10 @@ out of range, or is not the shortest possible UTF-8 encoding for the
 value. No other validation is performed.
 
 
+
 <a id="example_DecodeRune">Example</a>
+
+
 ```go
 ```
 
@@ -138,7 +147,10 @@ out of range, or is not the shortest possible UTF-8 encoding for the
 value. No other validation is performed.
 
 
+
 <a id="example_DecodeRuneInString">Example</a>
+
+
 ```go
 ```
 
@@ -152,7 +164,10 @@ EncodeRune writes into p (which must be large enough) the UTF-8 encoding of the 
 It returns the number of bytes written.
 
 
+
 <a id="example_EncodeRune">Example</a>
+
+
 ```go
 ```
 
@@ -166,7 +181,10 @@ FullRune reports whether the bytes in p begin with a full UTF-8 encoding of a ru
 An invalid encoding is considered a full Rune since it will convert as a width-1 error rune.
 
 
+
 <a id="example_FullRune">Example</a>
+
+
 ```go
 ```
 
@@ -179,7 +197,10 @@ output:
 FullRuneInString is like FullRune but its input is a string.
 
 
+
 <a id="example_FullRuneInString">Example</a>
+
+
 ```go
 ```
 
@@ -193,7 +214,10 @@ RuneCount returns the number of runes in p. Erroneous and short
 encodings are treated as single runes of width 1 byte.
 
 
+
 <a id="example_RuneCount">Example</a>
+
+
 ```go
 ```
 
@@ -206,7 +230,10 @@ output:
 RuneCountInString is like RuneCount but its input is a string.
 
 
+
 <a id="example_RuneCountInString">Example</a>
+
+
 ```go
 ```
 
@@ -220,7 +247,10 @@ RuneLen returns the number of bytes required to encode the rune.
 It returns -1 if the rune is not a valid value to encode in UTF-8.
 
 
+
 <a id="example_RuneLen">Example</a>
+
+
 ```go
 ```
 
@@ -235,7 +265,10 @@ possibly invalid rune. Second and subsequent bytes always have the top two
 bits set to 10.
 
 
+
 <a id="example_RuneStart">Example</a>
+
+
 ```go
 ```
 
@@ -248,7 +281,10 @@ output:
 Valid reports whether p consists entirely of valid UTF-8-encoded runes.
 
 
+
 <a id="example_Valid">Example</a>
+
+
 ```go
 ```
 
@@ -262,7 +298,10 @@ ValidRune reports whether r can be legally encoded as UTF-8.
 Code points that are out of range or a surrogate half are illegal.
 
 
+
 <a id="example_ValidRune">Example</a>
+
+
 ```go
 ```
 
@@ -275,7 +314,10 @@ output:
 ValidString reports whether s consists entirely of valid UTF-8-encoded runes.
 
 
+
 <a id="example_ValidString">Example</a>
+
+
 ```go
 ```
 

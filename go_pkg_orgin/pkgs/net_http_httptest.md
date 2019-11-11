@@ -121,7 +121,10 @@ records its mutations for later inspection in tests.
 
 
 
+
 <a id="example_ResponseRecorder">Example</a>
+
+
 ```go
 ```
 
@@ -228,7 +231,10 @@ local loopback interface, for use in end-to-end HTTP tests.
 
 
 
+
 <a id="example_Server">Example</a>
+
+
 ```go
 ```
 
@@ -253,7 +259,10 @@ NewTLSServer starts and returns a new Server using TLS.
 The caller should call Close when finished, to shut it down.
 
 
+
 <a id="example_NewTLSServer">Example</a>
+
+
 ```go
 ```
 

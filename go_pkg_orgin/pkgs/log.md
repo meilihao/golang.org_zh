@@ -223,7 +223,10 @@ multiple goroutines; it guarantees to serialize access to the Writer.
 
 
 
+
 <a id="example_Logger">Example</a>
+
+
 ```go
 ```
 
@@ -284,7 +287,10 @@ provided for generality, although at the moment on all pre-defined
 paths it will be 2.
 
 
+
 <a id="example_Logger_Output">Example</a>
+
+
 ```go
 ```
 

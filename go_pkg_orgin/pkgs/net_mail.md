@@ -92,7 +92,10 @@ as Address{Name: "Barry Gibbs", Address: "bg@example.com"}.
 ParseAddress parses a single RFC 5322 address, e.g. "Barry Gibbs <bg@example.com>"
 
 
+
 <a id="example_ParseAddress">Example</a>
+
+
 ```go
 ```
 
@@ -106,7 +109,10 @@ output:
 ParseAddressList parses the given string as a list of addresses.
 
 
+
 <a id="example_ParseAddressList">Example</a>
+
+
 ```go
 ```
 
@@ -229,7 +235,10 @@ The headers are parsed, and the body of the message will be available
 for reading from msg.Body.
 
 
+
 <a id="example_ReadMessage">Example</a>
+
+
 ```go
 ```
 

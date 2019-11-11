@@ -184,14 +184,20 @@ The result will be 0 if a==b, -1 if a < b, and +1 if a > b.
 A nil argument is equivalent to an empty slice.
 
 
+
 <a id="example_Compare">Example</a>
+
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
 <a id="example_Compare_search">Example (Search)</a>
+
+
 ```go
 ```
 
@@ -204,7 +210,10 @@ output:
 Contains reports whether subslice is within b.
 
 
+
 <a id="example_Contains">Example</a>
+
+
 ```go
 ```
 
@@ -217,7 +226,10 @@ output:
 ContainsAny reports whether any of the UTF-8-encoded code points in chars are within b.
 
 
+
 <a id="example_ContainsAny">Example</a>
+
+
 ```go
 ```
 
@@ -230,7 +242,10 @@ output:
 ContainsRune reports whether the rune is contained in the UTF-8-encoded byte slice b.
 
 
+
 <a id="example_ContainsRune">Example</a>
+
+
 ```go
 ```
 
@@ -244,7 +259,10 @@ Count counts the number of non-overlapping instances of sep in s.
 If sep is an empty slice, Count returns 1 + the number of UTF-8-encoded code points in s.
 
 
+
 <a id="example_Count">Example</a>
+
+
 ```go
 ```
 
@@ -259,7 +277,10 @@ are the same length and contain the same bytes.
 A nil argument is equivalent to an empty slice.
 
 
+
 <a id="example_Equal">Example</a>
+
+
 ```go
 ```
 
@@ -273,7 +294,10 @@ EqualFold reports whether s and t, interpreted as UTF-8 strings,
 are equal under Unicode case-folding.
 
 
+
 <a id="example_EqualFold">Example</a>
+
+
 ```go
 ```
 
@@ -289,7 +313,10 @@ characters, as defined by unicode.IsSpace, returning a slice of subslices of s o
 empty slice if s contains only white space.
 
 
+
 <a id="example_Fields">Example</a>
+
+
 ```go
 ```
 
@@ -307,7 +334,10 @@ FieldsFunc makes no guarantees about the order in which it calls f(c).
 If f does not return consistent results for a given c, FieldsFunc may crash.
 
 
+
 <a id="example_FieldsFunc">Example</a>
+
+
 ```go
 ```
 
@@ -320,7 +350,10 @@ output:
 HasPrefix tests whether the byte slice s begins with prefix.
 
 
+
 <a id="example_HasPrefix">Example</a>
+
+
 ```go
 ```
 
@@ -333,7 +366,10 @@ output:
 HasSuffix tests whether the byte slice s ends with suffix.
 
 
+
 <a id="example_HasSuffix">Example</a>
+
+
 ```go
 ```
 
@@ -346,7 +382,10 @@ output:
 Index returns the index of the first instance of sep in s, or -1 if sep is not present in s.
 
 
+
 <a id="example_Index">Example</a>
+
+
 ```go
 ```
 
@@ -362,7 +401,10 @@ code points in chars. It returns -1 if chars is empty or if there is no code
 point in common.
 
 
+
 <a id="example_IndexAny">Example</a>
+
+
 ```go
 ```
 
@@ -375,7 +417,10 @@ output:
 IndexByte returns the index of the first instance of c in b, or -1 if c is not present in b.
 
 
+
 <a id="example_IndexByte">Example</a>
+
+
 ```go
 ```
 
@@ -390,7 +435,10 @@ It returns the byte index in s of the first Unicode
 code point satisfying f(c), or -1 if none do.
 
 
+
 <a id="example_IndexFunc">Example</a>
+
+
 ```go
 ```
 
@@ -407,7 +455,10 @@ If r is utf8.RuneError, it returns the first instance of any
 invalid UTF-8 byte sequence.
 
 
+
 <a id="example_IndexRune">Example</a>
+
+
 ```go
 ```
 
@@ -421,7 +472,10 @@ Join concatenates the elements of s to create a new byte slice. The separator
 sep is placed between elements in the resulting slice.
 
 
+
 <a id="example_Join">Example</a>
+
+
 ```go
 ```
 
@@ -434,7 +488,10 @@ output:
 LastIndex returns the index of the last instance of sep in s, or -1 if sep is not present in s.
 
 
+
 <a id="example_LastIndex">Example</a>
+
+
 ```go
 ```
 
@@ -450,7 +507,10 @@ the Unicode code points in chars. It returns -1 if chars is empty or if
 there is no code point in common.
 
 
+
 <a id="example_LastIndexAny">Example</a>
+
+
 ```go
 ```
 
@@ -463,7 +523,10 @@ output:
 LastIndexByte returns the index of the last instance of c in s, or -1 if c is not present in s.
 
 
+
 <a id="example_LastIndexByte">Example</a>
+
+
 ```go
 ```
 
@@ -478,7 +541,10 @@ It returns the byte index in s of the last Unicode
 code point satisfying f(c), or -1 if none do.
 
 
+
 <a id="example_LastIndexFunc">Example</a>
+
+
 ```go
 ```
 
@@ -494,7 +560,10 @@ dropped from the byte slice with no replacement. The characters in s and the
 output are interpreted as UTF-8-encoded code points.
 
 
+
 <a id="example_Map">Example</a>
+
+
 ```go
 ```
 
@@ -510,7 +579,10 @@ It panics if count is negative or if
 the result of (len(b) * count) overflows.
 
 
+
 <a id="example_Repeat">Example</a>
+
+
 ```go
 ```
 
@@ -528,7 +600,10 @@ for a k-rune slice.
 If n < 0, there is no limit on the number of replacements.
 
 
+
 <a id="example_Replace">Example</a>
+
+
 ```go
 ```
 
@@ -545,7 +620,10 @@ and after each UTF-8 sequence, yielding up to k+1 replacements
 for a k-rune slice.
 
 
+
 <a id="example_ReplaceAll">Example</a>
+
+
 ```go
 ```
 
@@ -559,7 +637,10 @@ Runes interprets s as a sequence of UTF-8-encoded code points.
 It returns a slice of runes (Unicode code points) equivalent to s.
 
 
+
 <a id="example_Runes">Example</a>
+
+
 ```go
 ```
 
@@ -575,7 +656,10 @@ If sep is empty, Split splits after each UTF-8 sequence.
 It is equivalent to SplitN with a count of -1.
 
 
+
 <a id="example_Split">Example</a>
+
+
 ```go
 ```
 
@@ -591,7 +675,10 @@ If sep is empty, SplitAfter splits after each UTF-8 sequence.
 It is equivalent to SplitAfterN with a count of -1.
 
 
+
 <a id="example_SplitAfter">Example</a>
+
+
 ```go
 ```
 
@@ -612,7 +699,10 @@ The count determines the number of subslices to return:
 	n < 0: all subslices
 
 
+
 <a id="example_SplitAfterN">Example</a>
+
+
 ```go
 ```
 
@@ -633,7 +723,10 @@ The count determines the number of subslices to return:
 	n < 0: all subslices
 
 
+
 <a id="example_SplitN">Example</a>
+
+
 ```go
 ```
 
@@ -649,7 +742,10 @@ words mapped to their title case.
 BUG(rsc): The rule Title uses for word boundaries does not handle Unicode punctuation properly.
 
 
+
 <a id="example_Title">Example</a>
+
+
 ```go
 ```
 
@@ -663,7 +759,10 @@ ToLower returns a copy of the byte slice s with all Unicode letters mapped to
 their lower case.
 
 
+
 <a id="example_ToLower">Example</a>
+
+
 ```go
 ```
 
@@ -677,7 +776,10 @@ ToLowerSpecial treats s as UTF-8-encoded bytes and returns a copy with all the U
 lower case, giving priority to the special casing rules.
 
 
+
 <a id="example_ToLowerSpecial">Example</a>
+
+
 ```go
 ```
 
@@ -690,7 +792,10 @@ output:
 ToTitle treats s as UTF-8-encoded bytes and returns a copy with all the Unicode letters mapped to their title case.
 
 
+
 <a id="example_ToTitle">Example</a>
+
+
 ```go
 ```
 
@@ -704,7 +809,10 @@ ToTitleSpecial treats s as UTF-8-encoded bytes and returns a copy with all the U
 title case, giving priority to the special casing rules.
 
 
+
 <a id="example_ToTitleSpecial">Example</a>
+
+
 ```go
 ```
 
@@ -718,7 +826,10 @@ ToUpper returns a copy of the byte slice s with all Unicode letters mapped to
 their upper case.
 
 
+
 <a id="example_ToUpper">Example</a>
+
+
 ```go
 ```
 
@@ -732,7 +843,10 @@ ToUpperSpecial treats s as UTF-8-encoded bytes and returns a copy with all the U
 upper case, giving priority to the special casing rules.
 
 
+
 <a id="example_ToUpperSpecial">Example</a>
+
+
 ```go
 ```
 
@@ -753,7 +867,10 @@ Trim returns a subslice of s by slicing off all leading and
 trailing UTF-8-encoded code points contained in cutset.
 
 
+
 <a id="example_Trim">Example</a>
+
+
 ```go
 ```
 
@@ -767,7 +884,10 @@ TrimFunc returns a subslice of s by slicing off all leading and trailing
 UTF-8-encoded code points c that satisfy f(c).
 
 
+
 <a id="example_TrimFunc">Example</a>
+
+
 ```go
 ```
 
@@ -781,7 +901,10 @@ TrimLeft returns a subslice of s by slicing off all leading
 UTF-8-encoded code points contained in cutset.
 
 
+
 <a id="example_TrimLeft">Example</a>
+
+
 ```go
 ```
 
@@ -795,7 +918,10 @@ TrimLeftFunc treats s as UTF-8-encoded bytes and returns a subslice of s by slic
 all leading UTF-8-encoded code points c that satisfy f(c).
 
 
+
 <a id="example_TrimLeftFunc">Example</a>
+
+
 ```go
 ```
 
@@ -809,7 +935,10 @@ TrimPrefix returns s without the provided leading prefix string.
 If s doesn't start with prefix, s is returned unchanged.
 
 
+
 <a id="example_TrimPrefix">Example</a>
+
+
 ```go
 ```
 
@@ -823,7 +952,10 @@ TrimRight returns a subslice of s by slicing off all trailing
 UTF-8-encoded code points that are contained in cutset.
 
 
+
 <a id="example_TrimRight">Example</a>
+
+
 ```go
 ```
 
@@ -837,7 +969,10 @@ TrimRightFunc returns a subslice of s by slicing off all trailing
 UTF-8-encoded code points c that satisfy f(c).
 
 
+
 <a id="example_TrimRightFunc">Example</a>
+
+
 ```go
 ```
 
@@ -851,7 +986,10 @@ TrimSpace returns a subslice of s by slicing off all leading and
 trailing white space, as defined by Unicode.
 
 
+
 <a id="example_TrimSpace">Example</a>
+
+
 ```go
 ```
 
@@ -865,7 +1003,10 @@ TrimSuffix returns s without the provided trailing suffix string.
 If s doesn't end with suffix, s is returned unchanged.
 
 
+
 <a id="example_TrimSuffix">Example</a>
+
+
 ```go
 ```
 
@@ -889,14 +1030,20 @@ The zero value for Buffer is an empty buffer ready to use.
 
 
 
+
 <a id="example_Buffer">Example</a>
+
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
 <a id="example_Buffer_reader">Example (Reader)</a>
+
+
 ```go
 ```
 
@@ -964,7 +1111,10 @@ If n is negative, Grow will panic.
 If the buffer can't grow it will panic with ErrTooLarge.
 
 
+
 <a id="example_Buffer_Grow">Example</a>
+
+
 ```go
 ```
 
@@ -979,7 +1129,10 @@ Len returns the number of bytes of the unread portion of the buffer;
 b.Len() == len(b.Bytes()).
 
 
+
 <a id="example_Buffer_Len">Example</a>
+
+
 ```go
 ```
 
@@ -1194,7 +1347,10 @@ Len returns the number of bytes of the unread portion of the
 slice.
 
 
+
 <a id="example_Reader_Len">Example</a>
+
+
 ```go
 ```
 

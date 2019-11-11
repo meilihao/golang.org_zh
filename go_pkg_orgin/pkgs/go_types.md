@@ -1374,17 +1374,20 @@ be incomplete.
 
 
 
+
 <a id="example_Info">Example</a>
+<p>ExampleInfo prints various facts recorded by the type checker in a
+types.Info struct: definitions of and references to each named object,
+and the type, value, and mode of every expression in the package.
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
-<p>ExampleInfo prints various facts recorded by the type checker in a
-types.Info struct: definitions of and references to each named object,
-and the type, value, and mode of every expression in the package.
-</p>
+
 
 
 
@@ -1714,15 +1717,18 @@ The zero value for a MethodSet is a ready-to-use empty method set.
 
 
 
+
 <a id="example_MethodSet">Example</a>
+<p>ExampleMethodSet prints the method sets of various types.
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
-<p>ExampleMethodSet prints the method sets of various types.
-</p>
+
 
 
 
@@ -2268,16 +2274,19 @@ It is the outermost scope of any chain of nested scopes.
 
 <pre>var <span id="Universe">Universe</span> *<a href="#Scope">Scope</a></pre>
 
+
 <a id="example_Scope">Example</a>
+<p>ExampleScope prints the tree of Scopes of a package created from a
+set of parsed files.
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
-<p>ExampleScope prints the tree of Scopes of a package created from a
-set of parsed files.
-</p>
+
 
 
 

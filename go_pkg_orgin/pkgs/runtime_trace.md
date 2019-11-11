@@ -114,17 +114,20 @@ time between the task creation and the task end and provides
 latency distributions for each task type found in the trace.
 
 
+
 <a id="example_">Example</a>
+<p>Example demonstrates the use of the trace package to trace
+the execution of a Go program. The trace output will be
+written to the file trace.out
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
-<p>Example demonstrates the use of the trace package to trace
-the execution of a Go program. The trace output will be
-written to the file trace.out
-</p>
+
 
 ## <a id="pkg-index">Index</a>
 * [func IsEnabled() bool](#IsEnabled)

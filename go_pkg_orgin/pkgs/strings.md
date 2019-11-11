@@ -157,7 +157,10 @@ It is usually clearer and always faster to use the built-in
 string comparison operators ==, <, >, and so on.
 
 
+
 <a id="example_Compare">Example</a>
+
+
 ```go
 ```
 
@@ -170,7 +173,10 @@ output:
 Contains reports whether substr is within s.
 
 
+
 <a id="example_Contains">Example</a>
+
+
 ```go
 ```
 
@@ -183,7 +189,10 @@ output:
 ContainsAny reports whether any Unicode code points in chars are within s.
 
 
+
 <a id="example_ContainsAny">Example</a>
+
+
 ```go
 ```
 
@@ -196,7 +205,10 @@ output:
 ContainsRune reports whether the Unicode code point r is within s.
 
 
+
 <a id="example_ContainsRune">Example</a>
+
+
 ```go
 ```
 
@@ -210,7 +222,10 @@ Count counts the number of non-overlapping instances of substr in s.
 If substr is an empty string, Count returns 1 + the number of Unicode code points in s.
 
 
+
 <a id="example_Count">Example</a>
+
+
 ```go
 ```
 
@@ -224,7 +239,10 @@ EqualFold reports whether s and t, interpreted as UTF-8 strings,
 are equal under Unicode case-folding.
 
 
+
 <a id="example_EqualFold">Example</a>
+
+
 ```go
 ```
 
@@ -239,7 +257,10 @@ characters, as defined by unicode.IsSpace, returning a slice of substrings of s 
 empty slice if s contains only white space.
 
 
+
 <a id="example_Fields">Example</a>
+
+
 ```go
 ```
 
@@ -256,7 +277,10 @@ FieldsFunc makes no guarantees about the order in which it calls f(c).
 If f does not return consistent results for a given c, FieldsFunc may crash.
 
 
+
 <a id="example_FieldsFunc">Example</a>
+
+
 ```go
 ```
 
@@ -269,7 +293,10 @@ output:
 HasPrefix tests whether the string s begins with prefix.
 
 
+
 <a id="example_HasPrefix">Example</a>
+
+
 ```go
 ```
 
@@ -282,7 +309,10 @@ output:
 HasSuffix tests whether the string s ends with suffix.
 
 
+
 <a id="example_HasSuffix">Example</a>
+
+
 ```go
 ```
 
@@ -295,7 +325,10 @@ output:
 Index returns the index of the first instance of substr in s, or -1 if substr is not present in s.
 
 
+
 <a id="example_Index">Example</a>
+
+
 ```go
 ```
 
@@ -309,7 +342,10 @@ IndexAny returns the index of the first instance of any Unicode code point
 from chars in s, or -1 if no Unicode code point from chars is present in s.
 
 
+
 <a id="example_IndexAny">Example</a>
+
+
 ```go
 ```
 
@@ -322,7 +358,10 @@ output:
 IndexByte returns the index of the first instance of c in s, or -1 if c is not present in s.
 
 
+
 <a id="example_IndexByte">Example</a>
+
+
 ```go
 ```
 
@@ -336,7 +375,10 @@ IndexFunc returns the index into s of the first Unicode
 code point satisfying f(c), or -1 if none do.
 
 
+
 <a id="example_IndexFunc">Example</a>
+
+
 ```go
 ```
 
@@ -352,7 +394,10 @@ If r is utf8.RuneError, it returns the first instance of any
 invalid UTF-8 byte sequence.
 
 
+
 <a id="example_IndexRune">Example</a>
+
+
 ```go
 ```
 
@@ -366,7 +411,10 @@ Join concatenates the elements of a to create a single string. The separator str
 sep is placed between elements in the resulting string.
 
 
+
 <a id="example_Join">Example</a>
+
+
 ```go
 ```
 
@@ -379,7 +427,10 @@ output:
 LastIndex returns the index of the last instance of substr in s, or -1 if substr is not present in s.
 
 
+
 <a id="example_LastIndex">Example</a>
+
+
 ```go
 ```
 
@@ -394,7 +445,10 @@ point from chars in s, or -1 if no Unicode code point from chars is
 present in s.
 
 
+
 <a id="example_LastIndexAny">Example</a>
+
+
 ```go
 ```
 
@@ -407,7 +461,10 @@ output:
 LastIndexByte returns the index of the last instance of c in s, or -1 if c is not present in s.
 
 
+
 <a id="example_LastIndexByte">Example</a>
+
+
 ```go
 ```
 
@@ -421,7 +478,10 @@ LastIndexFunc returns the index into s of the last
 Unicode code point satisfying f(c), or -1 if none do.
 
 
+
 <a id="example_LastIndexFunc">Example</a>
+
+
 ```go
 ```
 
@@ -436,7 +496,10 @@ according to the mapping function. If mapping returns a negative value, the char
 dropped from the string with no replacement.
 
 
+
 <a id="example_Map">Example</a>
+
+
 ```go
 ```
 
@@ -452,7 +515,10 @@ It panics if count is negative or if
 the result of (len(s) * count) overflows.
 
 
+
 <a id="example_Repeat">Example</a>
+
+
 ```go
 ```
 
@@ -470,7 +536,10 @@ for a k-rune string.
 If n < 0, there is no limit on the number of replacements.
 
 
+
 <a id="example_Replace">Example</a>
+
+
 ```go
 ```
 
@@ -487,7 +556,10 @@ and after each UTF-8 sequence, yielding up to k+1 replacements
 for a k-rune string.
 
 
+
 <a id="example_ReplaceAll">Example</a>
+
+
 ```go
 ```
 
@@ -509,7 +581,10 @@ and sep are empty, Split returns an empty slice.
 It is equivalent to SplitN with a count of -1.
 
 
+
 <a id="example_Split">Example</a>
+
+
 ```go
 ```
 
@@ -531,7 +606,10 @@ both s and sep are empty, SplitAfter returns an empty slice.
 It is equivalent to SplitAfterN with a count of -1.
 
 
+
 <a id="example_SplitAfter">Example</a>
+
+
 ```go
 ```
 
@@ -555,7 +633,10 @@ Edge cases for s and sep (for example, empty strings) are handled
 as described in the documentation for SplitAfter.
 
 
+
 <a id="example_SplitAfterN">Example</a>
+
+
 ```go
 ```
 
@@ -579,7 +660,10 @@ Edge cases for s and sep (for example, empty strings) are handled
 as described in the documentation for Split.
 
 
+
 <a id="example_SplitN">Example</a>
+
+
 ```go
 ```
 
@@ -595,7 +679,10 @@ mapped to their Unicode title case.
 BUG(rsc): The rule Title uses for word boundaries does not handle Unicode punctuation properly.
 
 
+
 <a id="example_Title">Example</a>
+
+
 ```go
 ```
 
@@ -608,7 +695,10 @@ output:
 ToLower returns s with all Unicode letters mapped to their lower case.
 
 
+
 <a id="example_ToLower">Example</a>
+
+
 ```go
 ```
 
@@ -622,7 +712,10 @@ ToLowerSpecial returns a copy of the string s with all Unicode letters mapped to
 lower case using the case mapping specified by c.
 
 
+
 <a id="example_ToLowerSpecial">Example</a>
+
+
 ```go
 ```
 
@@ -636,7 +729,10 @@ ToTitle returns a copy of the string s with all Unicode letters mapped to
 their Unicode title case.
 
 
+
 <a id="example_ToTitle">Example</a>
+
+
 ```go
 ```
 
@@ -650,7 +746,10 @@ ToTitleSpecial returns a copy of the string s with all Unicode letters mapped to
 Unicode title case, giving priority to the special casing rules.
 
 
+
 <a id="example_ToTitleSpecial">Example</a>
+
+
 ```go
 ```
 
@@ -663,7 +762,10 @@ output:
 ToUpper returns s with all Unicode letters mapped to their upper case.
 
 
+
 <a id="example_ToUpper">Example</a>
+
+
 ```go
 ```
 
@@ -677,7 +779,10 @@ ToUpperSpecial returns a copy of the string s with all Unicode letters mapped to
 upper case using the case mapping specified by c.
 
 
+
 <a id="example_ToUpperSpecial">Example</a>
+
+
 ```go
 ```
 
@@ -698,7 +803,10 @@ Trim returns a slice of the string s with all leading and
 trailing Unicode code points contained in cutset removed.
 
 
+
 <a id="example_Trim">Example</a>
+
+
 ```go
 ```
 
@@ -712,7 +820,10 @@ TrimFunc returns a slice of the string s with all leading
 and trailing Unicode code points c satisfying f(c) removed.
 
 
+
 <a id="example_TrimFunc">Example</a>
+
+
 ```go
 ```
 
@@ -728,7 +839,10 @@ Unicode code points contained in cutset removed.
 To remove a prefix, use TrimPrefix instead.
 
 
+
 <a id="example_TrimLeft">Example</a>
+
+
 ```go
 ```
 
@@ -742,7 +856,10 @@ TrimLeftFunc returns a slice of the string s with all leading
 Unicode code points c satisfying f(c) removed.
 
 
+
 <a id="example_TrimLeftFunc">Example</a>
+
+
 ```go
 ```
 
@@ -756,7 +873,10 @@ TrimPrefix returns s without the provided leading prefix string.
 If s doesn't start with prefix, s is returned unchanged.
 
 
+
 <a id="example_TrimPrefix">Example</a>
+
+
 ```go
 ```
 
@@ -772,7 +892,10 @@ Unicode code points contained in cutset removed.
 To remove a suffix, use TrimSuffix instead.
 
 
+
 <a id="example_TrimRight">Example</a>
+
+
 ```go
 ```
 
@@ -786,7 +909,10 @@ TrimRightFunc returns a slice of the string s with all trailing
 Unicode code points c satisfying f(c) removed.
 
 
+
 <a id="example_TrimRightFunc">Example</a>
+
+
 ```go
 ```
 
@@ -800,7 +926,10 @@ TrimSpace returns a slice of the string s, with all leading
 and trailing white space removed, as defined by Unicode.
 
 
+
 <a id="example_TrimSpace">Example</a>
+
+
 ```go
 ```
 
@@ -814,7 +943,10 @@ TrimSuffix returns s without the provided trailing suffix string.
 If s doesn't end with suffix, s is returned unchanged.
 
 
+
 <a id="example_TrimSuffix">Example</a>
+
+
 ```go
 ```
 
@@ -839,7 +971,10 @@ Do not copy a non-zero Builder.
 
 
 
+
 <a id="example_Builder">Example</a>
+
+
 ```go
 ```
 
@@ -1050,7 +1185,10 @@ comparisons are done in argument order.
 NewReplacer panics if given an odd number of arguments.
 
 
+
 <a id="example_NewReplacer">Example</a>
+
+
 ```go
 ```
 

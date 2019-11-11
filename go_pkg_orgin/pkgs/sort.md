@@ -12,32 +12,44 @@ Package sort provides primitives for sorting slices and user-defined
 collections.
 
 
+
 <a id="example_">Example</a>
+
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
 <a id="example__sortKeys">Example (SortKeys)</a>
-```go
-```
-
-output:
-```txt
-```
 <p>ExampleSortKeys demonstrates a technique for sorting a struct type using programmable sort criteria.
-</p><a id="example__sortMultiKeys">Example (SortMultiKeys)</a>
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
+<a id="example__sortMultiKeys">Example (SortMultiKeys)</a>
 <p>ExampleMultiKeys demonstrates a technique for sorting a struct type using different
 sets of multiple fields in the comparison. We chain together &#34;Less&#34; functions, each of
 which compares a single field.
-</p><a id="example__sortWrapper">Example (SortWrapper)</a>
+</p>
+
+```go
+```
+
+output:
+```txt
+```
+
+<a id="example__sortWrapper">Example (SortWrapper)</a>
+
+
 ```go
 ```
 
@@ -116,7 +128,10 @@ Float64s sorts a slice of float64s in increasing order
 (not-a-number values are treated as less than other values).
 
 
+
 <a id="example_Float64s">Example</a>
+
+
 ```go
 ```
 
@@ -130,7 +145,10 @@ Float64sAreSorted tests whether a slice of float64s is sorted in increasing orde
 (not-a-number values are treated as less than other values).
 
 
+
 <a id="example_Float64sAreSorted">Example</a>
+
+
 ```go
 ```
 
@@ -143,7 +161,10 @@ output:
 Ints sorts a slice of ints in increasing order.
 
 
+
 <a id="example_Ints">Example</a>
+
+
 ```go
 ```
 
@@ -156,7 +177,10 @@ output:
 IntsAreSorted tests whether a slice of ints is sorted in increasing order.
 
 
+
 <a id="example_IntsAreSorted">Example</a>
+
+
 ```go
 ```
 
@@ -225,25 +249,31 @@ As a more whimsical example, this program guesses your number:
 	}
 
 
+
 <a id="example_Search">Example</a>
-```go
-```
-
-output:
-```txt
-```
 <p>This example demonstrates searching a list sorted in ascending order.
-</p><a id="example_Search_descendingOrder">Example (DescendingOrder)</a>
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
+<a id="example_Search_descendingOrder">Example (DescendingOrder)</a>
 <p>This example demonstrates searching a list sorted in descending order.
 The approach is the same as searching a list in ascending order,
 but with the condition inverted.
 </p>
+
+```go
+```
+
+output:
+```txt
+```
+
 ## <a id="SearchFloat64s">func</a> [SearchFloat64s](https://golang.org/src/sort/search.go?s=3317:3364#L82)
 <pre>func SearchFloat64s(a []<a href="/pkg/builtin/#float64">float64</a>, x <a href="/pkg/builtin/#float64">float64</a>) <a href="/pkg/builtin/#int">int</a></pre>
 SearchFloat64s searches for x in a sorted slice of float64s and returns the index
@@ -281,7 +311,10 @@ SliceStable.
 The function panics if the provided interface is not a slice.
 
 
+
 <a id="example_Slice">Example</a>
+
+
 ```go
 ```
 
@@ -305,7 +338,10 @@ function while keeping the original order of equal elements.
 The function panics if the provided interface is not a slice.
 
 
+
 <a id="example_SliceStable">Example</a>
+
+
 ```go
 ```
 
@@ -335,7 +371,10 @@ data.Less and O(n*log(n)*log(n)) calls to data.Swap.
 Strings sorts a slice of strings in increasing order.
 
 
+
 <a id="example_Strings">Example</a>
+
+
 ```go
 ```
 
@@ -471,7 +510,10 @@ elements of the collection be enumerated by an integer index.
 Reverse returns the reverse order for data.
 
 
+
 <a id="example_Reverse">Example</a>
+
+
 ```go
 ```
 

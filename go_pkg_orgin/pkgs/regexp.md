@@ -78,7 +78,10 @@ before returning.
 (There are a few other methods that do not match this pattern.)
 
 
+
 <a id="example_">Example</a>
+
+
 ```go
 ```
 
@@ -178,7 +181,10 @@ contains any match of the regular expression pattern.
 More complicated queries need to use Compile and the full Regexp interface.
 
 
+
 <a id="example_Match">Example</a>
+
+
 ```go
 ```
 
@@ -201,7 +207,10 @@ contains any match of the regular expression pattern.
 More complicated queries need to use Compile and the full Regexp interface.
 
 
+
 <a id="example_MatchString">Example</a>
+
+
 ```go
 ```
 
@@ -216,7 +225,10 @@ inside the argument text; the returned string is a regular expression matching
 the literal text.
 
 
+
 <a id="example_QuoteMeta">Example</a>
+
+
 ```go
 ```
 
@@ -341,7 +353,10 @@ equivalent to ${1x}, not ${1}x, and, $10 is equivalent to ${10}, not ${1}0.
 To insert a literal $ in the output, use $$ in the template.
 
 
+
 <a id="example_Regexp_Expand">Example</a>
+
+
 ```go
 ```
 
@@ -357,7 +372,10 @@ It appends to and returns a byte slice in order to give the calling
 code control over allocation.
 
 
+
 <a id="example_Regexp_ExpandString">Example</a>
+
+
 ```go
 ```
 
@@ -372,7 +390,10 @@ Find returns a slice holding the text of the leftmost match in b of the regular 
 A return value of nil indicates no match.
 
 
+
 <a id="example_Regexp_Find">Example</a>
+
+
 ```go
 ```
 
@@ -389,7 +410,10 @@ package comment.
 A return value of nil indicates no match.
 
 
+
 <a id="example_Regexp_FindAll">Example</a>
+
+
 ```go
 ```
 
@@ -416,7 +440,10 @@ in the package comment.
 A return value of nil indicates no match.
 
 
+
 <a id="example_Regexp_FindAllString">Example</a>
+
+
 ```go
 ```
 
@@ -443,7 +470,10 @@ the 'All' description in the package comment.
 A return value of nil indicates no match.
 
 
+
 <a id="example_Regexp_FindAllStringSubmatch">Example</a>
+
+
 ```go
 ```
 
@@ -461,7 +491,10 @@ comment.
 A return value of nil indicates no match.
 
 
+
 <a id="example_Regexp_FindAllStringSubmatchIndex">Example</a>
+
+
 ```go
 ```
 
@@ -478,7 +511,10 @@ description in the package comment.
 A return value of nil indicates no match.
 
 
+
 <a id="example_Regexp_FindAllSubmatch">Example</a>
+
+
 ```go
 ```
 
@@ -495,7 +531,10 @@ a slice of all successive matches of the expression, as defined by the
 A return value of nil indicates no match.
 
 
+
 <a id="example_Regexp_FindAllSubmatchIndex">Example</a>
+
+
 ```go
 ```
 
@@ -512,7 +551,10 @@ b[loc[0]:loc[1]].
 A return value of nil indicates no match.
 
 
+
 <a id="example_Regexp_FindIndex">Example</a>
+
+
 ```go
 ```
 
@@ -552,7 +594,10 @@ an empty string. Use FindStringIndex or FindStringSubmatch if it is
 necessary to distinguish these cases.
 
 
+
 <a id="example_Regexp_FindString">Example</a>
+
+
 ```go
 ```
 
@@ -569,7 +614,10 @@ itself is at s[loc[0]:loc[1]].
 A return value of nil indicates no match.
 
 
+
 <a id="example_Regexp_FindStringIndex">Example</a>
+
+
 ```go
 ```
 
@@ -587,7 +635,10 @@ package comment.
 A return value of nil indicates no match.
 
 
+
 <a id="example_Regexp_FindStringSubmatch">Example</a>
+
+
 ```go
 ```
 
@@ -616,7 +667,10 @@ comment.
 A return value of nil indicates no match.
 
 
+
 <a id="example_Regexp_FindSubmatch">Example</a>
+
+
 ```go
 ```
 
@@ -663,7 +717,10 @@ Match reports whether the byte slice b
 contains any match of the regular expression re.
 
 
+
 <a id="example_Regexp_Match">Example</a>
+
+
 ```go
 ```
 
@@ -686,7 +743,10 @@ MatchString reports whether the string s
 contains any match of the regular expression re.
 
 
+
 <a id="example_Regexp_MatchString">Example</a>
+
+
 ```go
 ```
 
@@ -737,7 +797,10 @@ with the replacement string repl. The replacement repl is substituted directly,
 without using Expand.
 
 
+
 <a id="example_Regexp_ReplaceAllLiteralString">Example</a>
+
+
 ```go
 ```
 
@@ -753,7 +816,10 @@ with the replacement string repl. Inside repl, $ signs are interpreted as
 in Expand, so for instance $1 represents the text of the first submatch.
 
 
+
 <a id="example_Regexp_ReplaceAllString">Example</a>
+
+
 ```go
 ```
 
@@ -770,7 +836,10 @@ to the matched substring. The replacement returned by repl is substituted
 directly, without using Expand.
 
 
+
 <a id="example_Regexp_ReplaceAllStringFunc">Example</a>
+
+
 ```go
 ```
 
@@ -802,7 +871,10 @@ The count determines the number of substrings to return:
 	n < 0: all substrings
 
 
+
 <a id="example_Regexp_Split">Example</a>
+
+
 ```go
 ```
 
@@ -827,7 +899,10 @@ Since the Regexp as a whole cannot be named, names[0] is always
 the empty string. The slice should not be modified.
 
 
+
 <a id="example_Regexp_SubexpNames">Example</a>
+
+
 ```go
 ```
 

@@ -339,7 +339,10 @@ until the timer fires. If efficiency is a concern, use NewTimer
 instead and call Timer.Stop if the timer is no longer needed.
 
 
+
 <a id="example_After">Example</a>
+
+
 ```go
 ```
 
@@ -353,7 +356,10 @@ Sleep pauses the current goroutine for at least the duration d.
 A negative or zero duration causes Sleep to return immediately.
 
 
+
 <a id="example_Sleep">Example</a>
+
+
 ```go
 ```
 
@@ -370,7 +376,10 @@ Ticker cannot be recovered by the garbage collector; it "leaks".
 Unlike NewTicker, Tick will return nil if d <= 0.
 
 
+
 <a id="example_Tick">Example</a>
+
+
 ```go
 ```
 
@@ -392,7 +401,10 @@ largest representable duration to approximately 290 years.
 
 
 
+
 <a id="example_Duration">Example</a>
+
+
 ```go
 ```
 
@@ -412,7 +424,10 @@ such as "300ms", "-1.5h" or "2h45m".
 Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h".
 
 
+
 <a id="example_ParseDuration">Example</a>
+
+
 ```go
 ```
 
@@ -444,7 +459,10 @@ It is shorthand for t.Sub(time.Now()).
 Hours returns the duration as a floating point number of hours.
 
 
+
 <a id="example_Duration_Hours">Example</a>
+
+
 ```go
 ```
 
@@ -472,7 +490,10 @@ Milliseconds returns the duration as an integer millisecond count.
 Minutes returns the duration as a floating point number of minutes.
 
 
+
 <a id="example_Duration_Minutes">Example</a>
+
+
 ```go
 ```
 
@@ -486,7 +507,10 @@ output:
 Nanoseconds returns the duration as an integer nanosecond count.
 
 
+
 <a id="example_Duration_Nanoseconds">Example</a>
+
+
 ```go
 ```
 
@@ -505,7 +529,10 @@ Round returns the maximum (or minimum) duration.
 If m <= 0, Round returns d unchanged.
 
 
+
 <a id="example_Duration_Round">Example</a>
+
+
 ```go
 ```
 
@@ -519,7 +546,10 @@ output:
 Seconds returns the duration as a floating point number of seconds.
 
 
+
 <a id="example_Duration_Seconds">Example</a>
+
+
 ```go
 ```
 
@@ -536,7 +566,10 @@ second format use a smaller unit (milli-, micro-, or nanoseconds) to ensure
 that the leading digit is non-zero. The zero duration formats as 0s.
 
 
+
 <a id="example_Duration_String">Example</a>
+
+
 ```go
 ```
 
@@ -551,7 +584,10 @@ Truncate returns the result of rounding d toward zero to a multiple of m.
 If m <= 0, Truncate returns d unchanged.
 
 
+
 <a id="example_Duration_Truncate">Example</a>
+
+
 ```go
 ```
 
@@ -583,7 +619,10 @@ UTC represents Universal Coordinated Time (UTC).
 
 <pre>var <span id="UTC">UTC</span> *<a href="#Location">Location</a> = &amp;utcLoc</pre>
 
+
 <a id="example_Location">Example</a>
+
+
 ```go
 ```
 
@@ -600,7 +639,10 @@ FixedZone returns a Location that always uses
 the given zone name and offset (seconds east of UTC).
 
 
+
 <a id="example_FixedZone">Example</a>
+
+
 ```go
 ```
 
@@ -627,7 +669,10 @@ known installation locations on Unix systems,
 and finally looks in $GOROOT/lib/time/zoneinfo.zip.
 
 
+
 <a id="example_LoadLocation">Example</a>
+
+
 ```go
 ```
 
@@ -681,7 +726,10 @@ A Month specifies a month of the year (January = 1, ...).
 
 
 
+
 <a id="example_Month">Example</a>
+
+
 ```go
 ```
 
@@ -759,7 +807,10 @@ The duration d must be greater than zero; if not, NewTicker will panic.
 Stop the ticker to release associated resources.
 
 
+
 <a id="example_NewTicker">Example</a>
+
+
 ```go
 ```
 
@@ -861,7 +912,10 @@ in the transition, but it does not guarantee which.
 Date panics if loc is nil.
 
 
+
 <a id="example_Date">Example</a>
+
+
 ```go
 ```
 
@@ -922,7 +976,10 @@ differ by the actual zone offset. To avoid such problems, prefer time layouts
 that use a numeric zone offset, or use ParseInLocation.
 
 
+
 <a id="example_Parse">Example</a>
+
+
 ```go
 ```
 
@@ -940,7 +997,10 @@ Second, when given a zone offset or abbreviation, Parse tries to match it
 against the Local location; ParseInLocation uses the given location.
 
 
+
 <a id="example_ParseInLocation">Example</a>
+
+
 ```go
 ```
 
@@ -967,7 +1027,10 @@ value is 1<<63-1 (the largest int64 value).
 Add returns the time t+d.
 
 
+
 <a id="example_Time_Add">Example</a>
+
+
 ```go
 ```
 
@@ -988,7 +1051,10 @@ so, for example, adding one month to October 31 yields
 December 1, the normalized form for November 31.
 
 
+
 <a id="example_Time_AddDate">Example</a>
+
+
 ```go
 ```
 
@@ -1002,7 +1068,10 @@ output:
 After reports whether the time instant t is after u.
 
 
+
 <a id="example_Time_After">Example</a>
+
+
 ```go
 ```
 
@@ -1017,7 +1086,10 @@ AppendFormat is like Format but appends the textual
 representation to b and returns the extended buffer.
 
 
+
 <a id="example_Time_AppendFormat">Example</a>
+
+
 ```go
 ```
 
@@ -1031,7 +1103,10 @@ output:
 Before reports whether the time instant t is before u.
 
 
+
 <a id="example_Time_Before">Example</a>
+
+
 ```go
 ```
 
@@ -1052,7 +1127,10 @@ Clock returns the hour, minute, and second within the day specified by t.
 Date returns the year, month, and day in which t occurs.
 
 
+
 <a id="example_Time_Date">Example</a>
+
+
 ```go
 ```
 
@@ -1066,7 +1144,10 @@ output:
 Day returns the day of the month specified by t.
 
 
+
 <a id="example_Time_Day">Example</a>
+
+
 ```go
 ```
 
@@ -1084,7 +1165,10 @@ See the documentation on the Time type for the pitfalls of using == with
 Time values; most code should use Equal instead.
 
 
+
 <a id="example_Time_Equal">Example</a>
+
+
 ```go
 ```
 
@@ -1116,7 +1200,10 @@ about the formats and the definition of the reference time, see the
 documentation for ANSIC and the other constants defined by this package.
 
 
+
 <a id="example_Time_Format">Example</a>
+
+
 ```go
 ```
 
@@ -1246,7 +1333,10 @@ time. Thus, Round(Hour) may return a time with a non-zero
 minute, depending on the time's Location.
 
 
+
 <a id="example_Time_Round">Example</a>
+
+
 ```go
 ```
 
@@ -1278,7 +1368,10 @@ representation, use t.MarshalText, t.MarshalBinary, or t.Format
 with an explicit format string.
 
 
+
 <a id="example_Time_String">Example</a>
+
+
 ```go
 ```
 
@@ -1295,7 +1388,10 @@ will be returned.
 To compute t-d for a duration d, use t.Add(-d).
 
 
+
 <a id="example_Time_Sub">Example</a>
+
+
 ```go
 ```
 
@@ -1315,7 +1411,10 @@ time. Thus, Truncate(Hour) may return a time with a non-zero
 minute, depending on the time's Location.
 
 
+
 <a id="example_Time_Truncate">Example</a>
+
+
 ```go
 ```
 
@@ -1338,7 +1437,10 @@ since January 1, 1970 UTC. The result does not depend on the
 location associated with t.
 
 
+
 <a id="example_Time_Unix">Example</a>
+
+
 ```go
 ```
 

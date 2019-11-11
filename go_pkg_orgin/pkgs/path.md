@@ -63,7 +63,10 @@ If the path is empty, Base returns ".".
 If the path consists entirely of slashes, Base returns "/".
 
 
+
 <a id="example_Base">Example</a>
+
+
 ```go
 ```
 
@@ -95,7 +98,10 @@ Getting Dot-Dot Right,''
 <a href="https://9p.io/sys/doc/lexnames.html">https://9p.io/sys/doc/lexnames.html</a>
 
 
+
 <a id="example_Clean">Example</a>
+
+
 ```go
 ```
 
@@ -114,7 +120,10 @@ returns a single slash. In any other case, the returned path does not end in a
 slash.
 
 
+
 <a id="example_Dir">Example</a>
+
+
 ```go
 ```
 
@@ -130,7 +139,10 @@ in the final slash-separated element of path;
 it is empty if there is no dot.
 
 
+
 <a id="example_Ext">Example</a>
+
+
 ```go
 ```
 
@@ -143,7 +155,10 @@ output:
 IsAbs reports whether the path is absolute.
 
 
+
 <a id="example_IsAbs">Example</a>
+
+
 ```go
 ```
 
@@ -158,7 +173,10 @@ separating slash if necessary. The result is Cleaned; in particular,
 all empty strings are ignored.
 
 
+
 <a id="example_Join">Example</a>
+
+
 ```go
 ```
 
@@ -192,7 +210,10 @@ The only possible returned error is ErrBadPattern, when pattern
 is malformed.
 
 
+
 <a id="example_Match">Example</a>
+
+
 ```go
 ```
 
@@ -209,7 +230,10 @@ file set to path.
 The returned values have the property that path = dir+file.
 
 
+
 <a id="example_Split">Example</a>
+
+
 ```go
 ```
 

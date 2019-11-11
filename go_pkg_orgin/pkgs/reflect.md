@@ -296,7 +296,10 @@ The zero Kind is not a valid kind.
 
 
 
+
 <a id="example_Kind">Example</a>
+
+
 ```go
 ```
 
@@ -545,7 +548,10 @@ characters and Go string literal syntax.
 
 
 
+
 <a id="example_StructTag">Example</a>
+
+
 ```go
 ```
 
@@ -579,7 +585,10 @@ the tag string. If the tag does not have the conventional format,
 the value returned by Lookup is unspecified.
 
 
+
 <a id="example_StructTag_Lookup">Example</a>
+
+
 ```go
 ```
 
@@ -845,7 +854,10 @@ fields and panics if passed unexported StructFields.
 These limitations may be lifted in a future version.
 
 
+
 <a id="example_StructOf">Example</a>
+
+
 ```go
 ```
 
@@ -860,7 +872,10 @@ TypeOf returns the reflection Type that represents the dynamic type of i.
 If i is a nil interface value, TypeOf returns nil.
 
 
+
 <a id="example_TypeOf">Example</a>
+
+
 ```go
 ```
 
@@ -966,7 +981,10 @@ The Examples section of the documentation includes an illustration
 of how to use MakeFunc to build a swap function for different types.
 
 
+
 <a id="example_MakeFunc">Example</a>
+
+
 ```go
 ```
 

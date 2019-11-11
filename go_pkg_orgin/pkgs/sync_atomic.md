@@ -294,25 +294,31 @@ A Value must not be copied after first use.
 
 
 
-<a id="example_Value_config">Example (Config)</a>
-```go
-```
 
-output:
-```txt
-```
+<a id="example_Value_config">Example (Config)</a>
 <p>The following example shows how to use Value for periodic program config updates
 and propagation of the changes to worker goroutines.
-</p><a id="example_Value_readMostly">Example (ReadMostly)</a>
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
+<a id="example_Value_readMostly">Example (ReadMostly)</a>
 <p>The following example shows how to maintain a scalable frequently read,
 but infrequently updated data structure using copy-on-write idiom.
 </p>
+
+```go
+```
+
+output:
+```txt
+```
+
 
 
 

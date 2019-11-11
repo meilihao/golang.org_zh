@@ -59,7 +59,10 @@ New returns a new cookie jar. A nil *Options is equivalent to a zero
 Options.
 
 
+
 <a id="example_New">Example</a>
+
+
 ```go
 ```
 

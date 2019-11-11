@@ -13,35 +13,44 @@ RFC 1951.  The gzip and zlib packages implement access to DEFLATE-based file
 formats.
 
 
-<a id="example__dictionary">Example (Dictionary)</a>
-```go
-```
 
-output:
-```txt
-```
+<a id="example__dictionary">Example (Dictionary)</a>
 <p>A preset dictionary can be used to improve the compression ratio.
 The downside to using a dictionary is that the compressor and decompressor
 must agree in advance what dictionary to use.
-</p><a id="example__reset">Example (Reset)</a>
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
+<a id="example__reset">Example (Reset)</a>
 <p>In performance critical applications, Reset can be used to discard the
 current compressor or decompressor state and reinitialize them quickly
 by taking advantage of previously allocated memory.
-</p><a id="example__synchronization">Example (Synchronization)</a>
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
+<a id="example__synchronization">Example (Synchronization)</a>
 <p>DEFLATE is suitable for transmitting compressed data across the network.
 </p>
+
+```go
+```
+
+output:
+```txt
+```
+
 
 ## <a id="pkg-index">Index</a>
 * [Constants](#pkg-constants)

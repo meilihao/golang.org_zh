@@ -65,7 +65,10 @@ is preferable to
 because the former will succeed if err wraps an *os.PathError.
 
 
+
 <a id="example_">Example</a>
+
+
 ```go
 ```
 
@@ -113,7 +116,10 @@ As will panic if target is not a non-nil pointer to either a type that implement
 error, or to any interface type. As returns false if err is nil.
 
 
+
 <a id="example_As">Example</a>
+
+
 ```go
 ```
 
@@ -139,23 +145,29 @@ New returns an error that formats as the given text.
 Each call to New returns a distinct error value even if the text is identical.
 
 
+
 <a id="example_New">Example</a>
+
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
 <a id="example_New_errorf">Example (Errorf)</a>
-```go
-```
-
-output:
-```txt
-```
 <p>The fmt package&#39;s Errorf function lets us use the package&#39;s formatting
 features to create descriptive error messages.
 </p>
+
+```go
+```
+
+output:
+```txt
+```
+
 ## <a id="Unwrap">func</a> [Unwrap](https://golang.org/src/errors/wrap.go?s=372:400#L4)
 <pre>func Unwrap(err <a href="/pkg/builtin/#error">error</a>) <a href="/pkg/builtin/#error">error</a></pre>
 Unwrap returns the result of calling the Unwrap method on err, if err's

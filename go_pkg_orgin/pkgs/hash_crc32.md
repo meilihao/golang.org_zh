@@ -131,7 +131,10 @@ MakeTable returns a Table constructed from the specified polynomial.
 The contents of this Table must not be modified.
 
 
+
 <a id="example_MakeTable">Example</a>
+
+
 ```go
 ```
 

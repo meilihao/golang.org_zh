@@ -86,7 +86,10 @@ PutUvarint encodes a uint64 into buf and returns the number of bytes written.
 If the buffer is too small, PutUvarint will panic.
 
 
+
 <a id="example_PutUvarint">Example</a>
+
+
 ```go
 ```
 
@@ -100,7 +103,10 @@ PutVarint encodes an int64 into buf and returns the number of bytes written.
 If the buffer is too small, PutVarint will panic.
 
 
+
 <a id="example_PutVarint">Example</a>
+
+
 ```go
 ```
 
@@ -128,14 +134,20 @@ If an EOF happens after reading some but not all the bytes,
 Read returns ErrUnexpectedEOF.
 
 
+
 <a id="example_Read">Example</a>
+
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
 <a id="example_Read_multi">Example (Multi)</a>
+
+
 ```go
 ```
 
@@ -175,7 +187,10 @@ and the number of bytes n is <= 0 meaning:
 	        and -n is the number of bytes read
 
 
+
 <a id="example_Uvarint">Example</a>
+
+
 ```go
 ```
 
@@ -195,7 +210,10 @@ and the number of bytes n is <= 0 with the following meaning:
 	        and -n is the number of bytes read
 
 
+
 <a id="example_Varint">Example</a>
+
+
 ```go
 ```
 
@@ -215,14 +233,20 @@ When writing structs, zero values are written for fields
 with blank (_) field names.
 
 
+
 <a id="example_Write">Example</a>
+
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
 <a id="example_Write_multi">Example (Multi)</a>
+
+
 ```go
 ```
 
@@ -251,14 +275,20 @@ A ByteOrder specifies how to convert byte sequences into
 
 
 
+
 <a id="example_ByteOrder_get">Example (Get)</a>
+
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
 <a id="example_ByteOrder_put">Example (Put)</a>
+
+
 ```go
 ```
 

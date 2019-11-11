@@ -12,14 +12,20 @@ Package xml implements a simple XML 1.0 parser that
 understands XML name spaces.
 
 
+
 <a id="example__customMarshalXML">Example (CustomMarshalXML)</a>
+
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
 <a id="example__textMarshalXML">Example (TextMarshalXML)</a>
+
+
 ```go
 ```
 
@@ -204,7 +210,10 @@ indented line that starts with prefix and is followed by one or more
 copies of indent according to the nesting depth.
 
 
+
 <a id="example_MarshalIndent">Example</a>
+
+
 ```go
 ```
 
@@ -325,18 +334,21 @@ If the field is a slice, a zero value will be appended to the field. Otherwise, 
 field will be set to its zero value.
 
 
+
 <a id="example_Unmarshal">Example</a>
+<p>This example demonstrates unmarshaling an XML excerpt into a value with
+some preset fields. Note that the Phone field isn&#39;t modified and that
+the XML &lt;Company&gt; element is ignored. Also, the Groups field is assigned
+considering the element path provided in its tag.
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
-<p>This example demonstrates unmarshaling an XML excerpt into a value with
-some preset fields. Note that the Phone field isn&#39;t modified and that
-the XML &lt;Company&gt; element is ignored. Also, the Groups field is assigned
-considering the element path provided in its tag.
-</p>
+
 
 
 ## <a id="Attr">type</a> [Attr](https://golang.org/src/encoding/xml/xml.go?s=1131:1177#L38)
@@ -608,7 +620,10 @@ An Encoder writes XML data to an output stream.
 
 
 
+
 <a id="example_Encoder">Example</a>
+
+
 ```go
 ```
 

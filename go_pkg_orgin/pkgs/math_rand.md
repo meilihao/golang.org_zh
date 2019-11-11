@@ -24,23 +24,29 @@ For random numbers suitable for security-sensitive work, see the crypto/rand
 package.
 
 
+
 <a id="example_">Example</a>
+
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
 <a id="example__rand">Example (Rand)</a>
-```go
-```
-
-output:
-```txt
-```
 <p>This example shows the use of each of the methods on a *Rand.
 The use of the global functions is the same, without the receiver.
 </p>
+
+```go
+```
+
+output:
+```txt
+```
+
 
 ## <a id="pkg-index">Index</a>
 * [func ExpFloat64() float64](#ExpFloat64)
@@ -172,7 +178,10 @@ from the default Source.
 It panics if n <= 0.
 
 
+
 <a id="example_Intn">Example</a>
+
+
 ```go
 ```
 
@@ -200,7 +209,10 @@ Perm returns, as a slice of n ints, a pseudo-random permutation of the integers 
 from the default Source.
 
 
+
 <a id="example_Perm">Example</a>
+
+
 ```go
 ```
 
@@ -233,14 +245,20 @@ n is the number of elements. Shuffle panics if n < 0.
 swap swaps the elements with indexes i and j.
 
 
+
 <a id="example_Shuffle">Example</a>
+
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
 <a id="example_Shuffle_slicesInUnison">Example (SlicesInUnison)</a>
+
+
 ```go
 ```
 

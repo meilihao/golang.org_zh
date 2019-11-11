@@ -12,7 +12,10 @@ Package gzip implements reading and writing of gzip format compressed files,
 as specified in RFC 1952.
 
 
+
 <a id="example__writerReader">Example (WriterReader)</a>
+
+
 ```go
 ```
 
@@ -175,7 +178,10 @@ To start the next stream, call z.Reset(r) followed by z.Multistream(false).
 If there is no next stream, z.Reset(r) will return io.EOF.
 
 
+
 <a id="example_Reader_Multistream">Example</a>
+
+
 ```go
 ```
 

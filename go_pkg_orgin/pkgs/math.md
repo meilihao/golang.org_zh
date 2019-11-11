@@ -179,7 +179,10 @@ Special cases are:
 	Abs(NaN) = NaN
 
 
+
 <a id="example_Abs">Example</a>
+
+
 ```go
 ```
 
@@ -197,7 +200,10 @@ Special case is:
 	Acos(x) = NaN if x < -1 or x > 1
 
 
+
 <a id="example_Acos">Example</a>
+
+
 ```go
 ```
 
@@ -217,7 +223,10 @@ Special cases are:
 	Acosh(NaN) = NaN
 
 
+
 <a id="example_Acosh">Example</a>
+
+
 ```go
 ```
 
@@ -236,7 +245,10 @@ Special cases are:
 	Asin(x) = NaN if x < -1 or x > 1
 
 
+
 <a id="example_Asin">Example</a>
+
+
 ```go
 ```
 
@@ -256,7 +268,10 @@ Special cases are:
 	Asinh(NaN) = NaN
 
 
+
 <a id="example_Asinh">Example</a>
+
+
 ```go
 ```
 
@@ -275,7 +290,10 @@ Special cases are:
 	Atan(±Inf) = ±Pi/2
 
 
+
 <a id="example_Atan">Example</a>
+
+
 ```go
 ```
 
@@ -311,7 +329,10 @@ Special cases are (in order):
 	Atan2(-Inf, x) = -Pi/2
 
 
+
 <a id="example_Atan2">Example</a>
+
+
 ```go
 ```
 
@@ -333,7 +354,10 @@ Special cases are:
 	Atanh(NaN) = NaN
 
 
+
 <a id="example_Atanh">Example</a>
+
+
 ```go
 ```
 
@@ -366,7 +390,10 @@ Special cases are:
 	Ceil(NaN) = NaN
 
 
+
 <a id="example_Ceil">Example</a>
+
+
 ```go
 ```
 
@@ -392,7 +419,10 @@ Special cases are:
 	Cos(NaN) = NaN
 
 
+
 <a id="example_Cos">Example</a>
+
+
 ```go
 ```
 
@@ -412,7 +442,10 @@ Special cases are:
 	Cosh(NaN) = NaN
 
 
+
 <a id="example_Cosh">Example</a>
+
+
 ```go
 ```
 
@@ -572,7 +605,10 @@ Special cases are:
 	Floor(NaN) = NaN
 
 
+
 <a id="example_Floor">Example</a>
+
+
 ```go
 ```
 
@@ -740,7 +776,10 @@ Special cases are:
 	Log(NaN) = NaN
 
 
+
 <a id="example_Log">Example</a>
+
+
 ```go
 ```
 
@@ -754,7 +793,10 @@ Log10 returns the decimal logarithm of x.
 The special cases are the same as for Log.
 
 
+
 <a id="example_Log10">Example</a>
+
+
 ```go
 ```
 
@@ -784,7 +826,10 @@ Log2 returns the binary logarithm of x.
 The special cases are the same as for Log.
 
 
+
 <a id="example_Log2">Example</a>
+
+
 ```go
 ```
 
@@ -848,7 +893,10 @@ Special cases are:
 	Mod(x, NaN) = NaN
 
 
+
 <a id="example_Mod">Example</a>
+
+
 ```go
 ```
 
@@ -930,7 +978,10 @@ Special cases are (in order):
 	Pow(x, y) = NaN for finite x < 0 and finite non-integer y
 
 
+
 <a id="example_Pow">Example</a>
+
+
 ```go
 ```
 
@@ -949,7 +1000,10 @@ Special cases are:
 	Pow10(n) = +Inf for n > 308
 
 
+
 <a id="example_Pow10">Example</a>
+
+
 ```go
 ```
 
@@ -984,7 +1038,10 @@ Special cases are:
 	Round(NaN) = NaN
 
 
+
 <a id="example_Round">Example</a>
+
+
 ```go
 ```
 
@@ -1004,7 +1061,10 @@ Special cases are:
 	RoundToEven(NaN) = NaN
 
 
+
 <a id="example_RoundToEven">Example</a>
+
+
 ```go
 ```
 
@@ -1030,7 +1090,10 @@ Special cases are:
 	Sin(NaN) = NaN
 
 
+
 <a id="example_Sin">Example</a>
+
+
 ```go
 ```
 
@@ -1050,7 +1113,10 @@ Special cases are:
 	Sincos(NaN) = NaN, NaN
 
 
+
 <a id="example_Sincos">Example</a>
+
+
 ```go
 ```
 
@@ -1070,7 +1136,10 @@ Special cases are:
 	Sinh(NaN) = NaN
 
 
+
 <a id="example_Sinh">Example</a>
+
+
 ```go
 ```
 
@@ -1091,7 +1160,10 @@ Special cases are:
 	Sqrt(NaN) = NaN
 
 
+
 <a id="example_Sqrt">Example</a>
+
+
 ```go
 ```
 
@@ -1111,7 +1183,10 @@ Special cases are:
 	Tan(NaN) = NaN
 
 
+
 <a id="example_Tan">Example</a>
+
+
 ```go
 ```
 
@@ -1131,7 +1206,10 @@ Special cases are:
 	Tanh(NaN) = NaN
 
 
+
 <a id="example_Tanh">Example</a>
+
+
 ```go
 ```
 

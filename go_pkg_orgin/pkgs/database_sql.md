@@ -22,14 +22,20 @@ For usage examples, see the wiki page at
 <a href="https://golang.org/s/sqlwiki">https://golang.org/s/sqlwiki</a>.
 
 
+
 <a id="example__openDBCLI">Example (OpenDBCLI)</a>
+
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
 <a id="example__openDBService">Example (OpenDBService)</a>
+
+
 ```go
 ```
 
@@ -312,7 +318,10 @@ If a non-default isolation level is used that the driver doesn't support,
 an error will be returned.
 
 
+
 <a id="example_Conn_BeginTx">Example</a>
+
+
 ```go
 ```
 
@@ -338,7 +347,10 @@ ExecContext executes a query without returning any rows.
 The args are for any placeholder parameters in the query.
 
 
+
 <a id="example_Conn_ExecContext">Example</a>
+
+
 ```go
 ```
 
@@ -544,7 +556,10 @@ ExecContext executes a query without returning any rows.
 The args are for any placeholder parameters in the query.
 
 
+
 <a id="example_DB_ExecContext">Example</a>
+
+
 ```go
 ```
 
@@ -567,7 +582,10 @@ PingContext verifies a connection to the database is still alive,
 establishing a connection if necessary.
 
 
+
 <a id="example_DB_PingContext">Example</a>
+
+
 ```go
 ```
 
@@ -585,7 +603,10 @@ The caller must call the statement's Close method
 when the statement is no longer needed.
 
 
+
 <a id="example_DB_Prepare">Example</a>
+
+
 ```go
 ```
 
@@ -614,7 +635,10 @@ Query executes a query that returns rows, typically a SELECT.
 The args are for any placeholder parameters in the query.
 
 
+
 <a id="example_DB_Query_multipleResultSets">Example (MultipleResultSets)</a>
+
+
 ```go
 ```
 
@@ -629,7 +653,10 @@ QueryContext executes a query that returns rows, typically a SELECT.
 The args are for any placeholder parameters in the query.
 
 
+
 <a id="example_DB_QueryContext">Example</a>
+
+
 ```go
 ```
 
@@ -660,7 +687,10 @@ Otherwise, the *Row's Scan scans the first selected row and discards
 the rest.
 
 
+
 <a id="example_DB_QueryRowContext">Example</a>
+
+
 ```go
 ```
 
@@ -1194,7 +1224,10 @@ of the result set. Use Next to advance from row to row.
 
 
 
+
 <a id="example_Rows">Example</a>
+
+
 ```go
 ```
 
@@ -1388,7 +1421,10 @@ prepare itself on the new connection automatically.
 
 
 
+
 <a id="example_Stmt">Example</a>
+
+
 ```go
 ```
 
@@ -1468,7 +1504,10 @@ Otherwise, the *Row's Scan scans the first selected row and discards
 the rest.
 
 
+
 <a id="example_Stmt_QueryRowContext">Example</a>
+
+
 ```go
 ```
 
@@ -1526,7 +1565,10 @@ ExecContext executes a query that doesn't return rows.
 For example: an INSERT and UPDATE.
 
 
+
 <a id="example_Tx_ExecContext">Example</a>
+
+
 ```go
 ```
 
@@ -1545,7 +1587,10 @@ be used once the transaction has been committed or rolled back.
 To use an existing prepared statement on this transaction, see Tx.Stmt.
 
 
+
 <a id="example_Tx_Prepare">Example</a>
+
+
 ```go
 ```
 
@@ -1613,7 +1658,10 @@ the rest.
 Rollback aborts the transaction.
 
 
+
 <a id="example_Tx_Rollback">Example</a>
+
+
 ```go
 ```
 

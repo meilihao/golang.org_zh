@@ -111,35 +111,44 @@ for scanning and (except for *Rat) the Formatter interface for formatted
 printing.
 
 
-<a id="example__eConvergents">Example (EConvergents)</a>
-```go
-```
 
-output:
-```txt
-```
+<a id="example__eConvergents">Example (EConvergents)</a>
 <p>This example demonstrates how to use big.Rat to compute the
 first 15 terms in the sequence of rational convergents for
 the constant e (base of natural logarithm).
-</p><a id="example__fibonacci">Example (Fibonacci)</a>
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
+<a id="example__fibonacci">Example (Fibonacci)</a>
 <p>This example demonstrates how to use big.Int to compute the smallest
 Fibonacci number with 100 decimal digits and to test whether it is prime.
-</p><a id="example__sqrt2">Example (Sqrt2)</a>
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
+<a id="example__sqrt2">Example (Sqrt2)</a>
 <p>This example shows how to use big.Float to compute the square root of 2 with
 a precision of 200 bits, and how to print the result as a decimal number.
 </p>
+
+```go
+```
+
+output:
+```txt
+```
+
 
 ## <a id="pkg-index">Index</a>
 * [Constants](#pkg-constants)
@@ -446,7 +455,10 @@ of Floats are not supported and may lead to errors.
 
 
 
+
 <a id="example_Float_shift">Example (Shift)</a>
+
+
 ```go
 ```
 
@@ -501,7 +513,10 @@ result. Add panics with ErrNaN if x and y are infinities with opposite
 signs. The value of z is undefined in that case.
 
 
+
 <a id="example_Float_Add">Example</a>
+
+
 ```go
 ```
 
@@ -528,7 +543,10 @@ Cmp compares x and y and returns:
 	+1 if x >  y
 
 
+
 <a id="example_Float_Cmp">Example</a>
+
+
 ```go
 ```
 
@@ -795,7 +813,10 @@ fmt.Scan for floating point values, which are:
 Scan doesn't handle ±Inf.
 
 
+
 <a id="example_Float_Scan">Example</a>
+
+
 ```go
 ```
 
@@ -1445,7 +1466,10 @@ the scanned number. It accepts the formats 'b' (binary), 'o' (octal),
 'd' (decimal), 'x' (lowercase hexadecimal), and 'X' (uppercase hexadecimal).
 
 
+
 <a id="example_Int_Scan">Example</a>
+
+
 ```go
 ```
 
@@ -1523,7 +1547,10 @@ are no other errors. If base != 0, underscores are not recognized
 and act like any other character that is not a valid digit.
 
 
+
 <a id="example_Int_SetString">Example</a>
+
+
 ```go
 ```
 
@@ -1802,7 +1829,10 @@ Scan is a support routine for fmt.Scanner. It accepts the formats
 'e', 'E', 'f', 'F', 'g', 'G', and 'v'. All formats are equivalent.
 
 
+
 <a id="example_Rat_Scan">Example</a>
+
+
 ```go
 ```
 
@@ -1875,7 +1905,10 @@ The entire string, not just a prefix, must be valid for success. If the
 operation failed, the value of z is undefined but the returned value is nil.
 
 
+
 <a id="example_Rat_SetString">Example</a>
+
+
 ```go
 ```
 
@@ -1947,7 +1980,10 @@ These constants define supported rounding modes.
 
 
 
+
 <a id="example_RoundingMode">Example</a>
+
+
 ```go
 ```
 

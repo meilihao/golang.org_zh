@@ -145,7 +145,10 @@ A blocking function should therefore explicitly start a new goroutine.
 Func.Release must be called to free up resources when the function will not be used any more.
 
 
+
 <a id="example_FuncOf">Example</a>
+
+
 ```go
 ```
 

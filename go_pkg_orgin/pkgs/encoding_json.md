@@ -16,14 +16,20 @@ See "JSON and Go" for an introduction to this package:
 <a href="https://golang.org/doc/articles/json_and_go.html">https://golang.org/doc/articles/json_and_go.html</a>
 
 
+
 <a id="example__customMarshalJSON">Example (CustomMarshalJSON)</a>
+
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
 <a id="example__textMarshalJSON">Example (TextMarshalJSON)</a>
+
+
 ```go
 ```
 
@@ -125,7 +131,10 @@ escaping within <script> tags, so an alternative JSON encoding must
 be used.
 
 
+
 <a id="example_HTMLEscape">Example</a>
+
+
 ```go
 ```
 
@@ -148,7 +157,10 @@ For example, if src has no trailing spaces, neither will dst;
 if src ends in a trailing newline, so will dst.
 
 
+
 <a id="example_Indent">Example</a>
+
+
 ```go
 ```
 
@@ -293,7 +305,10 @@ handle them. Passing cyclic structures to Marshal will result in
 an infinite recursion.
 
 
+
 <a id="example_Marshal">Example</a>
+
+
 ```go
 ```
 
@@ -308,7 +323,10 @@ Each JSON element in the output will begin on a new line beginning with prefix
 followed by one or more copies of indent according to the indentation nesting.
 
 
+
 <a id="example_MarshalIndent">Example</a>
+
+
 ```go
 ```
 
@@ -393,7 +411,10 @@ Instead, they are replaced by the Unicode replacement
 character U+FFFD.
 
 
+
 <a id="example_Unmarshal">Example</a>
+
+
 ```go
 ```
 
@@ -406,7 +427,10 @@ output:
 Valid reports whether data is a valid JSON encoding.
 
 
+
 <a id="example_Valid">Example</a>
+
+
 ```go
 ```
 
@@ -429,15 +453,18 @@ A Decoder reads and decodes JSON values from an input stream.
 
 
 
+
 <a id="example_Decoder">Example</a>
+<p>This example uses a Decoder to decode a stream of distinct JSON values.
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
-<p>This example uses a Decoder to decode a stream of distinct JSON values.
-</p>
+
 
 
 
@@ -470,15 +497,18 @@ See the documentation for Unmarshal for details about
 the conversion of JSON into a Go value.
 
 
+
 <a id="example_Decoder_Decode_stream">Example (Stream)</a>
+<p>This example uses a Decoder to decode a streaming array of JSON objects.
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
-<p>This example uses a Decoder to decode a streaming array of JSON objects.
-</p>
+
 
 ### <a id="Decoder.DisallowUnknownFields">func</a> (\*Decoder) [DisallowUnknownFields](https://golang.org/src/encoding/json/stream.go?s=1132:1175#L32)
 <pre>func (dec *<a href="#Decoder">Decoder</a>) DisallowUnknownFields()</pre>
@@ -512,15 +542,18 @@ to mark the start and end of arrays and objects.
 Commas and colons are elided.
 
 
+
 <a id="example_Decoder_Token">Example</a>
+<p>This example uses a Decoder to decode a stream of distinct JSON values.
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
-<p>This example uses a Decoder to decode a stream of distinct JSON values.
-</p>
+
 
 ### <a id="Decoder.UseNumber">func</a> (\*Decoder) [UseNumber](https://golang.org/src/encoding/json/stream.go?s=863:894#L27)
 <pre>func (dec *<a href="#Decoder">Decoder</a>) UseNumber()</pre>
@@ -762,23 +795,29 @@ be used to delay JSON decoding or precompute a JSON encoding.
 
 
 
+
 <a id="example_RawMessage_marshal">Example (Marshal)</a>
-```go
-```
-
-output:
-```txt
-```
 <p>This example uses RawMessage to use a precomputed JSON during marshal.
-</p><a id="example_RawMessage_unmarshal">Example (Unmarshal)</a>
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
+<a id="example_RawMessage_unmarshal">Example (Unmarshal)</a>
 <p>This example uses RawMessage to delay parsing part of a JSON message.
 </p>
+
+```go
+```
+
+output:
+```txt
+```
+
 
 
 

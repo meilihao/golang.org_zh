@@ -175,7 +175,10 @@ LeadingZeros returns the number of leading zero bits in x; the result is UintSiz
 LeadingZeros16 returns the number of leading zero bits in x; the result is 16 for x == 0.
 
 
+
 <a id="example_LeadingZeros16">Example</a>
+
+
 ```go
 ```
 
@@ -188,7 +191,10 @@ output:
 LeadingZeros32 returns the number of leading zero bits in x; the result is 32 for x == 0.
 
 
+
 <a id="example_LeadingZeros32">Example</a>
+
+
 ```go
 ```
 
@@ -201,7 +207,10 @@ output:
 LeadingZeros64 returns the number of leading zero bits in x; the result is 64 for x == 0.
 
 
+
 <a id="example_LeadingZeros64">Example</a>
+
+
 ```go
 ```
 
@@ -214,7 +223,10 @@ output:
 LeadingZeros8 returns the number of leading zero bits in x; the result is 8 for x == 0.
 
 
+
 <a id="example_LeadingZeros8">Example</a>
+
+
 ```go
 ```
 
@@ -233,7 +245,10 @@ Len returns the minimum number of bits required to represent x; the result is 0 
 Len16 returns the minimum number of bits required to represent x; the result is 0 for x == 0.
 
 
+
 <a id="example_Len16">Example</a>
+
+
 ```go
 ```
 
@@ -246,7 +261,10 @@ output:
 Len32 returns the minimum number of bits required to represent x; the result is 0 for x == 0.
 
 
+
 <a id="example_Len32">Example</a>
+
+
 ```go
 ```
 
@@ -259,7 +277,10 @@ output:
 Len64 returns the minimum number of bits required to represent x; the result is 0 for x == 0.
 
 
+
 <a id="example_Len64">Example</a>
+
+
 ```go
 ```
 
@@ -272,7 +293,10 @@ output:
 Len8 returns the minimum number of bits required to represent x; the result is 0 for x == 0.
 
 
+
 <a id="example_Len8">Example</a>
+
+
 ```go
 ```
 
@@ -315,7 +339,10 @@ This function's execution time does not depend on the inputs.
 OnesCount returns the number of one bits ("population count") in x.
 
 
+
 <a id="example_OnesCount">Example</a>
+
+
 ```go
 ```
 
@@ -328,7 +355,10 @@ output:
 OnesCount16 returns the number of one bits ("population count") in x.
 
 
+
 <a id="example_OnesCount16">Example</a>
+
+
 ```go
 ```
 
@@ -341,7 +371,10 @@ output:
 OnesCount32 returns the number of one bits ("population count") in x.
 
 
+
 <a id="example_OnesCount32">Example</a>
+
+
 ```go
 ```
 
@@ -354,7 +387,10 @@ output:
 OnesCount64 returns the number of one bits ("population count") in x.
 
 
+
 <a id="example_OnesCount64">Example</a>
+
+
 ```go
 ```
 
@@ -367,7 +403,10 @@ output:
 OnesCount8 returns the number of one bits ("population count") in x.
 
 
+
 <a id="example_OnesCount8">Example</a>
+
+
 ```go
 ```
 
@@ -386,7 +425,10 @@ Reverse returns the value of x with its bits in reversed order.
 Reverse16 returns the value of x with its bits in reversed order.
 
 
+
 <a id="example_Reverse16">Example</a>
+
+
 ```go
 ```
 
@@ -399,7 +441,10 @@ output:
 Reverse32 returns the value of x with its bits in reversed order.
 
 
+
 <a id="example_Reverse32">Example</a>
+
+
 ```go
 ```
 
@@ -412,7 +457,10 @@ output:
 Reverse64 returns the value of x with its bits in reversed order.
 
 
+
 <a id="example_Reverse64">Example</a>
+
+
 ```go
 ```
 
@@ -425,7 +473,10 @@ output:
 Reverse8 returns the value of x with its bits in reversed order.
 
 
+
 <a id="example_Reverse8">Example</a>
+
+
 ```go
 ```
 
@@ -448,7 +499,10 @@ ReverseBytes16 returns the value of x with its bytes in reversed order.
 This function's execution time does not depend on the inputs.
 
 
+
 <a id="example_ReverseBytes16">Example</a>
+
+
 ```go
 ```
 
@@ -463,7 +517,10 @@ ReverseBytes32 returns the value of x with its bytes in reversed order.
 This function's execution time does not depend on the inputs.
 
 
+
 <a id="example_ReverseBytes32">Example</a>
+
+
 ```go
 ```
 
@@ -478,7 +535,10 @@ ReverseBytes64 returns the value of x with its bytes in reversed order.
 This function's execution time does not depend on the inputs.
 
 
+
 <a id="example_ReverseBytes64">Example</a>
+
+
 ```go
 ```
 
@@ -503,7 +563,10 @@ To rotate x right by k bits, call RotateLeft16(x, -k).
 This function's execution time does not depend on the inputs.
 
 
+
 <a id="example_RotateLeft16">Example</a>
+
+
 ```go
 ```
 
@@ -519,7 +582,10 @@ To rotate x right by k bits, call RotateLeft32(x, -k).
 This function's execution time does not depend on the inputs.
 
 
+
 <a id="example_RotateLeft32">Example</a>
+
+
 ```go
 ```
 
@@ -535,7 +601,10 @@ To rotate x right by k bits, call RotateLeft64(x, -k).
 This function's execution time does not depend on the inputs.
 
 
+
 <a id="example_RotateLeft64">Example</a>
+
+
 ```go
 ```
 
@@ -551,7 +620,10 @@ To rotate x right by k bits, call RotateLeft8(x, -k).
 This function's execution time does not depend on the inputs.
 
 
+
 <a id="example_RotateLeft8">Example</a>
+
+
 ```go
 ```
 
@@ -600,7 +672,10 @@ TrailingZeros returns the number of trailing zero bits in x; the result is UintS
 TrailingZeros16 returns the number of trailing zero bits in x; the result is 16 for x == 0.
 
 
+
 <a id="example_TrailingZeros16">Example</a>
+
+
 ```go
 ```
 
@@ -613,7 +688,10 @@ output:
 TrailingZeros32 returns the number of trailing zero bits in x; the result is 32 for x == 0.
 
 
+
 <a id="example_TrailingZeros32">Example</a>
+
+
 ```go
 ```
 
@@ -626,7 +704,10 @@ output:
 TrailingZeros64 returns the number of trailing zero bits in x; the result is 64 for x == 0.
 
 
+
 <a id="example_TrailingZeros64">Example</a>
+
+
 ```go
 ```
 
@@ -639,7 +720,10 @@ output:
 TrailingZeros8 returns the number of trailing zero bits in x; the result is 8 for x == 0.
 
 
+
 <a id="example_TrailingZeros8">Example</a>
+
+
 ```go
 ```
 

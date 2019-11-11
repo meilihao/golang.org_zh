@@ -63,7 +63,10 @@ complex numbers.
 Abs returns the absolute value (also called the modulus) of x.
 
 
+
 <a id="example_Abs">Example</a>
+
+
 ```go
 ```
 
@@ -136,15 +139,18 @@ Cot returns the cotangent of x.
 Exp returns e**x, the base-e exponential of x.
 
 
+
 <a id="example_Exp">Example</a>
+<p>ExampleExp computes Euler&#39;s identity.
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
-<p>ExampleExp computes Euler&#39;s identity.
-</p>
+
 ## <a id="Inf">func</a> [Inf](https://golang.org/src/math/cmplx/isinf.go?s=434:455#L8)
 <pre>func Inf() <a href="/pkg/builtin/#complex128">complex128</a></pre>
 Inf returns a complex infinity, complex(+Inf, +Inf).
@@ -196,7 +202,10 @@ such that x = r * e**θi.
 The phase is in the range [-Pi, Pi].
 
 
+
 <a id="example_Polar">Example</a>
+
+
 ```go
 ```
 

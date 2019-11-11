@@ -11,7 +11,10 @@
 Package base64 implements base64 encoding as specified by RFC 4648.
 
 
+
 <a id="example_">Example</a>
+
+
 ```go
 ```
 
@@ -93,7 +96,10 @@ writing, the caller must Close the returned encoder to flush any
 partially written blocks.
 
 
+
 <a id="example_NewEncoder">Example</a>
+
+
 ```go
 ```
 
@@ -172,7 +178,10 @@ New line characters (\r and \n) are ignored.
 DecodeString returns the bytes represented by the base64 string s.
 
 
+
 <a id="example_Encoding_DecodeString">Example</a>
+
+
 ```go
 ```
 
@@ -206,7 +215,10 @@ of a large data stream. Use NewEncoder() instead.
 EncodeToString returns the base64 encoding of src.
 
 
+
 <a id="example_Encoding_EncodeToString">Example</a>
+
+
 ```go
 ```
 

@@ -72,7 +72,10 @@ diffusion.
 
 <pre>var <span id="FloydSteinberg">FloydSteinberg</span> <a href="#Drawer">Drawer</a> = floydSteinberg{}</pre>
 
+
 <a id="example_Drawer_floydSteinberg">Example (FloydSteinberg)</a>
+
+
 ```go
 ```
 

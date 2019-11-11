@@ -303,7 +303,10 @@ Once is an object that will perform exactly one action.
 
 
 
+
 <a id="example_Once">Example</a>
+
+
 ```go
 ```
 
@@ -391,7 +394,10 @@ A Pool must not be copied after first use.
 
 
 
+
 <a id="example_Pool">Example</a>
+
+
 ```go
 ```
 
@@ -524,16 +530,19 @@ A WaitGroup must not be copied after first use.
 
 
 
+
 <a id="example_WaitGroup">Example</a>
+<p>This example fetches several URLs concurrently,
+using a WaitGroup to block until all the fetches are complete.
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
-<p>This example fetches several URLs concurrently,
-using a WaitGroup to block until all the fetches are complete.
-</p>
+
 
 
 

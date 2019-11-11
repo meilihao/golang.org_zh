@@ -318,7 +318,10 @@ ed25519.PublicKey. More types might be supported in the future.
 This kind of key is commonly encoded in PEM blocks of type "PUBLIC KEY".
 
 
+
 <a id="example_ParsePKIXPublicKey">Example</a>
+
+
 ```go
 ```
 
@@ -584,7 +587,10 @@ list.
 WARNING: this function doesn't do any revocation checking.
 
 
+
 <a id="example_Certificate_Verify">Example</a>
+
+
 ```go
 ```
 

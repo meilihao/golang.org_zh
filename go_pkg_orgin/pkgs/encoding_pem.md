@@ -40,7 +40,10 @@ certificates. See RFC 1421.
 Encode writes the PEM encoding of b to out.
 
 
+
 <a id="example_Encode">Example</a>
+
+
 ```go
 ```
 
@@ -97,7 +100,10 @@ no PEM data is found, p is nil and the whole of the input is returned in
 rest.
 
 
+
 <a id="example_Decode">Example</a>
+
+
 ```go
 ```
 

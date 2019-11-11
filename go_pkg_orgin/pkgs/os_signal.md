@@ -274,14 +274,20 @@ and the same signals: each channel receives copies of incoming
 signals independently.
 
 
+
 <a id="example_Notify">Example</a>
+
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
 <a id="example_Notify_allSignals">Example (AllSignals)</a>
+
+
 ```go
 ```
 

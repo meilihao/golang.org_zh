@@ -53,7 +53,10 @@ NewCipher creates and returns a new cipher.Block.
 NewTripleDESCipher creates and returns a new cipher.Block.
 
 
+
 <a id="example_NewTripleDESCipher">Example</a>
+
+
 ```go
 ```
 

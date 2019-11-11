@@ -114,7 +114,10 @@ The label parameter must match the value given when encrypting. See
 EncryptOAEP for details.
 
 
+
 <a id="example_DecryptOAEP">Example</a>
+
+
 ```go
 ```
 
@@ -158,13 +161,8 @@ and thus whether the padding was correct. This defeats the point of this
 function. Using at least a 16-byte key will protect against this attack.
 
 
-<a id="example_DecryptPKCS1v15SessionKey">Example</a>
-```go
-```
 
-output:
-```txt
-```
+<a id="example_DecryptPKCS1v15SessionKey">Example</a>
 <p>RSA is able to encrypt only a very limited amount of data. In order
 to encrypt reasonable amounts of data a hybrid scheme is commonly
 used: RSA is used to encrypt a key for a symmetric primitive like
@@ -185,6 +183,14 @@ the decrypted, symmetric key (if well-formed) in constant-time over
 a buffer that contains a random key. Thus, if the RSA result isn&#39;t
 well-formed, the implementation uses a random key in constant time.
 </p>
+
+```go
+```
+
+output:
+```txt
+```
+
 ## <a id="EncryptOAEP">func</a> [EncryptOAEP](https://golang.org/src/crypto/rsa/rsa.go?s=11973:12081#L366)
 <pre>func EncryptOAEP(hash <a href="/pkg/hash/">hash</a>.<a href="/pkg/hash/#Hash">Hash</a>, random <a href="/pkg/io/">io</a>.<a href="/pkg/io/#Reader">Reader</a>, pub *<a href="#PublicKey">PublicKey</a>, msg []<a href="/pkg/builtin/#byte">byte</a>, label []<a href="/pkg/builtin/#byte">byte</a>) ([]<a href="/pkg/builtin/#byte">byte</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
 EncryptOAEP encrypts the given message with RSA-OAEP.
@@ -206,7 +212,10 @@ The message must be no longer than the length of the public modulus minus
 twice the hash length, minus a further 2.
 
 
+
 <a id="example_EncryptOAEP">Example</a>
+
+
 ```go
 ```
 
@@ -246,7 +255,10 @@ messages to signatures and identify the signed messages. As ever,
 signatures provide authenticity, not confidentiality.
 
 
+
 <a id="example_SignPKCS1v15">Example</a>
+
+
 ```go
 ```
 
@@ -272,7 +284,10 @@ returning a nil error. If hash is zero then hashed is used directly. This
 isn't advisable except for interoperability.
 
 
+
 <a id="example_VerifyPKCS1v15">Example</a>
+
+
 ```go
 ```
 

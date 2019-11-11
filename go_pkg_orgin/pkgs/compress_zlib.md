@@ -91,7 +91,10 @@ It is the caller's responsibility to call Close on the ReadCloser when done.
 The ReadCloser returned by NewReader also implements Resetter.
 
 
+
 <a id="example_NewReader">Example</a>
+
+
 ```go
 ```
 
@@ -160,7 +163,10 @@ It is the caller's responsibility to call Close on the Writer when done.
 Writes may be buffered and not flushed until Close.
 
 
+
 <a id="example_NewWriter">Example</a>
+
+
 ```go
 ```
 

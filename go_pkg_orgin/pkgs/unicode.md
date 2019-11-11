@@ -13,16 +13,19 @@ Package unicode provides data and functions to test some properties of
 Unicode code points.
 
 
+
 <a id="example__is">Example (Is)</a>
+<p>Functions starting with &#34;Is&#34; can be used to inspect which table of range a
+rune belongs to. Note that runes may fit into more than one range.
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
-<p>Functions starting with &#34;Is&#34; can be used to inspect which table of range a
-rune belongs to. Note that runes may fit into more than one range.
-</p>
+
 
 ## <a id="pkg-index">Index</a>
 * [Constants](#pkg-constants)
@@ -750,7 +753,10 @@ For example:
 	SimpleFold(-2) = -2
 
 
+
 <a id="example_SimpleFold">Example</a>
+
+
 ```go
 ```
 
@@ -763,7 +769,10 @@ output:
 To maps the rune to the specified case: UpperCase, LowerCase, or TitleCase.
 
 
+
 <a id="example_To">Example</a>
+
+
 ```go
 ```
 
@@ -776,7 +785,10 @@ output:
 ToLower maps the rune to lower case.
 
 
+
 <a id="example_ToLower">Example</a>
+
+
 ```go
 ```
 
@@ -789,7 +801,10 @@ output:
 ToTitle maps the rune to title case.
 
 
+
 <a id="example_ToTitle">Example</a>
+
+
 ```go
 ```
 
@@ -802,7 +817,10 @@ output:
 ToUpper maps the rune to upper case.
 
 
+
 <a id="example_ToUpper">Example</a>
+
+
 ```go
 ```
 
@@ -930,7 +948,10 @@ Methods of SpecialCase customize (by overriding) the standard mappings.
 
 <pre>var <span id="TurkishCase">TurkishCase</span> <a href="#SpecialCase">SpecialCase</a> = _TurkishCase</pre>
 
+
 <a id="example_SpecialCase">Example</a>
+
+
 ```go
 ```
 

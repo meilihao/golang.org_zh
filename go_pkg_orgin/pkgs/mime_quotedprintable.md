@@ -61,7 +61,10 @@ Reader is a quoted-printable decoder.
 NewReader returns a quoted-printable reader, decoding from r.
 
 
+
 <a id="example_NewReader">Example</a>
+
+
 ```go
 ```
 
@@ -104,7 +107,10 @@ A Writer is a quoted-printable writer that implements io.WriteCloser.
 NewWriter returns a new Writer that writes to w.
 
 
+
 <a id="example_NewWriter">Example</a>
+
+
 ```go
 ```
 

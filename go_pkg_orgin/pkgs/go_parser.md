@@ -99,7 +99,10 @@ representing the fragments of erroneous source code). Multiple errors
 are returned via a scanner.ErrorList which is sorted by file position.
 
 
+
 <a id="example_ParseFile">Example</a>
+
+
 ```go
 ```
 

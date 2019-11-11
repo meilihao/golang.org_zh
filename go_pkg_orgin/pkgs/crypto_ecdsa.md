@@ -16,7 +16,10 @@ ChopMD(256, SHA2-512(priv.D || entropy || hash)). The CSPRNG key is IRO by
 a result of Coron; the AES-CTR stream is IRO under standard assumptions.
 
 
+
 <a id="example_">Example</a>
+
+
 ```go
 ```
 

@@ -84,7 +84,10 @@ If file contains a slash, it is tried directly and the PATH is not consulted.
 The result may be an absolute path or a path relative to the current directory.
 
 
+
 <a id="example_LookPath">Example</a>
+
+
 ```go
 ```
 
@@ -217,14 +220,20 @@ quoting yourself and provide the full command line in SysProcAttr.CmdLine,
 leaving Args empty.
 
 
+
 <a id="example_Command">Example</a>
+
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
 <a id="example_Command_environment">Example (Environment)</a>
+
+
 ```go
 ```
 
@@ -242,7 +251,10 @@ os.Process.Kill) if the context becomes done before the command
 completes on its own.
 
 
+
 <a id="example_CommandContext">Example</a>
+
+
 ```go
 ```
 
@@ -259,7 +271,10 @@ CombinedOutput runs the command and returns its combined standard
 output and standard error.
 
 
+
 <a id="example_Cmd_CombinedOutput">Example</a>
+
+
 ```go
 ```
 
@@ -275,7 +290,10 @@ Any returned error will usually be of type *ExitError.
 If c.Stderr was nil, Output populates ExitError.Stderr.
 
 
+
 <a id="example_Cmd_Output">Example</a>
+
+
 ```go
 ```
 
@@ -301,7 +319,10 @@ thread state (for example, Linux or Plan 9 name spaces), the new
 process will inherit the caller's thread state.
 
 
+
 <a id="example_Cmd_Run">Example</a>
+
+
 ```go
 ```
 
@@ -318,7 +339,10 @@ The Wait method will return the exit code and release associated resources
 once the command exits.
 
 
+
 <a id="example_Cmd_Start">Example</a>
+
+
 ```go
 ```
 
@@ -339,7 +363,10 @@ For the same reason, it is incorrect to use Run when using StderrPipe.
 See the StdoutPipe example for idiomatic usage.
 
 
+
 <a id="example_Cmd_StderrPipe">Example</a>
+
+
 ```go
 ```
 
@@ -358,7 +385,10 @@ For example, if the command being run will not exit until standard input
 is closed, the caller must close the pipe.
 
 
+
 <a id="example_Cmd_StdinPipe">Example</a>
+
+
 ```go
 ```
 
@@ -379,7 +409,10 @@ For the same reason, it is incorrect to call Run when using StdoutPipe.
 See the example for idiomatic usage.
 
 
+
 <a id="example_Cmd_StdoutPipe">Example</a>
+
+
 ```go
 ```
 

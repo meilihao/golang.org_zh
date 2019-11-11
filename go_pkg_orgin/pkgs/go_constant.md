@@ -17,7 +17,10 @@ values produce unknown values unless specified
 otherwise.
 
 
+
 <a id="example__complexNumbers">Example (ComplexNumbers)</a>
+
+
 ```go
 ```
 
@@ -109,7 +112,10 @@ If one of the operands is Unknown, the result is
 false.
 
 
+
 <a id="example_Compare">Example</a>
+
+
 ```go
 ```
 
@@ -148,7 +154,10 @@ x must be numeric or Unknown. For complex values x, the sign is 0 if x == 0,
 otherwise it is != 0. If x is Unknown, the result is 1.
 
 
+
 <a id="example_Sign">Example</a>
+
+
 ```go
 ```
 
@@ -187,7 +196,10 @@ type. The possible dynamic return types are:
 	everything else    nil
 
 
+
 <a id="example_Val">Example</a>
+
+
 ```go
 ```
 
@@ -268,7 +280,10 @@ instead of token.QUO; the result is guaranteed to be Int in this case.
 Division by zero leads to a run-time panic.
 
 
+
 <a id="example_BinaryOp">Example</a>
+
+
 ```go
 ```
 
@@ -442,7 +457,10 @@ If prec > 0 it specifies the ^ (xor) result size in bits.
 If y is Unknown, the result is Unknown.
 
 
+
 <a id="example_UnaryOp">Example</a>
+
+
 ```go
 ```
 

@@ -21,25 +21,31 @@ highest-priority item from the queue. The Examples include such an
 implementation; the file example_pq_test.go has the complete source.
 
 
-<a id="example__intHeap">Example (IntHeap)</a>
-```go
-```
 
-output:
-```txt
-```
+<a id="example__intHeap">Example (IntHeap)</a>
 <p>This example inserts several ints into an IntHeap, checks the minimum,
 and removes them in order of priority.
-</p><a id="example__priorityQueue">Example (PriorityQueue)</a>
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
+<a id="example__priorityQueue">Example (PriorityQueue)</a>
 <p>This example creates a PriorityQueue with some items, adds and manipulates an item,
 and then removes the items in priority order.
 </p>
+
+```go
+```
+
+output:
+```txt
+```
+
 
 ## <a id="pkg-index">Index</a>
 * [func Fix(h Interface, i int)](#Fix)

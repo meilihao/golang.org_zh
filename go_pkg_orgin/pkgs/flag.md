@@ -91,7 +91,10 @@ analogous to the top-level functions for the command-line
 flag set.
 
 
+
 <a id="example_">Example</a>
+
+
 ```go
 ```
 
@@ -839,7 +842,10 @@ such as a nil pointer.
 
 
 
+
 <a id="example_Value">Example</a>
+
+
 ```go
 ```
 

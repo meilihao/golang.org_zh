@@ -448,7 +448,10 @@ For example, ParseCIDR("192.0.2.1/24") returns the IP address
 192.0.2.1 and the network 192.0.2.0/24.
 
 
+
 <a id="example_ParseCIDR">Example</a>
+
+
 ```go
 ```
 
@@ -1064,7 +1067,10 @@ IPv4 returns the IP address (in 16-byte form) of the
 IPv4 address a.b.c.d.
 
 
+
 <a id="example_IPv4">Example</a>
+
+
 ```go
 ```
 
@@ -1090,7 +1096,10 @@ If s is not a valid textual representation of an IP address,
 ParseIP returns nil.
 
 
+
 <a id="example_ParseIP">Example</a>
+
+
 ```go
 ```
 
@@ -1108,7 +1117,10 @@ Only IPv4 addresses have default masks; DefaultMask returns
 nil if ip is not a valid IPv4 address.
 
 
+
 <a id="example_IP_DefaultMask">Example</a>
+
+
 ```go
 ```
 
@@ -1200,7 +1212,10 @@ When len(ip) is zero, it returns an empty slice.
 Mask returns the result of masking the IP address ip with mask.
 
 
+
 <a id="example_IP_Mask">Example</a>
+
+
 ```go
 ```
 
@@ -1515,7 +1530,10 @@ followed by 0s up to a total length of `bits' bits.
 For a mask of this form, CIDRMask is the inverse of IPMask.Size.
 
 
+
 <a id="example_CIDRMask">Example</a>
+
+
 ```go
 ```
 
@@ -1530,7 +1548,10 @@ IPv4Mask returns the IP mask (in 4-byte form) of the
 IPv4 mask a.b.c.d.
 
 
+
 <a id="example_IPv4Mask">Example</a>
+
+
 ```go
 ```
 
@@ -1773,7 +1794,10 @@ Multiple goroutines may invoke methods on a Listener simultaneously.
 
 
 
+
 <a id="example_Listener">Example</a>
+
+
 ```go
 ```
 
@@ -2862,7 +2886,10 @@ used to manipulate IP-level socket options in oob.
 WriteTo implements the PacketConn WriteTo method.
 
 
+
 <a id="example_UDPConn_WriteTo">Example</a>
+
+
 ```go
 ```
 

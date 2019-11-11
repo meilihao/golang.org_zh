@@ -104,7 +104,10 @@ Lookup time is O(log(N)*len(s) + len(result)) where N is the
 size of the indexed data.
 
 
+
 <a id="example_Index_Lookup">Example</a>
+
+
 ```go
 ```
 

@@ -101,17 +101,20 @@ Canceling this context releases resources associated with it, so code should
 call cancel as soon as the operations running in this Context complete.
 
 
+
 <a id="example_WithCancel">Example</a>
+<p>This example demonstrates the use of a cancelable context to prevent a
+goroutine leak. By the end of the example function, the goroutine started
+by gen will return without leaking.
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
-<p>This example demonstrates the use of a cancelable context to prevent a
-goroutine leak. By the end of the example function, the goroutine started
-by gen will return without leaking.
-</p>
+
 ## <a id="WithDeadline">func</a> [WithDeadline](https://golang.org/src/context/context.go?s=12430:12498#L384)
 <pre>func WithDeadline(parent <a href="#Context">Context</a>, d <a href="/pkg/time/">time</a>.<a href="/pkg/time/#Time">Time</a>) (<a href="#Context">Context</a>, <a href="#CancelFunc">CancelFunc</a>)</pre>
 WithDeadline returns a copy of the parent context with the deadline adjusted
@@ -125,16 +128,19 @@ Canceling this context releases resources associated with it, so code should
 call cancel as soon as the operations running in this Context complete.
 
 
+
 <a id="example_WithDeadline">Example</a>
+<p>This example passes a context with an arbitrary deadline to tell a blocking
+function that it should abandon its work as soon as it gets to it.
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
-<p>This example passes a context with an arbitrary deadline to tell a blocking
-function that it should abandon its work as soon as it gets to it.
-</p>
+
 ## <a id="WithTimeout">func</a> [WithTimeout](https://golang.org/src/context/context.go?s=14448:14525#L453)
 <pre>func WithTimeout(parent <a href="#Context">Context</a>, timeout <a href="/pkg/time/">time</a>.<a href="/pkg/time/#Duration">Duration</a>) (<a href="#Context">Context</a>, <a href="#CancelFunc">CancelFunc</a>)</pre>
 WithTimeout returns WithDeadline(parent, time.Now().Add(timeout)).
@@ -150,16 +156,19 @@ call cancel as soon as the operations running in this Context complete:
 	}
 
 
+
 <a id="example_WithTimeout">Example</a>
+<p>This example passes a context with a timeout to tell a blocking function that
+it should abandon its work after the timeout elapses.
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
-<p>This example passes a context with a timeout to tell a blocking function that
-it should abandon its work after the timeout elapses.
-</p>
+
 
 
 ## <a id="CancelFunc">type</a> [CancelFunc](https://golang.org/src/context/context.go?s=7884:7906#L211)
@@ -325,16 +334,19 @@ struct{}. Alternatively, exported context key variables' static
 type should be a pointer or interface.
 
 
+
 <a id="example_WithValue">Example</a>
+<p>This example demonstrates how a value can be passed to the context
+and also how to retrieve it if it exists.
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
-<p>This example demonstrates how a value can be passed to the context
-and also how to retrieve it if it exists.
-</p>
+
 
 
 

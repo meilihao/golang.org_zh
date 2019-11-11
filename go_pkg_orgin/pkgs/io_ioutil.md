@@ -62,7 +62,10 @@ defined to read from src until EOF, it does not treat an EOF from Read
 as an error to be reported.
 
 
+
 <a id="example_ReadAll">Example</a>
+
+
 ```go
 ```
 
@@ -76,7 +79,10 @@ ReadDir reads the directory named by dirname and returns
 a list of directory entries sorted by filename.
 
 
+
 <a id="example_ReadDir">Example</a>
+
+
 ```go
 ```
 
@@ -92,7 +98,10 @@ reads the whole file, it does not treat an EOF from Read as an error
 to be reported.
 
 
+
 <a id="example_ReadFile">Example</a>
+
+
 ```go
 ```
 
@@ -111,7 +120,10 @@ will not choose the same directory. It is the caller's responsibility
 to remove the directory when no longer needed.
 
 
+
 <a id="example_TempDir">Example</a>
+
+
 ```go
 ```
 
@@ -134,14 +146,20 @@ to find the pathname of the file. It is the caller's responsibility
 to remove the file when no longer needed.
 
 
+
 <a id="example_TempFile">Example</a>
+
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
 <a id="example_TempFile_suffix">Example (Suffix)</a>
+
+
 ```go
 ```
 
@@ -156,7 +174,10 @@ If the file does not exist, WriteFile creates it with permissions perm;
 otherwise WriteFile truncates it before writing.
 
 
+
 <a id="example_WriteFile">Example</a>
+
+
 ```go
 ```
 

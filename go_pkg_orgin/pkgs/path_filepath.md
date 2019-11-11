@@ -96,7 +96,10 @@ If the path is empty, Base returns ".".
 If the path consists entirely of separators, Base returns a single separator.
 
 
+
 <a id="example_Base">Example</a>
+
+
 ```go
 ```
 
@@ -143,7 +146,10 @@ If the path consists entirely of separators, Dir returns a single separator.
 The returned path does not end in a separator unless it is the root directory.
 
 
+
 <a id="example_Dir">Example</a>
+
+
 ```go
 ```
 
@@ -169,7 +175,10 @@ in the final element of path; it is empty if there is
 no dot.
 
 
+
 <a id="example_Ext">Example</a>
+
+
 ```go
 ```
 
@@ -212,7 +221,10 @@ does not ignore case when required.
 IsAbs reports whether the path is absolute.
 
 
+
 <a id="example_IsAbs">Example</a>
+
+
 ```go
 ```
 
@@ -229,7 +241,10 @@ On Windows, the result is a UNC path if and only if the first path
 element is a UNC path.
 
 
+
 <a id="example_Join">Example</a>
+
+
 ```go
 ```
 
@@ -266,7 +281,10 @@ On Windows, escaping is disabled. Instead, '\\' is treated as
 path separator.
 
 
+
 <a id="example_Match">Example</a>
+
+
 ```go
 ```
 
@@ -286,7 +304,10 @@ knowing the current working directory would be necessary to compute it.
 Rel calls Clean on the result.
 
 
+
 <a id="example_Rel">Example</a>
+
+
 ```go
 ```
 
@@ -303,7 +324,10 @@ and file set to path.
 The returned values have the property that path = dir+file.
 
 
+
 <a id="example_Split">Example</a>
+
+
 ```go
 ```
 
@@ -319,7 +343,10 @@ Unlike strings.Split, SplitList returns an empty slice when passed an empty
 string.
 
 
+
 <a id="example_SplitList">Example</a>
+
+
 ```go
 ```
 
@@ -354,7 +381,10 @@ large directories Walk can be inefficient.
 Walk does not follow symbolic links.
 
 
+
 <a id="example_Walk">Example</a>
+
+
 ```go
 ```
 

@@ -150,7 +150,10 @@ Otherwise, if dst implements the ReaderFrom interface,
 the copy is implemented by calling dst.ReadFrom(src).
 
 
+
 <a id="example_Copy">Example</a>
+
+
 ```go
 ```
 
@@ -166,7 +169,10 @@ temporary one. If buf is nil, one is allocated; otherwise if it has
 zero length, CopyBuffer panics.
 
 
+
 <a id="example_CopyBuffer">Example</a>
+
+
 ```go
 ```
 
@@ -185,7 +191,10 @@ If dst implements the ReaderFrom interface,
 the copy is implemented using it.
 
 
+
 <a id="example_CopyN">Example</a>
+
+
 ```go
 ```
 
@@ -212,7 +221,10 @@ Parallel calls to Read and parallel calls to Write are also safe:
 the individual calls will be gated sequentially.
 
 
+
 <a id="example_Pipe">Example</a>
+
+
 ```go
 ```
 
@@ -232,7 +244,10 @@ On return, n >= min if and only if err == nil.
 If r returns an error having read at least min bytes, the error is dropped.
 
 
+
 <a id="example_ReadAtLeast">Example</a>
+
+
 ```go
 ```
 
@@ -251,7 +266,10 @@ On return, n == len(buf) if and only if err == nil.
 If r returns an error having read at least len(buf) bytes, the error is dropped.
 
 
+
 <a id="example_ReadFull">Example</a>
+
+
 ```go
 ```
 
@@ -266,7 +284,10 @@ If w implements StringWriter, its WriteString method is invoked directly.
 Otherwise, w.Write is called exactly once.
 
 
+
 <a id="example_WriteString">Example</a>
+
+
 ```go
 ```
 
@@ -632,7 +653,10 @@ but stops with EOF after n bytes.
 The underlying implementation is a *LimitedReader.
 
 
+
 <a id="example_LimitReader">Example</a>
+
+
 ```go
 ```
 
@@ -649,7 +673,10 @@ inputs have returned EOF, Read will return EOF.  If any of the readers
 return a non-nil, non-EOF error, Read will return that error.
 
 
+
 <a id="example_MultiReader">Example</a>
+
+
 ```go
 ```
 
@@ -667,7 +694,10 @@ the write must complete before the read completes.
 Any error encountered while writing is reported as a read error.
 
 
+
 <a id="example_TeeReader">Example</a>
+
+
 ```go
 ```
 
@@ -806,7 +836,10 @@ of an underlying ReaderAt.
 
 
 
+
 <a id="example_SectionReader">Example</a>
+
+
 ```go
 ```
 
@@ -835,7 +868,10 @@ starting at offset off and stops with EOF after n bytes.
 ### <a id="SectionReader.ReadAt">func</a> (\*SectionReader) [ReadAt](https://golang.org/src/io/io.go?s=16155:16225#L491)
 <pre>func (s *<a href="#SectionReader">SectionReader</a>) ReadAt(p []<a href="/pkg/builtin/#byte">byte</a>, off <a href="/pkg/builtin/#int64">int64</a>) (n <a href="/pkg/builtin/#int">int</a>, err <a href="/pkg/builtin/#error">error</a>)</pre>
 
+
 <a id="example_SectionReader_ReadAt">Example</a>
+
+
 ```go
 ```
 
@@ -847,7 +883,10 @@ output:
 ### <a id="SectionReader.Seek">func</a> (\*SectionReader) [Seek](https://golang.org/src/io/io.go?s=15828:15897#L473)
 <pre>func (s *<a href="#SectionReader">SectionReader</a>) Seek(offset <a href="/pkg/builtin/#int64">int64</a>, whence <a href="/pkg/builtin/#int">int</a>) (<a href="/pkg/builtin/#int64">int64</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
 
+
 <a id="example_SectionReader_Seek">Example</a>
+
+
 ```go
 ```
 
@@ -983,7 +1022,10 @@ If a listed writer returns an error, that overall write operation
 stops and returns the error; it does not continue down the list.
 
 
+
 <a id="example_MultiWriter">Example</a>
+
+
 ```go
 ```
 

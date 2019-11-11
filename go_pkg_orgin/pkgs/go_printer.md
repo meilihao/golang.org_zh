@@ -41,7 +41,10 @@ Note that gofmt uses tabs for indentation but spaces for alignment;
 use format.Node (package go/format) for output that matches gofmt.
 
 
+
 <a id="example_Fprint">Example</a>
+
+
 ```go
 ```
 

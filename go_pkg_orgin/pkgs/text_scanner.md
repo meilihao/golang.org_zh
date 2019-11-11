@@ -20,28 +20,40 @@ customized to recognize only a subset of those literals and to recognize
 different identifier and white space characters.
 
 
+
 <a id="example_">Example</a>
+
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
 <a id="example__isIdentRune">Example (IsIdentRune)</a>
+
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
 <a id="example__mode">Example (Mode)</a>
+
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
 <a id="example__whitespace">Example (Whitespace)</a>
+
+
 ```go
 ```
 

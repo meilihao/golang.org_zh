@@ -93,7 +93,10 @@ The documentation for http.Request.Write details which fields
 of req are included in the dump.
 
 
+
 <a id="example_DumpRequest">Example</a>
+
+
 ```go
 ```
 
@@ -108,7 +111,10 @@ includes any headers that the standard http.Transport adds, such as
 User-Agent.
 
 
+
 <a id="example_DumpRequestOut">Example</a>
+
+
 ```go
 ```
 
@@ -121,7 +127,10 @@ output:
 DumpResponse is like DumpRequest but dumps a response.
 
 
+
 <a id="example_DumpResponse">Example</a>
+
+
 ```go
 ```
 
@@ -341,7 +350,10 @@ client.
 
 
 
+
 <a id="example_ReverseProxy">Example</a>
+
+
 ```go
 ```
 

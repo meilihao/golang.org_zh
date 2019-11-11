@@ -40,7 +40,10 @@ UnescapeString(EscapeString(s)) == s always holds, but the converse isn't
 always true.
 
 
+
 <a id="example_EscapeString">Example</a>
+
+
 ```go
 ```
 
@@ -57,7 +60,10 @@ UnescapeString(EscapeString(s)) == s always holds, but the converse isn't
 always true.
 
 
+
 <a id="example_UnescapeString">Example</a>
+
+
 ```go
 ```
 

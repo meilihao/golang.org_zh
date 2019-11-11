@@ -153,7 +153,10 @@ A WordDecoder decodes MIME headers containing RFC 2047 encoded-words.
 Decode decodes an RFC 2047 encoded-word.
 
 
+
 <a id="example_WordDecoder_Decode">Example</a>
+
+
 ```go
 ```
 
@@ -168,7 +171,10 @@ DecodeHeader decodes all encoded-words of the given string. It returns an
 error if and only if CharsetReader of d returns an error.
 
 
+
 <a id="example_WordDecoder_DecodeHeader">Example</a>
+
+
 ```go
 ```
 
@@ -200,7 +206,10 @@ characters, it is returned unchanged. The provided charset is the IANA
 charset name of s. It is case insensitive.
 
 
+
 <a id="example_WordEncoder_Encode">Example</a>
+
+
 ```go
 ```
 

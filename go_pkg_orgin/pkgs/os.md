@@ -282,7 +282,10 @@ On Plan 9, the mode's permission bits, ModeAppend, ModeExclusive,
 and ModeTemporary are used.
 
 
+
 <a id="example_Chmod">Example</a>
+
+
 ```go
 ```
 
@@ -312,7 +315,10 @@ less precise time unit.
 If there is an error, it will be of type *PathError.
 
 
+
 <a id="example_Chtimes">Example</a>
+
+
 ```go
 ```
 
@@ -367,7 +373,10 @@ Expand replaces ${var} or $var in the string based on the mapping function.
 For example, os.ExpandEnv(s) is equivalent to os.Expand(s, os.Getenv).
 
 
+
 <a id="example_Expand">Example</a>
+
+
 ```go
 ```
 
@@ -382,7 +391,10 @@ of the current environment variables. References to undefined
 variables are replaced by the empty string.
 
 
+
 <a id="example_ExpandEnv">Example</a>
+
+
 ```go
 ```
 
@@ -405,7 +417,10 @@ It returns the value, which will be empty if the variable is not present.
 To distinguish between an empty value and an unset value, use LookupEnv.
 
 
+
 <a id="example_Getenv">Example</a>
+
+
 ```go
 ```
 
@@ -494,7 +509,10 @@ report that a file or directory does not exist. It is satisfied by
 ErrNotExist as well as some syscall errors.
 
 
+
 <a id="example_IsNotExist">Example</a>
+
+
 ```go
 ```
 
@@ -550,7 +568,10 @@ Otherwise the returned value will be empty and the boolean will
 be false.
 
 
+
 <a id="example_LookupEnv">Example</a>
+
+
 ```go
 ```
 
@@ -678,7 +699,10 @@ If there is an error, it will be of type *PathError.
 Unsetenv unsets a single environment variable.
 
 
+
 <a id="example_Unsetenv">Example</a>
+
+
 ```go
 ```
 
@@ -793,14 +817,20 @@ methods on the returned File can be used for I/O.
 If there is an error, it will be of type *PathError.
 
 
+
 <a id="example_OpenFile">Example</a>
+
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
 <a id="example_OpenFile_append">Example (Append)</a>
+
+
 ```go
 ```
 
@@ -1133,7 +1163,10 @@ changed, although new bits might be added.
 
 
 
+
 <a id="example_FileMode">Example</a>
+
+
 ```go
 ```
 

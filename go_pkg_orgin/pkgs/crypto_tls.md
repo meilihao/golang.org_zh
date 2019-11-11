@@ -190,7 +190,10 @@ form a certificate chain. On successful return, Certificate.Leaf will
 be nil because the parsed form of the certificate is not retained.
 
 
+
 <a id="example_LoadX509KeyPair">Example</a>
+
+
 ```go
 ```
 
@@ -206,14 +209,20 @@ PEM encoded data. On successful return, Certificate.Leaf will be nil because
 the parsed form of the certificate is not retained.
 
 
+
 <a id="example_X509KeyPair">Example</a>
+
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
 <a id="example_X509KeyPair_httpServer">Example (HttpServer)</a>
+
+
 ```go
 ```
 
@@ -593,7 +602,10 @@ modify it.
 
 
 
+
 <a id="example_Config_keyLogWriter">Example (KeyLogWriter)</a>
+
+
 ```go
 ```
 
@@ -672,7 +684,10 @@ the zero configuration; see the documentation of Config
 for the defaults.
 
 
+
 <a id="example_Dial">Example</a>
+
+
 ```go
 ```
 

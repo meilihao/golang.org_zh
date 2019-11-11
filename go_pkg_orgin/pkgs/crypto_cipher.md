@@ -118,14 +118,20 @@ An exception is when the underlying Block was created by aes.NewCipher
 on systems with hardware support for AES. See the crypto/aes package documentation for details.
 
 
+
 <a id="example_NewGCM_decrypt">Example (Decrypt)</a>
+
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
 <a id="example_NewGCM_encrypt">Example (Encrypt)</a>
+
+
 ```go
 ```
 
@@ -230,7 +236,10 @@ mode, using the given Block. The length of iv must be the same as the
 Block's block size and must match the iv used to encrypt the data.
 
 
+
 <a id="example_NewCBCDecrypter">Example</a>
+
+
 ```go
 ```
 
@@ -246,7 +255,10 @@ mode, using the given Block. The length of iv must be the same as the
 Block's block size.
 
 
+
 <a id="example_NewCBCEncrypter">Example</a>
+
+
 ```go
 ```
 
@@ -290,7 +302,10 @@ using the given Block. The iv must be the same length as the Block's block
 size.
 
 
+
 <a id="example_NewCFBDecrypter">Example</a>
+
+
 ```go
 ```
 
@@ -306,7 +321,10 @@ using the given Block. The iv must be the same length as the Block's block
 size.
 
 
+
 <a id="example_NewCFBEncrypter">Example</a>
+
+
 ```go
 ```
 
@@ -321,7 +339,10 @@ NewCTR returns a Stream which encrypts/decrypts using the given Block in
 counter mode. The length of iv must be the same as the Block's block size.
 
 
+
 <a id="example_NewCTR">Example</a>
+
+
 ```go
 ```
 
@@ -337,7 +358,10 @@ in output feedback mode. The initialization vector iv's length must be equal
 to b's block size.
 
 
+
 <a id="example_NewOFB">Example</a>
+
+
 ```go
 ```
 
@@ -363,7 +387,10 @@ to process each slice of data which passes through.
 
 
 
+
 <a id="example_StreamReader">Example</a>
+
+
 ```go
 ```
 
@@ -400,7 +427,10 @@ to be called to flush write data.
 
 
 
+
 <a id="example_StreamWriter">Example</a>
+
+
 ```go
 ```
 

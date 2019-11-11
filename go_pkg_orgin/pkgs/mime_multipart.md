@@ -233,7 +233,10 @@ the message's "Content-Type" header. Use mime.ParseMediaType to
 parse such headers.
 
 
+
 <a id="example_NewReader">Example</a>
+
+
 ```go
 ```
 

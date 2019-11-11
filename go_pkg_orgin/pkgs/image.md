@@ -31,14 +31,20 @@ See "The Go image package" for more details:
 <a href="https://golang.org/doc/articles/image_package.html">https://golang.org/doc/articles/image_package.html</a>
 
 
+
 <a id="example_">Example</a>
+
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
 <a id="example__decodeConfig">Example (DecodeConfig)</a>
+
+
 ```go
 ```
 

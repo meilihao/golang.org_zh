@@ -16,7 +16,10 @@ This package aims to cover most variations of the format,
 including those produced by GNU and BSD tar tools.
 
 
+
 <a id="example__minimal">Example (Minimal)</a>
+
+
 ```go
 ```
 

@@ -239,14 +239,20 @@ EscapedPath method for more details.
 
 
 
+
 <a id="example_URL">Example</a>
+
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
 <a id="example_URL_roundtrip">Example (Roundtrip)</a>
+
+
 ```go
 ```
 
@@ -295,7 +301,10 @@ In general, code should call EscapedPath instead of
 reading u.RawPath directly.
 
 
+
 <a id="example_URL_EscapedPath">Example</a>
+
+
 ```go
 ```
 
@@ -312,7 +321,10 @@ If the result is enclosed in square brackets, as literal IPv6 addresses are,
 the square brackets are removed from the result.
 
 
+
 <a id="example_URL_Hostname">Example</a>
+
+
 ```go
 ```
 
@@ -327,7 +339,10 @@ IsAbs reports whether the URL is absolute.
 Absolute means that it has a non-empty scheme.
 
 
+
 <a id="example_URL_IsAbs">Example</a>
+
+
 ```go
 ```
 
@@ -339,7 +354,10 @@ output:
 ### <a id="URL.MarshalBinary">func</a> (\*URL) [MarshalBinary](https://golang.org/src/net/url/url.go?s=30786:30840#L1082)
 <pre>func (u *<a href="#URL">URL</a>) MarshalBinary() (text []<a href="/pkg/builtin/#byte">byte</a>, err <a href="/pkg/builtin/#error">error</a>)</pre>
 
+
 <a id="example_URL_MarshalBinary">Example</a>
+
+
 ```go
 ```
 
@@ -355,7 +373,10 @@ may be relative or absolute. Parse returns nil, err on parse
 failure, otherwise its return value is the same as ResolveReference.
 
 
+
 <a id="example_URL_Parse">Example</a>
+
+
 ```go
 ```
 
@@ -371,7 +392,10 @@ Port returns the port part of u.Host, without the leading colon.
 If u.Host doesn't contain a valid numeric port, Port returns an empty string.
 
 
+
 <a id="example_URL_Port">Example</a>
+
+
 ```go
 ```
 
@@ -387,7 +411,10 @@ It silently discards malformed value pairs.
 To check errors use ParseQuery.
 
 
+
 <a id="example_URL_Query">Example</a>
+
+
 ```go
 ```
 
@@ -402,7 +429,10 @@ RequestURI returns the encoded path?query or opaque?query
 string that would be used in an HTTP request for u.
 
 
+
 <a id="example_URL_RequestURI">Example</a>
+
+
 ```go
 ```
 
@@ -421,7 +451,10 @@ base or reference. If ref is an absolute URL, then ResolveReference
 ignores base and returns a copy of ref.
 
 
+
 <a id="example_URL_ResolveReference">Example</a>
+
+
 ```go
 ```
 
@@ -458,7 +491,10 @@ In the second form, the following rules apply:
 	- if u.Fragment is empty, #fragment is omitted.
 
 
+
 <a id="example_URL_String">Example</a>
+
+
 ```go
 ```
 
@@ -470,7 +506,10 @@ output:
 ### <a id="URL.UnmarshalBinary">func</a> (\*URL) [UnmarshalBinary](https://golang.org/src/net/url/url.go?s=30878:30926#L1086)
 <pre>func (u *<a href="#URL">URL</a>) UnmarshalBinary(text []<a href="/pkg/builtin/#byte">byte</a>) <a href="/pkg/builtin/#error">error</a></pre>
 
+
 <a id="example_URL_UnmarshalBinary">Example</a>
+
+
 ```go
 ```
 
@@ -558,7 +597,10 @@ are case-sensitive.
 
 
 
+
 <a id="example_Values">Example</a>
+
+
 ```go
 ```
 
@@ -582,7 +624,10 @@ ampersands or semicolons. A setting without an equals sign is
 interpreted as a key set to an empty value.
 
 
+
 <a id="example_ParseQuery">Example</a>
+
+
 ```go
 ```
 

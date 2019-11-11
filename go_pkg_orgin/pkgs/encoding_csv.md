@@ -201,23 +201,29 @@ not depend on which line-ending convention an input file uses.
 
 
 
+
 <a id="example_Reader">Example</a>
+
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
 <a id="example_Reader_options">Example (Options)</a>
-```go
-```
-
-output:
-```txt
-```
 <p>This example shows how csv.Reader can be configured to handle other
 types of CSV files.
 </p>
+
+```go
+```
+
+output:
+```txt
+```
+
 
 
 
@@ -253,7 +259,10 @@ defined to read until EOF, it does not treat end of file as an error to be
 reported.
 
 
+
 <a id="example_Reader_ReadAll">Example</a>
+
+
 ```go
 ```
 
@@ -291,7 +300,10 @@ be checked by calling the Error method.
 
 
 
+
 <a id="example_Writer">Example</a>
+
+
 ```go
 ```
 
@@ -342,7 +354,10 @@ WriteAll writes multiple CSV records to w using Write and then calls Flush,
 returning any error from the Flush.
 
 
+
 <a id="example_Writer_WriteAll">Example</a>
+
+
 ```go
 ```
 

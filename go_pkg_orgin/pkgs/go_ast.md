@@ -316,15 +316,18 @@ recursively for each of the non-nil children of node, followed by a
 call of f(nil).
 
 
+
 <a id="example_Inspect">Example</a>
+<p>This example demonstrates how to inspect the AST of a Go program.
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
-<p>This example demonstrates how to inspect the AST of a Go program.
-</p>
+
 ## <a id="IsExported">func</a> [IsExported](https://golang.org/src/go/ast/ast.go?s=16554:16587#L516)
 <pre>func IsExported(name <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#bool">bool</a></pre>
 IsExported reports whether name starts with an upper-case letter.
@@ -355,15 +358,18 @@ Print prints x to standard output, skipping nil fields.
 Print(fset, x) is the same as Fprint(os.Stdout, fset, x, NotNilFilter).
 
 
+
 <a id="example_Print">Example</a>
+<p>This example shows what an AST looks like when printed for debugging.
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
-<p>This example shows what an AST looks like when printed for debugging.
-</p>
+
 ## <a id="SortImports">func</a> [SortImports](https://golang.org/src/go/ast/import.go?s=378:424#L5)
 <pre>func SortImports(fset *<a href="/pkg/go/token/">token</a>.<a href="/pkg/go/token/#FileSet">FileSet</a>, f *<a href="#File">File</a>)</pre>
 SortImports sorts runs of consecutive import lines in import blocks in f.
@@ -900,17 +906,20 @@ the association.
 
 
 
+
 <a id="example_CommentMap">Example</a>
+<p>This example illustrates how to remove a variable declaration
+in a Go program while maintaining correct comment association
+using an ast.CommentMap.
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
-<p>This example illustrates how to remove a variable declaration
-in a Go program while maintaining correct comment association
-using an ast.CommentMap.
-</p>
+
 
 
 

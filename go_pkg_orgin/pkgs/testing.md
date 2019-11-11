@@ -592,7 +592,10 @@ If unit is a unit normally reported by the benchmark framework itself
 Setting "ns/op" to 0 will suppress that built-in metric.
 
 
+
 <a id="example_B_ReportMetric">Example</a>
+
+
 ```go
 ```
 
@@ -635,7 +638,10 @@ It should not use the StartTimer, StopTimer, or ResetTimer functions,
 because they have global effect. It should also not call Run.
 
 
+
 <a id="example_B_RunParallel">Example</a>
+
+
 ```go
 ```
 

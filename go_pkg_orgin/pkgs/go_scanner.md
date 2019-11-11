@@ -286,7 +286,10 @@ set with Init. Token positions are relative to that file
 and thus relative to the file set.
 
 
+
 <a id="example_Scanner_Scan">Example</a>
+
+
 ```go
 ```
 

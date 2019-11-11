@@ -12,7 +12,10 @@ Package httptrace provides mechanisms to trace the events within
 HTTP client requests.
 
 
+
 <a id="example_">Example</a>
+
+
 ```go
 ```
 

@@ -648,58 +648,76 @@ as unexported by all other clients.
 
 
 
+
 <a id="example_Template">Example</a>
+
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
 <a id="example_Template_block">Example (Block)</a>
+
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
 <a id="example_Template_func">Example (Func)</a>
-```go
-```
-
-output:
-```txt
-```
 <p>This example demonstrates a custom function to process template text.
 It installs the strings.Title function and uses it to
 Make Title Text Look Good In Our Template&#39;s Output.
-</p><a id="example_Template_glob">Example (Glob)</a>
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
+<a id="example_Template_glob">Example (Glob)</a>
 <p>Here we demonstrate loading a set of templates from a directory.
-</p><a id="example_Template_helpers">Example (Helpers)</a>
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
+<a id="example_Template_helpers">Example (Helpers)</a>
 <p>This example demonstrates one way to share some templates
 and use them in different contexts. In this variant we add multiple driver
 templates by hand to an existing bundle of templates.
-</p><a id="example_Template_share">Example (Share)</a>
+</p>
+
 ```go
 ```
 
 output:
 ```txt
 ```
+
+<a id="example_Template_share">Example (Share)</a>
 <p>This example demonstrates how to use one group of driver
 templates with distinct sets of helper templates.
 </p>
+
+```go
+```
+
+output:
+```txt
+```
+
 
 
 

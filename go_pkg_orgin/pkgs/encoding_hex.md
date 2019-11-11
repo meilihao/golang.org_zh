@@ -63,7 +63,10 @@ If the input is malformed, Decode returns the number
 of bytes decoded before the error.
 
 
+
 <a id="example_Decode">Example</a>
+
+
 ```go
 ```
 
@@ -81,7 +84,10 @@ If the input is malformed, DecodeString returns
 the bytes decoded before the error.
 
 
+
 <a id="example_DecodeString">Example</a>
+
+
 ```go
 ```
 
@@ -102,7 +108,10 @@ Dump returns a string that contains a hex dump of the given data. The format
 of the hex dump matches the output of `hexdump -C` on the command line.
 
 
+
 <a id="example_Dump">Example</a>
+
+
 ```go
 ```
 
@@ -117,7 +126,10 @@ w. The format of the dump matches the output of `hexdump -C` on the command
 line.
 
 
+
 <a id="example_Dumper">Example</a>
+
+
 ```go
 ```
 
@@ -133,7 +145,10 @@ of bytes written to dst, but this value is always EncodedLen(len(src)).
 Encode implements hexadecimal encoding.
 
 
+
 <a id="example_Encode">Example</a>
+
+
 ```go
 ```
 
@@ -146,7 +161,10 @@ output:
 EncodeToString returns the hexadecimal encoding of src.
 
 
+
 <a id="example_EncodeToString">Example</a>
+
+
 ```go
 ```
 

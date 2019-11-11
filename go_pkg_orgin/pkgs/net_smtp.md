@@ -25,7 +25,10 @@ Some external packages provide more functionality. See:
 	<a href="https://godoc.org/?q=smtp">https://godoc.org/?q=smtp</a>
 
 
+
 <a id="example_">Example</a>
+
+
 ```go
 ```
 
@@ -96,7 +99,10 @@ functionality. Higher-level packages exist outside of the standard
 library.
 
 
+
 <a id="example_SendMail">Example</a>
+
+
 ```go
 ```
 
@@ -159,7 +165,10 @@ or is connected to localhost. Otherwise authentication will fail with an
 error, without sending the credentials.
 
 
+
 <a id="example_PlainAuth">Example</a>
+
+
 ```go
 ```
 
