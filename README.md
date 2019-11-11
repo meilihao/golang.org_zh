@@ -7,8 +7,9 @@ go 1.13.4
 ## 进度
 [已完成列表, 请见pkg.md](go_pkg/pkg.md).
 
-## markdown生成工具
-见`tools/pkg`
+## 工具
+- markdown生成: `tools/pkg`
+- 同步`go_pkg`和`go_pkg_origin`中的代码引用位置: `tools/source_def`, 未完成.
 
 ## 翻译原则
 - 针对未翻译过的package, 先用go_pkg_orgin对应的文件覆盖一遍再翻译, 便于同步最新的文档.
