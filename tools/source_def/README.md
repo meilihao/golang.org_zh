@@ -1,0 +1,3 @@
+# README
+
+使用pkg工具生成的最新版本的源码引用覆盖go_pkg和go_pkg_origin的
