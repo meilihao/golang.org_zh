@@ -22,7 +22,7 @@ See "The Laws of Reflection" for an introduction to reflection in Go:
 
 reflect 包了实现运行时反射, 允许程序操纵任意类型的对象. 典型的用法是用静态类型interface{}保存值并通过调用TypeOf返回Type类型来获取其动态类型信息.
 
-ValueOf调用会返回一个代表运行时数据的Value. Zero 传入 Type 会返回表示该类型零值的 Value.
+ValueOf调用会返回一个代表运行时数据的Value. Zero 传入 Type 后会返回表示该类型零值的 Value.
 
 请参阅"Reflection法则"以了解 Go 中的反射：<a href="https://golang.org/doc/articles/laws_of_reflection.html">https://golang.org/doc/articles/laws_of_reflection.html</a>
 
